@@ -33,15 +33,15 @@ class Question extends Model
     }
 
     public function documents() {
-        return $this->belongsToMany('App\Document', 'Question_Document');
+        return $this->belongsToMany('App\Document', 'question_document');
     }
 
     public function parts() {
-        return $this->belongsToMany('App\Part', 'Question_Part');
+        return $this->belongsToMany('App\Part', 'question_part');
     }
 
     public function tests() {
-        return $this->belongsToMany('App\Test', 'Test_Question')->withPivot(['number']);
+        return $this->belongsToMany('App\Test', 'test_question')->withPivot(['number']);
     }
 
     public function getStatistics() {

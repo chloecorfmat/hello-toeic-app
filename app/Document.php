@@ -15,6 +15,6 @@ class Document extends Model
     public $timestamps = false;
 
     public function questions() {
-        return $this->belongsToMany('App\Question', 'Question_Document');
+        return $this->belongsToMany('App\Question', 'question_document');
     }
 }

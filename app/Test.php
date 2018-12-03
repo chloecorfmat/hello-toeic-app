@@ -23,6 +23,6 @@ class Test extends Model
     }
 
     public function questions() {
-        return $this->belongsToMany('App\Question', 'Test_Question')->withPivot(['number']);
+        return $this->belongsToMany('App\Question', 'test_question')->withPivot(['number']);
     }
 }
