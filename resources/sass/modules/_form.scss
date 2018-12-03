@@ -1,0 +1,120 @@
+form {
+    .btn {
+        margin-top: 1rem;
+        width: 100%;
+
+        @media screen and (min-width: $breakpoint-medium) {
+            width: initial;
+        }
+    }
+
+    legend {
+        font-family: "Nunito", sans-serif;
+        margin-bottom: .5rem;
+    }
+}
+
+.field-container {
+    margin: 1rem 0;
+
+    label {
+        display: block;
+        color: $secondary-color-1;
+        font-size: .8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="password"],
+    input[type="email"],
+    select {
+        background: $light-grey;
+        border-radius: 5px;
+        border: 1px solid $tertiary-color-2;
+        box-sizing: border-box;
+        color: $secondary-color-1;
+        font-size: .9rem;
+        line-height: 1.5;
+        margin-top: .25rem;
+        padding: .25rem;
+        width: 100%;
+
+        &:active,
+        &:focus {
+            background: $white;
+            //border-color: $secondary-color-1;
+            border-color: $secondary-color-2;
+            outline-color: $secondary-color-2;
+        }
+
+        @media screen and (min-width: $breakpoint-medium) {
+            width: 50%;
+        }
+    }
+}
+
+.form-radio-el {
+    legend {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+
+    input[type="radio"] {
+        display: none;
+
+        &:disabled {
+            + .radio-el {
+                background: $tertiary-color-2;
+            }
+        }
+
+        &:checked {
+            + .radio-el {
+                background: $secondary-color-1;
+            }
+        }
+
+
+    }
+
+    label {
+        font-size: 1rem;
+        vertical-align: top;
+    }
+
+    .radio-el {
+        display: inline-block;
+        border: 2px solid $secondary-color-1;
+        border-radius: 50%;
+        height: .75rem;
+        width: .75rem;
+    }
+}
+
+.required {
+    color: $danger-color;
+}
+
+.block-question {
+    border: 1px solid $tertiary-color-2;
+    padding: 1rem;
+    border-radius: 15px;
+    margin: 2rem auto;
+
+    display: flex;
+
+    .documents {
+        max-width: 30%;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    &:last-child {
+        margin-bottom: 1rem;
+    }
+}

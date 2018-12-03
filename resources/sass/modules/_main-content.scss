@@ -1,0 +1,30 @@
+.main-content {
+    box-sizing: border-box;
+    margin-top: 2rem;
+    padding: 0rem 2rem 2rem 2rem;
+    width: 100%;
+
+    @media screen and (min-width: $breakpoint-medium) {
+        margin-top: initial;
+        padding: 2rem 0 2rem 2rem;
+        width: 75%;
+    }
+
+    .main-content--header {
+        h1,
+        a {
+            display: inline-block;
+        }
+    }
+
+    .main-content--header-actions {
+        margin-left: 2rem;
+        color: $tertiary-color-2;
+        margin-bottom: 2rem;
+        font-size: 1.8rem;
+
+        &:hover {
+            opacity: .7;
+        }
+    }
+}

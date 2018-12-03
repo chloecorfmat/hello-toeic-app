@@ -1,0 +1,59 @@
+.table-container {
+    border-radius: 5px;
+    border: 1px solid $tertiary-color-2;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+thead {
+    background: $tertiary-color-2;
+    text-align: left;
+
+    th {
+        color: $white;
+        font-weight: 700;
+    }
+}
+
+tr:last-child {
+    td {
+        border-bottom: none;
+    }
+}
+
+th,
+td {
+    border: 1px solid $tertiary-color-2;
+    vertical-align: middle;
+
+    &:first-child {
+        border-left: none;
+    }
+
+    &:last-child {
+        border-right: none;
+    }
+}
+
+th {
+    padding: .5rem .25rem;
+}
+
+td {
+    padding: .25rem;
+}
+
+tr:nth-child(2n) {
+    background: $light-grey;
+}
+
+.table--filters {
+    input {
+
+    }
+}

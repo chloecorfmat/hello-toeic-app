@@ -1,0 +1,28 @@
+@import "header";
+@import "main";
+
+.body-border {
+    box-sizing: border-box;
+    border-bottom: .4rem solid $secondary-color-1;
+}
+
+body {
+    min-height: 100vh;
+}
+
+.app {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    flex-grow: 1;
+
+    @media screen and (min-width: $breakpoint-medium) {
+        flex-direction: row;
+    }
+}

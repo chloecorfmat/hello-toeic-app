@@ -1,0 +1,57 @@
+.training-part {
+  box-sizing: border-box;
+  display: inline-block;
+  text-align: center;
+  padding: 2rem 0;
+  width: 100%;
+
+  a {
+    display: inline-block;
+    text-decoration: none;
+    height: 100%;
+
+    &:hover {
+      text-decoration: underline;
+      opacity: .7;
+    }
+  }
+
+  img {
+    width: 70%;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+    margin-top: 1rem;
+  }
+}
+
+@media screen and (min-width: $breakpoint-small) {
+  .training-container {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .training-part {
+    width: 50%;
+
+    a {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+  }
+}
+
+@media screen and (min-width: $breakpoint-medium) {
+  .training-container {
+    margin-top: 3rem;
+    padding-left: 3rem;
+  }
+
+  .training-part {
+    width: 30%;
+  }
+}

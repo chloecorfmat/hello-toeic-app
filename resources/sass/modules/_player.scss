@@ -1,0 +1,20 @@
+.player {
+  border: 2px solid $secondary-color-1;
+  border-radius: 30px;
+  color: $secondary-color-1;
+  height: 3rem;
+  margin: 3rem auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+
+  .btn-play {
+    border: none;
+    color: $secondary-color-1;
+
+    &--disabled {
+      color: $tertiary-color-1;
+    }
+  }
+}

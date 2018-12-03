@@ -1,0 +1,45 @@
+@import "heading";
+@import "sr-only";
+@import "text";
+
+a,
+caption,
+h1,
+h2,
+h3,
+input,
+label,
+li,
+p,
+td,
+th {
+    font-family: $main-font;
+}
+
+caption,
+h1,
+h2,
+label,
+li,
+p,
+td,
+th {
+    color: $main-color;
+}
+
+a {
+    color: $secondary-color-1;
+
+    &:hover {
+        color: $tertiary-color-1;
+    }
+}
+
+li {
+    list-style-type: none;
+}
+
+.fa-ico {
+    margin-right: 1rem;
+    vertical-align: middle;
+}

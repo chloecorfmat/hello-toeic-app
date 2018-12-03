@@ -1,0 +1,90 @@
+.header {
+    align-items: center;
+    background-color: $white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .04);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    //margin-bottom: 2rem;
+    min-height: 8vh;
+    padding: .5rem 3rem;
+
+    .header--part {
+        margin: .5rem auto;
+    }
+}
+
+.header--logo {
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    font-weight: 700;
+
+    a {
+        text-decoration: none;
+
+        &:hover {
+            img {
+                opacity: .7;
+            }
+        }
+    }
+
+    img {
+        display: inline-block;
+        margin-right: 1rem;
+        vertical-align: middle;
+        width: 3rem;
+    }
+}
+
+.header--actions-list {
+    .header--actions-list-item {
+        display: inline-block;
+
+        span {
+            font-size: .9rem;
+            margin-right: .5rem;
+
+            &.name {
+                font-weight: 700;
+            }
+        }
+
+        a {
+            text-decoration: none;
+
+            &:hover {
+                .fas {
+                    opacity: .5;
+                }
+            }
+        }
+    }
+
+    .header--logout-btn {
+        background: $white;
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+
+        &:hover {
+            opacity: .5;
+        }
+    }
+
+    .fas {
+        color: $tertiary-color-2;
+    }
+}
+
+@media screen and (min-width: $breakpoint-small) {
+    .header {
+        flex-direction: row;
+        padding: .5rem 5rem;
+
+        .header--part {
+            margin: initial;
+        }
+    }
+}

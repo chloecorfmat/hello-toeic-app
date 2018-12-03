@@ -1,0 +1,10 @@
+main {
+    flex-grow: 1;
+    min-height: 91.2vh; // 100vh - header_height - border_body*2
+    flex-direction: column;
+    display: flex;
+
+    @media screen and (min-width: $breakpoint-medium) {
+        padding: 0 5rem 0 0;
+    }
+}
