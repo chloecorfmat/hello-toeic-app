@@ -267,7 +267,8 @@ class TestController extends Controller
     }
 
     public function exerciseImport() {
-        return view('admin.tests.exercise.import');
+        $parts = Part::all();
+        return view('admin.tests.exercise.import', compact('parts'));
     }
 
     public function exerciseImportStore(Request $request) {

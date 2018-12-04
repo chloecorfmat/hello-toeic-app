@@ -18,7 +18,7 @@ class CreateCorrectionsTable extends Migration
             $table->boolean('state');
             $table->unsignedInteger('trial_id');
             $table->unsignedInteger('question_id');
-            $table->unsignedInteger('proposal_id');
+            $table->unsignedInteger('proposal_id')->nullable();
 
             $table->foreign('trial_id', 'fk_corrections_trials_trialid')
                 ->references('id')->on('trials');

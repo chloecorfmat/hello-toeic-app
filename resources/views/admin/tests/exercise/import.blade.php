@@ -36,7 +36,11 @@
 
             <div class="field-container">
                 <label for="part">Part <span class="required">*</span></label>
-                <input type="number" id="part" name="part" required>
+                <select name="part" id="part" required>
+                    @foreach($parts as $part)
+                        <option value="{{ $part->id }}">{{ $part->name }}</option>
+                    @endforeach
+                </select>
             </div>
 
             <button type="submit" class="btn btn-primary">
