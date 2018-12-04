@@ -279,32 +279,31 @@ class TestController extends Controller
             'D',
         ];
 
+        if ($request->file('answers')) {
+            $handle = fopen($request->file('answers')->path(), "r");
+
+            $datas = fread($handle, filesize($request->file('answers')->path()));
+            $d = str_replace("\r\n", '', $datas);
+            $d = str_replace(" ", '', $d);
+            $d = str_replace("(", '', $d);
+
+            $datas = explode(')', $d);
+
+            $answers = [];
+            foreach ($datas as $answer) {
+                if (preg_match(
+                        '/(?P<number>\d+)\.(?P<letter>[ABCD])/',
+                        $answer,
+                        $data_answer
+                    ) != FALSE) {
+                    $answers[$data_answer['number']] = $data_answer['letter'];
+                }
+            }
+
+        }
+
         switch ($request->get('part')) {
             case 2:
-
-                if ($request->file('answers')) {
-                    $handle = fopen($request->file('answers')->path(), "r");
-
-                    $datas = fread($handle, filesize($request->file('answers')->path()));
-                    $d = str_replace("\r\n", '', $datas);
-                    $d = str_replace(" ", '', $d);
-                    $d = str_replace("(", '', $d);
-
-                    $datas = explode(')', $d);
-
-                    $answers = [];
-                    foreach ($datas as $answer) {
-                        if (preg_match(
-                                '/(?P<number>\d+)\.(?P<letter>[ABCD])/',
-                                $answer,
-                                $data_answer
-                            ) != FALSE) {
-                            $answers[$data_answer['number']] = $data_answer['letter'];
-                        }
-                    }
-
-                }
-
                 if ($request->file('documents')->getClientMimeType() === 'application/zip') {
                     $zip = new \ZipArchive();
                     $file = $request->file('documents');
@@ -371,6 +370,61 @@ class TestController extends Controller
             case 5:
                 break;
             case 6:
+                $number = '';
+                $handle = fopen($request->file('questions')->path(), "r");
+
+                $data = fgetcsv($handle, 0, "\r");
+
+                if (($handle) !== FALSE) {
+                    $i = 0;
+                    while ($data !== FALSE && $i < count($data)) {
+                        if (is_null($test)) {
+                            $test = Test::create([
+                                'name' => $request->get('name'),
+                                'version' => $request->get('version'),
+                                'part_id' => $request->get('part'),
+                            ]);
+                        }
+
+                        $d = $data[$i];
+                        if (preg_match(
+                                '/(?P<number>\d+)\. (?P<question>.+)/',
+                                $d,
+                                $data_question
+                            ) != FALSE) {
+                            $number = $data_question['number'];
+                            $question = Question::create([
+                                'version' => $request->get('version'),
+                                'question' => $data_question['question'],
+                                'number' => $number,
+                            ]);
+
+                            $question_index = 1;
+                            $test->questions()->attach($question, ['number' => $question_index++]);
+
+                            $part = Part::find($request->get('part'));
+                            $question->parts()->attach($part);
+                        }
+
+                        if (preg_match(
+                                '/(?P<index>[(][A-D][)]) (?P<answer>.+)/',
+                                $d,
+                                $data_answer
+                            ) != FALSE) {
+
+                            $proposal = $question->proposals()->create([
+                                'value' => $data_answer['answer'],
+                            ]);
+
+                            if ($data_answer['index'] === '(' . $answers[$number] . ')') {
+                                $question->answer()->associate($proposal)->save();
+                            }
+                        }
+
+                        $i++;
+                    }
+                    fclose($handle);
+                }
                 break;
             case 7:
                 break;
@@ -381,56 +435,7 @@ class TestController extends Controller
                 break;
         }
 
-        /**$handle = fopen($request->file('questions')->path(), "r");
-
-        $data = fgetcsv($handle, 0, "\r");
-
-        if (($handle) !== FALSE) {
-            $i = 0;
-            while ($data !== FALSE && $i < count($data)) {
-                if (is_null($test)) {
-                    $test = Test::create([
-                        'name' => $request->get('name'),
-                        'version' => $request->get('version'),
-                        'part_id' => $request->get('part'),
-                    ]);
-                }
-
-                $d = $data[$i];
-                if (preg_match(
-                    '/(?P<number>\d+)\. (?P<question>.+)/',
-                    $d,
-                    $data_question
-                    ) != FALSE) {
-                    $question = Question::create([
-                        'version' => $request->get('version'),
-                        'question' => $data_question['question'],
-                        'number' => $data_question['number'],
-                    ]);
-                    $question_index = 1;
-                    $test->questions()->attach($question, ['number' => $question_index++]);
-
-                    $part = Part::find($request->get('part'));
-                    $question->parts()->attach($part);
-                }
-
-                if (preg_match(
-                    '/(?P<index>[(][A-D][)]) (?P<answer>.+)/',
-                    $d,
-                    $data_answer
-                    ) != FALSE) {
-
-                    $proposal = $question->proposals()->create([
-                       'value' => $data_answer['answer'],
-                    ]);
-
-                    $question->answer()->associate($proposal)->save();
-                }
-
-                $i++;
-            }
-            fclose($handle);
-        }**/
+        /****/
         return redirect()->route('tests.index')->with('success', 'Created test.');
     }
 }
