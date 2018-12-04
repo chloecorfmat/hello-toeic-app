@@ -16,7 +16,7 @@
 
             <div class="field-container">
                 <label for="version">Version <span class="required">*</span></label>
-                <input type="number" id="version" name="version" required>
+                <input type="number" id="version" name="version" min="1960" max="2200" required>
             </div>
 
             <div class="field-container">

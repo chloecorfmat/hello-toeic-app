@@ -848,6 +848,11 @@ tr:nth-child(2n) {
   margin-top: 3rem;
 }
 
+.proposal-answer {
+  color: #6fa939;
+  font-weight: 700;
+}
+
 .main-content {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;

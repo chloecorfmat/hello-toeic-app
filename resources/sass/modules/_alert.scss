@@ -6,11 +6,11 @@
 }
 
 .alert-success {
-  background: #6fa9392b;
-  border-color: #6fa939;
+  background: $success-color-light;
+  border-color: $success-color;
 }
 
 .alert-error {
-  background: #e9a4a133;
+  background: $danger-color-light;
   border-color: $danger-color;
 }
