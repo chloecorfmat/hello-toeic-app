@@ -382,29 +382,19 @@ class TestController extends Controller
                 $final = [];
 
                 foreach ($datas as $data) {
-                    $t = null;
-
-                    $t = preg_match(
-                        '/(?<answer>([A-D])\) (.+)) (?<next>(\d+\. .*))/',
-                        $data,
-                        $m
-                    );
-
                     if (preg_match(
-                            '/(?<answer>([A-D])\) (.+)) (?<next>(\d+\. .*))/',
+                            '/(?<answer>([A-D])\) (\D+)) (?<next>(\d+\. .*))/',
                             $data,
                             $m
                         ) != FALSE) {
-                        $final[] = $m['answer'];
-                        $final[] = $m['next'];
+                        $final[] = trim($m['answer']);
+                        $final[] = trim($m['next']);
                     } else {
-                        $final[] = $data;
+                        $final[] = trim($data);
                     }
                 }
 
-                $datas = $final;
-
-                foreach ($datas as $d) {
+                foreach ($final as $d) {
                     if (is_null($test)) {
                         $test = Test::create([
                             'name' => $request->get('name'),
