@@ -300,6 +300,7 @@ class TestController extends Controller
                 }
             }
 
+            fclose($handle);
         }
 
         switch ($request->get('part')) {
@@ -373,58 +374,80 @@ class TestController extends Controller
                 $number = '';
                 $handle = fopen($request->file('questions')->path(), "r");
 
-                $data = fgetcsv($handle, 0, "\r");
+                $datas = fread($handle, filesize($request->file('questions')->path()));
+                $datas = str_replace("\r\n", ' ', $datas);
 
-                if (($handle) !== FALSE) {
-                    $i = 0;
-                    while ($data !== FALSE && $i < count($data)) {
-                        if (is_null($test)) {
-                            $test = Test::create([
-                                'name' => $request->get('name'),
-                                'version' => $request->get('version'),
-                                'part_id' => $request->get('part'),
-                            ]);
-                        }
+                $datas = explode("(", $datas);
+                $final = [];
 
-                        $d = $data[$i];
-                        if (preg_match(
-                                '/(?P<number>\d+)\. (?P<question>.+)/',
-                                $d,
-                                $data_question
-                            ) != FALSE) {
-                            $number = $data_question['number'];
-                            $question = Question::create([
-                                'version' => $request->get('version'),
-                                'question' => $data_question['question'],
-                                'number' => $number,
-                            ]);
+                foreach ($datas as $data) {
+                    $t = null;
 
-                            $question_index = 1;
-                            $test->questions()->attach($question, ['number' => $question_index++]);
+                    $t = preg_match(
+                        '/(?<answer>([A-D])\) (.+)) (?<next>(\d+\. .*))/',
+                        $data,
+                        $m
+                    );
 
-                            $part = Part::find($request->get('part'));
-                            $question->parts()->attach($part);
-                        }
-
-                        if (preg_match(
-                                '/(?P<index>[(][A-D][)]) (?P<answer>.+)/',
-                                $d,
-                                $data_answer
-                            ) != FALSE) {
-
-                            $proposal = $question->proposals()->create([
-                                'value' => $data_answer['answer'],
-                            ]);
-
-                            if ($data_answer['index'] === '(' . $answers[$number] . ')') {
-                                $question->answer()->associate($proposal)->save();
-                            }
-                        }
-
-                        $i++;
+                    if (preg_match(
+                            '/(?<answer>([A-D])\) (.+)) (?<next>(\d+\. .*))/',
+                            $data,
+                            $m
+                        ) != FALSE) {
+                        $final[] = $m['answer'];
+                        $final[] = $m['next'];
+                    } else {
+                        $final[] = $data;
                     }
-                    fclose($handle);
                 }
+
+                $datas = $final;
+
+                foreach ($datas as $d) {
+                    if (is_null($test)) {
+                        $test = Test::create([
+                            'name' => $request->get('name'),
+                            'version' => $request->get('version'),
+                            'part_id' => $request->get('part'),
+                        ]);
+                    }
+
+                    if (preg_match(
+                            '/(?P<number>\d+)\. (?P<question>.+)/',
+                            $d,
+                            $data_question
+                        ) != FALSE) {
+                        $number = $data_question['number'];
+                        $question = Question::create([
+                            'version' => $request->get('version'),
+                            'question' => $data_question['question'],
+                            'number' => $number,
+                        ]);
+
+                        $question_index = 1;
+                        $test->questions()->attach($question, ['number' => $question_index++]);
+
+                        $part = Part::find($request->get('part'));
+                        $question->parts()->attach($part);
+                    }
+
+                    if (preg_match(
+                            '/(?P<index>[A-D])\) (?P<answer>.+)/',
+                            $d,
+                            $data_answer
+                        ) != FALSE) {
+
+                        $proposal = $question->proposals()->create([
+                            'value' => $data_answer['answer'],
+                        ]);
+
+                        if ($data_answer['index'] === $answers[$number]) {
+                            $question->answer()->associate($proposal)->save();
+                        }
+                    }
+                }
+
+                fclose($handle);
                 break;
             case 7:
                 break;
