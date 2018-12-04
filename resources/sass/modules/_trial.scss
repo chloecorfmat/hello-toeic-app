@@ -1,0 +1,16 @@
+.answer-real {
+  color: $danger-color;
+  font-weight: bold;
+
+  &.answer-user {
+    color: $success-color;
+    font-weight: 700;
+  }
+}
+
+.answer-user {
+  &:not(.answer-real) {
+    color: $danger-color;
+    text-decoration: line-through;
+  }
+}

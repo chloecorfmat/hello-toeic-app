@@ -7,7 +7,7 @@
         <form method="POST" action="{{ route('games.continue') }}">
             @csrf
             <fieldset class="form-radio-el">
-                <legend>({{ $datas['question']->number }}) {{ $datas['question']->question }}</legend>
+                <legend class="question-legend">({{ $datas['question']->number }}) {{ $datas['question']->question }}</legend>
                 @foreach ($datas['question']->proposals as $k => $proposal)
                     <div>
                         <input type="radio" id="{{ 'question-' . $proposal->id }}"

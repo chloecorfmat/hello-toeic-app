@@ -17,7 +17,7 @@
                 @foreach ($datas['questions'] as $key => $question)
                     <li class="block-question">
                         <fieldset class="form-radio-el">
-                            <legend>({{ $question->number }}) {{ $question->question }}</legend>
+                            <legend class="question-legend">({{ $question->number }}) {{ $question->question }}</legend>
                             @foreach ($question->proposals as $k => $proposal)
                             <div>
                                 <input type="radio" id="{{ $key . '-' . $proposal->id }}"

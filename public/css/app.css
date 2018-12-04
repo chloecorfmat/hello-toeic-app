@@ -438,9 +438,10 @@ form .btn {
   }
 }
 
-form legend {
+.question-legend {
   font-family: "Nunito", sans-serif;
-  margin-bottom: .5rem;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
 }
 
 .field-container {
@@ -498,11 +499,6 @@ form legend {
   }
 }
 
-.form-radio-el legend {
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
-}
-
 .form-radio-el input[type="radio"] {
   display: none;
 }
@@ -537,9 +533,6 @@ form legend {
   padding: 1rem;
   border-radius: 15px;
   margin: 2rem auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
 }
 
 .block-question .documents {
@@ -987,5 +980,20 @@ tr:nth-child(2n) {
   .training-part {
     width: 30%;
   }
+}
+
+.answer-real {
+  color: #db504a;
+  font-weight: bold;
+}
+
+.answer-real.answer-user {
+  color: #6fa939;
+  font-weight: 700;
+}
+
+.answer-user:not(.answer-real) {
+  color: #db504a;
+  text-decoration: line-through;
 }
 

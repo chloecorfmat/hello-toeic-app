@@ -17,7 +17,7 @@
                 </a>
             </li>
             <li class="training-part">
-                <a href="{{ route('games.play') }}">
+                <a href="{{ route('games') }}">
                     <img src="{{ url('svg/challenges.svg') }}" alt="Challenges"/>
                     <h2>Challenges</h2>
                 </a>
