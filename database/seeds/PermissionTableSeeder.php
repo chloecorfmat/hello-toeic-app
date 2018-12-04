@@ -17,29 +17,47 @@ class PermissionTableSeeder extends Seeder
             'dashboard-own-see',
             'dashboard-students-see',
             'document-add',
+            'document-show',
+            'document-list',
+            'document-update',
             'profile-own-update',
             'profile-students-update',
             'profile-teachers-update',
             'question-add',
+            'question-show',
+            'question-list',
+            'question-update',
             'test-add',
             'test-execute',
+            'test-list',
+            'trial-show',
         ];
 
         $permissions_teacher = [
             'dashboard-own-see',
             'dashboard-students-see',
             'document-add',
+            'document-show',
+            'document-list',
+            'document-update',
             'profile-own-update',
             'profile-students-update',
             'question-add',
+            'question-show',
+            'question-list',
+            'question-update',
             'test-add',
             'test-execute',
+            'test-list',
+            'trial-show',
         ];
 
         $permissions_student = [
             'dashboard-own-see',
             'profile-own-update',
             'test-execute',
+            'test-list',
+            'trial-show',
         ];
 
         $admin = Role::findByName('admin');
