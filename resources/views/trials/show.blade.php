@@ -4,7 +4,7 @@
     <div class="container">
         <h1>Correction</h1>
         <p><span>{{ $datas['trial']->user->firstname }} {{ $datas['trial']->user->lastname }}</span>, le <span>{{ date('d/m/Y à H:i', strtotime($datas['trial']->datetime)) }}</span></p>
-        <p>Score : <span>{{ $datas['trial']->score }}/1000</span></p>
+        <p>Score : <span>{{ $datas['trial']->score }}</span></p>
 
         <div>
             <ol>
@@ -19,7 +19,7 @@
                                         -> Good answer
                                     @endif
 
-                                    @if ($proposal->id === $correction->proposal->id)
+                                    @if (isset($correction->proposal) and $proposal->id === $correction->proposal->id)
                                         -> User answer
                                     @endif
                                 </li>
