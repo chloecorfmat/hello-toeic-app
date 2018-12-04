@@ -14,6 +14,7 @@ class PermissionTableSeeder extends Seeder
     public function run()
     {
         $permissions_admin = [
+            'admin',
             'dashboard-own-see',
             'dashboard-students-see',
             'document-add',
@@ -31,6 +32,8 @@ class PermissionTableSeeder extends Seeder
             'test-execute',
             'test-list',
             'trial-show',
+            'game-execute',
+            'game-list',
         ];
 
         $permissions_teacher = [
@@ -50,6 +53,8 @@ class PermissionTableSeeder extends Seeder
             'test-execute',
             'test-list',
             'trial-show',
+            'game-execute',
+            'game-list',
         ];
 
         $permissions_student = [
@@ -58,6 +63,8 @@ class PermissionTableSeeder extends Seeder
             'test-execute',
             'test-list',
             'trial-show',
+            'game-execute',
+            'game-list',
         ];
 
         $admin = Role::findByName('admin');

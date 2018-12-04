@@ -117,6 +117,20 @@
                         </div>
                         @endrole
 
+                        @role('admin')
+                        <div class="laterale-bar--part laterale-bar--menu">
+                            <h3>Administration</h3>
+                            <ul class="laterale-bar--menu-list">
+                                <li class="laterale-bar--menu-item">
+                                    <a href="{{ route('permissions.index') }}">
+                                        <i class="menu-ico fas fa-key"></i>
+                                        Permissions
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        @endrole
+
                         @if(isset($datasources) && !empty($datasources))
                             <div class="player" id="player">
                                 <audio src="{{ $source }}" type="audio" data-sources="{{ $datasources }}"></audio>
