@@ -11,18 +11,22 @@ class GameController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['permission:test-list'])->only('index');
-        $this->middleware(['permission:test-execute'])->only('play', 'continue');
+        $this->middleware(['permission:game-execute'])->only('play', 'continue');
+        $this->middleware(['permission:game-list'])->only('index');
     }
 
     public function index() {
         $user = \Auth::user();
 
-
-        // Get all tests passed.
-        $games = Game::where('user_id', '=', $user->id)
-            ->orderBy('datetime', 'DESC')
-            ->get();
+        if ($user->hasPermissionTo('dashboard-students-see')) {
+            $games = Game::orderBy('datetime', 'DESC')
+                ->get();
+        } else {
+            // Get all tests passed.
+            $games = Game::where('user_id', '=', $user->id)
+                ->orderBy('datetime', 'DESC')
+                ->get();
+        }
 
         $datas = [
             'user' => $user,

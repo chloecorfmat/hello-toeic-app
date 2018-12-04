@@ -98,6 +98,14 @@ function initialiser(e) {
         new List('tests', options);
     }
 
+    if (document.getElementById('games') !== undefined) {
+        var options = {
+            valueNames: ['date', 'student', 'score']
+        };
+
+        new List('games', options);
+    }
+
     var interval;
     if (document.getElementById('player') !== null) {
         var audio = document.querySelector('#player audio');

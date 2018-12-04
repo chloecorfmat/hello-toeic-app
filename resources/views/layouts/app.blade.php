@@ -106,6 +106,13 @@
                                         Liste des tests
                                     </a>
                                 </li>
+
+                                <li class="laterale-bar--menu-item">
+                                    <a href="{{ route('games') }}">
+                                        <i class="menu-ico fas fa-trophy"></i>
+                                        Liste des challenges
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                         @endrole
