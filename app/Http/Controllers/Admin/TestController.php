@@ -366,6 +366,65 @@ class TestController extends Controller
                 }
                 break;
             case 3:
+                if ($request->file('documents')->getClientMimeType() === 'application/zip') {
+                    $zip = new \ZipArchive();
+                    $file = $request->file('documents');
+
+                    if($zip->open($file->getRealPath(), \ZipArchive::CREATE) == TRUE) {
+                        $zip->extractTo('./storage/documents');
+                        $repository_name = str_replace('.zip', '', $file->getClientOriginalName());
+
+                        if ($repository = opendir('./storage/documents/' . $repository_name)) {
+                            while(false !== ($current_file = readdir($repository)))
+                            {
+                                if (preg_match(
+                                        '/(?P<number>\d+)(?P<extension>.(\w+))/',
+                                        $current_file,
+                                        $data_file
+                                    ) != FALSE) {
+
+                                    $new_file = $repository_name . '_' . $data_file['number'] . $data_file['extension'];
+                                    rename('./storage/documents/' . $repository_name . '/' .$current_file, './storage/documents/' . $repository_name . '/' .$new_file);
+
+                                    if (is_null($test)) {
+                                        $test = Test::create([
+                                            'name' => $request->get('name'),
+                                            'version' => $request->get('version'),
+                                            'part_id' => $request->get('part'),
+                                        ]);
+                                    }
+
+                                    $question = Question::create([
+                                        'version' => $request->get('version'),
+                                        'question' => '',
+                                        'number' => $data_file['number'],
+                                    ]);
+
+                                    $part = Part::find($request->get('part'));
+                                    $question->parts()->attach($part);
+
+                                    for ($i = 0; $i < 3; $i++) {
+                                        $p = $question->proposals()->create(['value' => 'Answer']);
+
+
+                                        if ($i === array_search($answers[$data_file['number']], $matching)) {
+                                            $question->answer()->associate($p)->save();
+                                        }
+                                    }
+
+                                    $document = Document::create([
+                                        'name' => $new_file,
+                                        'type' => 'audio',
+                                        'url' => './documents/' . $repository_name . '/' . $new_file,
+                                    ]);
+
+                                    $question->documents()->sync($document);
+                                    $test->questions()->attach($question, ['number' => $data_file['number']]);
+                                }
+                            }
+                        }
+                    }
+                }
                 break;
             case 4:
                 break;
