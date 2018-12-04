@@ -56,6 +56,7 @@ class DocumentController extends Controller
             'image/jpeg' => 'jpeg',
             'text/xml' => 'xml',
             'audio/x-ms-wma' => 'wma',
+            'audio/mpeg' => 'mp3',
         );
 
         $file = $request->file('file');

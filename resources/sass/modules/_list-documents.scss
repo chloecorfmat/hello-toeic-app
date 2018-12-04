@@ -24,6 +24,7 @@
       height: 15rem;
       margin: auto;
       text-align: center;
+      text-decoration: none;
       width: 100%;
     }
 
@@ -51,6 +52,14 @@
       p {
         color: $white;
       }
+    }
+
+    .audio-ico-container {
+      color: $secondary-color-1;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: center;
     }
   }
 }

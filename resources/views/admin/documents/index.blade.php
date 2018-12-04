@@ -12,7 +12,13 @@
             @foreach ($datas['documents'] as $key => $document)
                 <li class="list-documents--item">
                     <a href="{{ route('documents.show', ['id' => $document->id]) }}">
-                        <img src="{{ url('storage/'.$document->url) }}">
+                        @if ($document->type === 'image')
+                            <img src="{{ url('storage/'.$document->url) }}">
+                        @else
+                            <div class="audio-ico-container">
+                                <i class="fas fa-volume-up fa-5x"></i>
+                            </div>
+                        @endif
                         <div class="list-documents--item-content">
                             <p class="important">{{ $document->name }}</p>
                             <p><span>{{ count($document->questions) }}</span> questions</p>

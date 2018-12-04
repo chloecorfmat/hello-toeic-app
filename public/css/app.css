@@ -769,6 +769,7 @@ tr:nth-child(2n) {
   height: 15rem;
   margin: auto;
   text-align: center;
+  text-decoration: none;
   width: 100%;
 }
 
@@ -796,6 +797,21 @@ tr:nth-child(2n) {
 
 .list-documents--item-content p {
   color: #fff;
+}
+
+.list-documents--item .audio-ico-container {
+  color: #4b3f72;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .list-tests h2 {
