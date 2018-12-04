@@ -306,6 +306,7 @@ class TestController extends Controller
 
         switch ($request->get('part')) {
             case 2:
+                $questions = [];
                 if ($request->file('documents')->getClientMimeType() === 'application/zip') {
                     $zip = new \ZipArchive();
                     $file = $request->file('documents');
@@ -315,10 +316,9 @@ class TestController extends Controller
                         $repository_name = str_replace('.zip', '', $file->getClientOriginalName());
 
                         if ($repository = opendir('./storage/documents/' . $repository_name)) {
-                            while(false !== ($current_file = readdir($repository)))
-                            {
+                            while(false !== ($current_file = readdir($repository))) {
                                 if (preg_match(
-                                        '/'.$repository_name. '_(?P<number>\d+)\.*/',
+                                        '/' . $repository_name . '_(?P<number>\d+)\.*/',
                                         $current_file,
                                         $data_file
                                     ) != FALSE) {
@@ -355,20 +355,55 @@ class TestController extends Controller
                                         'url' => './documents/' . $repository_name . '/' . $current_file,
                                     ]);
 
-                                    $question->documents()->sync($document);
+                                    $question->documents()->attach($document);
                                     $test->questions()->attach($question, ['number' => $data_file['number']]);
-                                }
 
-                                // @TODO : manage audio file.
+                                    $questions[$data_file['number']] = $question;
+                                }
+                            }
+                        }
+
+                        // @TODO : manage audio file.
+                        if ($request->file('audios')->getClientMimeType() === 'application/zip') {
+                            $zip = new \ZipArchive();
+                            $file = $request->file('audios');
+
+                            if ($zip->open($file->getRealPath(), \ZipArchive::CREATE) == TRUE) {
+                                $zip->extractTo('./storage/documents');
+                                $repository_name = str_replace('.zip', '', $file->getClientOriginalName());
+
+                                if ($repository = opendir('./storage/documents/' . $repository_name)) {
+                                    while (false !== ($current_file = readdir($repository))) {
+                                        if (preg_match(
+                                                '/.*\.(?P<number>\d+)(?P<extension>.(\w+))/',
+                                                $current_file,
+                                                $data_file
+                                            ) != FALSE) {
+
+                                            $new_file = $repository_name . '_' . $data_file['number'] . $data_file['extension'];
+                                            rename('./storage/documents/' . $repository_name . '/' .$current_file, './storage/documents/' . $repository_name . '/' .$new_file);
+
+                                            $document = Document::create([
+                                                'name' => $new_file,
+                                                'type' => 'audio',
+                                                'url' => './documents/' . $repository_name . '/' . $new_file,
+                                            ]);
+
+                                            $num = intval($data_file["number"]);
+                                            $q = $questions[$num];
+                                            $q->documents()->attach($document);
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
                 }
                 break;
             case 3:
-                if ($request->file('documents')->getClientMimeType() === 'application/zip') {
+                if ($request->file('audios')->getClientMimeType() === 'application/zip') {
                     $zip = new \ZipArchive();
-                    $file = $request->file('documents');
+                    $file = $request->file('audios');
 
                     if($zip->open($file->getRealPath(), \ZipArchive::CREATE) == TRUE) {
                         $zip->extractTo('./storage/documents');
@@ -418,7 +453,7 @@ class TestController extends Controller
                                         'url' => './documents/' . $repository_name . '/' . $new_file,
                                     ]);
 
-                                    $question->documents()->sync($document);
+                                    $question->documents()->attach($document);
                                     $test->questions()->attach($question, ['number' => $data_file['number']]);
                                 }
                             }

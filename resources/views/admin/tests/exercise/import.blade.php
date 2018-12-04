@@ -35,6 +35,11 @@
             </div>
 
             <div class="field-container">
+                <label for="audios">Audios</label>
+                <input type="file" id="audios" name="audios">
+            </div>
+
+            <div class="field-container">
                 <label for="part">Part <span class="required">*</span></label>
                 <select name="part" id="part" required>
                     @foreach($parts as $part)
