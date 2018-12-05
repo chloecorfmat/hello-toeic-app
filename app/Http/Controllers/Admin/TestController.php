@@ -363,7 +363,6 @@ class TestController extends Controller
                             }
                         }
 
-                        // @TODO : manage audio file.
                         if ($request->file('audios')->getClientMimeType() === 'application/zip') {
                             $zip = new \ZipArchive();
                             $file = $request->file('audios');
@@ -462,31 +461,178 @@ class TestController extends Controller
                 }
                 break;
             case 4:
+                // @TODO : create services to factorize.
+                $number = '';
+                $handle = fopen($request->file('questions')->path(), "r");
+
+                $final = [];
+                //$question = null;
+                $question_string = '';
+                $questions = [];
+
+                /**
+                 * Import questions.
+                 */
+                while(!feof($handle))
+                {
+                    $line = fgets($handle);
+
+                    if (preg_match(
+                            '/(?P<number>\d+)\. (?P<question>.+)/',
+                            $line,
+                            $data_question
+                        ) != FALSE) {
+                        // Beginning of the question.
+                        $line = str_replace("\r\n", ' ', $line);
+                        $question_string .= ' ' . $line;
+                    } elseif (preg_match(
+                            '/\((?P<index>[A-D])\) (?P<answer>.+)/',
+                            $line,
+                            $data_question
+                        ) != FALSE) {
+                        if (!empty($question_string)) {
+                            $final[] = trim($question_string);
+                            $question_string = '';
+                        }
+                        $line = str_replace("\r\n", ' ', $line);
+                        $final[] = trim($line);
+                    } else {
+                        $line = str_replace("\r\n", ' ', $line);
+                        $question_string .= '' . $line;
+                    }
+                }
+                fclose($handle);
+
+                foreach ($final as $d) {
+                    if (is_null($test)) {
+                        $test = Test::create([
+                            'name' => $request->get('name'),
+                            'version' => $request->get('version'),
+                            'part_id' => $request->get('part'),
+                        ]);
+                    }
+
+                    if (preg_match(
+                            '/(?P<number>\d+)\. (?P<question>.+)/',
+                            $d,
+                            $data_question
+                        ) != FALSE) {
+                        $number = $data_question['number'];
+                        $question = Question::create([
+                            'version' => $request->get('version'),
+                            'question' => $data_question['question'],
+                            'number' => $number,
+                        ]);
+
+                        $question_index = 1;
+                        $test->questions()->attach($question, ['number' => $question_index++]);
+
+                        $part = Part::find($request->get('part'));
+                        $question->parts()->attach($part);
+                        $questions[$number] = $question;
+                    }
+
+                    if (preg_match(
+                            '/\((?P<index>[A-D])\) (?P<answer>.+)/',
+                            $d,
+                            $data_answer
+                        ) != FALSE) {
+
+                        $proposal = $question->proposals()->create([
+                            'value' => $data_answer['answer'],
+                        ]);
+
+                        if ($data_answer['index'] === $answers[$number]) {
+                            $question->answer()->associate($proposal)->save();
+                        }
+                    }
+                }
+
+                /**
+                 * Manage audios.
+                 */
+                if ($request->file('audios')->getClientMimeType() === 'application/zip') {
+                    $zip = new \ZipArchive();
+                    $file = $request->file('audios');
+
+                    if ($zip->open($file->getRealPath(), \ZipArchive::CREATE) == TRUE) {
+                        $zip->extractTo('./storage/documents');
+                        $repository_name = str_replace('.zip', '', $file->getClientOriginalName());
+
+                        if ($repository = opendir('./storage/documents/' . $repository_name)) {
+                            while (false !== ($current_file = readdir($repository))) {
+                                if (preg_match(
+                                        '/(?P<number_start>\d+)~(?P<number_end>\d+)(?P<extension>.(\w+))/',
+                                        $current_file,
+                                        $data_file
+                                    ) != FALSE) {
+
+                                    $new_file = $repository_name
+                                        . '_'
+                                        . $data_file['number_start']
+                                        . '-'
+                                        . $data_file['number_end']
+                                        . $data_file['extension'];
+
+                                    rename('./storage/documents/' . $repository_name . '/' . $current_file, './storage/documents/' . $repository_name . '/' . $new_file);
+
+                                    $document = Document::create([
+                                        'name' => $new_file,
+                                        'type' => 'audio',
+                                        'url' => './documents/' . $repository_name . '/' . $new_file,
+                                    ]);
+
+                                    for ($i = intval($data_file['number_start']); $i <= intval($data_file['number_end']); $i++) {
+                                        $questions[$i]->documents()->attach($document);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
                 break;
             case 5:
                 break;
             case 6:
+                // @TODO : create services to factorize.
                 $number = '';
                 $handle = fopen($request->file('questions')->path(), "r");
 
-                $datas = fread($handle, filesize($request->file('questions')->path()));
-                $datas = str_replace("\r\n", ' ', $datas);
-
-                $datas = explode("(", $datas);
                 $final = [];
+                $question = null;
 
-                foreach ($datas as $data) {
+                $question_string = '';
+
+                while(!feof($handle))
+                {
+                    $line = fgets($handle);
+
                     if (preg_match(
-                            '/(?<answer>([A-D])\) (\D+)) (?<next>(\d+\. .*))/',
-                            $data,
-                            $m
+                            '/(?P<number>\d+)\. (?P<question>.+)/',
+                            $line,
+                            $data_question
                         ) != FALSE) {
-                        $final[] = trim($m['answer']);
-                        $final[] = trim($m['next']);
+                        // Beginning of the question.
+                        $line = str_replace("\r\n", ' ', $line);
+                        $question_string .= ' ' . $line;
+                    } elseif (preg_match(
+                            '/\((?P<index>[A-D])\) (?P<answer>.+)/',
+                            $line,
+                            $data_question
+                        ) != FALSE) {
+                        if (!empty($question_string)) {
+                            $final[] = trim($question_string);
+                            $question_string = '';
+                        }
+                        $line = str_replace("\r\n", ' ', $line);
+                        $final[] = trim($line);
                     } else {
-                        $final[] = trim($data);
+                        $line = str_replace("\r\n", ' ', $line);
+                        $question_string .= '' . $line;
                     }
                 }
+
+                fclose($handle);
 
                 foreach ($final as $d) {
                     if (is_null($test)) {
@@ -517,7 +663,7 @@ class TestController extends Controller
                     }
 
                     if (preg_match(
-                            '/(?P<index>[A-D])\) (?P<answer>.+)/',
+                            '/\((?P<index>[A-D])\) (?P<answer>.+)/',
                             $d,
                             $data_answer
                         ) != FALSE) {
@@ -531,8 +677,6 @@ class TestController extends Controller
                         }
                     }
                 }
-
-                fclose($handle);
                 break;
             case 7:
                 break;
