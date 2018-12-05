@@ -567,7 +567,7 @@ thead {
 
 thead th {
   color: #fff;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 tr:last-child td {
@@ -927,12 +927,21 @@ tr:nth-child(2n) {
   font-family: "Nunito", sans-serif;
 }
 
+.test h2 {
+  margin-bottom: 1rem;
+}
+
 .part {
-  border: 2px solid #4b3f72;
+  border: 2px solid;
+  border-color: #db504a;
   border-radius: 10px;
   padding: 2rem 1rem 1rem;
   margin-bottom: 3rem;
   position: relative;
+}
+
+.part.part-completed {
+  border-color: #6fa939;
 }
 
 .part .btn-close {
@@ -950,6 +959,17 @@ tr:nth-child(2n) {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+.part .btn-close:hover {
+  cursor: pointer;
+  background: #8d6a9f;
+}
+
+.part-hide {
+  /**&:not(.part-completed) {
+    border-color: $danger-color;
+  }**/
 }
 
 .part-hide .questions {

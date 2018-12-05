@@ -7,7 +7,7 @@
     <div class="main-content">
         <h1>{{ $datas['test']->name }}</h1>
 
-        <form method="POST" action="{{ route('student.tests.update', ['id' => $datas['test']->id]) }}" id="test">
+        <form method="POST" action="{{ route('student.tests.update', ['id' => $datas['test']->id]) }}" id="test" class="test">
             @csrf
             {{ method_field('PUT')}}
             <ol>
@@ -15,11 +15,11 @@
                     @if ($current_part !== $question->parts[0]->id)
                         @php($current_part = $question->parts[0]->id)
                         @if ($current_part === 0)
-                            <li class="part">
+                            <li class="part" id="part_{{ $question->parts[0]->id }}">
                         @else
                             </ul>
                             </li>
-                            <li class="part">
+                            <li class="part" id="part_{{ $question->parts[0]->id }}">
                         @endif
                         <button class="js-part-close btn-close" type="button" title="Close">
                             <i class="fas fa-times fa-2x"></i>
@@ -28,7 +28,7 @@
                         <p>{{ $question->parts[0]->description }}</p>
                         <ul class="questions">
                     @endif
-                                <li class="block-question">
+                                <li class="block-question" data-part="{{ $current_part }}">
                                     <fieldset class="form-radio-el">
                                         <legend class="question-legend">
                                             @if (in_array($current_part, $parts_listening))
@@ -63,6 +63,12 @@
             <button type="submit" class="btn">
                 {{ __('Validate') }}
             </button>
+            {{--
+            <button type="reset" class="btn">
+                {{ __('Reset') }}
+            </button>
+             --}}
+
         </form>
     </div>
 @endsection

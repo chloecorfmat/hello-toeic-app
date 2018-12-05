@@ -125,6 +125,27 @@ function initialiser(e) {
         }
     }
 
+    if (document.getElementById('test') != undefined) {
+        var radios = document.querySelectorAll('#test input[type="radio"]');
+        radios.forEach(function (el) {
+            el.addEventListener('change', function () {
+                var container = el.parentElement.parentElement.parentElement;
+                var part = container.dataset.part;
+                var radios = document.getElementById('part_' + part).querySelectorAll('input[type="radio"]');
+                var checked = document.getElementById('part_' + part).querySelectorAll('input[type="radio"]:checked');
+
+                // Be careful for part 2.
+                if (checked.length == radios.length / 4) {
+                    var partContainer = container.parentElement.parentElement;
+
+                    if (!partContainer.classList.contains('part-completed')) {
+                        partContainer.classList.add('part-completed');
+                    }
+                }
+            });
+        });
+    }
+
     // Audio player.
     var interval;
     if (document.getElementById('player') !== null) {
@@ -190,6 +211,8 @@ function writing(interval) {
         }
     }, 1000);
 }
+
+function checkPartCompletion() {}
 
 /***/ }),
 /* 2 */

@@ -2,14 +2,24 @@
   legend {
     font-family: "Nunito", sans-serif;
   }
+
+  h2 {
+    margin-bottom: 1rem;
+  }
 }
 
 .part {
-  border: 2px solid $secondary-color-1;
+  border: 2px solid;
+  //border-color: $secondary-color-1;
+  border-color: $danger-color;
   border-radius: 10px;
   padding: 2rem 1rem 1rem;
   margin-bottom: 3rem;
   position: relative;
+
+  &.part-completed {
+    border-color: $success-color;
+  }
 
   .btn-close {
     position: absolute;
@@ -22,6 +32,11 @@
     height: 2rem;
     display: flex;
     justify-content: center;
+
+    &:hover {
+      cursor: pointer;
+      background: $tertiary-color-1;
+    }
   }
 }
 
@@ -29,4 +44,8 @@
   .questions {
     display: none;
   }
+
+  /**&:not(.part-completed) {
+    border-color: $danger-color;
+  }**/
 }
