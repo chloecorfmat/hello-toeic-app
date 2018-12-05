@@ -678,7 +678,44 @@ class TestController extends Controller
                 }
                 break;
             case 7:
-                $t = null;
+                $number = '';
+                $handle = fopen($request->file('questions')->path(), "r");
+
+                $final = [];
+                //$question = null;
+                $question_string = '';
+                $content_string = '';
+                $questions = [];
+
+                /**
+                 * Import questions.
+                 */
+                while(!feof($handle))
+                {
+                    $line = fgets($handle);
+
+                    if (preg_match(
+                            '/(?P<number>\d+)\. /',
+                            $line,
+                            $data_question
+                        ) != FALSE) {
+                        // Beginning of the question.
+                        $guestion_number = $data_question['number'];
+                    } elseif (preg_match(
+                            '/\((?P<index>[A-D])\) (?P<answer>.+)/',
+                            $line,
+                            $data_question
+                        ) != FALSE) {
+                        if (!empty($question_string)) {
+                            $final[] = trim($question_string);
+                            $question_string = '';
+                        }
+                        $final[] = trim($line);
+                    } else {
+                        $content_string .= $line;
+                    }
+                }
+                fclose($handle);
                 break;
             case 8:
                 // @TODO : create services to factorize.

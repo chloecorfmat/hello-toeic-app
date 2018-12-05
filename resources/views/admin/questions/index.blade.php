@@ -33,21 +33,25 @@
                         <td>{{ $question->number }}</td>
                         <td>{{ $question->question }}</td>
                         @for ($i = 0; $i < 4; $i++)
-                            <td
-                                @if ($question->proposals[$i]->id === $question->answer->id)
-                                    class="proposal-answer"
-                                @endif
-                            >
-                                @isset($question->proposals[$i])
-                                    {{ $question->proposals[$i]->value }}
+                            @if(isset($question->proposals[$i]))
+                                <td
+                                    @if (isset($question->answer) && ($question->proposals[$i]->id === $question->answer->id))
+                                        class="proposal-answer"
+                                    @endif
+                                >
+                                    @isset($question->proposals[$i])
+                                        {{ $question->proposals[$i]->value }}
 
 
-                                @endisset
+                                    @endisset
 
-                                @empty($question->proposals[$i])
-                                    /
-                                @endempty
-                            </td>
+                                    @empty($question->proposals[$i])
+                                        /
+                                    @endempty
+                                </td>
+                            @else
+                                <td>/</td>
+                            @endif
                         @endfor
                         <td>
                             <ul>
