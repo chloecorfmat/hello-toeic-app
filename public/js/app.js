@@ -213,8 +213,6 @@ function writing(interval) {
     }, 1000);
 }
 
-function checkPartCompletion() {}
-
 /***/ }),
 /* 2 */
 /***/ (function(module, exports) {

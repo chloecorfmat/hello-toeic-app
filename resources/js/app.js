@@ -138,7 +138,3 @@ function writing(interval) {
         }
     }, 1000);
 }
-
-function checkPartCompletion() {
-
-}

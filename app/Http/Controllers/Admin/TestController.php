@@ -15,7 +15,7 @@ class TestController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['permission:test-add'])->only('index', 'create', 'store', 'exerciseCreate', 'exerciseStore');
+        $this->middleware(['permission:test-add'])->only('index', 'create', 'store', 'exerciseCreate', 'exerciseStore', 'exerciseImport', 'exerciseImportStore');
 
         // This route are currently not used.
         $this->middleware(['role:admin'])->only('destroy', 'show', 'edit', 'update');
