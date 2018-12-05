@@ -24,7 +24,14 @@
                         <button class="js-part-close btn-close" type="button" title="Close">
                             <i class="fas fa-times fa-2x"></i>
                         </button>
-                        <h2>{{ $question->parts[0]->name }}</h2>
+                        <h2>
+                            @if (in_array($current_part, $parts_listening))
+                                <i class="fas fa-volume-up"></i>
+                            @else
+                                <i class="fas fa-glasses"></i>
+                            @endif
+                            {{ $question->parts[0]->name }}
+                        </h2>
                         <p>{{ $question->parts[0]->description }}</p>
                         <ul class="questions">
                     @endif

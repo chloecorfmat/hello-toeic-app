@@ -134,8 +134,9 @@ function initialiser(e) {
                 var radios = document.getElementById('part_' + part).querySelectorAll('input[type="radio"]');
                 var checked = document.getElementById('part_' + part).querySelectorAll('input[type="radio"]:checked');
 
-                // Be careful for part 2.
-                if (checked.length == radios.length / 4) {
+                // Part 2 has only 4 proposals by question.
+                var radioPerQuestion = container.querySelectorAll('input[type="radio"]').length;
+                if (checked.length == radios.length / radioPerQuestion) {
                     var partContainer = container.parentElement.parentElement;
 
                     if (!partContainer.classList.contains('part-completed')) {
