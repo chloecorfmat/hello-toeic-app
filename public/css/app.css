@@ -927,6 +927,35 @@ tr:nth-child(2n) {
   font-family: "Nunito", sans-serif;
 }
 
+.part {
+  border: 2px solid #4b3f72;
+  border-radius: 10px;
+  padding: 2rem 1rem 1rem;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.part .btn-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  border-radius: 50%;
+  background: #4b3f72;
+  color: #fff;
+  width: 2rem;
+  height: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.part-hide .questions {
+  display: none;
+}
+
 .training-part {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;

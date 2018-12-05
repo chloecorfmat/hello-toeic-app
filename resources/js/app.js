@@ -29,8 +29,26 @@ function initialiser(e) {
         new List('games', options);
     }
 
+    // Accordions in tests.
+    if (document.getElementsByClassName('js-part-close') !== null) {
+        var btns = document.getElementsByClassName('js-part-close');
 
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].addEventListener('click', function() {
+                var toggle = this.parentNode.classList.toggle('part-hide');
 
+                if (toggle) {
+                    this.innerHTML = '<i class="fas fa-chevron-down fa-2x"></i>';
+                    this.title = 'Open';
+                } else {
+                    this.innerHTML = '<i class="fas fa-times fa-2x"></i>';
+                    this.title = 'Close';
+                }
+            });
+        }
+    }
+
+    // Audio player.
     var interval;
     if (document.getElementById('player') !== null) {
         var audio = document.querySelector('#player audio');
