@@ -33,7 +33,7 @@
                             @endif
                             {{ $question->parts[0]->name }}
                         </h2>
-                        <p>{{ $question->parts[0]->description }}</p>
+                        <p class="part-instructions">{{ $question->parts[0]->description }}</p>
                         <ul class="questions">
                     @endif
                                 @if ($current_part == 7)

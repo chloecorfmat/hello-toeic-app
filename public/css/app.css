@@ -980,6 +980,10 @@ tr:nth-child(2n) {
   display: none;
 }
 
+.part-instructions {
+  font-weight: 700;
+}
+
 .training-part {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
