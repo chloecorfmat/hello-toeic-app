@@ -10,6 +10,7 @@ class Document extends Model
         'name',
         'type',
         'url',
+        'content',
     ];
 
     public $timestamps = false;

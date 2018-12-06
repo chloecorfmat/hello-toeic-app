@@ -681,11 +681,10 @@ class TestController extends Controller
                 $number = '';
                 $handle = fopen($request->file('questions')->path(), "r");
 
-                $final = [];
-                //$question = null;
-                $question_string = '';
-                $content_string = '';
-                $questions = [];
+                $content_string = "";
+                $document = null;
+                $test = null;
+                $question = null;
 
                 /**
                  * Import questions.
@@ -695,24 +694,63 @@ class TestController extends Controller
                     $line = fgets($handle);
 
                     if (preg_match(
-                            '/(?P<number>\d+)\. /',
-                            $line,
+                            '/^(?P<number>\d+)\.$/',
+                            trim($line),
                             $data_question
                         ) != FALSE) {
-                        // Beginning of the question.
-                        $guestion_number = $data_question['number'];
+                        // $line is a question.
+                        $number = $data_question['number'];
+
+                        if (is_null($test)) {
+                            $test = Test::create([
+                                'name' => $request->get('name'),
+                                'version' => $request->get('version'),
+                                'part_id' => $request->get('part'),
+                            ]);
+                        }
+
+                        if (is_null($document)) {
+                            // CREATE DOCUMENT.
+                            $document = Document::create([
+                                'name' => '',
+                                'type' => 'text',
+                                'content' => $content_string,
+                            ]);
+
+                            $content_string = '';
+                        }
+
+                        $question = Question::create([
+                            'question' => '',
+                            'version' => $request->get('version'),
+                            'number' => $data_question['number'],
+                        ]);
+
+                        $question_index = 1;
+                        $test->questions()->attach($question, ['number' => $question_index++]);
+
+                        $part = Part::find($request->get('part'));
+                        $question->parts()->attach($part);
+
+                        $question->documents()->attach($document);
+
                     } elseif (preg_match(
                             '/\((?P<index>[A-D])\) (?P<answer>.+)/',
                             $line,
-                            $data_question
+                            $data_answer
                         ) != FALSE) {
-                        if (!empty($question_string)) {
-                            $final[] = trim($question_string);
-                            $question_string = '';
+                        // $line is an answer.
+                        $proposal = $question->proposals()->create([
+                            'value' => $data_answer['answer'],
+                        ]);
+
+                        if ($data_answer['index'] === $answers[$number]) {
+                            $question->answer()->associate($proposal)->save();
                         }
-                        $final[] = trim($line);
                     } else {
-                        $content_string .= $line;
+                        // $line is a document part.
+                        $document = null;
+                        $content_string .= trim($line);
                     }
                 }
                 fclose($handle);

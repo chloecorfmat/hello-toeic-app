@@ -4,6 +4,7 @@
     @php ($index = ['A', 'B', 'C', 'D'])
     @php ($current_part = 0)
     @php ($parts_listening = [2, 3, 4, 5])
+    @php ($current_document = null)
     <div class="main-content">
         <h1>{{ $datas['test']->name }}</h1>
 
@@ -35,6 +36,16 @@
                         <p>{{ $question->parts[0]->description }}</p>
                         <ul class="questions">
                     @endif
+                                @if ($current_part == 7)
+                                    <div>
+                                        @foreach ($question->documents as $document)
+                                            @if ($document->type === 'text' && $document->id !== $current_document)
+                                                @php ($current_document = $document->id)
+                                                <p>{{ $document->content }}</p>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                @endif
                                 <li class="block-question" data-part="{{ $current_part }}">
                                     <fieldset class="form-radio-el">
                                         <legend class="question-legend">

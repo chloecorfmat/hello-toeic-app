@@ -14,6 +14,7 @@ class AddContentToDocument extends Migration
     public function up()
     {
         DB::statement('ALTER TABLE documents MODIFY url VARCHAR(255) null');
+        DB::statement('ALTER TABLE documents MODIFY COLUMN type ENUM(\'image\', \'audio\', \'text\')');
 
         Schema::table('documents', function (Blueprint $table) {
             $table->longText('content')->nullable();
