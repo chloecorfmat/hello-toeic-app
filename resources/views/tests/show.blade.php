@@ -2,7 +2,7 @@
 
 @section('content')
     @php ($index = ['A', 'B', 'C', 'D'])
-    @php ($current_part = 0)
+    @php ($current_part = null)
     @php ($parts_listening = [2, 3, 4, 5])
     @php ($current_document = null)
     <div class="main-content">
@@ -14,17 +14,20 @@
             <ol>
                 @foreach ($datas['questions'] as $key => $question)
                     @if ($current_part !== $question->parts[0]->id)
-                        @php($current_part = $question->parts[0]->id)
-                        @if ($current_part === 0)
+                        @if ($current_part == null)
                             <li class="part" id="part_{{ $question->parts[0]->id }}">
+                                <button class="js-part-close btn-close" type="button" title="Close">
+                                    <i class="fas fa-times fa-2x"></i>
+                                </button>
                         @else
                             </ul>
                             </li>
-                            <li class="part" id="part_{{ $question->parts[0]->id }}">
+                            <li class="part part-hide" id="part_{{ $question->parts[0]->id }}">
+                                <button class="js-part-close btn-close" type="button" title="Close">
+                                    <i class="fas fa-chevron-down fa-2x"></i>
+                                </button>
                         @endif
-                        <button class="js-part-close btn-close" type="button" title="Close">
-                            <i class="fas fa-times fa-2x"></i>
-                        </button>
+                        @php($current_part = $question->parts[0]->id)
                         <h2>
                             @if (in_array($current_part, $parts_listening))
                                 <i class="fas fa-volume-up"></i>

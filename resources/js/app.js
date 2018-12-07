@@ -35,7 +35,7 @@ function initialiser(e) {
 
         for (var i = 0; i < btns.length; i++) {
             btns[i].addEventListener('click', function() {
-                var toggle = this.parentNode.classList.toggle('part-hide');
+                var toggle = this.parentNode.classList.toggle('c');
 
                 if (toggle) {
                     this.innerHTML = '<i class="fas fa-chevron-down fa-2x"></i>';
