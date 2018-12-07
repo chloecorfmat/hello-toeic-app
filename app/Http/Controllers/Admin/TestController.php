@@ -291,13 +291,20 @@ class TestController extends Controller
             $datas = explode(')', $d);
 
             $answers = [];
-            foreach ($datas as $answer) {
-                if (preg_match(
-                        '/(?P<number>\d+)\.(?P<letter>[ABCD])/',
-                        $answer,
-                        $data_answer
-                    ) != FALSE) {
-                    $answers[$data_answer['number']] = $data_answer['letter'];
+            if (sizeof($datas) === 1) {
+                $datas_array = str_split($datas[0], 1);
+                foreach ($datas_array as $key => $answer) {
+                    $answers[$key+1] = $answer;
+                }
+            } else {
+                foreach ($datas as $answer) {
+                    if (preg_match(
+                            '/(?P<number>\d+)\.(?P<letter>[ABCD])/',
+                            $answer,
+                            $data_answer
+                        ) != FALSE) {
+                        $answers[$data_answer['number']] = $data_answer['letter'];
+                    }
                 }
             }
 
