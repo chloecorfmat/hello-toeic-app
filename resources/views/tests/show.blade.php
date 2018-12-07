@@ -61,10 +61,12 @@
                                         </legend>
                                         @foreach ($question->proposals as $k => $proposal)
                                         <div>
-                                            <input type="radio" id="{{ $key . '-' . $proposal->id }}"
-                                                   name="{{ $key }}" value="{{ $proposal->id }}" />
-                                            <span class="radio-el"></span>
-                                            <label for="{{ $key . '-' . $proposal->id }}">{{ $index[$k] }}. {{ $proposal->value }}</label>
+                                            <label for="{{ $key . '-' . $proposal->id }}">
+                                                <input type="radio" id="{{ $key . '-' . $proposal->id }}"
+                                                       name="{{ $key }}" value="{{ $proposal->id }}" />
+                                                <span class="radio-el"></span>
+                                                {{ $index[$k] }}. {{ $proposal->value }}
+                                            </label>
                                         </div>
                                         @endforeach
                                     </fieldset>
