@@ -55,3 +55,36 @@
 .part-instructions {
   font-weight: 700;
 }
+
+.preview {
+  position: fixed;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: $white;
+  border: 2px solid $secondary-color-1;
+  border-radius: 10px;
+  top: 5vh;
+  right: 0;
+  width: 80vw;
+  height: 90vh;
+
+  @media screen and (min-width: $breakpoint-medium) {
+    width: 50vw;
+    height: 90vh;
+  }
+
+  &.hidden {
+    display: none;
+  }
+}
+
+.on-preview {
+  opacity: .5;
+}
+
+.img-preview {
+  &:hover {
+    cursor: pointer;
+  }
+}

@@ -35,7 +35,7 @@ function initialiser(e) {
 
         for (var i = 0; i < btns.length; i++) {
             btns[i].addEventListener('click', function() {
-                var toggle = this.parentNode.classList.toggle('c');
+                var toggle = this.parentNode.classList.toggle('part-hide');
 
                 if (toggle) {
                     this.innerHTML = '<i class="fas fa-chevron-down fa-2x"></i>';
@@ -52,7 +52,7 @@ function initialiser(e) {
         var radios = document.querySelectorAll('#test input[type="radio"]');
         radios.forEach(function(el) {
            el.addEventListener('change', function() {
-              var container = el.parentElement.parentElement.parentElement;
+              var container = el.parentElement.parentElement.parentElement.parentElement;
               var part = container.dataset.part;
               var radios = document.getElementById('part_' + part).querySelectorAll('input[type="radio"]');
               var checked = document.getElementById('part_' + part).querySelectorAll('input[type="radio"]:checked');
@@ -98,7 +98,9 @@ function initialiser(e) {
                 audioQuestions.forEach(function(question) {
                     var radios = question.parentNode.parentNode.querySelectorAll('input[type="radio"]');
                     radios.forEach(function(radio) {
-                        radio.disabled = true;
+                        if (radio.checked == false) {
+                            radio.disabled = true;
+                        }
                     });
                 });
 
@@ -106,6 +108,73 @@ function initialiser(e) {
             }
         });
     }
+
+    //
+    document.querySelectorAll("#test .documents img").forEach(function(el) {
+        /**el.addEventListener('mouseenter', function (e) {
+            if (!el.classList.contains('on-preview')) {
+                el.classList.add('on-preview');
+            }
+
+            document.querySelector('.preview').style.backgroundImage = "url(" + el.src + ")";
+            document.querySelector('.preview').classList.remove('hidden');
+
+            //el.removeEventListener('mouseenter', arguments.callee);
+        });
+
+        el.addEventListener('mouseleave', function(e) {
+            document.querySelector('.preview').style.backgroundImage = "";
+            document.querySelector('.preview').classList.add('hidden');
+
+            document.querySelectorAll('.on-preview').forEach(function(el) {
+                el.classList.remove('on-preview');
+            });
+        }, false);
+
+        document.querySelector('.preview').addEventListener('mouseleave', function(e) {
+            document.querySelector('.preview').style.backgroundImage = "";
+            document.querySelector('.preview').classList.add('hidden');
+
+            document.querySelectorAll('.on-preview').forEach(function(el) {
+                el.classList.remove('on-preview');
+            });
+        }, false);**/
+    });
+
+    document.querySelectorAll("#test .img-preview").forEach(function(el) {
+       el.addEventListener('click', function() {
+           var i = this.querySelector('img');
+
+           if (i.classList.contains('on-preview')) {
+               i.classList.remove('on-preview');
+               document.querySelector('.preview').style.backgroundImage = "";
+               document.querySelector('.preview').classList.add("hidden");
+           } else {
+
+               document.querySelectorAll('.on-preview').forEach(function(on) {
+                   on.classList.remove('on-preview');
+               });
+
+               i.classList.add('on-preview');
+               document.querySelector('.preview').style.backgroundImage = "url(" + i.src + ")";
+               document.querySelector('.preview').classList.remove('hidden');
+           }
+       }, false);
+    });
+
+    document.body.addEventListener('click', function(e) {
+        if (event.target.closest('.preview')) return;
+        if (event.target.closest('.img-preview')) return;
+
+        if (!document.querySelector('.preview').classList.contains('hidden')) {
+            document.querySelectorAll('.on-preview').forEach(function (el) {
+                el.classList.remove('on-preview');
+            });
+
+            document.querySelector('.preview').style.backgroundImage = "";
+            document.querySelector('.preview').classList.add('hidden');
+        }
+    }, false);
 }
 
 function timer() {
@@ -132,7 +201,6 @@ function writing(interval) {
 
         if (current.getTime() <= 0) {
             clearInterval(interval);
-            document.getElementById('test').submit();
         } else {
             timer.innerText = current.getUTCHours() + ':' + current.getUTCMinutes() + ':' + current.getUTCSeconds();
         }

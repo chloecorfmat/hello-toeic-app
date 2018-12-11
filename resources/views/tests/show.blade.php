@@ -74,7 +74,10 @@
                                     <div class="documents">
                                         @foreach ($question->documents as $document)
                                             @if ($document->type === 'image')
-                                                <img src="{{ url('storage/' . $document->url) }}" alt="Image necessary for this question." />
+                                                <button type="button" class="img-preview">
+                                                    <img src="{{ url('storage/' . $document->url) }}" alt="Image necessary for this question." />
+                                                    <!--<i class="fas fa-search-plus"></i>-->
+                                                </button>
                                             @endif
                                         @endforeach
                                     </div>
@@ -93,5 +96,8 @@
              --}}
 
         </form>
+    </div>
+
+    <div class="preview hidden">
     </div>
 @endsection

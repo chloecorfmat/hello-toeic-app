@@ -984,6 +984,39 @@ tr:nth-child(2n) {
   font-weight: 700;
 }
 
+.preview {
+  position: fixed;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: #fff;
+  border: 2px solid #4b3f72;
+  border-radius: 10px;
+  top: 5vh;
+  right: 0;
+  width: 80vw;
+  height: 90vh;
+}
+
+@media screen and (min-width: 920px) {
+  .preview {
+    width: 50vw;
+    height: 90vh;
+  }
+}
+
+.preview.hidden {
+  display: none;
+}
+
+.on-preview {
+  opacity: .5;
+}
+
+.img-preview:hover {
+  cursor: pointer;
+}
+
 .training-part {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
