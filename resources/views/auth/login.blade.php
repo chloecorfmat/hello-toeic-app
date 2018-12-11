@@ -7,6 +7,14 @@
     <div class="form-container">
         <h1>Login</h1>
 
+        @foreach($errors->all() as $error)
+            <div class="alert alert-error">
+                <ul>
+                    <li>{{ $error }}</li>
+                </ul>
+            </div>
+        @endforeach
+
         <form method="POST" action="{{ route('login') }}">
             @csrf
             <div class="field-container">
