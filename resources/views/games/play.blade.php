@@ -10,10 +10,12 @@
                 <legend class="question-legend">({{ $datas['question']->number }}) {{ $datas['question']->question }}</legend>
                 @foreach ($datas['question']->proposals as $k => $proposal)
                     <div>
-                        <input type="radio" id="{{ 'question-' . $proposal->id }}"
-                               name="question_answer" value="{{ $proposal->id }}" />
-                        <span class="radio-el"></span>
-                        <label for="{{ 'question-' . $proposal->id }}">{{ $index[$k] }}. {{ $proposal->value }}</label>
+                        <label for="{{ 'question-' . $proposal->id }}">
+                            <input type="radio" id="{{ 'question-' . $proposal->id }}"
+                                   name="question_answer" value="{{ $proposal->id }}" />
+                            <span class="radio-el"></span>
+                            {{ $index[$k] }}. {{ $proposal->value }}
+                        </label>
                     </div>
                 @endforeach
             </fieldset>
