@@ -44,7 +44,7 @@
                                         @foreach ($question->documents as $document)
                                             @if ($document->type === 'text' && $document->id !== $current_document)
                                                 @php ($current_document = $document->id)
-                                                <p>{{ $document->content }}</p>
+                                                <p>{!! $document->content !!}</p>
                                             @endif
                                         @endforeach
                                     </div>

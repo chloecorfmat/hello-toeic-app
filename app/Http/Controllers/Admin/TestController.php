@@ -757,6 +757,7 @@ class TestController extends Controller
                     } else {
                         // $line is a document part.
                         $document = null;
+                        $line = str_replace("\r\n", '<br/>', $line);
                         $content_string .= trim($line);
                     }
                 }
