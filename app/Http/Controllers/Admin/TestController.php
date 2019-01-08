@@ -382,26 +382,6 @@ class TestController extends Controller
                                 if ($repository = opendir('./storage/documents/' . $repository_name)) {
                                     while (false !== ($current_file = readdir($repository))) {
                                         if (preg_match(
-                                                '/.*\.(?P<number>\d+)(?P<extension>.(\w+))/',
-                                                $current_file,
-                                                $data_file
-                                            ) != FALSE) {
-
-                                            $new_file = $repository_name . '_' . $data_file['number'] . $data_file['extension'];
-                                            rename('./storage/documents/' . $repository_name . '/' .$current_file, './storage/documents/' . $repository_name . '/' .$new_file);
-
-                                            $document = Document::create([
-                                                'name' => $new_file,
-                                                'type' => 'audio',
-                                                'url' => './documents/' . $repository_name . '/' . $new_file,
-                                            ]);
-
-                                            $num = intval($data_file["number"]);
-                                            $q = $questions[$num];
-                                            $q->documents()->attach($document);
-                                        }
-
-                                        if (preg_match(
                                                 '/(?P<number_start>\d+)~(?P<number_end>\d+)(?P<extension>.(\w+))/',
                                                 $current_file,
                                                 $data_file
@@ -426,6 +406,26 @@ class TestController extends Controller
                                                 $questions[$i]->documents()->attach($document);
                                             }
                                         }
+
+                                        if (preg_match(
+                                                '/.*\.(?P<number>\d+)(?P<extension>.(\w+))/',
+                                                $current_file,
+                                                $data_file
+                                            ) != FALSE) {
+
+                                            $new_file = $repository_name . '_' . $data_file['number'] . $data_file['extension'];
+                                            rename('./storage/documents/' . $repository_name . '/' .$current_file, './storage/documents/' . $repository_name . '/' .$new_file);
+
+                                            $document = Document::create([
+                                                'name' => $new_file,
+                                                'type' => 'audio',
+                                                'url' => './documents/' . $repository_name . '/' . $new_file,
+                                            ]);
+
+                                            $num = intval($data_file["number"]);
+                                            $q = $questions[$num];
+                                            $q->documents()->attach($document);
+                                        }
                                     }
                                 }
                             }
@@ -443,16 +443,60 @@ class TestController extends Controller
                         $repository_name = str_replace('.zip', '', $file->getClientOriginalName());
 
                         if ($repository = opendir('./storage/documents/' . $repository_name)) {
-                            while(false !== ($current_file = readdir($repository)))
-                            {
+                            while(false !== ($current_file = readdir($repository))) {
                                 if (preg_match(
+                                        '/(?P<number_start>\d+)~(?P<number_end>\d+)(?P<extension>.(\w+))/',
+                                        $current_file,
+                                        $data_file
+                                    ) != FALSE) {
+                                    $new_file = $repository_name . '_' . $data_file['number_start'] . '~' . $data_file['number_end'] . $data_file['extension'];
+                                    rename("./storage/documents/" . $repository_name . "/" . $current_file, "./storage/documents/" . $repository_name . "/" . $new_file);
+
+                                    if (is_null($test)) {
+                                        $test = Test::create([
+                                            'name' => $request->get('name'),
+                                            'version' => $request->get('version'),
+                                            'part_id' => $request->get('part'),
+                                        ]);
+                                    }
+
+                                    $document = Document::create([
+                                        'name' => $new_file,
+                                        'type' => 'audio',
+                                        'url' => './documents/' . $repository_name . '/' . $new_file,
+                                    ]);
+
+                                    $min = intval($data_file['number_start']);
+                                    $max = intval($data_file['number_end']);
+                                    for ($n = $min; $n <= $max; $n++) {
+                                        $question = Question::create([
+                                            'version' => $request->get('version'),
+                                            'question' => '',
+                                            'number' => $n,
+                                        ]);
+
+                                        $part = Part::find($request->get('part'));
+                                        $question->parts()->attach($part);
+
+                                        for ($i = 0; $i < 3; $i++) {
+                                            $p = $question->proposals()->create(['value' => 'Answer']);
+
+
+                                            if ($i === array_search($answers[$n], $matching)) {
+                                                $question->answer()->associate($p)->save();
+                                            }
+                                        }
+
+                                        $question->documents()->attach($document);
+                                        $test->questions()->attach($question, ['number' => $n]);
+                                    }
+                                } else if (preg_match(
                                         '/(?P<number>\d+)(?P<extension>.(\w+))/',
                                         $current_file,
                                         $data_file
                                     ) != FALSE) {
-
                                     $new_file = $repository_name . '_' . $data_file['number'] . $data_file['extension'];
-                                    rename('./storage/documents/' . $repository_name . '/' .$current_file, './storage/documents/' . $repository_name . '/' .$new_file);
+                                    rename('./storage/documents/' . $repository_name . '/' . $current_file, './storage/documents/' . $repository_name . '/' . $new_file);
 
                                     if (is_null($test)) {
                                         $test = Test::create([
