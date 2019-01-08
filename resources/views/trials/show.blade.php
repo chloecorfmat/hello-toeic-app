@@ -6,7 +6,7 @@
     <div class="main-content">
         <h1>Correction</h1>
         <p><span>{{ $datas['trial']->user->firstname }} {{ $datas['trial']->user->lastname }}</span>, le <span>{{ date('d/m/Y à H:i', strtotime($datas['trial']->datetime)) }}</span></p>
-        <p>Score : <span>{{ $datas['trial']->score }}</span></p>
+        <p>Score : <span>{{ $datas['trial']->score }}</span>/{{ $datas['max_score'] }}</p>
 
         <div>
             <ol>

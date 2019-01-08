@@ -285,6 +285,7 @@ class TestController extends Controller
 
             $datas = fread($handle, filesize($request->file('answers')->path()));
             $d = str_replace("\r\n", '', $datas);
+            $d = str_replace("\n", '', $datas);
             $d = str_replace(" ", '', $d);
             $d = str_replace("(", '', $d);
 
@@ -398,6 +399,32 @@ class TestController extends Controller
                                             $num = intval($data_file["number"]);
                                             $q = $questions[$num];
                                             $q->documents()->attach($document);
+                                        }
+
+                                        if (preg_match(
+                                                '/(?P<number_start>\d+)~(?P<number_end>\d+)(?P<extension>.(\w+))/',
+                                                $current_file,
+                                                $data_file
+                                            ) != FALSE) {
+
+                                            $new_file = $repository_name
+                                                . '_'
+                                                . $data_file['number_start']
+                                                . '-'
+                                                . $data_file['number_end']
+                                                . $data_file['extension'];
+
+                                            rename('./storage/documents/' . $repository_name . '/' . $current_file, './storage/documents/' . $repository_name . '/' . $new_file);
+
+                                            $document = Document::create([
+                                                'name' => $new_file,
+                                                'type' => 'audio',
+                                                'url' => './documents/' . $repository_name . '/' . $new_file,
+                                            ]);
+
+                                            for ($i = intval($data_file['number_start']); $i <= intval($data_file['number_end']); $i++) {
+                                                $questions[$i]->documents()->attach($document);
+                                            }
                                         }
                                     }
                                 }
