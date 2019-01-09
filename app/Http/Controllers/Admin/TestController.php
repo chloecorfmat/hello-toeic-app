@@ -285,7 +285,8 @@ class TestController extends Controller
 
             $datas = fread($handle, filesize($request->file('answers')->path()));
             $d = str_replace("\r\n", '', $datas);
-            $d = str_replace("\n", '', $datas);
+            $d = str_replace("\n", '', $d);
+            $d = str_replace("\r", '', $d);
             $d = str_replace(" ", '', $d);
             $d = str_replace("(", '', $d);
 
