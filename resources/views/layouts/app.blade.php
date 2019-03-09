@@ -152,7 +152,16 @@
     </div>
 
     <!-- Scripts -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment-duration-format/2.2.2/moment-duration-format.min.js"></script>
+    <script>
+        @if(isset($listening_duration) && $listening_duration != 0)
+            const DURATION_LISTENING = {{ $listening_duration }};
+        @endif
+    </script>
     <script src="{{ asset('js/app.js') }}" defer></script>
 </body>
 </html>

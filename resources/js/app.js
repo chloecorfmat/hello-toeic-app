@@ -1,7 +1,10 @@
 window.addEventListener('load', initialiser);
 
-//const DURATION_WRITING = 45*60*1000; // in milliseconds.
-const DURATION_WRITING = 20*1000; // in milliseconds.
+const DURATION_WRITING = 10;
+const DURATION_UNIT = 'seconds';
+const SECOND = moment.duration(1, 'seconds');
+
+var listening_duration = moment.duration(DURATION_LISTENING, DURATION_UNIT);
 
 function initialiser(e) {
 
@@ -71,20 +74,19 @@ function initialiser(e) {
         });
     }
 
-
-
     // Audio player.
     var interval;
     if (document.getElementById('player') !== null) {
         var audio = document.querySelector('#player audio');
         var tracks = audio.dataset.sources.split(',');
         var i = 1;
+        timer.innerText = listening_duration.format("hh:mm:ss", {trim: false});
 
         document.getElementById('play').addEventListener('click', function(e) {
             this.removeEventListener('click', arguments.callee);
             document.querySelector('.btn-play').classList.add('btn-play--disabled');
             audio.play();
-            interval = setInterval(timer, 1000);
+            interval = setInterval(listening, 1000);
         });
 
         audio.addEventListener('ended', function () {
@@ -94,6 +96,7 @@ function initialiser(e) {
                 this.play();
             } else {
                 clearInterval(interval);
+                timer.innerText = '00:00:00';
                 var audioQuestions = document.querySelectorAll('.fa-volume-up');
                 audioQuestions.forEach(function(question) {
                     var radios = question.parentNode.parentNode.querySelectorAll('input[type="radio"]');
@@ -104,42 +107,12 @@ function initialiser(e) {
                     });
                 });
 
-                writing(interval);
+                if (document.querySelector('.fa-glasses') != null) {
+                    writing(interval);
+                }
             }
         });
     }
-
-    //
-    document.querySelectorAll("#test .documents img").forEach(function(el) {
-        /**el.addEventListener('mouseenter', function (e) {
-            if (!el.classList.contains('on-preview')) {
-                el.classList.add('on-preview');
-            }
-
-            document.querySelector('.preview').style.backgroundImage = "url(" + el.src + ")";
-            document.querySelector('.preview').classList.remove('hidden');
-
-            //el.removeEventListener('mouseenter', arguments.callee);
-        });
-
-        el.addEventListener('mouseleave', function(e) {
-            document.querySelector('.preview').style.backgroundImage = "";
-            document.querySelector('.preview').classList.add('hidden');
-
-            document.querySelectorAll('.on-preview').forEach(function(el) {
-                el.classList.remove('on-preview');
-            });
-        }, false);
-
-        document.querySelector('.preview').addEventListener('mouseleave', function(e) {
-            document.querySelector('.preview').style.backgroundImage = "";
-            document.querySelector('.preview').classList.add('hidden');
-
-            document.querySelectorAll('.on-preview').forEach(function(el) {
-                el.classList.remove('on-preview');
-            });
-        }, false);**/
-    });
 
     document.querySelectorAll("#test .img-preview").forEach(function(el) {
        el.addEventListener('click', function() {
@@ -163,8 +136,8 @@ function initialiser(e) {
     });
 
     document.body.addEventListener('click', function(e) {
-        if (event.target.closest('.preview')) return;
-        if (event.target.closest('.img-preview')) return;
+        if (e.target.closest('.preview')) return;
+        if (e.target.closest('.img-preview')) return;
 
         if (!document.querySelector('.preview').classList.contains('hidden')) {
             document.querySelectorAll('.on-preview').forEach(function (el) {
@@ -177,32 +150,31 @@ function initialiser(e) {
     }, false);
 }
 
-function timer() {
+
+// Get timer for listening exercises.
+function listening() {
     var timer = document.getElementById('timer');
-    t = parseInt(timer.innerText) + 1;
-    //t = new Date(SECONDS * 1000).toISOString().substr(11, 8);
-    timer.innerText = t.toString();
+    listening_duration.subtract(SECOND);
+    timer.innerText = listening_duration.format("hh:mm:ss", {trim: false});
 }
 
+// Get timer for writing exercises.
 function writing(interval) {
-    var end;
-    var timer;
-    var start;
-    var current;
+    var timer = document.getElementById('timer');
+    var duration = moment.duration(DURATION_WRITING, DURATION_UNIT);
 
     interval = setInterval(function() {
-        timer = document.getElementById('timer');
-        if (end === undefined) {
-            end = new Date(new Date().getTime()+DURATION_WRITING).getTime(); // 45 min.
-        }
+        duration = duration.subtract(SECOND);
+        timer.innerText = duration.format("hh:mm:ss", {trim: false});
 
-        start = new Date().getTime();
-        current = new Date(end - start);
-
-        if (current.getTime() <= 0) {
+        if (duration.asSeconds() <= 0) {
             clearInterval(interval);
-        } else {
-            timer.innerText = current.getUTCHours() + ':' + current.getUTCMinutes() + ':' + current.getUTCSeconds();
+            document.querySelectorAll('input[type="radio"]').forEach(function(radio) {
+                if (radio.checked == false) {
+                    radio.disabled = true;
+                }
+            });
         }
+
     }, 1000);
 }

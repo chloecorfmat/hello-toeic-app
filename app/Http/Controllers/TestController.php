@@ -6,6 +6,7 @@ use App\Correction;
 use App\Trial;
 use Illuminate\Http\Request;
 use App\Test;
+use App\Services\Mp3Service;
 
 class TestController extends Controller
 {
@@ -78,18 +79,24 @@ class TestController extends Controller
 
         $source = '';
         $datasources_ar = [];
+        $listening_duration = 0;
 
         foreach ($questions as $question) {
             $documents = $question->documents;
 
             foreach ($documents as $document) {
                 if ($document->type === 'audio') {
-                    if (empty($source)) {
-                        $source = url('storage/' . $document->url);
-                    }
+                    if (file_exists('storage/' . $document->url)) {
+                        if (empty($source)) {
+                            $source = url('storage/' . $document->url);
+                        }
 
-                    if (!in_array(url('storage/' . $document->url), $datasources_ar)) {
-                        $datasources_ar[] = url('storage/' . $document->url);
+                        if (!in_array(url('storage/' . $document->url), $datasources_ar)) {
+                            $filename = url('storage/' . $document->url);
+                            $datasources_ar[] = $filename;
+
+                            $listening_duration += Mp3Service::getMp3Duration('storage/' . $document->url);
+                        }
                     }
                 }
             }
@@ -97,7 +104,7 @@ class TestController extends Controller
 
         $datasources = implode(', ', $datasources_ar);
 
-        return view('tests.show', compact('datas', 'datasources', 'source'));
+        return view('tests.show', compact('datas', 'datasources', 'source', 'listening_duration'));
     }
 
     /**
