@@ -52,13 +52,4 @@ class HomeController extends Controller
 
         return view('profile', compact('datas'));
     }
-
-    /**
-     * Show the different possibilities to train the user.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function train() {
-        return view('train');
-    }
 }

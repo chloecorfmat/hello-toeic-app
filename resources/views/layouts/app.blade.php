@@ -78,7 +78,25 @@
 
                         @role('student')
                         <div class="laterale-bar--part">
-                            <a href="{{ route('train') }}" class="btn">S'entraîner</a>
+                            <!--<a href="{{ route('train') }}" class="btn">S'entraîner</a>-->
+
+                            <ul>
+                                <li>
+                                    <a class="btn btn-training" href="{{ route('student.tests.index') }}">
+                                        <i class="fas fa-graduation-cap"></i> Tests complets
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="btn btn-training" href="{{ route('tests.exercises') }}">
+                                        <i class="fas fa-question"></i> Exercises
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="btn btn-training" href="{{ route('games') }}">
+                                        <i class="fas fa-medal"></i> Challenges
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
                         @endrole
 
