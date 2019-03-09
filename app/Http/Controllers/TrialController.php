@@ -55,7 +55,7 @@ class TrialController extends Controller
         $trial = Trial::find($id);
         $datas['trial'] = $trial;
 
-        $datas['max_score'] = count($trial->test()->get()[0]->questions);
+        $datas['max_score'] = count($trial->test()->get()[0]->questions)*5;
 
         return view('trials.show', compact('datas'));
     }
