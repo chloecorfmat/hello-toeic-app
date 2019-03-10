@@ -386,6 +386,10 @@ body {
   }
 }
 
+.part-container {
+  margin-bottom: 2rem;
+}
+
 a,
 button {
   outline-color: #ffc857;
@@ -629,6 +633,10 @@ tr:nth-child(2n) {
 .alert-error {
   background: #e9a4a133;
   border-color: #db504a;
+}
+
+.charts {
+  width: 70%;
 }
 
 .login-page {

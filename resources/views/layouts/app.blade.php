@@ -72,7 +72,6 @@
                             <i class="user-ico fas fa-user-circle fa-4x"></i>
                         </a>
                         <h2>{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</h2>
-                        <a class="text-email" href="mailto:{{ Auth::user()->email }}">{{ Auth::user()->email }}</a>
 
                         @yield('laterale-bar-content-begin')
 
@@ -178,8 +177,10 @@
     <script>
         @if(isset($listening_duration) && $listening_duration != 0)
             const DURATION_LISTENING = {{ $listening_duration }};
+        @else
+            const DURATION_LISTENING = 0;
         @endif
     </script>
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/all.js') }}" defer></script>
 </body>
 </html>
