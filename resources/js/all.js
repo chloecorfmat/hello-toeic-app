@@ -1,7 +1,7 @@
 window.addEventListener('load', initialiser);
 
-const DURATION_WRITING = 10;
-const DURATION_UNIT = 'seconds';
+const DURATION_WRITING = 75;
+const DURATION_UNIT = 'minutes';
 const SECOND = moment.duration(1, 'seconds');
 
 var listening_duration = moment.duration(DURATION_LISTENING, DURATION_UNIT);
