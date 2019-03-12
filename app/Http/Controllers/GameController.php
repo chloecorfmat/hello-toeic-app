@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Game;
+use App\Proposal;
 use App\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
@@ -105,8 +106,22 @@ class GameController extends Controller
             'error_id' => $request->get('question_id'),
         ]);
 
+        $user_answer = '(No answer submitted)';
+
+        if (!empty($request->get('question_answer'))) {
+            $user_answer = Proposal::find($request->get('question_answer'))->value;
+        }
+
+
         Cookie::queue(Cookie::forget('game_score'));
         Cookie::queue(Cookie::forget('game_questions'));
-        return redirect()->route('games')->with('success', 'You get ' . $score . ' points.');
+        return redirect()->route('games')->with('success',
+            '<p>You get ' . $score . ' points.</p><br />' .
+            '<div class="alert-answer">' .
+                '<p class="important">Last question: </p>' .
+                '<p>' . $question->question . '</p>' .
+                '<p><span class="introducing">Your (false) answer:</span> ' . $user_answer . '</p>' .
+            '</div>'
+        );
     }
 }

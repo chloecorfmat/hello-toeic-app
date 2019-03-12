@@ -77,8 +77,8 @@ module.exports = __webpack_require__(2);
 
 window.addEventListener('load', initialiser);
 
-var DURATION_WRITING = 10;
-var DURATION_UNIT = 'seconds';
+var DURATION_WRITING = 75;
+var DURATION_UNIT = 'minutes';
 var SECOND = moment.duration(1, 'seconds');
 
 var listening_duration = moment.duration(DURATION_LISTENING, DURATION_UNIT);

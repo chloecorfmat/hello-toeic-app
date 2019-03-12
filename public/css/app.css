@@ -181,6 +181,10 @@ h3 {
   font-weight: 700;
 }
 
+.introducing {
+  text-decoration: underline;
+}
+
 a,
 caption,
 h1,
@@ -633,6 +637,11 @@ tr:nth-child(2n) {
 .alert-error {
   background: #e9a4a133;
   border-color: #db504a;
+}
+
+.alert-answer {
+  line-height: 1.5;
+  margin-top: .2rem;
 }
 
 .charts {

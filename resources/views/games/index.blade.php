@@ -5,7 +5,7 @@
         <h1>Games list</h1>
         @if ($message = Session::get('success'))
             <div class="alert alert-success">
-                <p>{{ $message }}</p>
+                <p>{!! html_entity_decode($message) !!}</p>
             </div>
         @endif
         <div class="table" id="games">
