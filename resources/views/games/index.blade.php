@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="main-content">
-        <h1>Games list</h1>
+        <h1>Challenges list</h1>
         @if ($message = Session::get('success'))
             <div class="alert alert-success">
                 <p>{!! html_entity_decode($message) !!}</p>
@@ -17,7 +17,7 @@
             </div>
             <div class="table-container">
                 <table>
-                    <caption class="sr-only">Games list</caption>
+                    <caption class="sr-only">Challenges list</caption>
                     <thead>
                     <tr>
                         <th>
