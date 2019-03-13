@@ -891,6 +891,18 @@ tr:nth-child(2n) {
   font-weight: 700;
 }
 
+.passed {
+  text-align: center;
+}
+
+.passed .fa-check-circle {
+  color: #6fa939;
+}
+
+.passed .fa-times-circle {
+  color: #db504a;
+}
+
 .main-content {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -950,6 +962,14 @@ tr:nth-child(2n) {
 
 .player .btn-play--disabled {
   color: #8d6a9f;
+}
+
+.student {
+  background: #f4f4f4;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  padding: 1rem;
 }
 
 .test legend {

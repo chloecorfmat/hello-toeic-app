@@ -1,0 +1,11 @@
+.passed {
+  text-align: center;
+
+  .fa-check-circle {
+    color: $success-color;
+  }
+
+  .fa-times-circle {
+    color: $danger-color;
+  }
+}

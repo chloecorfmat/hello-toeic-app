@@ -32,6 +32,14 @@ function initialiser(e) {
         new List('games', options);
     }
 
+    if (document.getElementById('students') !== undefined) {
+        var options = {
+            valueNames: ['matricule', 'student', 'course', 'passed'],
+        };
+
+        new List('students', options);
+    }
+
     // Accordions in tests.
     if (document.getElementsByClassName('js-part-close') !== null) {
         var btns = document.getElementsByClassName('js-part-close');
@@ -133,21 +141,21 @@ function initialiser(e) {
                document.querySelector('.preview').classList.remove('hidden');
            }
        }, false);
+
+        document.body.addEventListener('click', function(e) {
+            if (e.target.closest('.preview')) return;
+            if (e.target.closest('.img-preview')) return;
+
+            if (!document.querySelector('.preview').classList.contains('hidden')) {
+                document.querySelectorAll('.on-preview').forEach(function (el) {
+                    el.classList.remove('on-preview');
+                });
+
+                document.querySelector('.preview').style.backgroundImage = "";
+                document.querySelector('.preview').classList.add('hidden');
+            }
+        }, false);
     });
-
-    document.body.addEventListener('click', function(e) {
-        if (e.target.closest('.preview')) return;
-        if (e.target.closest('.img-preview')) return;
-
-        if (!document.querySelector('.preview').classList.contains('hidden')) {
-            document.querySelectorAll('.on-preview').forEach(function (el) {
-                el.classList.remove('on-preview');
-            });
-
-            document.querySelector('.preview').style.backgroundImage = "";
-            document.querySelector('.preview').classList.add('hidden');
-        }
-    }, false);
 }
 
 

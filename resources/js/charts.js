@@ -1,5 +1,4 @@
 window.addEventListener('load', function() {
-    var toto = JSON.parse(chart_axisY.replace(/&quot;/g,'"'));
     if (document.getElementById('progression') !== null) {
         var ctx = document.getElementById("progression").getContext('2d');
         var data = [];

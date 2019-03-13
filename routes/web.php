@@ -34,6 +34,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('admin/questions', 'QuestionController');
     Route::resource('admin/documents', 'DocumentController');
     Route::resource('admin/tests', 'TestController');
+    Route::resource('admin/students', 'StudentController');
 
     Route::get('admin/tests/exercise/{type_id}/create', 'TestController@exerciseCreate')
         ->name('tests.exercise.create');
