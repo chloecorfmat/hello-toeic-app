@@ -20,6 +20,9 @@
                     <p>{{ $message }}</p>
                 </div>
             @endif
+            @if (!Auth::user()->hasRole('teacher'))
+                <p class="emphasis">La correction des questions liées aux parties de compréhension orale n'est pas affichée.</p>
+            @endif
             <div class="table" id="profile-tests">
                 <div class="table--filters">
                     <div class="field-container">
@@ -69,9 +72,18 @@
                                 <td class="score">{{ $trial->score }}</td>
                                 <td>
                                     <ul>
-                                        <li>
-                                            <a href="{{ route('trials.show', ['id' => $trial->id]) }}">Correction</a>
-                                        </li>
+                                        @if (
+                                            (($trial->test->part_id !== 2) &&
+                                            ($trial->test->part_id !== 3) &&
+                                            ($trial->test->part_id !== 4) &&
+                                            ($trial->test->part_id !== 5) &&
+                                            ($datas['user']->hasRole('student'))) ||
+                                            ($datas['user']->hasRole('teacher'))
+                                        )
+                                            <li>
+                                                <a href="{{ route('trials.show', ['id' => $trial->id]) }}">Correction</a>
+                                            </li>
+                                        @endif
                                         @role('student')
                                         <li>
                                             <a href="{{ action('TestController@show', ['id' => $trial->test->id]) }}">Execute</a>

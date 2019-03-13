@@ -185,6 +185,10 @@ h3 {
   text-decoration: underline;
 }
 
+.emphasis {
+  font-style: italic;
+}
+
 a,
 caption,
 h1,
