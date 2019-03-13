@@ -12,7 +12,7 @@
             </div>
         @endif
 
-        <div class="part-container student">
+        <div class="part-container student-profile">
             <p><strong class="important">Name: </strong>{{ $student->firstname }} {{ $student->lastname }}</p>
             <p><strong class="important">Matricule: </strong>{{ $student->matricule }}</p>
             <p>
