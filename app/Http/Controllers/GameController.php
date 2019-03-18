@@ -29,9 +29,17 @@ class GameController extends Controller
                 ->get();
         }
 
+        $i = 1;
+        foreach(array_reverse($games->all()) as $game) {
+            $axisX[] = $i++;
+            $axisY[] = $game->score;
+        }
+
         $datas = [
             'user' => $user,
             'games' => $games,
+            'axisX' => implode(', ', $axisX),
+            'axisY' => json_encode($axisY),
         ];
 
         return view('games.index', compact('datas'));

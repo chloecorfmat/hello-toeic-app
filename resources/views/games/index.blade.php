@@ -53,6 +53,19 @@
                 </table>
             </div>
         </div>
+
         <a href="{{ route('games.play') }}" class="btn">Commencer un challenge</a>
+
+        <!-- Statistiques -->
+        <div class="part-container">
+            <div class="charts">
+                <canvas class="chart" id="challenges"></canvas>
+            </div>
+        </div>
     </div>
+
+    <script>
+        var chart_axisX = "{{ $datas['axisX'] }}";
+        var chart_axisY = "{{ $datas['axisY'] }}";
+    </script>
 @endsection
