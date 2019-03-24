@@ -95,7 +95,17 @@ class TestController extends Controller
                             $filename = url('storage/' . $document->url);
                             $datasources_ar[] = $filename;
 
-                            $listening_duration += Mp3Service::getMp3Duration('storage/' . $document->url);
+                            $m = new Mp3Service('storage/' . $document->url);
+                            $a = $m->get_metadata();
+
+                            if ($a['Encoding']=='Unknown')
+                                $len = 0;
+                            else if ($a['Encoding']=='VBR')
+                                $len= $a['Length'];
+                            else if ($a['Encoding']=='CBR')
+                                $len= $a['Length'];
+
+                            $listening_duration += $len;
                         }
                     }
                 }
