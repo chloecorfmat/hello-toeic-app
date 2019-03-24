@@ -75,11 +75,11 @@
 
                         @yield('laterale-bar-content-begin')
 
-                        @role('student')
                         <div class="laterale-bar--part">
+                            <h3>Training</h3>
                             <!--<a href="{{ route('train') }}" class="btn">S'entraîner</a>-->
 
-                            <ul>
+                            <ul class="laterale-bar--menu-list">
                                 <li>
                                     <a class="btn btn-training" href="{{ route('student.tests.index') }}">
                                         <i class="fas fa-graduation-cap"></i> Tests complets
@@ -97,11 +97,10 @@
                                 </li>
                             </ul>
                         </div>
-                        @endrole
 
                         @role('teacher')
                         <div class="laterale-bar--part laterale-bar--menu">
-                            <h3>Menu</h3>
+                            <h3>Admin</h3>
                             <ul class="laterale-bar--menu-list">
                                 <li class="laterale-bar--menu-item">
                                     <a href="{{ route('students.index') }}">
