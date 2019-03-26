@@ -23,7 +23,7 @@ Route::macro('setGroupNamespace', function ($namespace) {
 
 Route::get('/', 'HomeController@home');
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::get('/profile', 'HomeController@index')->name('profile');
 Route::get('/train', 'HomeController@train')->name('train');
