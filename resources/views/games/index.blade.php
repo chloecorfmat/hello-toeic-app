@@ -8,6 +8,42 @@
                 <p>{!! html_entity_decode($message) !!}</p>
             </div>
         @endif
+
+        <h2>Best scores</h2>
+        <div class="table">
+            <div class="table-container">
+                <table>
+                    <caption class="sr-only">Best scores</caption>
+                    <thead>
+                        <tr>
+                            <th>Position</th>
+                            <th>Étudiant</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($best_scores as $key => $score)
+                        <tr>
+                            <td>
+                                <!-- For best score ever -->
+                                @if($key == 0)
+                                    <i class="fas fa-star"></i>
+                                @else
+                                    @php ($index = $key+1)
+                                    {{ $index }}
+                                @endif
+                            </td>
+                            <td>{{ $score->user->firstname }} {{ $score->user->lastname }}</td>
+                            <td>{{ $score->score }}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <h2>Your scores</h2>
         <div class="table" id="games">
             <div class="table--filters">
                 <div class="field-container">
@@ -57,11 +93,13 @@
         <a href="{{ route('games.play') }}" class="btn">Commencer un challenge</a>
 
         <!-- Statistiques -->
+        @if($datas['axisX'] != "")
         <div class="part-container">
             <div class="charts">
                 <canvas class="chart" id="challenges"></canvas>
             </div>
         </div>
+        @endif
     </div>
 
     <script>

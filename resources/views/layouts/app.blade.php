@@ -75,7 +75,7 @@
 
                         @yield('laterale-bar-content-begin')
 
-                        <div class="laterale-bar--part">
+                        <div class="laterale-bar--part laterale-bar--menu">
                             <h3>Training</h3>
                             <!--<a href="{{ route('train') }}" class="btn">S'entraîner</a>-->
 

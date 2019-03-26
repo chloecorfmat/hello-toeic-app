@@ -18,4 +18,9 @@
 .alert-answer {
   line-height: 1.5;
   margin-top: .2rem;
+
+  .list-item {
+    margin-left: 1.5rem;
+    list-style-type: disc;
+  }
 }

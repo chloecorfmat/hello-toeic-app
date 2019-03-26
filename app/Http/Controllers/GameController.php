@@ -19,30 +19,39 @@ class GameController extends Controller
     public function index() {
         $user = \Auth::user();
 
+        $games = Game::where('user_id', '=', $user->id)
+            ->orderBy('datetime', 'DESC')
+            ->get();
+
         if ($user->hasPermissionTo('dashboard-students-see')) {
-            $games = Game::orderBy('datetime', 'DESC')
+            // Get all tests passed.
+            $games_data = Game::orderBy('datetime', 'DESC')
                 ->get();
         } else {
-            // Get all tests passed.
-            $games = Game::where('user_id', '=', $user->id)
-                ->orderBy('datetime', 'DESC')
-                ->get();
+            $games_data = $games;
         }
 
         $i = 1;
+        $axisX = [];
+        $axisY = [];
         foreach(array_reverse($games->all()) as $game) {
             $axisX[] = $i++;
             $axisY[] = $game->score;
         }
 
+        // Best scores.
+        $best_scores = Game::orderBy('score', 'DESC')
+            ->limit(10)
+            ->get();
+
         $datas = [
             'user' => $user,
-            'games' => $games,
+            'games' => $games_data,
             'axisX' => implode(', ', $axisX),
             'axisY' => json_encode($axisY),
         ];
 
-        return view('games.index', compact('datas'));
+        return view('games.index', compact('datas', 'best_scores'));
     }
 
     /**
@@ -117,7 +126,17 @@ class GameController extends Controller
         $user_answer = '(No answer submitted)';
 
         if (!empty($request->get('question_answer'))) {
-            $user_answer = Proposal::find($request->get('question_answer'))->value;
+            $answers = Proposal::where('question_id', $question->id)->get();
+            $other_answers = "";
+
+            foreach ($answers as $answer) {
+                if ($answer->id === $question->id) {
+                    $user_answer = $answer->value;
+                } else {
+                    $temp = '<li class="list-item">' . $answer->value . '</li>';
+                    $other_answers .= $temp;
+                }
+            }
         }
 
 
@@ -129,6 +148,8 @@ class GameController extends Controller
                 '<p class="important">Last question: </p>' .
                 '<p>' . $question->question . '</p>' .
                 '<p><span class="introducing">Your (false) answer:</span> ' . $user_answer . '</p>' .
+                '<p><span class="introducing">Other answers:</span></p>' .
+                '<ul>' . $other_answers .'</ul>' .
             '</div>'
         );
     }
