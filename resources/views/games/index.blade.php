@@ -43,7 +43,7 @@
         </div>
 
 
-        <h2>Your scores</h2>
+        <h2>Scores</h2>
         <div class="table" id="games">
             <div class="table--filters">
                 <div class="field-container">
