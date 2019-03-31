@@ -11,6 +11,7 @@ class Trial extends Model
         'datetime',
         'test_id',
         'user_id',
+        'composite_trial_id',
     ];
 
     public $timestamps = false;

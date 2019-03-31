@@ -12,6 +12,7 @@ class Question extends Model
       'question',
       'number',
       'answer_id',
+      'explanation_id',
     ];
 
     public $timestamps = false;
@@ -42,6 +43,10 @@ class Question extends Model
 
     public function tests() {
         return $this->belongsToMany('App\Test', 'test_question')->withPivot(['number']);
+    }
+
+    public function explanation() {
+        return $this->belongsTo('App\Explanation', 'explanation_id', 'id');
     }
 
     public function getStatistics() {

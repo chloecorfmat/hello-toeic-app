@@ -11,6 +11,7 @@ class Document extends Model
         'type',
         'url',
         'content',
+        'metadata',
     ];
 
     public $timestamps = false;
