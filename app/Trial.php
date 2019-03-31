@@ -9,7 +9,7 @@ class Trial extends Model
     protected $fillable = [
         'score',
         'datetime',
-        'test_id',
+        'exercise_id',
         'user_id',
         'composite_trial_id',
     ];
@@ -25,6 +25,6 @@ class Trial extends Model
     }
 
     public function test() {
-        return $this->belongsTo('App\Test', 'test_id', 'id');
+        return $this->belongsTo('App\Exercise', 'exercise_id', 'id');
     }
 }

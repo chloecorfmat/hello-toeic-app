@@ -8,7 +8,7 @@ use App\Proposal;
 use App\Question;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Test;
+use App\Exercise;
 use Illuminate\Support\Facades\DB;
 
 class TestController extends Controller
@@ -28,7 +28,7 @@ class TestController extends Controller
      */
     public function index()
     {
-        $tests = Test::where('part_id', '=', 1)->get();
+        $tests = Exercise::where('part_id', '=', 1)->get();
         return view('tests.index', compact('tests'));
     }
 
@@ -43,7 +43,7 @@ class TestController extends Controller
         $tests = [];
 
         foreach ($parts as $part) {
-            $tests[$part-1] = Test::where('part_id', $part)->get();
+            $tests[$part-1] = Exercise::where('part_id', $part)->get();
         }
 
         return view('admin.tests.create', compact('tests'));
@@ -58,7 +58,7 @@ class TestController extends Controller
     public function store(Request $request)
     {
         $number = 1;
-        $test = Test::create([
+        $test = Exercise::create([
             'name' => $request->get('name'),
             'version' => $request->get('version'),
             'part_id' => 1,
@@ -67,7 +67,7 @@ class TestController extends Controller
         foreach ($request->all() as $key => $test_id) {
             $pattern = '/^part_*/';
             if (preg_match($pattern, $key)) {
-                $questions = Test::find($test_id)->questions()->get();
+                $questions = Exercise::find($test_id)->questions()->get();
 
                 foreach($questions as $question) {
                     $test->questions()->attach($question, ['number' => $number]);
@@ -228,7 +228,7 @@ class TestController extends Controller
         $byQuestions = [2, 3, 6, 7, 8];
         $byDocuments = [4, 5];
 
-        $exercise = Test::create([
+        $exercise = Exercise::create([
             'name' => $request->get('name'),
             'version' => $request->get('version'),
             'part_id' => $request->get('part'),
@@ -333,7 +333,7 @@ class TestController extends Controller
                                     ) != FALSE) {
 
                                     if (is_null($test)) {
-                                        $test = Test::create([
+                                        $test = Exercise::create([
                                             'name' => $request->get('name'),
                                             'version' => $request->get('version'),
                                             'part_id' => $request->get('part'),
@@ -454,7 +454,7 @@ class TestController extends Controller
                                     rename("./storage/documents/" . $repository_name . "/" . $current_file, "./storage/documents/" . $repository_name . "/" . $new_file);
 
                                     if (is_null($test)) {
-                                        $test = Test::create([
+                                        $test = Exercise::create([
                                             'name' => $request->get('name'),
                                             'version' => $request->get('version'),
                                             'part_id' => $request->get('part'),
@@ -500,7 +500,7 @@ class TestController extends Controller
                                     rename('./storage/documents/' . $repository_name . '/' . $current_file, './storage/documents/' . $repository_name . '/' . $new_file);
 
                                     if (is_null($test)) {
-                                        $test = Test::create([
+                                        $test = Exercise::create([
                                             'name' => $request->get('name'),
                                             'version' => $request->get('version'),
                                             'part_id' => $request->get('part'),
@@ -585,7 +585,7 @@ class TestController extends Controller
 
                 foreach ($final as $d) {
                     if (is_null($test)) {
-                        $test = Test::create([
+                        $test = Exercise::create([
                             'name' => $request->get('name'),
                             'version' => $request->get('version'),
                             'part_id' => $request->get('part'),
@@ -714,7 +714,7 @@ class TestController extends Controller
 
                 foreach ($final as $d) {
                     if (is_null($test)) {
-                        $test = Test::create([
+                        $test = Exercise::create([
                             'name' => $request->get('name'),
                             'version' => $request->get('version'),
                             'part_id' => $request->get('part'),
@@ -781,7 +781,7 @@ class TestController extends Controller
                         $number = $data_question['number'];
 
                         if (is_null($test)) {
-                            $test = Test::create([
+                            $test = Exercise::create([
                                 'name' => $request->get('name'),
                                 'version' => $request->get('version'),
                                 'part_id' => $request->get('part'),
@@ -880,7 +880,7 @@ class TestController extends Controller
 
                 foreach ($final as $d) {
                     if (is_null($test)) {
-                        $test = Test::create([
+                        $test = Exercise::create([
                             'name' => $request->get('name'),
                             'version' => $request->get('version'),
                             'part_id' => $request->get('part'),

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Correction;
 use App\Trial;
 use Illuminate\Http\Request;
-use App\Test;
+use App\Exercise;
 use App\Services\Mp3Service;
 
 class TestController extends Controller
@@ -27,7 +27,7 @@ class TestController extends Controller
      */
     public function index()
     {
-        $tests = Test::where('part_id', '=', 1)->get();
+        $tests = Exercise::where('part_id', '=', 1)->get();
         return view('tests.index', compact('tests'));
     }
 
@@ -60,7 +60,7 @@ class TestController extends Controller
      */
     public function show($id)
     {
-        $test = Test::find($id);
+        $test = Exercise::find($id);
 
         if (is_null($test)) {
             abort(404);
@@ -138,7 +138,7 @@ class TestController extends Controller
     public function update(Request $request, $id)
     {
         $score = 0;
-        $test = Test::find($id);
+        $test = Exercise::find($id);
         $questions = $test->questions()->orderBy('number')->get();
         $user_answers = $request->all();
 
@@ -188,10 +188,10 @@ class TestController extends Controller
         $exercises = true;
 
         if (is_null($id)) {
-            $tests = Test::where('part_id', '<>', 1)
+            $tests = Exercise::where('part_id', '<>', 1)
                 ->orderBy('part_id', 'ASC')->get();
         } else {
-            $tests = Test::where('part_id', '=', $id)->get();
+            $tests = Exercise::where('part_id', '=', $id)->get();
         }
 
         if (!$tests->count()) {

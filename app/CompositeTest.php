@@ -9,43 +9,43 @@ class CompositeTest extends Model
     protected $fillable = [
         'name',
         'version',
-        'test_part1',
-        'test_part2',
-        'test_part3',
-        'test_part4',
-        'test_part5',
-        'test_part6',
-        'test_part7',
+        'exercise_part1',
+        'exercise_part2',
+        'exercise_part3',
+        'exercise_part4',
+        'exercise_part5',
+        'exercise_part6',
+        'exercise_part7',
     ];
 
     public $timestamps = false;
 
     public function testPart1() {
-        return $this->hasOne('App\Test', 'test_part1', 'id');
+        return $this->hasOne('App\Exercise', 'exercise_part1', 'id');
     }
 
     public function testPart2() {
-        return $this->hasOne('App\Test', 'test_part2', 'id');
+        return $this->hasOne('App\Exercise', 'exercise_part2', 'id');
     }
 
     public function testPart3() {
-        return $this->hasOne('App\Test', 'test_part3', 'id');
+        return $this->hasOne('App\Exercise', 'exercise_part3', 'id');
     }
 
     public function testPart4() {
-        return $this->hasOne('App\Test', 'test_part4', 'id');
+        return $this->hasOne('App\Exercise', 'exercise_part4', 'id');
     }
 
     public function testPart5() {
-        return $this->hasOne('App\Test', 'test_part5', 'id');
+        return $this->hasOne('App\Exercise', 'exercise_part5', 'id');
     }
 
     public function testPart6() {
-        return $this->hasOne('App\Test', 'test_part6', 'id');
+        return $this->hasOne('App\Exercise', 'exercise_part6', 'id');
     }
 
     public function testPart7() {
-        return $this->hasOne('App\Test', 'test_part7', 'id');
+        return $this->hasOne('App\Exercise', 'exercise_part7', 'id');
     }
 
     public function compositeTestId() {

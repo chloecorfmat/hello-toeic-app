@@ -42,7 +42,7 @@ class Question extends Model
     }
 
     public function tests() {
-        return $this->belongsToMany('App\Test', 'test_question')->withPivot(['number']);
+        return $this->belongsToMany('App\Exercise', 'exercise_question')->withPivot(['number']);
     }
 
     public function explanation() {

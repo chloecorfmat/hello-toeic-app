@@ -15,7 +15,7 @@ class Part extends Model
     public $timestamps = false;
 
     public function tests() {
-        return $this->hasMany('App\Test', 'part_id', 'id');
+        return $this->hasMany('App\Exercise', 'part_id', 'id');
     }
 
     public function questions() {

@@ -4,7 +4,7 @@ use App\Document;
 use App\Part;
 use App\Proposal;
 use App\Question;
-use App\Test;
+use App\Exercise;
 use Illuminate\Database\Seeder;
 
 class QuestionTableSeeder extends Seeder
@@ -239,7 +239,7 @@ class QuestionTableSeeder extends Seeder
             $part_index = 0;
             $question_index = 1;
 
-            $t = Test::create([
+            $t = Exercise::create([
                 'name' => $test['name'],
                 'version' => $test['version'],
                 'part_id' => Part::find($parts[$part_index])->id,
