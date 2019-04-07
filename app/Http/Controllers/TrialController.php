@@ -58,7 +58,14 @@ class TrialController extends Controller
 
         $datas['max_score'] = count($trial->test()->get()[0]->questions)*5;
 
-        return view('trials.show', compact('datas'));
+        // Global stats.
+        $stats = [];
+        $test_id = $trial->test->id;
+
+        // @TODO:
+        $test = Exercise::find($test_id);
+
+        return view('trials.show', compact('datas', 'stats'));
     }
 
     /**

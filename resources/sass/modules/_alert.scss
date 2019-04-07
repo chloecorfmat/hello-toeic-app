@@ -15,6 +15,11 @@
   border-color: $danger-color;
 }
 
+.alert-warning {
+  background: $warning-color-light;
+  border-color: $warning-color;
+}
+
 .alert-answer {
   line-height: 1.5;
   margin-top: .2rem;

@@ -41,7 +41,7 @@ class Question extends Model
         return $this->belongsToMany('App\Part', 'question_part');
     }
 
-    public function tests() {
+    public function exercises() {
         return $this->belongsToMany('App\Exercise', 'exercise_question')->withPivot(['number']);
     }
 

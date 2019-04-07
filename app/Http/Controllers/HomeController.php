@@ -104,7 +104,7 @@ class HomeController extends Controller
         for ($i = 0; $i < 8; $i++) {
             $part = $PARTS[$i];
 
-            $concerned_tests = DB::table('tests')
+            $concerned_tests = DB::table('exercises')
                 ->select('id')
                 ->where('part_id', $part['id'])
                 ->get();
@@ -123,7 +123,7 @@ class HomeController extends Controller
             $stats_tests = DB::table('trials')
                 ->selectRaw('YEAR(datetime) as y, MONTH(datetime) as m, GROUP_CONCAT(id), COUNT(id), AVG(score) as avg')
                 ->where('user_id', $user->id)
-                ->whereIn('test_id', $concerned_tests_id)
+                ->whereIn('exercise_id', $concerned_tests_id)
                 ->groupBy(DB::raw('YEAR(datetime), MONTH(datetime)'))
                 ->get();
 

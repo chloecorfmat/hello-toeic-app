@@ -33,34 +33,46 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('admin/permissions', 'PermissionController');
     Route::resource('admin/questions', 'QuestionController');
     Route::resource('admin/documents', 'DocumentController');
-    Route::resource('admin/tests', 'TestController');
     Route::resource('admin/students', 'StudentController');
+    Route::resource('admin/parts', 'PartController');
+    Route::resource('admin/composite-tests', 'CompositeTestController');
 
-    Route::get('admin/tests/exercise/{type_id}/create', 'TestController@exerciseCreate')
-        ->name('tests.exercise.create');
-    Route::get('admin/tests/exercise/import', 'TestController@exerciseImport')
-        ->name('tests.exercise.import');
-    Route::post('admin/tests/exercise/store', 'TestController@exerciseStore')
-        ->name('tests.exercise.store');
-    Route::post('admin/tests/exercise/import/store', 'TestController@exerciseImportStore')
-        ->name('tests.exercise.importStore');
+    Route::get('admin/exercises/import/{id?}', 'ExerciseController@import')
+        ->name('exercises.import');
+    Route::post('admin/exercises/storeImport', 'ExerciseController@storeImport')
+        ->name('exercises.storeImport');
+    Route::resource('admin/exercises', 'ExerciseController');
+
 });
 
 
 // Display tests & exercises.
-Route::resource('tests', 'TestController', [
-    // Renamed routes due to Admin/TestController.
+Route::resource('exercises', 'ExerciseController', [
+    // Renamed routes due to Admin/ExerciseController.
     'names' => [
-        'index' => 'student.tests.index',
-        'create' => 'student.tests.create',
-        'store' => 'student.tests.store',
-        'show' => 'student.tests.show',
-        'edit' => 'student.tests.edit',
-        'update' => 'student.tests.update',
-        'destroy' => 'student.tests.destroy',
+        'index' => 'student.exercises.index',
+        'create' => 'student.exercises.create',
+        'store' => 'student.exercises.store',
+        'show' => 'student.exercises.show',
+        'edit' => 'student.exercises.edit',
+        'update' => 'student.exercises.update',
+        'destroy' => 'student.exercises.destroy',
     ]
 ]);
-Route::get('/exercises/{id?}', 'TestController@exercises')->name('tests.exercises');
+
+Route::resource('composite-tests', 'CompositeTestController', [
+    // Renamed routes due to Admin/ExerciseController.
+    'names' => [
+        'index' => 'student.composite-tests.index',
+        'create' => 'student.composite-tests.create',
+        'store' => 'student.composite-tests.store',
+        'show' => 'student.composite-tests.show',
+        'edit' => 'student.composite-tests.edit',
+        'update' => 'student.composite-tests.update',
+        'destroy' => 'student.composite-tests.destroy',
+    ]
+]);
+
 Route::resource('trials', 'TrialController');
 
 

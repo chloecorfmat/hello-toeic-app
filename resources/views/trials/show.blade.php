@@ -10,6 +10,7 @@
             <div class="student-profile">
                 <p><span>{{ $datas['trial']->user->firstname }} {{ $datas['trial']->user->lastname }}</span>, le <span>{{ date('d/m/Y à H:i', strtotime($datas['trial']->datetime)) }}</span></p>
                 <p>Score : <span>{{ $datas['trial']->score }}</span>/{{ $datas['max_score'] }}</p>
+                <h2>Statistiques générales</h2>
             </div>
         </div>
 

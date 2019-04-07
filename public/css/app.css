@@ -600,13 +600,18 @@ tr:nth-child(2n) {
   border-color: #db504a;
 }
 
+.alert-warning {
+  background: #f5ecce;
+  border-color: #dba901;
+}
+
 .alert-answer {
   line-height: 1.5;
   margin-top: 0.2rem;
 }
 
 .alert-answer .list-item {
-  margin-left: 2rem;
+  margin-left: 1.5rem;
   list-style-type: disc;
 }
 

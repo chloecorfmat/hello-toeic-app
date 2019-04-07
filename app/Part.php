@@ -10,6 +10,11 @@ class Part extends Model
         'name',
         'version',
         'type',
+        'description',
+        'nb_questions',
+        'texts',
+        'files',
+        'questions',
     ];
 
     public $timestamps = false;

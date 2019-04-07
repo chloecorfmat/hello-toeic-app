@@ -18,7 +18,7 @@ function initialiser(e) {
 
     if (document.getElementById('tests') !== undefined) {
         var options = {
-            valueNames: ['name', 'version'],
+            valueNames: ['name', 'part'],
         };
 
         new List('tests', options);

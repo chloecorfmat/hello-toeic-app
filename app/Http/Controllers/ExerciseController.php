@@ -2,24 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Correction;
-use App\Trial;
+use App\Services\Mp3Service;
 use Illuminate\Http\Request;
 use App\Exercise;
-use App\Services\Mp3Service;
+use App\Trial;
+use App\Correction;
 
-class TestController extends Controller
+class ExerciseController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['auth'])->only('exercises');
-        $this->middleware(['permission:test-list'])->only('index');
-        $this->middleware(['permission:test-execute'])->only('show', 'update');
-
-        // This route are currently not used.
-        $this->middleware(['role:admin'])->only('destroy', 'edit', 'create', 'store');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -27,8 +17,8 @@ class TestController extends Controller
      */
     public function index()
     {
-        $tests = Exercise::where('part_id', '=', 1)->get();
-        return view('tests.index', compact('tests'));
+        $exercises = Exercise::all();
+        return view('exercises.index', compact('exercises'));
     }
 
     /**
@@ -60,22 +50,17 @@ class TestController extends Controller
      */
     public function show($id)
     {
-        $test = Exercise::find($id);
+        $exercise = Exercise::find($id);
 
-        if (is_null($test)) {
+        if (is_null($exercise)) {
             abort(404);
         }
 
-        $questions = $test->questions()->orderBy('number')->get();
+        $questions = $exercise->questions()->orderBy('number')->get();
 
         if (!$questions->count()) {
             abort(404);
         }
-
-        $datas = [
-            'test' => $test,
-            'questions' => $questions,
-        ];
 
         $source = '';
         $datasources_ar = [];
@@ -114,7 +99,7 @@ class TestController extends Controller
 
         $datasources = implode(', ', $datasources_ar);
 
-        return view('tests.show', compact('datas', 'datasources', 'source', 'listening_duration'));
+        return view('exercises.show', compact('exercise', 'questions', 'datasources', 'source', 'listening_duration'));
     }
 
     /**
@@ -144,7 +129,7 @@ class TestController extends Controller
 
         $user_id = \Auth::user()->id;
         $trial_entity = Trial::create([
-            'test_id' => $id,
+            'exercise_id' => $id,
             'user_id' => $user_id,
             'score' => 0,
             'datetime' => now(),
@@ -181,28 +166,5 @@ class TestController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function exercises($id = null) {
-
-        $exercises = true;
-
-        if (is_null($id)) {
-            $tests = Exercise::where('part_id', '<>', 1)
-                ->orderBy('part_id', 'ASC')->get();
-        } else {
-            $tests = Exercise::where('part_id', '=', $id)->get();
-        }
-
-        if (!$tests->count()) {
-            abort(404);
-        }
-
-        if (!is_null($id)) {
-            $part_id = $id;
-            return view('tests.index', compact('tests', 'exercises', 'part_id'));
-        }
-
-        return view('tests.index', compact('tests', 'exercises'));
     }
 }

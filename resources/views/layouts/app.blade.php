@@ -22,6 +22,8 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <!-- Include Choices CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -81,12 +83,12 @@
 
                             <ul class="laterale-bar--menu-list">
                                 <li>
-                                    <a class="btn btn-training" href="{{ route('student.tests.index') }}">
+                                    <a class="btn btn-training" href="{{ route('student.composite-tests.index') }}">
                                         <i class="fas fa-graduation-cap"></i> Tests complets
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="btn btn-training" href="{{ route('tests.exercises') }}">
+                                    <a class="btn btn-training" href="{{ route('student.exercises.index') }}">
                                         <i class="fas fa-question"></i> Exercises
                                     </a>
                                 </li>
@@ -124,9 +126,23 @@
                                 </li>
 
                                 <li class="laterale-bar--menu-item">
-                                    <a href="{{ route('tests.index') }}">
+                                    <a href="{{ route('exercises.index') }}">
                                         <i class="menu-ico fas fa-list"></i>
-                                        Liste des tests
+                                        Liste des exercices
+                                    </a>
+                                </li>
+
+                                <li class="laterale-bar--menu-item">
+                                    <a href="{{ route('composite-tests.index') }}">
+                                        <i class="menu-ico fas fa-list"></i>
+                                        Liste des tests complets
+                                    </a>
+                                </li>
+
+                                <li class="laterale-bar--menu-item">
+                                    <a href="{{ route('parts.index') }}">
+                                        <i class="menu-ico fas fa-list"></i>
+                                        Liste des types d'exercices
                                     </a>
                                 </li>
 
@@ -180,6 +196,8 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment-duration-format/2.2.2/moment-duration-format.min.js"></script>
+    <!-- Include Choices JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
     <script>
         @if(isset($listening_duration) && $listening_duration != 0)
             const DURATION_LISTENING = {{ $listening_duration }};

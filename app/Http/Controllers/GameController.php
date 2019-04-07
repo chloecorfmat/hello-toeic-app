@@ -130,7 +130,7 @@ class GameController extends Controller
             $other_answers = "";
 
             foreach ($answers as $answer) {
-                if ($answer->id === $question->id) {
+                if ($answer->id === $question->answer->id) {
                     $user_answer = $answer->value;
                 } else {
                     $temp = '<li class="list-item">' . $answer->value . '</li>';
