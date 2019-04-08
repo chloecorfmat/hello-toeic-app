@@ -37,11 +37,13 @@ class HomeController extends Controller
         $user = \Auth::user();
 
         if ($user->hasPermissionTo('dashboard-students-see')) {
-            $trials = Trial::orderBy('datetime', 'DESC')
+            $trials = Trial::where('composite_trial_id', NULL)
+                ->orderBy('datetime', 'DESC')
                 ->get();
         } else {
             // Get all tests passed.
             $trials = Trial::where('user_id', '=', $user->id)
+                ->where('composite_trial_id', NULL)
                 ->orderBy('datetime', 'DESC')
                 ->get();
         }
