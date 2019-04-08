@@ -18,6 +18,7 @@ class UpdatePartsTable extends Migration
             $table->unsignedInteger('nb_questions')->default(0);
             $table->boolean('texts')->default(0);
             $table->boolean('files')->default(0);
+            $table->boolean('questions')->default(0);
         });
     }
 
