@@ -39,4 +39,8 @@ class User extends Authenticatable
     public function trials() {
         return $this->hasMany('App\Trial', 'user_id', 'id');
     }
+
+    public function composite_trials() {
+        return $this->hasMany('App\CompositeTrial', 'user_id', 'id');
+    }
 }

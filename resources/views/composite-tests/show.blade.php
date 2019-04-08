@@ -51,9 +51,9 @@
                                     </legend>
                                     @foreach ($question->proposals as $k => $proposal)
                                         <div>
-                                            <label for="{{ $key . '-' . $proposal->id }}">
-                                                <input type="radio" id="{{ $key . '-' . $proposal->id }}"
-                                                       name="{{ $key }}" value="{{ $proposal->id }}" />
+                                            <label for="{{ 'e' . $exercise['exercise']->id . '-q' . $question->id . '-p' . $proposal->id }}">
+                                                <input type="radio" id="{{ 'e' . $exercise['exercise']->id . '-q' . $question->id . '-p' . $proposal->id }}"
+                                                       name="{{ 'e' . $exercise['exercise']->id . '-q' . $question->id }}" value="{{ $proposal->id }}" />
                                                 <span class="radio-el"></span>
                                                 {{ $index[$k] }}. {{ $proposal->value }}
                                             </label>

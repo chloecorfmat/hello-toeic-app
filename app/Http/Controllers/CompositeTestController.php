@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\CompositeTrial;
+use App\Correction;
 use App\Services\Mp3Service;
+use App\Trial;
 use Illuminate\Http\Request;
 use App\CompositeTest;
 use App\Exercise;
@@ -120,6 +123,7 @@ class CompositeTestController extends Controller
                 }
                 $datasources = implode(', ', $datasources_ar);
 
+                $questions[$exercise]['exercise'] = $ex;
                 $questions[$exercise]['part'] = $ex->part;
                 $questions[$exercise]['questions'] = $qs;
             }
@@ -154,7 +158,74 @@ class CompositeTestController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $keys_ex = [
+            'exercise_part1',
+            'exercise_part2',
+            'exercise_part3',
+            'exercise_part4',
+            'exercise_part5',
+            'exercise_part6',
+            'exercise_part7',
+        ];
+
+        $user_answers = $request->all();
+        $composite_test = CompositeTest::findOrfail($id);
+        $user_id = \Auth::user()->id;
+
+        // Create composite trial.
+        $composite_trial = CompositeTrial::create([
+            'score' => 0,
+            'datetime' => now(),
+            'user_id' => $user_id,
+            'composite_test_id' => $id,
+        ]);
+
+        $composite_score = 0;
+
+        foreach ($keys_ex as $key) {
+            $ex_id = $composite_test->$key;
+            $exercise = Exercise::find($ex_id);
+
+            if (!is_null($exercise)) {
+                // Create trials.
+                $trial = Trial::create([
+                    'score' => 0,
+                    'datetime' => now(),
+                    'exercise_id' => $ex_id,
+                    'user_id' => $user_id,
+                    'composite_trial_id' => $composite_trial->id,
+                ]);
+
+                $questions = $exercise->questions()->orderBy('number')->get();
+                $score = 0;
+
+                foreach ($questions as $question) {
+                    $answer = $question->answer->id;
+                    if (
+                        isset($user_answers['e' . $ex_id . '-q' . $question->id]) &&
+                        $answer == $user_answers['e' . $ex_id . '-q' . $question->id]
+                    ) {
+                        $state = 1;
+                        $score = $score + 5;
+                        $composite_score = $composite_score + 5;
+                    } else {
+                        $state = 0;
+                    }
+
+                    Correction::create([
+                        'question_id' => $question->id,
+                        'proposal_id' => $user_answers['e' . $ex_id . '-q' . $question->id] ?? null,
+                        'trial_id' => $trial->id,
+                        'state' => $state,
+                    ]);
+                }
+
+                $trial->setAttribute('score', $score)->save();
+            }
+        }
+
+        $composite_trial->setAttribute('score', $composite_score)->save();
+        return redirect('/profile')->with('success', 'You get ' . $composite_score . ' points.');
     }
 
     /**
