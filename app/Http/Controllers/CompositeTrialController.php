@@ -2,18 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Exercise;
-use App\Trial;
 use Illuminate\Http\Request;
+use App\CompositeTrial;
+use App\CompositeTest;
 
-class TrialController extends Controller
+class CompositeTrialController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware(['permission:trial-show'])->only('show');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -23,13 +17,18 @@ class TrialController extends Controller
     {
         $user = \Auth::user();
 
-        $trials = Trial::where('user_id', '=', $user->id)
-            ->where('composite_trial_id', NULL)
+        $trials = CompositeTrial::where('user_id', '=', $user->id)
             ->orderBy('datetime', 'DESC')
             ->get();
 
-        return view('trials.index', compact('trials', 'user'));
+        $names = [];
 
+        // Get test name.
+        foreach ($trials as $trial) {
+            $names[] = CompositeTest::find($trial->composite_test_id)->name;
+        }
+
+        return view('composite-trials.index', compact('trials', 'user', 'names'));
     }
 
     /**
@@ -61,19 +60,7 @@ class TrialController extends Controller
      */
     public function show($id)
     {
-        $trial = Trial::find($id);
-        $datas['trial'] = $trial;
-
-        $datas['max_score'] = count($trial->test()->get()[0]->questions)*5;
-
-        // Global stats.
-        $stats = [];
-        $test_id = $trial->test->id;
-
-        // @TODO:
-        $test = Exercise::find($test_id);
-
-        return view('trials.show', compact('datas', 'stats'));
+        //
     }
 
     /**

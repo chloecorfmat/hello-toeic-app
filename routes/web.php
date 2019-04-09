@@ -73,8 +73,31 @@ Route::resource('composite-tests', 'CompositeTestController', [
     ]
 ]);
 
-Route::resource('trials', 'TrialController');
+Route::resource('trials', 'TrialController', [
+    // Renamed routes due to Admin/ExerciseController.
+    'names' => [
+        'index' => 'student.trials.index',
+        'create' => 'student.trials.create',
+        'store' => 'student.trials.store',
+        'show' => 'student.trials.show',
+        'edit' => 'student.trials.edit',
+        'update' => 'student.trials.update',
+        'destroy' => 'student.trials.destroy',
+    ]
+]);
 
+Route::resource('composite-trials', 'CompositeTrialController', [
+    // Renamed routes due to Admin/ExerciseController.
+    'names' => [
+        'index' => 'student.composite-trials.index',
+        'create' => 'student.composite-trials.create',
+        'store' => 'student.composite-trials.store',
+        'show' => 'student.composite-trials.show',
+        'edit' => 'student.composite-trials.edit',
+        'update' => 'student.composite-trials.update',
+        'destroy' => 'student.composite-trials.destroy',
+    ]
+]);
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('games/play', 'GameController@play')->name('games.play');

@@ -4,17 +4,16 @@
     @role('student')
     <div class="laterale-bar--part">
         <h3>Statistiques</h3>
-        <p><span>{{ count($datas['trials']) }}</span> tests</p>
+        <p><span>{{ count($trials) }}</span> tests</p>
     </div>
     @endrole
 @endsection
 
 @section('content')
     <div class="main-content">
-        <h1>Dashboard</h1>
+        <h1>Résultats des tests passés</h1>
         <!-- Results -->
         <div class="part-container">
-            <h2>Résultats</h2>
             @if ($message = Session::get('success'))
                 <div class="alert alert-success">
                     <p>{{ $message }}</p>
@@ -33,7 +32,7 @@
 
                 <div class="table-container">
                     <table>
-                        <caption class="sr-only">Liste des tests passés</caption>
+                        <caption class="sr-only">Liste des exercices passés</caption>
                         <thead>
                         <tr>
                             <th scope="col">
@@ -46,13 +45,6 @@
                                     Nom du test <i class="fas fa-arrows-alt-v"></i>
                                 </button>
                             </th>
-                            @can('dashboard-students-see')
-                                <th scope="col">
-                                    <button class="sort" data-sort="student">
-                                        Étudiant <i class="fas fa-arrows-alt-v"></i>
-                                    </button>
-                                </th>
-                            @endcan
                             <th scope="col">
                                 <button class="sort" data-sort="score">
                                     Score <i class="fas fa-arrows-alt-v"></i>
@@ -62,23 +54,17 @@
                         </tr>
                         </thead>
                         <tbody class="list">
-                        @foreach ($datas['trials'] as $key => $trial)
+                        @foreach ($trials as $key => $trial)
                             <tr>
                                 <td class="date">{{ date('d/m/Y H:i', strtotime($trial->datetime)) }}</td>
                                 <td class="test">{{ $trial->test->name }}</td>
-                                @can('dashboard-students-see')
-                                    <td class="student">{{  $trial->user->firstname }} {{  $trial->user->lastname }}</td>
-                                @endcan
                                 <td class="score">{{ $trial->score }}</td>
                                 <td>
                                     <ul>
                                         @if (
-                                            (($trial->test->part_id !== 2) &&
-                                            ($trial->test->part_id !== 3) &&
-                                            ($trial->test->part_id !== 4) &&
-                                            ($trial->test->part_id !== 5) &&
-                                            ($datas['user']->hasRole('student'))) ||
-                                            ($datas['user']->hasRole('teacher'))
+                                            (($trial->test->part_id !== 5) &&
+                                            ($user->hasRole('student'))) ||
+                                            ($user->hasRole('teacher'))
                                         )
                                             <li>
                                                 <a href="{{ route('student.trials.show', ['id' => $trial->id]) }}">Correction</a>
@@ -98,21 +84,5 @@
                 </div>
             </div>
         </div>
-
-        @role('student')
-        <!-- Statistiques -->
-        <!--<div class="part-container">
-            <h2>Progression</h2>
-            <div class="charts">
-                <canvas class="chart" id="progression"></canvas>
-            </div>
-        </div>-->
-        @endrole
-
     </div>
-
-    <!--<script>
-        var chart_axisX = "{{ $datas['axisX'] }}";
-        var chart_axisY = "{{ $datas['axisY'] }}";
-    </script>-->
 @endsection
