@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('laterale-bar-content-begin')
-    @role('student')
+   {{--  @role('student')
     <div class="laterale-bar--part">
         <h3>Statistiques</h3>
         <p><span>{{ count($datas['trials']) }}</span> tests</p>
     </div>
-    @endrole
+    @endrole --}}
 @endsection
 
 @section('content')
@@ -14,7 +14,25 @@
         <h1>Dashboard</h1>
         <!-- Results -->
         <div class="part-container">
-            <h2>Résultats</h2>
+
+            <div class="card-container">
+                <div class="card">
+                    <p class="card-text"><span class="card-number">{{ $stats['composite-trials'] }} </span>tests composés effectués</p>
+                    <a href="{{ route('student.composite-trials.index') }}" class="card-link">Learn more</a>
+                </div>
+
+                <div class="card">
+                    <p class="card-text"><span class="card-number">{{ $stats['trials'] }} </span>exercices effectués</p>
+                    <a href="{{ route('student.trials.index') }}" class="card-link">Learn more</a>
+                </div>
+
+                <div class="card">
+                    <p class="card-text"><span class="card-number">{{ $stats['games'] }} </span>challenges réalisés</p>
+                    <a href="{{ route('games') }}" class="card-link">Learn more</a>
+                </div>
+            </div>
+
+            <h2>Résultats des derniers exercices</h2>
             @if ($message = Session::get('success'))
                 <div class="alert alert-success">
                     <p>{{ $message }}</p>
@@ -111,8 +129,10 @@
 
     </div>
 
-    <!--<script>
+    {{--
+    <script>
         var chart_axisX = "{{ $datas['axisX'] }}";
         var chart_axisY = "{{ $datas['axisY'] }}";
-    </script>-->
+    </script>
+    --}}
 @endsection

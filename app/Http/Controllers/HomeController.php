@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Trial;
+use App\CompositeTrial;
+use App\Game;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -48,7 +50,7 @@ class HomeController extends Controller
                 ->get();
         }
 
-        $PARTS = [
+        /**$PARTS = [
             [
                 'id' => 1,
                 'label' => 'Test complet',
@@ -100,10 +102,10 @@ class HomeController extends Controller
         ];
 
         $axisY = [];
-        $axisX = [];
+        $axisX = [];**/
 
         // For all parts and complete tests.
-        for ($i = 0; $i < 8; $i++) {
+        /**for ($i = 0; $i < 8; $i++) {
             $part = $PARTS[$i];
 
             $concerned_tests = DB::table('exercises')
@@ -114,7 +116,7 @@ class HomeController extends Controller
             $concerned_tests_id = [];
             foreach ($concerned_tests as $test) {
                 $concerned_tests_id[] = $test->id;
-            }
+            }**/
 
             /**
              * SELECT YEAR(datetime), MONTH(datetime), GROUP_CONCAT(t.id), COUNT(t.id), AVG(score)
@@ -122,7 +124,7 @@ class HomeController extends Controller
             WHERE t.user_id = 2 AND t.id IN (SELECT tests.id FROM tests WHERE tests.part_id = 2)
             GROUP BY YEAR(t.datetime), MONTH(t.datetime) DESC
              */
-            $stats_tests = DB::table('trials')
+            /**$stats_tests = DB::table('trials')
                 ->selectRaw('YEAR(datetime) as y, MONTH(datetime) as m, GROUP_CONCAT(id), COUNT(id), AVG(score) as avg')
                 ->where('user_id', $user->id)
                 ->whereIn('exercise_id', $concerned_tests_id)
@@ -197,8 +199,18 @@ class HomeController extends Controller
             'trials' => $trials,
             'axisX' => implode(', ', $axisX),
             'axisY' => json_encode($axisY)
+        ];**/
+
+        $stats['composite-trials'] = CompositeTrial::where('user_id', $user->id)->count();
+        $stats['trials'] = Trial::where('user_id', $user->id)->count();
+        $stats['games'] = Game::where('user_id', $user->id)->count();
+
+        $datas = [
+            'user' => $user,
+            'trials' => $trials,
+            'stats' => $stats,
         ];
 
-        return view('profile', compact('datas'));
+        return view('profile', compact('datas', 'stats'));
     }
 }
