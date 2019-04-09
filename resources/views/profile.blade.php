@@ -86,7 +86,7 @@
                                         @endif
                                         @role('student')
                                         <li>
-                                            <a href="{{ action('TestController@show', ['id' => $trial->test->id]) }}">Execute</a>
+                                            <a href="{{ action('ExerciseController@show', ['id' => $trial->test->id]) }}">Execute</a>
                                         </li>
                                         @endrole
                                     </ul>
