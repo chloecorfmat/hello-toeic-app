@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['role:teacher']);
+    }
+
     /**
      * Display a listing of the resource.
      *

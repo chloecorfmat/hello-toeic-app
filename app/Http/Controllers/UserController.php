@@ -47,7 +47,13 @@ class UserController extends Controller
     public function show($id)
     {
         $user = Auth::user();
-        return view('users.show', compact('user'));
+
+        if ($user->id == $id) {
+            return view('users.show', compact('user'));
+        }
+
+        abort(403);
+
     }
 
     /**
@@ -72,20 +78,24 @@ class UserController extends Controller
     {
         $user = Auth::user();
 
-        $passwords = $request->all();
+        if ($user->id == $id) {
+            $passwords = $request->all();
 
-        $notEmpty = $passwords['password'] !== '';
-        $match = $passwords['password'] === $passwords['password_repeat'];
-        $regexp = preg_match('((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,16})', $passwords['password']);
+            $notEmpty = $passwords['password'] !== '';
+            $match = $passwords['password'] === $passwords['password_repeat'];
+            $regexp = preg_match('((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,16})', $passwords['password']);
 
-        if ($notEmpty && $match && $regexp) {
-            $user->password = bcrypt($passwords['password']);
-            $user->save();
+            if ($notEmpty && $match && $regexp) {
+                $user->password = bcrypt($passwords['password']);
+                $user->save();
 
-            return redirect()->route('student.users.show', ['id' => $id])->with('success', 'Password has been updated.');
+                return redirect()->route('student.users.show', ['id' => $id])->with('success', 'Password has been updated.');
+            }
+
+            return redirect()->route('student.users.show', ['id' => $id])->with('error', 'Passwords have to be equals and respect format.');
         }
 
-        return redirect()->route('student.users.show', ['id' => $id])->with('error', 'Passwords have to be equals and respect format.');
+        abort(403);
     }
 
     /**

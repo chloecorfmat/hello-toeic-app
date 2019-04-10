@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class CompositeTestController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['role:teacher']);
+    }
+
     /**
      * Display a listing of the resource.
      *

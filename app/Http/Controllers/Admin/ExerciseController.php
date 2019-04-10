@@ -13,7 +13,7 @@ class ExerciseController extends Controller
 {
     public function __construct()
     {
-        //$this->middleware(['role:teacher']);
+        $this->middleware(['role:teacher']);
     }
 
     /**
