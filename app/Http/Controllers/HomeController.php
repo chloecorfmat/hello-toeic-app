@@ -202,7 +202,7 @@ class HomeController extends Controller
         ];**/
 
         $stats['composite-trials'] = CompositeTrial::where('user_id', $user->id)->count();
-        $stats['trials'] = Trial::where('user_id', $user->id)->count();
+        $stats['trials'] = Trial::where('user_id', $user->id)->where('composite_trial_id', NULL)->count();
         $stats['games'] = Game::where('user_id', $user->id)->count();
 
         $datas = [
