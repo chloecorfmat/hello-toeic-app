@@ -67,7 +67,7 @@
                                 <td>
                                     <ul>
                                         <li>
-                                            <a href="{{ route('trials.show', ['id' => $trial->id]) }}">Correction</a>
+                                            <a href="{{ route('student.trials.show', ['id' => $trial->id]) }}">Correction</a>
                                         </li>
                                         @role('student')
                                         <li>
