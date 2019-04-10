@@ -4,9 +4,6 @@
     <div class="main-content">
         <div class="main-content--header">
             <h1>Détails du type d'exercice</h1>
-            <a href="{{ route('parts.edit', ['id' => $part->id]) }}" class="main-content--header-actions" title="Modifier le type d'exercice">
-                <i class="fas fa-pencil-alt"></i>
-            </a>
         </div>
 
         <p>Nom : <span>{{ $part->name }}</span></p>

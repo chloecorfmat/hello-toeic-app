@@ -45,7 +45,7 @@
                     </li>
                 @else
                     <li class="header--actions-list-item">
-                        <a href="{{ route('profile') }}">
+                        <a href="{{ route('student.users.show', ['id' => Auth::user()->id]) }}">
                             <span class="name">{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</span>
                             <i class="user-ico fas fa-user-circle fa-lg"></i>
                         </a>

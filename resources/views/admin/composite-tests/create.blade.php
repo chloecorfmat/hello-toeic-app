@@ -11,8 +11,6 @@
             </div>
         @endif
 
-        <p>La création d'un test, blablabla...</p>
-
         <form method="POST" action="{{ route('composite-tests.store') }}">
             @csrf
 

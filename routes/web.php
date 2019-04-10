@@ -31,6 +31,7 @@ Route::get('/train', 'HomeController@train')->name('train');
 Route::group(['middleware' => ['auth']], function () {
     Route::setGroupNamespace('App\Http\Controllers\Admin');
     Route::resource('admin/permissions', 'PermissionController');
+    Route::resource('admin/users', 'UserController');
     Route::resource('admin/questions', 'QuestionController');
     Route::resource('admin/documents', 'DocumentController');
     Route::resource('admin/students', 'StudentController');
@@ -96,6 +97,19 @@ Route::resource('composite-trials', 'CompositeTrialController', [
         'edit' => 'student.composite-trials.edit',
         'update' => 'student.composite-trials.update',
         'destroy' => 'student.composite-trials.destroy',
+    ]
+]);
+
+Route::resource('users', 'UserController', [
+    // Renamed routes due to Admin/ExerciseController.
+    'names' => [
+        'index' => 'student.users.index',
+        'create' => 'student.users.create',
+        'store' => 'student.users.store',
+        'show' => 'student.users.show',
+        'edit' => 'student.users.edit',
+        'update' => 'student.users.update',
+        'destroy' => 'student.users.destroy',
     ]
 ]);
 
