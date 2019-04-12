@@ -21,20 +21,24 @@
                 <input type="text" id="suffix_mail" name="suffix_mail" placeholder="@enssat.fr" required>
             </div>
 
+            @role('admin')
             <div class="field-container">
                 <label for="role">Rôle <span class="required">*</span></label>
                 <select
                         name="role"
                         id="role"
                         required
-                        @if (!Auth::user()->hasRole('admin')) disabled @endif
                 >
                     <option value="student">Student</option>
-                    @role('admin')
+
                     <option value="teacher">Teacher</option>
-                    @endrole
                 </select>
             </div>
+            @endrole
+
+            @role('teacher')
+            <input type="hidden" name="role" value="student">
+            @endrole
 
             <button type="submit" class="btn btn-primary">
                 {{ __('Validate') }}
