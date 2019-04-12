@@ -16,8 +16,7 @@
         </div>
 
         <div class="part-container">
-            <p><strong class="important">Lastname:</strong> {{ $user->lastname }}</p>
-            <p><strong class="important">Firstname:</strong> {{ $user->firstname }}</p>
+            <p><strong class="important">Name:</strong> {{ $user->name }}</p>
             <p><strong class="important">Matricule:</strong> {{ $user->matricule }}</p>
             <p><strong class="important">E-mail:</strong> {{ $user->email }}</p>
             <p><strong class="important">Course:</strong>

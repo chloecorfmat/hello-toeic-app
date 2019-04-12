@@ -33,7 +33,7 @@
                                     {{ $index }}
                                 @endif
                             </td>
-                            <td>{{ $score->user->firstname }} {{ $score->user->lastname }}</td>
+                            <td>{{ $score->user->name }}</td>
                             <td>{{ $score->score }}</td>
                         </tr>
                     @endforeach
@@ -80,7 +80,7 @@
                         <tr>
                             <td class="date">{{ date('d/m/Y H:i', strtotime($game->datetime)) }}</td>
                             @can('dashboard-students-see')
-                                <td class="student">{{  $game->user->firstname }} {{  $game->user->lastname }}</td>
+                                <td class="student">{{  $game->user->name }}</td>
                             @endcan
                             <td class="score">{{ $game->score }}</td>
                         </tr>

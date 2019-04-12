@@ -46,7 +46,7 @@
                 @else
                     <li class="header--actions-list-item">
                         <a href="{{ route('student.users.show', ['id' => Auth::user()->id]) }}">
-                            <span class="name">{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</span>
+                            <span class="name">{{ Auth::user()->name }}</span>
                             <i class="user-ico fas fa-user-circle fa-lg"></i>
                         </a>
                     </li>
@@ -73,7 +73,7 @@
                         <a class="profile" href="{{ route('profile') }}">
                             <i class="user-ico fas fa-user-circle fa-4x"></i>
                         </a>
-                        <h2>{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</h2>
+                        <h2>{{ Auth::user()->name }}</h2>
 
                         @yield('laterale-bar-content-begin')
 

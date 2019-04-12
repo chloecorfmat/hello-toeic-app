@@ -107,7 +107,6 @@ class UserController extends Controller
             if (!empty($line)) {
                 $data = explode("\t", $line);
 
-                $name = explode(' ', $data[0]);
                 $email = $data[1] . $request->get('suffix_mail');
 
                 $existEmail = User::where('email', $email)->count();
@@ -115,8 +114,7 @@ class UserController extends Controller
 
                 if (!$existEmail && !$existMatricule) {
                     $user = User::create([
-                        'lastname' => $name[0],
-                        'firstname' => $name[1],
+                        'name' => $data[0],
                         'matricule' => $data[5],
                         'email' => $email,
                         'course' => $data[3] . $data[2],

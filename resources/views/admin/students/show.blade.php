@@ -3,7 +3,7 @@
 @section('content')
     <div class="main-content">
         <div class="main-content--header">
-            <h1>Détails : {{ $student->firstname }} {{ $student->lastname }}</h1>
+            <h1>Détails : {{ $student->name }}</h1>
         </div>
 
         @if ($message = Session::get('success'))
@@ -13,7 +13,7 @@
         @endif
 
         <div class="part-container student-profile">
-            <p><strong class="important">Name: </strong>{{ $student->firstname }} {{ $student->lastname }}</p>
+            <p><strong class="important">Name: </strong>{{ $student->name }}</p>
             <p><strong class="important">Matricule: </strong>{{ $student->matricule }}</p>
             <p>
                 <strong class="important">Passed: </strong>

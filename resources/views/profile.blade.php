@@ -85,7 +85,7 @@
                                 <td class="date">{{ date('d/m/Y H:i', strtotime($trial->datetime)) }}</td>
                                 <td class="test">{{ $trial->test->name }}</td>
                                 @can('dashboard-students-see')
-                                    <td class="student">{{  $trial->user->firstname }} {{  $trial->user->lastname }}</td>
+                                    <td class="student">{{  $trial->user->name }}</td>
                                 @endcan
                                 <td class="score">{{ $trial->score }}</td>
                                 <td>

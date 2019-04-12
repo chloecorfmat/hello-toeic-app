@@ -62,7 +62,7 @@
                     @foreach ($students as $key => $student)
                         <tr>
                             <td class="matricule">{{ $student->matricule }}</td>
-                            <td class="student">{{ $student->firstname }} {{ $student->lastname }}</td>
+                            <td class="student">{{ $student->name }}</td>
                             <td class="course">{{ $student->course }}</td>
                             <td class="passed">
                                 @if (!is_null($student->passed))
