@@ -17,14 +17,22 @@
             </div>
 
             <div class="field-container">
+                <label for="suffix_mail">Suffix mail <span class="required">*</span></label>
+                <input type="text" id="suffix_mail" name="suffix_mail" placeholder="@enssat.fr" required>
+            </div>
+
+            <div class="field-container">
                 <label for="role">Rôle <span class="required">*</span></label>
                 <select
                         name="role"
                         id="role"
                         required
+                        @if (!Auth::user()->hasRole('admin')) disabled @endif
                 >
                     <option value="student">Student</option>
+                    @role('admin')
                     <option value="teacher">Teacher</option>
+                    @endrole
                 </select>
             </div>
 

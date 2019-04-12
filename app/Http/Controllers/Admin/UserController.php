@@ -108,7 +108,7 @@ class UserController extends Controller
                 $data = explode("\t", $line);
 
                 $name = explode(' ', $data[0]);
-                $email = $data[1] . '@enssat.fr';
+                $email = $data[1] . $request->get('suffix_mail');
 
                 $existEmail = User::where('email', $email)->count();
                 $existMatricule = User::where('matricule', $data[5])->count();

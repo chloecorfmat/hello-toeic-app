@@ -5,7 +5,7 @@
         <div class="main-content--header">
             <h1>Liste des étudiants</h1>
             <a href="{{ route('users.import') }}" class="main-content--header-actions">
-                <i class="fas fa-plus-circle"></i>
+                <i class="fas fa-upload"></i>
             </a>
         </div>
 
