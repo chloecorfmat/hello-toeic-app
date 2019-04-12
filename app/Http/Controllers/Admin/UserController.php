@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -30,6 +32,7 @@ class UserController extends Controller
     public function create()
     {
         //
+
     }
 
     /**
@@ -86,5 +89,62 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function import() {
+        return view('admin.users.import');
+    }
+
+    public function storeImport(Request $request) {
+        $handle = fopen($request->file('file')->path(), "r");
+
+        $datas = fread($handle, filesize($request->file('file')->path()));
+        $lines = explode(PHP_EOL, $datas);
+        unset($lines[0]);
+        $role = $request->get('role');
+
+        foreach ($lines as $line) {
+            if (!empty($line)) {
+                $data = explode("\t", $line);
+
+                $name = explode(' ', $data[0]);
+                $email = $data[1] . '@enssat.fr';
+
+                $existEmail = User::where('email', $email)->count();
+                $existMatricule = User::where('matricule', $data[5])->count();
+
+                if (!$existEmail && !$existMatricule) {
+                    $user = User::create([
+                        'lastname' => $name[0],
+                        'firstname' => $name[1],
+                        'matricule' => $data[5],
+                        'email' => $email,
+                        'course' => $data[3] . $data[2],
+                        'password' => Hash::make($data[5]),
+                    ]);
+
+                    $user->assignRole($role);
+                } else {
+                    $warnings[] = '<strong class="important">' . $data[0] . '</strong> already exists (' . $email . ').';
+                }
+            }
+        }
+
+        if (empty($warnings)) {
+            return redirect()->route('students.index')->with('success', 'Users have been created.');
+        } else {
+            $temp = '';
+
+            foreach ($warnings as $warning) {
+                $temp .= '<li class="list-item">' . $warning . '</li>';
+            }
+
+            $message = '<div class="alert-answer">' .
+                '<ul>' . $temp .'</ul>' .
+                '</div>';
+
+            return redirect()->route('students.index')->with('warning', $message);
+        }
+
     }
 }

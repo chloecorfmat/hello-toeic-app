@@ -31,7 +31,14 @@ Route::get('/train', 'HomeController@train')->name('train');
 Route::group(['middleware' => ['auth']], function () {
     Route::setGroupNamespace('App\Http\Controllers\Admin');
     Route::resource('admin/permissions', 'PermissionController');
+
+
+    Route::get('admin/users/import', 'UserController@import')
+        ->name('users.import');
+    Route::post('admin/users/storeImport', 'UserController@storeImport')
+        ->name('users.storeImport');
     Route::resource('admin/users', 'UserController');
+
     Route::resource('admin/questions', 'QuestionController');
     Route::resource('admin/documents', 'DocumentController');
     Route::resource('admin/students', 'StudentController');
