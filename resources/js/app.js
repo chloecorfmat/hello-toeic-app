@@ -11,7 +11,7 @@ function initialiser(e) {
     if (document.getElementById('profile-tests') !== undefined) {
         var options = {
             valueNames: ['date', 'test', 'student', 'score'],
-            page: 5,
+            page: 30,
             pagination: {
                 paginationClass: "pagination",
                 outerWindow: 0,
