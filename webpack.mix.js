@@ -14,7 +14,8 @@ const mix = require('laravel-mix');
 
 mix.scripts([
         'resources/js/app.js',
-        'resources/js/charts.js'
+        'resources/js/charts.js',
+        'resources/js/pagination.js'
     ], 'resources/js/all.js');
 mix
    .js('resources/js/all.js', 'public/js')

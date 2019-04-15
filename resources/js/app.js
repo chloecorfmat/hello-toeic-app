@@ -11,6 +11,12 @@ function initialiser(e) {
     if (document.getElementById('profile-tests') !== undefined) {
         var options = {
             valueNames: ['date', 'test', 'student', 'score'],
+            page: 5,
+            pagination: {
+                paginationClass: "pagination",
+                outerWindow: 0,
+                innerWindow: 2
+            }
         };
 
         new List('profile-tests', options);

@@ -114,6 +114,16 @@
                         </tbody>
                     </table>
                 </div>
+
+                <div class="container-pagination">
+                    <button class="btn-pagination" id="js-pagination-prev">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <ul class="pagination"></ul>
+                    <button class="btn-pagination" id="js-pagination-next">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
             </div>
         </div>
 
