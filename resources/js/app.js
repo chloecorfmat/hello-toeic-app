@@ -19,7 +19,8 @@ function initialiser(e) {
             }
         };
 
-        new List('profile-tests', options);
+        var list = new List('profile-tests', options);
+        listOverride(list);
     }
 
     if (document.getElementById('tests') !== undefined) {

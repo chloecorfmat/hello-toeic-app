@@ -1,8 +1,13 @@
 .table-container {
     border-radius: 5px;
     border: 1px solid $tertiary-color-2;
+    display: none;
     overflow-x: scroll;
     overflow-y: hidden;
+
+    &.is-visible {
+        display: block;
+    }
 }
 
 table {
@@ -52,8 +57,18 @@ tr:nth-child(2n) {
     background: $light-grey;
 }
 
-.table--filters {
-    input {
+.table--action {
+    display: inline-block;
 
+    &:not(:first-child) {
+        margin-left: .5rem;
+    }
+}
+
+.container-empty-search {
+    display: none;
+
+    &.is-visible {
+        display: block;
     }
 }

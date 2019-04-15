@@ -49,7 +49,7 @@
                     </div>
                 </div>
 
-                <div class="table-container">
+                <div class="table-container is-visible">
                     <table>
                         <caption class="sr-only">Liste des tests passés</caption>
                         <thead>
@@ -90,6 +90,17 @@
                                 <td class="score">{{ $trial->score }}</td>
                                 <td>
                                     <ul>
+                                        @role('student')
+                                        <li class="table--action">
+                                            <a
+                                                    href="{{ action('ExerciseController@show', ['id' => $trial->test->id]) }}"
+                                                    title="Execute exercise"
+                                            >
+                                                <i class="fas fa-play fa-lg"></i>
+                                            </a>
+                                        </li>
+                                        @endrole
+
                                         @if (
                                             (($trial->test->part_id !== 2) &&
                                             ($trial->test->part_id !== 3) &&
@@ -98,15 +109,15 @@
                                             ($datas['user']->hasRole('student'))) ||
                                             ($datas['user']->hasRole('teacher'))
                                         )
-                                            <li>
-                                                <a href="{{ route('student.trials.show', ['id' => $trial->id]) }}">Correction</a>
+                                            <li class="table--action">
+                                                <a
+                                                    href="{{ route('student.trials.show', ['id' => $trial->id]) }}"
+                                                    title="Show solution"
+                                                >
+                                                    <i class="fas fa-eye fa-lg"></i>
+                                                </a>
                                             </li>
                                         @endif
-                                        @role('student')
-                                        <li>
-                                            <a href="{{ action('ExerciseController@show', ['id' => $trial->test->id]) }}">Execute</a>
-                                        </li>
-                                        @endrole
                                     </ul>
                                 </td>
                             </tr>
@@ -124,6 +135,10 @@
                         <i class="fas fa-chevron-right"></i>
                     </button>
                 </div>
+            </div>
+
+            <div class="container-empty-search" id="js-empty-search" aria-hidden="true">
+                <p class="emphasis">Aucun résultat.</p>
             </div>
         </div>
 
