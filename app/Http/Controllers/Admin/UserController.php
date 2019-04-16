@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\UserAccountCreated;
+use App\Setting;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -122,6 +125,11 @@ class UserController extends Controller
                     ]);
 
                     $user->assignRole($role);
+
+                    if (Setting::where('key', 'ff_email') == true) {
+                        Mail::to($user)->send(new UserAccountCreated($user));
+                    }
+
                 } else {
                     $warnings[] = '<strong class="important">' . $data[0] . '</strong> already exists (' . $email . ').';
                 }
