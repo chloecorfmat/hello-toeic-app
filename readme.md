@@ -1,4 +1,4 @@
-<p align="center"># HelloToeic :dart:</p>
+<h1 align="center">HelloToeic :dart:</h1>
 
 <p align="center">
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
