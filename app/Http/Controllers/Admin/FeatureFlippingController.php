@@ -20,7 +20,6 @@ class FeatureFlippingController extends Controller
      */
     public function index(Request $request)
     {
-
         $features = Setting::where('type', 'feature_flipping')->get();
 
         return view('admin.feature-flipping.index',compact('features'));

@@ -166,6 +166,12 @@
                                         Permissions
                                     </a>
                                 </li>
+                                <li class="laterale-bar--menu-item">
+                                    <a href="{{ route('feature-flipping.index') }}">
+                                        <i class="menu-ico fas fa-arrows-alt-h"></i>
+                                        Feature flipping
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                         @endrole
