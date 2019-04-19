@@ -30,8 +30,8 @@
                                         @endif
                                     >
                                     <span class="form-label-text">
-                                    <span>{{ $role->name }}</span>
-                                </span>
+                                        <span>{{ $role->name }}</span>
+                                    </span>
                                 </label>
                             @endforeach
                         </div>
