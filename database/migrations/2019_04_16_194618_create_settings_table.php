@@ -14,9 +14,11 @@ class CreateSettingsTable extends Migration
     public function up()
     {
         Schema::create('settings', function (Blueprint $table) {
-            $table->string('key')->primary();
+            $table->increments('id');
+            $table->string('key');
             $table->string('type');
             $table->string('value')->nullable();
+            $table->string('name')->nullable();
         });
     }
 
@@ -29,4 +31,5 @@ class CreateSettingsTable extends Migration
     {
         Schema::dropIfExists('settings');
     }
+
 }

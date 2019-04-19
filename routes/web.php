@@ -51,6 +51,11 @@ Route::group(['middleware' => ['auth']], function () {
         ->name('exercises.storeImport');
     Route::resource('admin/exercises', 'ExerciseController');
 
+    Route::get('/admin/feature-flipping', 'FeatureFlippingController@index')
+        ->name('feature-flipping.index');
+    Route::post('/admin/feature-flipping', 'FeatureFlippingController@store')
+        ->name('feature-flipping.store');
+
 });
 
 

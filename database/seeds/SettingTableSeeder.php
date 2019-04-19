@@ -16,6 +16,7 @@ class SettingTableSeeder extends Seeder
             'key' => 'ff.email',
             'type' => 'feature_flipping',
             'value' => 'true',
+            'name' => 'Send e-mails ?',
         ]);
     }
 }
