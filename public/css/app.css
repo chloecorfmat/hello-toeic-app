@@ -1013,7 +1013,7 @@ tr:nth-child(2n) {
   margin-bottom: 1rem;
 }
 
-.part {
+.test .part {
   border: 2px solid;
   border-color: #db504a;
   border-radius: 10px;
@@ -1022,11 +1022,11 @@ tr:nth-child(2n) {
   position: relative;
 }
 
-.part.part-completed {
+.test .part.part-completed {
   border-color: #6fa939;
 }
 
-.part .btn-close {
+.test .part .btn-close {
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -1041,26 +1041,26 @@ tr:nth-child(2n) {
   align-items: center;
 }
 
-.part .btn-close:hover {
+.test .part .btn-close:hover {
   cursor: pointer;
   background: #8d6a9f;
 }
 
-.part-hide {
+.test .part-hide {
   /**&:not(.part-completed) {
     border-color: $danger-color;
   }**/
 }
 
-.part-hide .questions {
+.test .part-hide .questions {
   display: none;
 }
 
-.part-instructions {
+.test .part-instructions {
   font-weight: 700;
 }
 
-.preview {
+.test .preview {
   position: fixed;
   background-position: center;
   background-size: contain;
@@ -1075,21 +1075,21 @@ tr:nth-child(2n) {
 }
 
 @media screen and (min-width: 920px) {
-  .preview {
+  .test .preview {
     width: 50vw;
     height: 90vh;
   }
 }
 
-.preview.hidden {
+.test .preview.hidden {
   display: none;
 }
 
-.on-preview {
+.test .on-preview {
   opacity: 0.5;
 }
 
-.img-preview:hover {
+.test .img-preview:hover {
   cursor: pointer;
 }
 

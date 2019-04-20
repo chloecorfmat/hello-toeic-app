@@ -17,7 +17,7 @@
         </div>
 
         <h2>Questions</h2>
-        <div class="table-container">
+        <div class="table-container is-visible">
             <table>
             <caption class="sr-only">Liste des questions liées au document</caption>
             <thead>
@@ -61,5 +61,19 @@
             @endforeach
         </table>
         </div>
+
+        <div class="container-pagination">
+            <button class="btn-pagination" id="js-pagination-prev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <ul class="pagination"></ul>
+            <button class="btn-pagination" id="js-pagination-next">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="container-empty-search" id="js-empty-search" aria-hidden="true">
+        <p class="emphasis">Aucun résultat.</p>
     </div>
 @endsection

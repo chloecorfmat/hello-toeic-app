@@ -8,7 +8,7 @@ var listening_duration = moment.duration(DURATION_LISTENING, DURATION_UNIT);
 
 function initialiser(e) {
 
-    if (document.getElementById('profile-tests') !== undefined) {
+    if (document.getElementById('profile-tests') !== null) {
         var options = {
             valueNames: ['date', 'test', 'student', 'score'],
             page: 30,
@@ -23,15 +23,22 @@ function initialiser(e) {
         listOverride(list);
     }
 
-    if (document.getElementById('tests') !== undefined) {
+    if (document.getElementById('tests') !== null) {
         var options = {
             valueNames: ['name', 'part'],
+            page: 30,
+            pagination: {
+                paginationClass: "pagination",
+                outerWindow: 0,
+                innerWindow: 2
+            }
         };
 
-        new List('tests', options);
+        var list = new List('tests', options);
+        listOverride(list);
     }
 
-    if (document.getElementById('games') !== undefined) {
+    if (document.getElementById('games') !== null) {
         var options = {
             valueNames: ['date', 'student', 'score'],
         };
@@ -39,7 +46,7 @@ function initialiser(e) {
         new List('games', options);
     }
 
-    if (document.getElementById('students') !== undefined) {
+    if (document.getElementById('students') !== null) {
         var options = {
             valueNames: ['matricule', 'student', 'course', 'passed'],
         };
@@ -69,23 +76,23 @@ function initialiser(e) {
     if (document.getElementById('test') != undefined) {
         var radios = document.querySelectorAll('#test input[type="radio"]');
         radios.forEach(function(el) {
-           el.addEventListener('change', function() {
-              var container = el.parentElement.parentElement.parentElement.parentElement;
-              var part = container.dataset.part;
-              var radios = document.getElementById('part_' + part).querySelectorAll('input[type="radio"]');
-              var checked = document.getElementById('part_' + part).querySelectorAll('input[type="radio"]:checked');
+            el.addEventListener('change', function() {
+                var container = el.parentElement.parentElement.parentElement.parentElement;
+                var part = container.dataset.part;
+                var radios = document.getElementById('part_' + part).querySelectorAll('input[type="radio"]');
+                var checked = document.getElementById('part_' + part).querySelectorAll('input[type="radio"]:checked');
 
-              // Part 2 has only 4 proposals by question.
-              var radioPerQuestion = container.querySelectorAll('input[type="radio"]').length;
-              if (checked.length == (radios.length/radioPerQuestion)) {
-                  var partContainer = container.parentElement.parentElement;
+                // Part 2 has only 4 proposals by question.
+                var radioPerQuestion = container.querySelectorAll('input[type="radio"]').length;
+                if (checked.length == (radios.length/radioPerQuestion)) {
+                    var partContainer = container.parentElement.parentElement;
 
-                  if (!partContainer.classList.contains('part-completed')) {
-                      partContainer.classList.add('part-completed');
-                  }
-              }
+                    if (!partContainer.classList.contains('part-completed')) {
+                        partContainer.classList.add('part-completed');
+                    }
+                }
 
-           });
+            });
         });
     }
 
@@ -130,24 +137,24 @@ function initialiser(e) {
     }
 
     document.querySelectorAll("#test .img-preview").forEach(function(el) {
-       el.addEventListener('click', function() {
-           var i = this.querySelector('img');
+        el.addEventListener('click', function() {
+            var i = this.querySelector('img');
 
-           if (i.classList.contains('on-preview')) {
-               i.classList.remove('on-preview');
-               document.querySelector('.preview').style.backgroundImage = "";
-               document.querySelector('.preview').classList.add("hidden");
-           } else {
+            if (i.classList.contains('on-preview')) {
+                i.classList.remove('on-preview');
+                document.querySelector('.preview').style.backgroundImage = "";
+                document.querySelector('.preview').classList.add("hidden");
+            } else {
 
-               document.querySelectorAll('.on-preview').forEach(function(on) {
-                   on.classList.remove('on-preview');
-               });
+                document.querySelectorAll('.on-preview').forEach(function(on) {
+                    on.classList.remove('on-preview');
+                });
 
-               i.classList.add('on-preview');
-               document.querySelector('.preview').style.backgroundImage = "url(" + i.src + ")";
-               document.querySelector('.preview').classList.remove('hidden');
-           }
-       }, false);
+                i.classList.add('on-preview');
+                document.querySelector('.preview').style.backgroundImage = "url(" + i.src + ")";
+                document.querySelector('.preview').classList.remove('hidden');
+            }
+        }, false);
 
         document.body.addEventListener('click', function(e) {
             if (e.target.closest('.preview')) return;
@@ -256,7 +263,6 @@ window.addEventListener('load', function() {
 });
 
 function listOverride(list) {
-
     list.search(document.querySelector('.search').value);
     emptySearch(list);
     displayButtonPrevNext();
@@ -267,17 +273,17 @@ function listOverride(list) {
     });
 
     document.getElementById('js-pagination-prev').addEventListener('click', function() {
-       var lis = document.querySelectorAll('.pagination li');
+        var lis = document.querySelectorAll('.pagination li');
 
-       lis.forEach(function(li, pos) {
-           if (li.classList.contains('active')) {
-               var p = pos-1;
+        lis.forEach(function(li, pos) {
+            if (li.classList.contains('active')) {
+                var p = pos-1;
 
-               if (p >= 0) {
-                   lis[p].click();
-               }
-           }
-       });
+                if (p >= 0) {
+                    lis[p].click();
+                }
+            }
+        });
 
         displayButtonPrevNext();
     });
@@ -348,7 +354,6 @@ function emptySearch(list) {
 
         emptySearch.setAttribute('aria-hidden', 'false');
 
-        console.log(list.listContainer.querySelector('.table-container'));
         if (list.listContainer.querySelector('.table-container').classList.contains('is-visible')) {
             list.listContainer.querySelector('.table-container').classList.remove('is-visible');
         }

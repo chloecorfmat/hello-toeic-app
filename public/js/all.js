@@ -100,7 +100,7 @@ var SECOND = moment.duration(1, 'seconds');
 var listening_duration = moment.duration(DURATION_LISTENING, DURATION_UNIT);
 
 function initialiser(e) {
-  if (document.getElementById('profile-tests') !== undefined) {
+  if (document.getElementById('profile-tests') !== null) {
     var options = {
       valueNames: ['date', 'test', 'student', 'score'],
       page: 30,
@@ -114,21 +114,28 @@ function initialiser(e) {
     listOverride(list);
   }
 
-  if (document.getElementById('tests') !== undefined) {
+  if (document.getElementById('tests') !== null) {
     var options = {
-      valueNames: ['name', 'part']
+      valueNames: ['name', 'part'],
+      page: 30,
+      pagination: {
+        paginationClass: "pagination",
+        outerWindow: 0,
+        innerWindow: 2
+      }
     };
-    new List('tests', options);
+    var list = new List('tests', options);
+    listOverride(list);
   }
 
-  if (document.getElementById('games') !== undefined) {
+  if (document.getElementById('games') !== null) {
     var options = {
       valueNames: ['date', 'student', 'score']
     };
     new List('games', options);
   }
 
-  if (document.getElementById('students') !== undefined) {
+  if (document.getElementById('students') !== null) {
     var options = {
       valueNames: ['matricule', 'student', 'course', 'passed']
     };
@@ -421,7 +428,6 @@ function emptySearch(list) {
     }
 
     emptySearch.setAttribute('aria-hidden', 'false');
-    console.log(list.listContainer.querySelector('.table-container'));
 
     if (list.listContainer.querySelector('.table-container').classList.contains('is-visible')) {
       list.listContainer.querySelector('.table-container').classList.remove('is-visible');

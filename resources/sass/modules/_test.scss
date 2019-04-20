@@ -6,85 +6,85 @@
   h2 {
     margin-bottom: 1rem;
   }
-}
 
-.part {
-  border: 2px solid;
-  //border-color: $secondary-color-1;
-  border-color: $danger-color;
-  border-radius: 10px;
-  padding: 2rem 1rem 1rem;
-  margin-bottom: 3rem;
-  position: relative;
+  .part {
+    border: 2px solid;
+    //border-color: $secondary-color-1;
+    border-color: $danger-color;
+    border-radius: 10px;
+    padding: 2rem 1rem 1rem;
+    margin-bottom: 3rem;
+    position: relative;
 
-  &.part-completed {
-    border-color: $success-color;
-  }
+    &.part-completed {
+      border-color: $success-color;
+    }
 
-  .btn-close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    border-radius: 50%;
-    background: $secondary-color-1;
-    color: $white;
-    width: 2rem;
-    height: 2rem;
-    display: flex;
-    justify-content: center;
-    border: none;
-    align-items: center;
+    .btn-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      border-radius: 50%;
+      background: $secondary-color-1;
+      color: $white;
+      width: 2rem;
+      height: 2rem;
+      display: flex;
+      justify-content: center;
+      border: none;
+      align-items: center;
 
-    &:hover {
-      cursor: pointer;
-      background: $tertiary-color-1;
+      &:hover {
+        cursor: pointer;
+        background: $tertiary-color-1;
+      }
     }
   }
-}
 
-.part-hide {
-  .questions {
-    display: none;
+  .part-hide {
+    .questions {
+      display: none;
+    }
+
+    /**&:not(.part-completed) {
+      border-color: $danger-color;
+    }**/
   }
 
-  /**&:not(.part-completed) {
-    border-color: $danger-color;
-  }**/
-}
+  .part-instructions {
+    font-weight: 700;
+  }
 
-.part-instructions {
-  font-weight: 700;
-}
-
-.preview {
-  position: fixed;
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-color: $white;
-  border: 2px solid $secondary-color-1;
-  border-radius: 10px;
-  top: 5vh;
-  right: 0;
-  width: 80vw;
-  height: 90vh;
-
-  @media screen and (min-width: $breakpoint-medium) {
-    width: 50vw;
+  .preview {
+    position: fixed;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: $white;
+    border: 2px solid $secondary-color-1;
+    border-radius: 10px;
+    top: 5vh;
+    right: 0;
+    width: 80vw;
     height: 90vh;
+
+    @media screen and (min-width: $breakpoint-medium) {
+      width: 50vw;
+      height: 90vh;
+    }
+
+    &.hidden {
+      display: none;
+    }
   }
 
-  &.hidden {
-    display: none;
+  .on-preview {
+    opacity: .5;
   }
-}
 
-.on-preview {
-  opacity: .5;
-}
-
-.img-preview {
-  &:hover {
-    cursor: pointer;
+  .img-preview {
+    &:hover {
+      cursor: pointer;
+    }
   }
 }

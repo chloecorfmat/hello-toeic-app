@@ -1,5 +1,4 @@
 function listOverride(list) {
-
     list.search(document.querySelector('.search').value);
     emptySearch(list);
     displayButtonPrevNext();
@@ -10,17 +9,17 @@ function listOverride(list) {
     });
 
     document.getElementById('js-pagination-prev').addEventListener('click', function() {
-       var lis = document.querySelectorAll('.pagination li');
+        var lis = document.querySelectorAll('.pagination li');
 
-       lis.forEach(function(li, pos) {
-           if (li.classList.contains('active')) {
-               var p = pos-1;
+        lis.forEach(function(li, pos) {
+            if (li.classList.contains('active')) {
+                var p = pos-1;
 
-               if (p >= 0) {
-                   lis[p].click();
-               }
-           }
-       });
+                if (p >= 0) {
+                    lis[p].click();
+                }
+            }
+        });
 
         displayButtonPrevNext();
     });
@@ -91,7 +90,6 @@ function emptySearch(list) {
 
         emptySearch.setAttribute('aria-hidden', 'false');
 
-        console.log(list.listContainer.querySelector('.table-container'));
         if (list.listContainer.querySelector('.table-container').classList.contains('is-visible')) {
             list.listContainer.querySelector('.table-container').classList.remove('is-visible');
         }

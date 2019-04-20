@@ -11,7 +11,7 @@
 
         <h2>Best scores</h2>
         <div class="table">
-            <div class="table-container">
+            <div class="table-container is-visible">
                 <table>
                     <caption class="sr-only">Best scores</caption>
                     <thead>
@@ -40,6 +40,20 @@
                     </tbody>
                 </table>
             </div>
+
+            <div class="container-pagination">
+                <button class="btn-pagination" id="js-pagination-prev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <ul class="pagination"></ul>
+                <button class="btn-pagination" id="js-pagination-next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="container-empty-search" id="js-empty-search" aria-hidden="true">
+            <p class="emphasis">Aucun résultat.</p>
         </div>
 
 
@@ -51,7 +65,7 @@
                     <input type="text" id="search" name="search" class="search">
                 </div>
             </div>
-            <div class="table-container">
+            <div class="table-container is-visible">
                 <table>
                     <caption class="sr-only">Challenges list</caption>
                     <thead>
@@ -88,6 +102,20 @@
                     </tbody>
                 </table>
             </div>
+
+            <div class="container-pagination">
+                <button class="btn-pagination" id="js-pagination-prev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <ul class="pagination"></ul>
+                <button class="btn-pagination" id="js-pagination-next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="container-empty-search" id="js-empty-search" aria-hidden="true">
+            <p class="emphasis">Aucun résultat.</p>
         </div>
 
         <a href="{{ route('games.play') }}" class="btn">Commencer un challenge</a>
