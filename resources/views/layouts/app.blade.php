@@ -84,7 +84,7 @@
                             <ul class="laterale-bar--menu-list">
                                 <li>
                                     <a class="btn btn-training" href="{{ route('student.composite-tests.index') }}">
-                                        <i class="fas fa-graduation-cap"></i> Tests complets
+                                        <i class="fas fa-graduation-cap"></i> Tests composés
                                     </a>
                                 </li>
                                 <li>
@@ -135,7 +135,7 @@
                                 <li class="laterale-bar--menu-item">
                                     <a href="{{ route('composite-tests.index') }}">
                                         <i class="menu-ico fas fa-list"></i>
-                                        Liste des tests complets
+                                        Liste des tests composés
                                     </a>
                                 </li>
 

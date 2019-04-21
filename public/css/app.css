@@ -776,6 +776,11 @@ tr:nth-child(2n) {
   display: inline-block;
 }
 
+.js-pagination-next.is-visible,
+.js-pagination-prev.is-visible {
+  display: block;
+}
+
 .laterale-bar {
   background: #f4f4f44d;
   box-sizing: border-box;

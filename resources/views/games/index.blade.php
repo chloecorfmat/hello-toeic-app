@@ -40,22 +40,7 @@
                     </tbody>
                 </table>
             </div>
-
-            <div class="container-pagination">
-                <button class="btn-pagination" id="js-pagination-prev">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <ul class="pagination"></ul>
-                <button class="btn-pagination" id="js-pagination-next">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
         </div>
-
-        <div class="container-empty-search" id="js-empty-search" aria-hidden="true">
-            <p class="emphasis">Aucun résultat.</p>
-        </div>
-
 
         <h2>Scores</h2>
         <div class="table" id="games">

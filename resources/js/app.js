@@ -7,53 +7,6 @@ const SECOND = moment.duration(1, 'seconds');
 var listening_duration = moment.duration(DURATION_LISTENING, DURATION_UNIT);
 
 function initialiser(e) {
-
-    if (document.getElementById('profile-tests') !== null) {
-        var options = {
-            valueNames: ['date', 'test', 'student', 'score'],
-            page: 30,
-            pagination: {
-                paginationClass: "pagination",
-                outerWindow: 0,
-                innerWindow: 2
-            }
-        };
-
-        var list = new List('profile-tests', options);
-        listOverride(list);
-    }
-
-    if (document.getElementById('tests') !== null) {
-        var options = {
-            valueNames: ['name', 'part'],
-            page: 30,
-            pagination: {
-                paginationClass: "pagination",
-                outerWindow: 0,
-                innerWindow: 2
-            }
-        };
-
-        var list = new List('tests', options);
-        listOverride(list);
-    }
-
-    if (document.getElementById('games') !== null) {
-        var options = {
-            valueNames: ['date', 'student', 'score'],
-        };
-
-        new List('games', options);
-    }
-
-    if (document.getElementById('students') !== null) {
-        var options = {
-            valueNames: ['matricule', 'student', 'course', 'passed'],
-        };
-
-        new List('students', options);
-    }
-
     // Accordions in tests.
     if (document.getElementsByClassName('js-part-close') !== null) {
         var btns = document.getElementsByClassName('js-part-close');

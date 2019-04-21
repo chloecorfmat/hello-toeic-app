@@ -15,6 +15,7 @@ const mix = require('laravel-mix');
 mix.scripts([
         'resources/js/app.js',
         'resources/js/charts.js',
+        'resources/js/lists.js',
         'resources/js/listOverride.js'
     ], 'resources/js/all.js');
 mix
