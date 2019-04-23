@@ -16,6 +16,7 @@ class Mp3Service {
     protected $fd;
     protected $bitpos;
     protected $mp3data;
+
     public function __construct($filename)
     {
         $this->powarr  = array(0=>1,1=>2,2=>4,3=>8,4=>16,5=>32,6=>64,7=>128);
