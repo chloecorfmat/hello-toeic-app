@@ -5,12 +5,10 @@ namespace App\Services;
 use App\Document;
 use App\Exercise;
 use App\Part;
-use App\Proposal;
 use App\Question;
 
 /**
- * From : https://gist.githubusercontent.com/jagneshchawla/3803671/raw/faa79cf90086d32b445c75cdfec53719a948b42b/audio%2520length%2520Mp3%2520class-%2520PHP
- * Class Mp3Service
+ * Class ExerciseService
  * @package App\Services
  */
 
