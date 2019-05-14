@@ -118,7 +118,12 @@ class ExerciseController extends Controller
      */
     public function storeImport(Request $request)
     {
-        $service = (new ExerciseService())->import($request);
-        return redirect()->route('exercises.index')->with('success', 'Exercise has been imported.');
+        $success = (new ExerciseService())->import($request);
+
+        if ($success) {
+            return redirect()->route('exercises.index')->with('success', 'Exercise has been imported.');
+        }
+
+        return redirect()->route('exercises.index')->with('error', 'An error occurred.');
     }
 }

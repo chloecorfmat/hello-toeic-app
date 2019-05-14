@@ -3,6 +3,10 @@
 namespace App\Services;
 
 use App\Document;
+use App\Exercise;
+use App\Part;
+use App\Proposal;
+use App\Question;
 
 /**
  * From : https://gist.githubusercontent.com/jagneshchawla/3803671/raw/faa79cf90086d32b445c75cdfec53719a948b42b/audio%2520length%2520Mp3%2520class-%2520PHP
@@ -16,11 +20,22 @@ class ExerciseService {
     }
 
     public function import($request) {
+        $matching = [
+            'A',
+            'B',
+            'C',
+            'D',
+        ];
+
         $answers = [];
         $questions = [];
         $texts = [];
         $files = [];
         $audios = [];
+
+        $questions_object = [];
+
+        $part = Part::find($request->get('part'));
 
         // Regexp to use.
         // ^(?<name>.*)_(?P<number_start>\d+)[~-]?(?P<number_end>\d*)%?(?P<doc_number>\d*)(?P<extension>.\w+)$
@@ -28,20 +43,98 @@ class ExerciseService {
         // Manage answers.
         $this->manageAnswers($request, $answers);
 
-        $this->buildTempQuestionsAndTextsArray($request, $questions, $texts);
+        if ($request->questions) {
+            $this->buildTempQuestionsAndTextsArray($request, $questions, $texts);
+        }
 
-        $this->manageDocuments($request, $files, 'documents', 'image');
-        $this->manageDocuments($request, $audios, 'audios', 'audio');
+        if ($request->documents) {
+            $this->manageDocuments($request, $files, 'documents', 'image');
+        }
 
-        // @TODO 1 : Create exercise + link part.
-        // @TODO 2 : Create question + link part + link exercise.
-        // @TODO 3 : Create proposals + link question.
-        // @TODO 4 : Initialize good answer.
-        // @TODO 5 : Link documents (audios + files + texts) to question.
+        if ($request->audios) {
+            $this->manageDocuments($request, $audios, 'audios', 'audio');
+        }
 
-        $t = null; //@TODO : Remove this line.
+        $exercice = Exercise::create(
+            [
+                'name' => $request->get('name'),
+                'part_id' => $part->id,
+            ]
+        );
 
-        return true;
+        foreach ($questions as $question) {
+            $q = Question::create([
+                'version' => $part->version,
+                'question' => $question['question'],
+                'number' => $question['number'],
+            ]);
+
+            $questions_object[$question['number']] = $q;
+
+            $exercice->questions()->attach($q, ['number' => $question['number']]);
+            $q->parts()->attach($part);
+
+            foreach ($question['answers'] as $answer) {
+                $p = $q->proposals()->create([
+                    'value' => $answer['answer'],
+                ]);
+
+                if ($answer['index'] === $answers[$question['number']]) {
+                    $q->answer()->associate($p)->save();
+                }
+            }
+        }
+
+        if (empty($questions) && $part->nb_questions !== 0) {
+            for ($i = 1; $i <= $part->nb_questions; $i++) {
+                $q = Question::create([
+                    'version' => $part->version,
+                    'question' => '',
+                    'number' => $i,
+                ]);
+
+                for ($j = 0; $j < 4; $j++) {
+                    $p = $q->proposals()->create(['value' => 'Answer']);
+                    if ($i === array_search($answers[$i], $matching)) {
+                        $q->answer()->associate($p)->save();
+                    }
+                }
+
+                $questions_object[$i] = $q;
+            }
+        }
+
+
+        // Link documents (audios + files + texts) to question.
+        foreach ($texts as $text) {
+            $d = Document::create([
+                'name' => '',
+                'type' => 'text',
+                'content' => $text['content'],
+            ]);
+
+            foreach ($text['number'] as $number) {
+                $questions_object[$number]->documents()->attach($d);
+            }
+        }
+
+        foreach ($files as $number => $data) {
+            $question = $questions_object[$number];
+
+            foreach ($data as $file) {
+                $question->documents()->attach($file);
+            }
+        }
+
+        foreach ($audios as $number => $data) {
+            $question = $questions_object[$number];
+
+            foreach ($data as $audio) {
+                $question->documents()->attach($audio);
+            }
+        }
+
+        return TRUE;
     }
 
     protected function manageAnswers($request, &$answers) {
@@ -80,12 +173,143 @@ class ExerciseService {
         }
     }
 
-    // @TODO : build 1 array with questions + proposals AND 1 array with texts (similar to audios for example).
     protected function buildTempQuestionsAndTextsArray($request, &$questions, &$texts) {
+        $questions = [];
+        $question_string = '';
+        $content_string = "";
+        $number = '';
+        $handle = fopen($request->file('questions')->path(), "r");
 
+        while(!feof($handle))
+        {
+            $line = fgets($handle);
+            if (preg_match(
+                    '/^(?P<number>\d+)\.( (?P<question>.*))?/',
+                    $line,
+                    $data_question
+                ) != FALSE) {
+
+                if (!empty($question_data)) {
+                    $questions[] = $question_data;
+                }
+
+                // Beginning of the question.
+
+                if (!empty($text)) {
+                    $text['number'][] = $data_question['number'];
+                }
+
+                if (isset($data_question['question'])) {
+                    $line = str_replace("\r\n", ' ', $data_question['question']);
+                }
+
+                $question_string .= ' ' . $line;
+
+                $line = fgets($handle);
+
+                // Get all the question.
+                while(preg_match(
+                        '/^\((?P<index>[A-D])\) (?P<answer>.+)/',
+                        $line,
+                        $data_answer
+                    ) == FALSE) {
+                    $line = str_replace("\r\n", ' ', $line);
+                    $question_string .= '' . $line;
+                    $line = fgets($handle);
+                }
+
+                $question_data = [];
+                $question_data['number'] = $data_question['number'];
+                $question_data['question'] = $question_string;
+
+                preg_match(
+                    '/^\((?P<index>[A-D])\) (?P<answer>.+)/',
+                    $line,
+                    $data_answer
+                );
+                $line = str_replace("\r\n", ' ', $data_answer['answer']);
+
+                $answer['answer'] = $line;
+                $answer['index'] = $data_answer['index'];
+
+                $question_data['answers'][] = $answer;
+            } elseif (preg_match(
+                    '/^\((?P<index>[A-D])\) (?P<answer>.+)/',
+                    $line,
+                    $data_answer
+                ) != FALSE) {
+                if (!empty($question_string)) {
+                    $question_data['question'] = trim($question_string);
+                    $question_string = '';
+                }
+                $line = str_replace("\r\n", ' ', $data_answer['answer']);
+
+                $answer['answer'] = $line;
+                $answer['index'] = $data_answer['index'];
+
+                $question_data['answers'][] = $answer;
+            } else {
+                // Documents.
+
+                if (!empty($question_data)) {
+                    $questions[] = $question_data;
+                }
+
+                if (!empty($text)) {
+                    $texts[] = $text;
+                }
+
+                $text = [];
+                $content_string = "";
+                $line = str_replace("\r\n", '<br/>', $line);
+                $content_string .= trim($line);
+
+                $line = fgets($handle);
+                // Get all the document.
+                while(preg_match(
+                        '/^(?P<number>\d+)\.( (?P<question>.*))?/',
+                        $line,
+                        $data_question
+                    ) == FALSE) {
+                    $line = str_replace("\r\n", '<br/>', $line);
+                    $content_string .= trim($line);
+                    $line = fgets($handle);
+                }
+
+                preg_match(
+                    '/^(?P<number>\d+)\.( (?P<question>.*))?/',
+                    $line,
+                    $data_question
+                );
+                $question_data['number'] = $data_question['number'];
+                if (isset($data_question['question'])) {
+                    $line = str_replace("\r\n", ' ', $data_question['question']);
+                }
+
+                $question_data['question'] = $line;
+                $text['content'] = $content_string;
+                $text['number'][] = $data_question['number'];
+
+                // Manage question.
+                $line = str_replace("\r\n", ' ', $line);
+                $question_string .= ' ' . $line;
+            }
+        }
+
+        if (!empty($question_data)) {
+            $questions[] = $question_data;
+        }
+
+        if (!empty($text)) {
+            $texts[] = $text;
+        }
+
+        fclose($handle);
     }
 
     protected function manageDocuments($request, &$documents, $field, $type) {
+        $already = [];
+
         if ($request->file($field)->getClientMimeType() === 'application/zip') {
             $zip = new \ZipArchive();
             $file = $request->file($field);
@@ -116,17 +340,21 @@ class ExerciseService {
 
                             rename('./storage/documents/' . $repository_name . '/' . $current_file, './storage/documents/' . $repository_name . '/' . $new_file);
 
-                            $document = Document::create([
-                                'name' => $new_file,
-                                'type' => $type,
-                                'url' => './documents/' . $repository_name . '/' . $new_file,
-                            ]);
+                            if (!in_array('./documents/' . $repository_name . '/' . $new_file, $already)) {
+                                $document = Document::create([
+                                    'name' => $new_file,
+                                    'type' => $type,
+                                    'url' => './documents/' . $repository_name . '/' . $new_file,
+                                ]);
 
-                            if (empty(intval($data_file['number_end']))) {
-                                $data_file['number_end'] = $data_file['number_start'];
-                            }
-                            for ($i = intval($data_file['number_start']); $i <= intval($data_file['number_end']); $i++) {
-                                $documents[$i][] = $document;
+                                $already[] = './documents/' . $repository_name . '/' . $new_file;
+
+                                if (empty(intval($data_file['number_end']))) {
+                                    $data_file['number_end'] = $data_file['number_start'];
+                                }
+                                for ($i = intval($data_file['number_start']); $i <= intval($data_file['number_end']); $i++) {
+                                    $documents[$i][] = $document;
+                                }
                             }
                         }
                     }
