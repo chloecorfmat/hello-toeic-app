@@ -10,6 +10,12 @@ use App\Correction;
 
 class ExerciseController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:test-execute'])->only('show', 'update');
+        $this->middleware(['permission:test-list'])->only('index');
+    }
+
     /**
      * Display a listing of the resource.
      *
