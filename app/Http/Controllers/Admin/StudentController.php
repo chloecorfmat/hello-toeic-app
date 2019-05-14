@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\CompositeTest;
+use App\CompositeTrial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -72,11 +74,22 @@ class StudentController extends Controller
             ->orderBy('datetime', 'DESC')
             ->get();
 
+        $composite_trials = CompositeTrial::where('user_id', '=', $student->id)
+            ->orderBy('datetime', 'DESC')
+            ->get();
+
+        $composite_trials_names = [];
+
+        // Get test name.
+        foreach ($composite_trials as $trial) {
+            $composite_trials_names[] = CompositeTest::find($trial->composite_test_id)->name;
+        }
+
         $games = Game::where('user_id', '=', $student->id)
             ->orderBy('datetime', 'DESC')
             ->get();
 
-        return view('admin.students.show', compact('student', 'trials', 'games'));
+        return view('admin.students.show', compact('student', 'trials', 'composite_trials', 'composite_trials_names', 'games'));
     }
 
     /**

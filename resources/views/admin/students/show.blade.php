@@ -26,7 +26,7 @@
         </div>
 
         <div class="part-container">
-            <h2>Derniers tests</h2>
+            <h2>Derniers exercices</h2>
             <div class="table" id="profile-tests">
                 <div class="table--filters">
                     <div class="field-container">
@@ -93,6 +93,79 @@
                 </div>
             </div>
 
+            <div class="container-empty-search" id="js-empty-search" aria-hidden="true">
+                <p class="emphasis">Aucun résultat.</p>
+            </div>
+        </div>
+
+        <div class="part-container">
+            <h2>Derniers tests composés</h2>
+            <div class="table">
+                <div class="table--filters">
+                    <div class="field-container">
+                        <label for="search">Search</label>
+                        <input type="text" id="search" name="search" class="search">
+                    </div>
+                </div>
+
+                <div class="table-container is-visible">
+                    <table>
+                        <caption class="sr-only">Liste des exercices passés</caption>
+                        <thead>
+                        <tr>
+                            <th scope="col">
+                                <button class="sort" data-sort="date">
+                                    Date <i class="fas fa-arrows-alt-v"></i>
+                                </button>
+                            </th>
+                            <th scope="col">
+                                <button class="sort" data-sort="test">
+                                    Nom du test <i class="fas fa-arrows-alt-v"></i>
+                                </button>
+                            </th>
+                            <th scope="col">
+                                <button class="sort" data-sort="score">
+                                    Score <i class="fas fa-arrows-alt-v"></i>
+                                </button>
+                            </th>
+                            @role('student')
+                            <th scope="col">Actions</th>
+                            @endrole
+                        </tr>
+                        </thead>
+                        <tbody class="list">
+                        @foreach ($composite_trials as $key => $trial)
+                            <tr>
+                                <td class="date">{{ date('d/m/Y H:i', strtotime($trial->datetime)) }}</td>
+                                <td class="test">{{ $composite_trials_names[$key] }}</td>
+                                <td class="score">{{ $trial->score }}</td>
+                                @role('student')
+                                <td>
+                                    <ul>
+
+                                        <li>
+                                            <a href="{{ action('CompositeTestController@show', ['id' => $trial->composite_test_id]) }}">Execute</a>
+                                        </li>
+
+                                    </ul>
+                                </td>
+                                @endrole
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="container-pagination">
+                    <button class="btn-pagination" id="js-pagination-prev">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <ul class="pagination"></ul>
+                    <button class="btn-pagination" id="js-pagination-next">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
             <div class="container-empty-search" id="js-empty-search" aria-hidden="true">
                 <p class="emphasis">Aucun résultat.</p>
             </div>
