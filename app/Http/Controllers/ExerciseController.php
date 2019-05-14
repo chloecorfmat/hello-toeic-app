@@ -123,11 +123,12 @@ class ExerciseController extends Controller
     public function update(Request $request, $id)
     {
         $score = 0;
-        $test = Exercise::find($id);
-        $questions = $test->questions()->orderBy('number')->get();
+        $exercise = Exercise::find($id);
+        $questions = $exercise->questions()->orderBy('number')->get();
         $user_answers = $request->all();
 
-        $user_id = \Auth::user()->id;
+        $user = \Auth::user();
+        $user_id = $user->id;
         $trial_entity = Trial::create([
             'exercise_id' => $id,
             'user_id' => $user_id,
