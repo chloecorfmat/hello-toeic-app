@@ -661,6 +661,18 @@ tr:nth-child(2n) {
   display: block;
 }
 
+.score--high {
+  background: #6fa9392b;
+}
+
+.score--medium {
+  background: #f5ecce;
+}
+
+.score--low {
+  background: #e9a4a133;
+}
+
 .alert {
   border: 1px solid;
   border-radius: 5px;

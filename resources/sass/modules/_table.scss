@@ -72,3 +72,15 @@ tr:nth-child(2n) {
         display: block;
     }
 }
+
+.score--high {
+    background: $success-color-light;
+}
+
+.score--medium {
+    background: $warning-color-light;
+}
+
+.score--low {
+    background: $danger-color-light;
+}

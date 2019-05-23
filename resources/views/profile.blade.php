@@ -87,7 +87,11 @@
                                 @can('dashboard-students-see')
                                     <td class="student">{{  $trial->user->name }}</td>
                                 @endcan
-                                <td class="score">{{ $trial->score }}</td>
+                                @php ($max = $trial->test->part->nb_questions*5)
+                                @php ($score = $trial->score)
+                                @php ($percent = round(100*$score/$max, 1))
+                                @php ($class_score = $percent >= 80 ? 'score--high' : ($percent >= 60 ? 'score--medium' : 'score--low'))
+                                <td class="score {{ $class_score }}"><span class="important">{{ $score }}/{{ $max }}</span> ({{ $percent }}%)</td>
                                 <td>
                                     <ul>
                                         @role('student')
