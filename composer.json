@@ -11,7 +11,6 @@
         "laravel/framework": "5.7.*",
         "laravel/telescope": "^1.0",
         "laravel/tinker": "^1.0",
-        "qcod/laravel-gamify": "^1.0",
         "spatie/laravel-permission": "^2.23"
     },
     "require-dev": {
