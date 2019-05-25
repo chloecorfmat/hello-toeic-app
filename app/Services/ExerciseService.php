@@ -176,122 +176,167 @@ class ExerciseService {
         $question_string = '';
         $content_string = "";
         $number = '';
-        $handle = fopen($request->file('questions')->path(), "r");
 
-        while(!feof($handle))
+        $handle = file($request->file('questions')->path());
+        if (sizeof($handle) === 1) {
+            $handle = explode("\r", $handle[0]);
+        }
+
+        $i = 0;
+
+        while($i < sizeof($handle))
         {
-            $line = fgets($handle);
-            if (preg_match(
-                    '/^(?P<number>\d+)\.( (?P<question>.*))?/',
-                    $line,
-                    $data_question
-                ) != FALSE) {
+            $line = preg_replace('/[^\w-_+=!()$€*%@&£:;,?"\'\\. ]/', '', $handle[$i]);
 
-                if (!empty($question_data)) {
-                    $questions[] = $question_data;
-                }
-
-                // Beginning of the question.
-
-                if (!empty($text)) {
-                    $text['number'][] = $data_question['number'];
-                }
-
-                if (isset($data_question['question'])) {
-                    $line = str_replace("\r\n", ' ', $data_question['question']);
-                }
-
-                $question_string .= ' ' . $line;
-
-                $line = fgets($handle);
-
-                // Get all the question.
-                while(preg_match(
-                        '/^\((?P<index>[A-D])\) (?P<answer>.+)/',
-                        $line,
-                        $data_answer
-                    ) == FALSE) {
-                    $line = str_replace("\r\n", ' ', $line);
-                    $question_string .= '' . $line;
-                    $line = fgets($handle);
-                }
-
-                $question_data = [];
-                $question_data['number'] = $data_question['number'];
-                $question_data['question'] = $question_string;
-
-                preg_match(
-                    '/^\((?P<index>[A-D])\) (?P<answer>.+)/',
-                    $line,
-                    $data_answer
-                );
-                $line = str_replace("\r\n", ' ', $data_answer['answer']);
-
-                $answer['answer'] = $line;
-                $answer['index'] = $data_answer['index'];
-
-                $question_data['answers'][] = $answer;
-            } elseif (preg_match(
-                    '/^\((?P<index>[A-D])\) (?P<answer>.+)/',
-                    $line,
-                    $data_answer
-                ) != FALSE) {
-                if (!empty($question_string)) {
-                    $question_data['question'] = trim($question_string);
-                    $question_string = '';
-                }
-                $line = str_replace("\r\n", ' ', $data_answer['answer']);
-
-                $answer['answer'] = $line;
-                $answer['index'] = $data_answer['index'];
-
-                $question_data['answers'][] = $answer;
-            } else {
-                // Documents.
-
-                if (!empty($question_data)) {
-                    $questions[] = $question_data;
-                }
-
-                if (!empty($text)) {
-                    $texts[] = $text;
-                }
-
-                $text = [];
-                $content_string = "";
-                $line = str_replace("\r\n", '<br/>', $line);
-                $content_string .= trim($line);
-
-                $line = fgets($handle);
-                // Get all the document.
-                while(preg_match(
+            if (!empty($line)) {
+                if (preg_match(
                         '/^(?P<number>\d+)\.( (?P<question>.*))?/',
                         $line,
                         $data_question
-                    ) == FALSE) {
+                    ) != FALSE)
+                {
+
+                    if (!empty($question_data)) {
+                        $questions[] = $question_data;
+                    }
+
+                    // Beginning of the question.
+
+                    if (!empty($text)) {
+                        $text['number'][] = $data_question['number'];
+                    }
+
+                    if (isset($data_question['question'])) {
+                        $line = str_replace("\r\n", ' ', $data_question['question']);
+                        $line = str_replace("\r", ' ', $line);
+                    }
+
+                    $question_string .= ' ' . $line;
+
+                    $i++;
+                    if ($i < sizeof($handle)) {
+                        $line = $handle[$i];
+                    } else {
+                        break;
+                    }
+
+                    // Get all the question.
+                    while(preg_match(
+                            '/^\((?P<index>[A-D])\) (?P<answer>.+)/',
+                            $line,
+                            $data_answer
+                        ) == FALSE) {
+                        $line = str_replace("\r\n", ' ', $line);
+                        $line = str_replace("\r", ' ', $line);
+                        $question_string .= '' . $line;
+
+                        $i++;
+                        if ($i < sizeof($handle)) {
+                            $line = $handle[$i];
+                        } else {
+                            break;
+                        }
+                    }
+
+                    $question_data = [];
+                    $question_data['number'] = $data_question['number'];
+                    $question_data['question'] = $question_string;
+
+                    preg_match(
+                        '/^\((?P<index>[A-D])\) (?P<answer>.+)/',
+                        $line,
+                        $data_answer
+                    );
+                    $line = str_replace("\r\n", ' ', $data_answer['answer']);
+                    $line = str_replace("\r", ' ', $line);
+
+                    $answer['answer'] = $line;
+                    $answer['index'] = $data_answer['index'];
+
+                    $question_data['answers'][] = $answer;
+                }
+                elseif (preg_match(
+                        '/^\((?P<index>[A-D])\) (?P<answer>.+)/',
+                        $line,
+                        $data_answer
+                    ) != FALSE)
+                {
+                    if (!empty($question_string)) {
+                        $question_data['question'] = trim($question_string);
+                        $question_string = '';
+                    }
+                    $line = str_replace("\r\n", ' ', $data_answer['answer']);
+                    $line = str_replace("\r", ' ', $line);
+
+                    $answer['answer'] = $line;
+                    $answer['index'] = $data_answer['index'];
+
+                    $question_data['answers'][] = $answer;
+                }
+                else {
+                    // Documents.
+
+                    if (!empty($question_data)) {
+                        $questions[] = $question_data;
+                    }
+
+                    if (!empty($text)) {
+                        $texts[] = $text;
+                    }
+
+                    $text = [];
+                    $content_string = "";
                     $line = str_replace("\r\n", '<br/>', $line);
+                    $line = str_replace("\r", '<br/>', $line);
                     $content_string .= trim($line);
-                    $line = fgets($handle);
+
+                    $i++;
+                    if ($i < sizeof($handle)) {
+                        $line = $handle[$i];
+                    } else {
+                        break;
+                    }
+
+                    // Get all the document.
+                    while(preg_match(
+                            '/^(?P<number>\d+)\.( (?P<question>.*))?/',
+                            $line,
+                            $data_question
+                        ) == FALSE) {
+                        $line = str_replace("\r\n", '<br/>', $line);
+                        $line = str_replace("\r", '<br/>', $line);
+                        $content_string .= trim($line);
+                        $i++;
+                        if ($i < sizeof($handle)) {
+                            $line = $handle[$i];
+                        } else {
+                            break;
+                        }
+                    }
+
+                    preg_match(
+                        '/^(?P<number>\d+)\.( (?P<question>.*))?/',
+                        $line,
+                        $data_question
+                    );
+                    $question_data['number'] = $data_question['number'];
+                    if (isset($data_question['question'])) {
+                        $line = str_replace("\r\n", ' ', $data_question['question']);
+                        $line = str_replace("\r", ' ', $line);
+                    }
+
+                    $question_data['question'] = $line;
+                    $text['content'] = $content_string;
+                    $text['number'][] = $data_question['number'];
+
+                    // Manage question.
+                    $line = str_replace("\r\n", ' ', $line);
+                    $line = str_replace("\r", ' ', $line);
+                    $question_string .= ' ' . $line;
                 }
-
-                preg_match(
-                    '/^(?P<number>\d+)\.( (?P<question>.*))?/',
-                    $line,
-                    $data_question
-                );
-                $question_data['number'] = $data_question['number'];
-                if (isset($data_question['question'])) {
-                    $line = str_replace("\r\n", ' ', $data_question['question']);
-                }
-
-                $question_data['question'] = $line;
-                $text['content'] = $content_string;
-                $text['number'][] = $data_question['number'];
-
-                // Manage question.
-                $line = str_replace("\r\n", ' ', $line);
-                $question_string .= ' ' . $line;
             }
+
+            $i++;
         }
 
         if (!empty($question_data)) {
@@ -301,8 +346,6 @@ class ExerciseService {
         if (!empty($text)) {
             $texts[] = $text;
         }
-
-        fclose($handle);
     }
 
     protected function manageDocuments($request, &$documents, $field, $type) {
