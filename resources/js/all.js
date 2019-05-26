@@ -87,6 +87,9 @@ function initialiser(e) {
                 }
             }
         });
+
+
+        document.addEventListener('scroll', stickyPlayer);
     }
 
     document.querySelectorAll("#test .img-preview").forEach(function(el) {
@@ -125,12 +128,26 @@ function initialiser(e) {
     });
 }
 
-
 // Get timer for listening exercises.
 function listening() {
     var timer = document.getElementById('timer');
     listening_duration.subtract(SECOND);
     timer.innerText = listening_duration.format("hh:mm:ss", {trim: false});
+}
+
+function stickyPlayer(e) {
+    var player =  document.getElementById('player');
+    var previousEl = player.previousElementSibling.getBoundingClientRect();
+    console.log(previousEl);
+    if ((previousEl.top + previousEl.height) < 0) {
+        if (!player.classList.contains('sticky-player')) {
+            player.classList.add('sticky-player');
+        }
+    } else {
+        if (player.classList.contains('sticky-player')) {
+            player.classList.remove('sticky-player');
+        }
+    }
 }
 
 // Get timer for writing exercises.

@@ -180,6 +180,7 @@ function initialiser(e) {
         }
       }
     });
+    document.addEventListener('scroll', stickyPlayer);
   }
 
   document.querySelectorAll("#test .img-preview").forEach(function (el) {
@@ -221,6 +222,22 @@ function listening() {
   timer.innerText = listening_duration.format("hh:mm:ss", {
     trim: false
   });
+}
+
+function stickyPlayer(e) {
+  var player = document.getElementById('player');
+  var previousEl = player.previousElementSibling.getBoundingClientRect();
+  console.log(previousEl);
+
+  if (previousEl.top + previousEl.height < 0) {
+    if (!player.classList.contains('sticky-player')) {
+      player.classList.add('sticky-player');
+    }
+  } else {
+    if (player.classList.contains('sticky-player')) {
+      player.classList.remove('sticky-player');
+    }
+  }
 } // Get timer for writing exercises.
 
 
