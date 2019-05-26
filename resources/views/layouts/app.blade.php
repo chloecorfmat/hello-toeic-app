@@ -172,6 +172,20 @@
                                         Feature flipping
                                     </a>
                                 </li>
+                                {{--
+                                <li class="laterale-bar--menu-item">
+                                    <a href="{{ route('feature-flipping.index') }}">
+                                        <i class="menu-ico fas fa-language"></i>
+                                        Translations
+                                    </a>
+                                </li>
+                                --}}
+                                <li class="laterale-bar--menu-item">
+                                    <a href="{{ route('config.index') }}">
+                                        <i class="menu-ico fas fa-cogs"></i>
+                                        Configuration
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                         @endrole

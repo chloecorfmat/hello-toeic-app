@@ -58,6 +58,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/admin/feature-flipping', 'FeatureFlippingController@store')
         ->name('feature-flipping.store');
 
+    Route::get('/admin/config', 'ConfigController@index')
+        ->name('config.index');
+    Route::post('/admin/config', 'ConfigController@store')
+        ->name('config.store');
+
 });
 
 

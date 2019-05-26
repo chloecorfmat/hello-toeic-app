@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Setting;
 use App\Trial;
 use App\CompositeTrial;
 use App\Game;
@@ -37,6 +38,11 @@ class HomeController extends Controller
     public function index()
     {
         $user = \Auth::user();
+
+        $scores = [
+            'low' => Setting::where('key', 'config.score.low')->first()->value,
+            'intermediate' => Setting::where('key', 'config.score.intermediate')->first()->value
+        ];
 
         if ($user->hasPermissionTo('dashboard-students-see')) {
             $trials = Trial::where('composite_trial_id', NULL)
@@ -200,7 +206,6 @@ class HomeController extends Controller
             'axisX' => implode(', ', $axisX),
             'axisY' => json_encode($axisY)
         ];**/
-
         $stats['composite-trials'] = CompositeTrial::where('user_id', $user->id)->count();
         $stats['trials'] = Trial::where('user_id', $user->id)->where('composite_trial_id', NULL)->count();
         $stats['games'] = Game::where('user_id', $user->id)->count();
@@ -211,6 +216,6 @@ class HomeController extends Controller
             'stats' => $stats,
         ];
 
-        return view('profile', compact('datas', 'stats'));
+        return view('profile', compact('datas', 'stats', 'scores'));
     }
 }

@@ -12,11 +12,25 @@ class SettingTableSeeder extends Seeder
      */
     public function run()
     {
-        Setting::create([
+        /**Setting::create([
             'key' => 'ff.email',
             'type' => 'feature_flipping',
             'value' => 'true',
             'name' => 'Send e-mails ?',
+        ]);**/
+
+        Setting::create([
+            'key' => 'config.score.intermediate',
+            'type' => 'config',
+            'value' => '85',
+            'name' => 'Score intermédiaire (%)',
+        ]);
+
+        Setting::create([
+            'key' => 'config.score.low',
+            'type' => 'config',
+            'value' => '65',
+            'name' => 'Score insuffisant (%)',
         ]);
     }
 }

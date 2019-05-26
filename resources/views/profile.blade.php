@@ -90,7 +90,7 @@
                                 @php ($max = $trial->test->part->nb_questions*5)
                                 @php ($score = $trial->score)
                                 @php ($percent = round(100*$score/$max, 1))
-                                @php ($class_score = $percent >= 80 ? 'score--high' : ($percent >= 60 ? 'score--medium' : 'score--low'))
+                                @php ($class_score = $percent >= $scores['intermediate'] ? 'score--high' : ($percent >= $scores['low'] ? 'score--medium' : 'score--low'))
                                 <td class="score {{ $class_score }}"><span class="important">{{ $score }}/{{ $max }}</span> ({{ $percent }}%)</td>
                                 <td>
                                     <ul>
