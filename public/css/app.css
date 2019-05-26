@@ -1006,12 +1006,19 @@ tr:nth-child(2n) {
 }
 
 .player .btn-play {
+  background: none;
   border: none;
   color: #4b3f72;
 }
 
 .player .btn-play--disabled {
   color: #8d6a9f;
+}
+
+.sticky-player {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 3rem;
 }
 
 .student-profile {

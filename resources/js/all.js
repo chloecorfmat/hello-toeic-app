@@ -138,7 +138,6 @@ function listening() {
 function stickyPlayer(e) {
     var player =  document.getElementById('player');
     var previousEl = player.previousElementSibling.getBoundingClientRect();
-    console.log(previousEl);
     if ((previousEl.top + previousEl.height) < 0) {
         if (!player.classList.contains('sticky-player')) {
             player.classList.add('sticky-player');
