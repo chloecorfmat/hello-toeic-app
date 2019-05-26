@@ -49,7 +49,8 @@
                             <td class="name">{{ $exercise->name }}</td>
                             <td class="version">{{ $exercise->part->name }}</td>
                             <td>
-                                <a href="{{ action('ExerciseController@show', ['id' => $exercise->id]) }}">Try !</a>
+                                <a href="{{ action('ExerciseController@show', ['id' => $exercise->id]) }}" title="Execute exercise"><i class="fas fa-play"></i></a>
+                                <a href="{{ route('exercises.delete', $exercise->id) }}" title="Delete exercise"><i class="fas fa-trash"></i></a>
                             </td>
                         </tr>
                     @endforeach

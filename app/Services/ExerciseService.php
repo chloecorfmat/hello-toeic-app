@@ -2,10 +2,16 @@
 
 namespace App\Services;
 
+use App\CompositeTest;
+use App\CompositeTrial;
+use App\Correction;
 use App\Document;
 use App\Exercise;
 use App\Part;
+use App\Proposal;
 use App\Question;
+use App\Trial;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class ExerciseService
@@ -17,6 +23,11 @@ class ExerciseService {
     {
     }
 
+    /**
+     * Import file to create new exercise.
+     * @param $request
+     * @return bool
+     */
     public function import($request) {
         $matching = [
             'A',
@@ -402,5 +413,108 @@ class ExerciseService {
                 }
             }
         }
+    }
+
+    public function delete($id, $status) {
+        $parts = [
+            'exercise_part1',
+            'exercise_part2',
+            'exercise_part3',
+            'exercise_part4',
+            'exercise_part5',
+            'exercise_part6',
+            'exercise_part7',
+        ];
+
+        /**
+         * Remove associated composite_tests.
+         */
+        $composite_tests = [];
+
+        foreach ($parts as $part) {
+            $ct = CompositeTest::where($part, $id)->get();
+            if ($ct->count() != 0) {
+                $composite_tests = array_merge($composite_tests, $ct->all());
+            }
+        }
+
+        foreach ($composite_tests as $composite_test) {
+            $composite_trials = CompositeTrial::where('composite_test_id', $composite_test->id)->get();
+
+            foreach ($composite_trials as $composite_trial) {
+                $trials = Trial::where('composite_trial_id', $composite_trial->id)->get();
+
+                foreach ($trials as $trial) {
+                    Correction::where('trial_id', $trial->id)->delete();
+                }
+
+                Trial::where('composite_trial_id', $composite_trial->id)->delete();
+            }
+
+            CompositeTrial::where('composite_test_id', $composite_test->id)->delete();
+            CompositeTest::destroy($composite_test->id);
+        }
+
+        /**
+         * Remove associated trials.
+         */
+        $trials = Trial::where('exercise_id', $id)->get();
+
+        foreach ($trials as $trial) {
+            Correction::where('trial_id', $trial->id)->delete();
+            Trial::destroy($trial->id);
+        }
+
+        if ($status) {
+            $dids = [];
+
+            $questions = DB::table('questions')
+                ->join('exercise_question', 'questions.id', '=', 'exercise_question.question_id')
+                ->where('exercise_question.exercise_id', $id)
+                ->get();
+
+            foreach ($questions->all() as $q) {
+                $question = Question::find($q->id);
+
+                $question->answer_id = null;
+                $question->save();
+
+                Proposal::where('question_id', $q->id)->delete();
+
+                // Manage documents.
+                $documents = DB::table('documents')
+                    ->join('question_document', 'question_document.document_id', '=', 'documents.id')
+                    ->where('question_document.question_id', $q->id)
+                    ->select('documents.id')
+                    ->get();
+
+                foreach ($documents as $d) {
+                    $document = Document::find($d->id);
+                    $question->documents()->detach($document->id);
+                    $question->save();
+
+                    if (!in_array($d->id, $dids)) {
+                        $dids[] = $d->id;
+                    }
+                }
+
+
+                $question->parts()->detach();
+                $question->exercises()->detach();
+                $question->save();
+
+                Question::destroy($q->id);
+            }
+
+            Document::destroy($dids);
+        } else {
+            $exercise = Exercise::find($id);
+            $exercise->questions()->detach();
+            $exercise->save();
+        }
+
+        $success = Exercise::destroy($id);
+
+        return $success;
     }
 }

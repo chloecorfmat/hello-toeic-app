@@ -84,14 +84,31 @@ class ExerciseController extends Controller
     }
 
     /**
+     * Display a confirmation form before destroy model.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function delete($id)
+    {
+        $exercise = Exercise::find($id);
+        return view('admin.exercises.delete', compact('exercise'));
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $success = (new ExerciseService())->delete($id, $request->get('status') ? true : false);
+
+        if ($success) {
+            return redirect()->route('exercises.index')->with('success', 'Exercise has been deleted.');
+        }
+
+        return redirect()->route('exercises.index')->with('error', 'An error occurred.');
     }
 
     /**

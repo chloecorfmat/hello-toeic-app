@@ -49,6 +49,8 @@ Route::group(['middleware' => ['auth']], function () {
         ->name('exercises.import');
     Route::post('admin/exercises/storeImport', 'ExerciseController@storeImport')
         ->name('exercises.storeImport');
+    Route::get('admin/exercises/delete/{id?}', 'ExerciseController@delete')
+        ->name('exercises.delete');
     Route::resource('admin/exercises', 'ExerciseController');
 
     Route::get('/admin/feature-flipping', 'FeatureFlippingController@index')
