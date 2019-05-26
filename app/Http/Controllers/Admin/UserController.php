@@ -126,7 +126,7 @@ class UserController extends Controller
 
                     $user->assignRole($role);
 
-                    if (Setting::where('key', 'ff_email') == true) {
+                    if (Setting::where('key', 'ff.email')->first()->value == true) {
                         Mail::to($user)->send(new UserAccountCreated($user));
                     }
 
