@@ -99,10 +99,11 @@ class UserController extends Controller
     }
 
     public function storeImport(Request $request) {
-        $handle = fopen($request->file('file')->path(), "r");
+        $lines = file($request->file('file')->path());
+        if (sizeof($lines) === 1) {
+            $lines = explode("\r", $lines[0]);
+        }
 
-        $datas = fread($handle, filesize($request->file('file')->path()));
-        $lines = explode(PHP_EOL, $datas);
         unset($lines[0]);
         $role = $request->get('role');
 
