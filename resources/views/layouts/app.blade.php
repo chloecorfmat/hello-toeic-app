@@ -112,6 +112,13 @@
                                 </li>
 
                                 <li class="laterale-bar--menu-item">
+                                    <a href="{{ route('groups.index') }}">
+                                        <i class="menu-ico fas fa-users"></i>
+                                        Liste des groupes
+                                    </a>
+                                </li>
+
+                                <li class="laterale-bar--menu-item">
                                     <a href="{{ route('documents.index') }}">
                                         <i class="menu-ico far fa-images"></i>
                                         Liste des documents

@@ -57,7 +57,7 @@ class PartController extends Controller
             'questions' => $questions,
         ]);
 
-        return redirect()->route('parts.index')->with('success', 'Parts has been created.');
+        return redirect()->route('parts.index')->with('success', 'Part has been created.');
     }
 
     /**
