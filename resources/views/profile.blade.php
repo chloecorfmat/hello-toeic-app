@@ -11,8 +11,6 @@
 
 @section('content')
     <div class="main-content">
-        {{ Breadcrumbs::render('profile') }}
-
         <h1>Dashboard</h1>
         <!-- Results -->
         <div class="part-container">
