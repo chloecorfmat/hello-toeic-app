@@ -51,4 +51,8 @@ class CompositeTest extends Model
     public function compositeTestId() {
         return $this->hasMany('App\CompositeTrial', 'composite_test_id', 'id');
     }
+
+    public function lessons() {
+        return $this->hasMany('App\Lesson', 'composite_test_id', 'id');
+    }
 }

@@ -42,4 +42,13 @@ class User extends Authenticatable
     public function composite_trials() {
         return $this->hasMany('App\CompositeTrial', 'user_id', 'id');
     }
+
+    public function groups() {
+        return $this->belongsToMany('App\Group', 'user_group');
+    }
+
+    // "teacher" attribute in Group model.
+    public function taughtGroups() {
+        return $this->hasMany('App\Group', 'teacher', 'id');
+    }
 }
