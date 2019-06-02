@@ -62,6 +62,28 @@ Breadcrumbs::for('groups.show', function ($trail, $group) {
     $trail->push($group->name, route('groups.show', $group));
 });
 
+Breadcrumbs::for('documents.index', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Documents', route('documents.index'));
+});
+
+Breadcrumbs::for('documents.create', function ($trail) {
+    $trail->parent('documents.index');
+    $trail->push('Create', route('documents.create'));
+});
+
+Breadcrumbs::for('documents.show', function ($trail, $document) {
+    $trail->parent('documents.index');
+    $trail->push($document->name, route('documents.show', $document->id));
+});
+
+Breadcrumbs::for('documents.edit', function ($trail, $document) {
+    $trail->parent('documents.show', $document);
+    $trail->push('Edit', route('documents.edit', $document->id));
+});
+
+
+
 /** PAGES for all users */
 Breadcrumbs::for('student.exercises.index', function ($trail) {
     $trail->parent('dashboard');

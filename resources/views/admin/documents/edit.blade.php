@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="main-content">
+        {{ Breadcrumbs::render('documents.edit', $document) }}
         <h1>Modifier le document</h1>
         @if ($errors->any())
             <div>

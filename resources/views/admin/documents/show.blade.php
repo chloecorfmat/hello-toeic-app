@@ -3,6 +3,7 @@
 @section('content')
     <div class="main-content">
         <div class="main-content--header">
+            {{ Breadcrumbs::render('documents.show', $datas['document']) }}
             <h1>Détails du document</h1>
             <a href="{{ route('documents.edit', ['id' => $datas['document']->id]) }}" class="main-content--header-actions" title="Modifier la question">
                 <i class="fas fa-pencil-alt"></i>

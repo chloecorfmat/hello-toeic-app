@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="main-content">
+        {{ Breadcrumbs::render('documents.create') }}
         <h1>Ajouter un document</h1>
         @if ($errors->any())
             <div>
