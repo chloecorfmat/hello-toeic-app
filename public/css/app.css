@@ -1084,7 +1084,15 @@ tr:nth-child(2n) {
   font-weight: 700;
 }
 
-.test .preview {
+.test .on-preview {
+  opacity: 0.5;
+}
+
+.test .img-preview:hover {
+  cursor: pointer;
+}
+
+.preview {
   position: fixed;
   background-position: center;
   background-size: contain;
@@ -1099,22 +1107,14 @@ tr:nth-child(2n) {
 }
 
 @media screen and (min-width: 920px) {
-  .test .preview {
+  .preview {
     width: 50vw;
     height: 90vh;
   }
 }
 
-.test .preview.hidden {
+.preview.hidden {
   display: none;
-}
-
-.test .on-preview {
-  opacity: 0.5;
-}
-
-.test .img-preview:hover {
-  cursor: pointer;
 }
 
 .training-part {
