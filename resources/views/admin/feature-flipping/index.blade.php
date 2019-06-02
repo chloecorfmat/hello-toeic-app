@@ -2,7 +2,10 @@
 
 @section('content')
     <div class="main-content list-tests">
+
         <div class="main-content--header">
+            {{ Breadcrumbs::render('feature-flipping.index') }}
+
             <h1>
                 Feature flipping
             </h1>

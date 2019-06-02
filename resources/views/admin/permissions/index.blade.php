@@ -3,6 +3,9 @@
 
 @section('content')
     <div class="main-content">
+
+        {{ Breadcrumbs::render('permissions.index') }}
+
         <h1>Manage permissions</h1>
 
         @if ($message = Session::get('success'))

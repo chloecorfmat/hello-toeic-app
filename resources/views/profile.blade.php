@@ -11,7 +11,6 @@
 
 @section('content')
     <div class="main-content">
-
         {{ Breadcrumbs::render('dashboard') }}
 
         <h1>Dashboard</h1>
