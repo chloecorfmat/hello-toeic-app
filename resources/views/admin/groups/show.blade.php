@@ -3,6 +3,7 @@
 @section('content')
     <div class="main-content">
         <div class="main-content--header">
+            {{ Breadcrumbs::render('groups.show', $group) }}
             <h1>Détails du groupe : {{ $group->name }}</h1>
         </div>
 

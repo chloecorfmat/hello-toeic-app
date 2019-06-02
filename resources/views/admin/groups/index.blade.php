@@ -3,6 +3,7 @@
 @section('content')
     <div class="main-content">
         <div class="main-content--header">
+            {{ Breadcrumbs::render('groups.index') }}
             <h1>Liste des groupes</h1>
             <a href="{{ route('groups.create') }}" class="main-content--header-actions">
                 <i class="fas fa-plus-circle"></i>

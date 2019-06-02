@@ -47,6 +47,20 @@ Breadcrumbs::for('users.import', function ($trail) {
     $trail->push('Import users', route('users.import'));
 });
 
+Breadcrumbs::for('groups.index', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Groups', route('groups.index'));
+});
+
+Breadcrumbs::for('groups.create', function ($trail) {
+    $trail->parent('groups.index');
+    $trail->push('Create', route('groups.create'));
+});
+
+Breadcrumbs::for('groups.show', function ($trail, $group) {
+    $trail->parent('groups.index');
+    $trail->push($group->name, route('groups.show', $group));
+});
 
 /** PAGES for all users */
 Breadcrumbs::for('student.exercises.index', function ($trail) {

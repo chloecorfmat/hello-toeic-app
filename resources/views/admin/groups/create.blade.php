@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="main-content">
+        {{ Breadcrumbs::render('groups.create') }}
         <h1>Créer un groupe</h1>
         @if ($errors->any())
             <div>
