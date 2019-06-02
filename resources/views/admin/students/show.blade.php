@@ -3,6 +3,7 @@
 @section('content')
     <div class="main-content">
         <div class="main-content--header">
+            {{ Breadcrumbs::render('students.show', $student) }}
             <h1>Détails : {{ $student->name }}</h1>
         </div>
 

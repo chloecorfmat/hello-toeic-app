@@ -32,6 +32,21 @@ Breadcrumbs::for('exercises.delete', function ($trail, $exercise) {
     $trail->push('Delete ' . $exercise->name, route('exercises.delete'));
 });
 
+Breadcrumbs::for('students.index', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Students', route('students.index'));
+});
+
+Breadcrumbs::for('students.show', function ($trail, $student) {
+    $trail->parent('students.index');
+    $trail->push($student->name, route('students.show', $student->id));
+});
+
+Breadcrumbs::for('users.import', function ($trail) {
+    $trail->parent('students.index');
+    $trail->push('Import users', route('users.import'));
+});
+
 
 /** PAGES for all users */
 Breadcrumbs::for('student.exercises.index', function ($trail) {

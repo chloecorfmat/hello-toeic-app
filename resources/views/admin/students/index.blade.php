@@ -3,6 +3,7 @@
 @section('content')
     <div class="main-content">
         <div class="main-content--header">
+            {{ Breadcrumbs::render('students.index') }}
             <h1>Liste des étudiants</h1>
             <a href="{{ route('users.import') }}" class="main-content--header-actions">
                 <i class="fas fa-upload"></i>
