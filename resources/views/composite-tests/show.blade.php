@@ -62,11 +62,25 @@
                                 </fieldset>
 
                                 <div class="documents">
-                                    @foreach ($question->documents as $document)
+                                    @foreach ($question->documents as $key => $document)
                                         @if ($document->type === 'image')
-                                            <div class="img-preview">
-                                                <img src="{{ url('storage/' . $document->url) }}" alt="Image necessary for this question." />
+                                            <div class="document">
+                                                <div class="img-preview">
+                                                    <img src="{{ url('storage/' . $document->url) }}" alt="Image necessary for this question." id="{{ $question->number }}_{{ $key }}" />
+                                                </div>
                                             </div>
+                                        @endif
+                                    @endforeach
+
+                                    @foreach ($question->documents as $key => $document)
+                                        @if ($document->type === 'image')
+                                            <ol>
+                                                <li>
+                                                    <a href="{{ url('storage/' . $document->url) }}" target="_blank" title="View image - Open new window">
+                                                        <i class="fas fa-external-link-alt"></i>
+                                                    </a>
+                                                </li>
+                                            </ol>
                                         @endif
                                     @endforeach
                                 </div>
@@ -88,6 +102,6 @@
         </form>
     </div>
 
-    <div class="preview hidden">
+    <div class="preview hidden" id="preview">
     </div>
 @endsection
