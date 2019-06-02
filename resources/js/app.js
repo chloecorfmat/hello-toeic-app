@@ -92,7 +92,7 @@ function initialiser(e) {
         document.addEventListener('scroll', stickyPlayer);
     }
 
-    document.querySelectorAll("#test .img-preview").forEach(function(el) {
+    /**document.querySelectorAll("#test .img-preview").forEach(function(el) {
         el.addEventListener('click', function() {
             var i = this.querySelector('img');
 
@@ -125,7 +125,7 @@ function initialiser(e) {
                 document.querySelector('.preview').classList.add('hidden');
             }
         }, false);
-    });
+    }); **/
 }
 
 // Get timer for listening exercises.

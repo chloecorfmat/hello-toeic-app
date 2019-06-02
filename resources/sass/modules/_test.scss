@@ -60,31 +60,44 @@
   }
 
   .img-preview {
-    &:hover {
-      cursor: pointer;
+    position: relative;
+    @media screen and (min-width: $breakpoint-medium) {
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 }
 
 .preview {
   position: fixed;
-  background-position: center;
-  background-size: contain;
   background-repeat: no-repeat;
-  background-color: $white;
   border: 2px solid $secondary-color-1;
   border-radius: 10px;
-  top: 5vh;
+  top: 20vh;
   right: 0;
-  width: 80vw;
-  height: 90vh;
+  width: 30rem;
+  height: 30rem;
+  display: none;
 
   @media screen and (min-width: $breakpoint-medium) {
-    width: 50vw;
-    height: 90vh;
+    display: block;
   }
 
   &.hidden {
     display: none;
+  }
+}
+
+
+.img-zoom-lens {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  width: 6rem;
+  height: 6rem;
+  display: none;
+
+  @media screen and (min-width: $breakpoint-medium) {
+    display: block;
   }
 }

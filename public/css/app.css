@@ -1088,33 +1088,50 @@ tr:nth-child(2n) {
   opacity: 0.5;
 }
 
-.test .img-preview:hover {
-  cursor: pointer;
+.test .img-preview {
+  position: relative;
+}
+
+@media screen and (min-width: 920px) {
+  .test .img-preview:hover {
+    cursor: pointer;
+  }
 }
 
 .preview {
   position: fixed;
-  background-position: center;
-  background-size: contain;
   background-repeat: no-repeat;
-  background-color: #fff;
   border: 2px solid #4b3f72;
   border-radius: 10px;
-  top: 5vh;
+  top: 20vh;
   right: 0;
-  width: 80vw;
-  height: 90vh;
+  width: 30rem;
+  height: 30rem;
+  display: none;
 }
 
 @media screen and (min-width: 920px) {
   .preview {
-    width: 50vw;
-    height: 90vh;
+    display: block;
   }
 }
 
 .preview.hidden {
   display: none;
+}
+
+.img-zoom-lens {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  width: 6rem;
+  height: 6rem;
+  display: none;
+}
+
+@media screen and (min-width: 920px) {
+  .img-zoom-lens {
+    display: block;
+  }
 }
 
 .training-part {

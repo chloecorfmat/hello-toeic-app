@@ -16,7 +16,8 @@ mix.scripts([
         'resources/js/app.js',
         'resources/js/charts.js',
         'resources/js/lists.js',
-        'resources/js/listOverride.js'
+        'resources/js/listOverride.js',
+        'resources/js/imageZoom.js'
     ], 'resources/js/all.js');
 mix
    .js('resources/js/all.js', 'public/js')
