@@ -3,6 +3,7 @@
 @section('content')
     <div class="main-content">
         @php ($index = ['A', 'B', 'C', 'D'])
+        {{ Breadcrumbs::render('games.continue') }}
         <h1>Play game</h1>
         <form method="POST" action="{{ route('games.continue') }}">
             @csrf

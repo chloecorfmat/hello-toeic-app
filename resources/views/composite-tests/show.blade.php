@@ -4,6 +4,7 @@
     @php ($index = ['A', 'B', 'C', 'D'])
     @php ($current_document = null)
     <div class="main-content">
+        {{ Breadcrumbs::render('student.composite-tests.show', $datas['test']) }}
         <h1>{{ $datas['test']->name }}</h1>
 
         <form method="POST" action="{{ route('student.composite-tests.update', ['id' => $datas['test']->id]) }}" id="test" class="test">

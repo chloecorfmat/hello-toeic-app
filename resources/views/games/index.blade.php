@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="main-content">
+        {{ Breadcrumbs::render('games') }}
         <h1>Challenges list</h1>
         @if ($message = Session::get('success'))
             <div class="alert alert-success">

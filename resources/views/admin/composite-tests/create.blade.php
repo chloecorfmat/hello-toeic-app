@@ -3,6 +3,7 @@
 @section('content')
     <div class="main-content">
         <div class="main-content--header">
+            {{ Breadcrumbs::render('composite-tests.create') }}
             <h1>Créer un test composé</h1>
         </div>
         @if ($message = Session::get('success'))

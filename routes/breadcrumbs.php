@@ -82,6 +82,15 @@ Breadcrumbs::for('documents.edit', function ($trail, $document) {
     $trail->push('Edit', route('documents.edit', $document->id));
 });
 
+Breadcrumbs::for('composite-tests.index', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Composite tests', route('composite-tests.index'));
+});
+
+Breadcrumbs::for('composite-tests.create', function ($trail) {
+    $trail->parent('composite-tests.index');
+    $trail->push('Create', route('composite-tests.create'));
+});
 
 
 /** PAGES for all users */
@@ -92,5 +101,25 @@ Breadcrumbs::for('student.exercises.index', function ($trail) {
 
 Breadcrumbs::for('student.exercises.show', function ($trail, $exercise) {
     $trail->parent('student.exercises.index');
-    $trail->push($exercise->name, route('exercises.show', $exercise->id));
+    $trail->push($exercise->name, route('student.exercises.show', $exercise->id));
+});
+
+Breadcrumbs::for('student.composite-tests.index', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Composite tests', route('student.composite-tests.index'));
+});
+
+Breadcrumbs::for('student.composite-tests.show', function ($trail, $compositeTest) {
+    $trail->parent('student.composite-tests.index');
+    $trail->push($compositeTest->name, route('student.composite-tests.show', $compositeTest->id));
+});
+
+Breadcrumbs::for('games', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Challenges', route('games'));
+});
+
+Breadcrumbs::for('games.continue', function ($trail) {
+    $trail->parent('games');
+    $trail->push('Play', route('games.continue'));
 });

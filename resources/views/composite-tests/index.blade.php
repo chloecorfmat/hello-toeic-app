@@ -3,6 +3,7 @@
 @section('content')
     <div class="main-content list-tests">
         <div class="main-content--header">
+            {{ Breadcrumbs::render('student.composite-tests.index') }}
             <h1>
                 Liste des tests composés
             </h1>
