@@ -5,7 +5,6 @@ Breadcrumbs::for('exercises', function ($trail) {
 });
 
 
-Breadcrumbs::for('profile', function ($trail) {
-    $trail->parent('exercises');
-    $trail->push('Profile', route('profile'));
+Breadcrumbs::for('dashboard', function ($trail) {
+    $trail->push('Dashboard', route('profile'));
 });

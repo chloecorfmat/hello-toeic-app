@@ -1,4 +1,6 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);/**.navbar-laravel {
+@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
+
+/**.navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
@@ -703,6 +705,29 @@ tr:nth-child(2n) {
 .alert-answer .list-item {
   margin-left: 1.5rem;
   list-style-type: disc;
+}
+
+.breadcrumb {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.breadcrumb:before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\F277";
+  margin-right: 0.5rem;
+}
+
+.breadcrumb-item {
+  display: inline-block;
+}
+
+.breadcrumb-item:not(:last-child):after {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\F054";
+  margin: auto 0.5rem;
 }
 
 .charts {
