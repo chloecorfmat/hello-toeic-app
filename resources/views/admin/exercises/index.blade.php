@@ -3,6 +3,7 @@
 @section('content')
     <div class="main-content list-tests">
         <div class="main-content--header">
+            {{ Breadcrumbs::render('exercises.index') }}
             <h1>
                 Liste des exercises
             </h1>

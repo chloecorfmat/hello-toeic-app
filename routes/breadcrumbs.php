@@ -19,3 +19,27 @@ Breadcrumbs::for('config.index', function ($trail) {
     $trail->parent('dashboard');
     $trail->push('Configuration', route('config.index'));
 });
+
+
+/** ADMIN PAGES for teacher users */
+Breadcrumbs::for('exercises.index', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Exercises', route('exercises.index'));
+});
+
+Breadcrumbs::for('exercises.delete', function ($trail, $exercise) {
+    $trail->parent('exercises.index');
+    $trail->push('Delete ' . $exercise->name, route('exercises.delete'));
+});
+
+
+/** PAGES for all users */
+Breadcrumbs::for('student.exercises.index', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Exercises', route('student.exercises.index'));
+});
+
+Breadcrumbs::for('student.exercises.show', function ($trail, $exercise) {
+    $trail->parent('student.exercises.index');
+    $trail->push($exercise->name, route('exercises.show', $exercise->id));
+});

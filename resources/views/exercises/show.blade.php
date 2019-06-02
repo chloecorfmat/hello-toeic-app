@@ -6,6 +6,7 @@
     @php ($parts_listening = [2, 3, 4, 5])
     @php ($current_document = null)
     <div class="main-content">
+        {{ Breadcrumbs::render('student.exercises.show', $exercise) }}
         <h1>{{ $exercise->name }}</h1>
 
         <form method="POST" action="{{ route('student.exercises.update', ['id' => $exercise->id]) }}" id="test" class="test">
