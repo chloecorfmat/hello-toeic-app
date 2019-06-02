@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="main-content">
+        {{ Breadcrumbs::render('parts.create') }}
         <h1>Ajouter un type d'exercice</h1>
         @if ($errors->any())
             <div>

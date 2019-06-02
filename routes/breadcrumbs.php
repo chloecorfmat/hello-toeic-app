@@ -32,6 +32,11 @@ Breadcrumbs::for('exercises.delete', function ($trail, $exercise) {
     $trail->push('Delete ' . $exercise->name, route('exercises.delete'));
 });
 
+Breadcrumbs::for('exercises.import', function ($trail, $part) {
+    $trail->parent('parts.show', $part);
+    $trail->push('Add exercise', route('exercises.import'));
+});
+
 Breadcrumbs::for('students.index', function ($trail) {
     $trail->parent('dashboard');
     $trail->push('Students', route('students.index'));
@@ -90,6 +95,26 @@ Breadcrumbs::for('composite-tests.index', function ($trail) {
 Breadcrumbs::for('composite-tests.create', function ($trail) {
     $trail->parent('composite-tests.index');
     $trail->push('Create', route('composite-tests.create'));
+});
+
+Breadcrumbs::for('parts.index', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Parts', route('parts.index'));
+});
+
+Breadcrumbs::for('parts.create', function ($trail) {
+    $trail->parent('parts.index');
+    $trail->push('Create', route('parts.create'));
+});
+
+Breadcrumbs::for('parts.show', function ($trail, $part) {
+    $trail->parent('parts.index');
+    $trail->push($part->name, route('parts.show', $part->id));
+});
+
+Breadcrumbs::for('parts.edit', function ($trail, $part) {
+    $trail->parent('parts.show', $part);
+    $trail->push('Modifier', route('parts.edit', $part->id));
 });
 
 

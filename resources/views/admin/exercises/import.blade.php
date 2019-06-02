@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="main-content">
+        {{ Breadcrumbs::render('exercises.import', $part) }}
         <h1>Import an exercise: {{ $part->name }} ({{ $part->version }})</h1>
         @if ($errors->any())
             <div>

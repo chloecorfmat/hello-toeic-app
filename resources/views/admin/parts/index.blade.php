@@ -3,6 +3,7 @@
 @section('content')
     <div class="main-content">
         <div class="main-content--header">
+            {{ Breadcrumbs::render('parts.index') }}
             <h1>Liste des types d'exercices</h1>
             <a href="{{ route('parts.create') }}" class="main-content--header-actions">
                 <i class="fas fa-plus-circle"></i>

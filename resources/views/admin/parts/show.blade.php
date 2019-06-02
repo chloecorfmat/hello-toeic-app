@@ -3,6 +3,7 @@
 @section('content')
     <div class="main-content">
         <div class="main-content--header">
+            {{ Breadcrumbs::render('parts.show', $part) }}
             <h1>Détails du type d'exercice</h1>
         </div>
 
