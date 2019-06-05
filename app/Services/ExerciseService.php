@@ -102,7 +102,7 @@ class ExerciseService {
                     'number' => $i,
                 ]);
 
-                for ($j = 0; $j < 4; $j++) {
+                for ($j = 0; $j < $part->nb_answers; $j++) {
                     $p = $q->proposals()->create(['value' => 'Answer']);
                     if ($i === array_search($answers[$i], $matching)) {
                         $q->answer()->associate($p)->save();

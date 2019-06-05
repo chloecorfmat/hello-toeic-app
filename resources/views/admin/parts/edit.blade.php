@@ -45,6 +45,11 @@
                 <input type="number" id="nb-questions" name="nb-questions" min="0" max="1000" value="{{ $part->nb_questions }}" required>
             </div>
 
+            <div class="field-container">
+                <label for="nb-answers">Nombre de réponses <span class="required">*</span></label>
+                <input type="number" id="nb-answers" name="nb-answers" min="0" max="10" value="{{ $part->nb_answers }}" required>
+            </div>
+
             <fieldset class="form-radio-el">
                 <legend class="question-legend">Questions ?</legend>
                 <div>

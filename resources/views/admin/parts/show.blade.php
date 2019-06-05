@@ -12,6 +12,7 @@
         <p>Type : <span>{{ $part->type }}</span></p>
         <p>Description : <span>{{ $part->description }}</span></p>
         <p>Nombre de questions : <span>{{ $part->nb_questions }}</span></p>
+        <p>Nombre de réponses : <span>{{ $part->nb_answers }}</span></p>
         <p>Questions or texts ? : <span>{{ $part->texts }}</span></p>
         <p>Files ? : <span>{{ $part->files }}</span></p>
 

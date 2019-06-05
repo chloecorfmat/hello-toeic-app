@@ -15,6 +15,7 @@ class Part extends Model
         'texts',
         'files',
         'questions',
+        'nb_answers',
     ];
 
     public $timestamps = false;

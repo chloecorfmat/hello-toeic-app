@@ -55,6 +55,7 @@ class PartController extends Controller
             'texts' => $texts,
             'files' => $files,
             'questions' => $questions,
+            'nb_answers' => $request->get('nb-answers'),
         ]);
 
         return redirect()->route('parts.index')->with('success', 'Part has been created.');
@@ -103,6 +104,7 @@ class PartController extends Controller
         $part->texts = $request->get('texts') === 'true' ? 1 : 0;
         $part->files = $request->get('files') === 'true' ? 1 : 0;
         $part->questions = $request->get('questions') === 'true' ? 1 : 0;
+        $part->nb_answers = $request->get('nb-answers');
 
         $part->save();
 
