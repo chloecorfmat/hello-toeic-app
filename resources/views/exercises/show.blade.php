@@ -3,10 +3,9 @@
 @section('content')
     @php ($index = ['A', 'B', 'C', 'D'])
     @php ($current_part = null)
-    @php ($parts_listening = [2, 3, 4, 5])
     @php ($current_document = null)
     <div class="main-content">
-        {{ Breadcrumbs::render('student.exercises.show', $exercise) }}
+
         <h1>{{ $exercise->name }}</h1>
 
         <form method="POST" action="{{ route('student.exercises.update', ['id' => $exercise->id]) }}" id="test" class="test">
@@ -20,7 +19,7 @@
                                 <button class="js-part-close btn-close" type="button" title="Close">
                                     <i class="fas fa-times fa-2x"></i>
                                 </button>
-                                @else
+                        @else
                                 </ul>
                             </li>
                             <li class="part part-hide" id="part_{{ $question->parts[0]->id }}">
@@ -30,7 +29,7 @@
                                 @endif
                                 @php($current_part = $question->parts[0]->id)
                                 <h2>
-                                    @if (in_array($current_part, $parts_listening))
+                                    @if ($question->parts[0]->type == "listening")
                                         <i class="fas fa-volume-up"></i>
                                     @else
                                         <i class="fas fa-glasses"></i>
@@ -53,7 +52,7 @@
                                     <li class="block-question" data-part="{{ $current_part }}">
                                         <fieldset class="form-radio-el">
                                             <legend class="question-legend">
-                                                @if (in_array($current_part, $parts_listening))
+                                                @if ($question->parts[0]->type == "listening")
                                                     <i class="fas fa-volume-up"></i>
                                                 @else
                                                     <i class="fas fa-glasses"></i>
