@@ -110,6 +110,8 @@ class ExerciseService {
                 }
 
                 $questions_object[$i] = $q;
+                $exercice->questions()->attach($q, ['number' => $i]);
+                $q->parts()->attach($part);
             }
         }
 

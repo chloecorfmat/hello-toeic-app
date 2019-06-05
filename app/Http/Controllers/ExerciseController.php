@@ -92,9 +92,9 @@ class ExerciseController extends Controller
                             if ($a['Encoding']=='Unknown')
                                 $len = 0;
                             else if ($a['Encoding']=='VBR')
-                                $len= $a['Length'];
+                                $len= $a['Length'] ?? 0;
                             else if ($a['Encoding']=='CBR')
-                                $len= $a['Length'];
+                                $len= $a['Length'] ?? 0;
 
                             $listening_duration += $len;
                         }
