@@ -95,7 +95,20 @@ class ExerciseService {
         }
 
         if (empty($questions) && $part->nb_questions !== 0) {
-            for ($i = 1; $i <= $part->nb_questions; $i++) {
+            if (!empty($audios)) {
+                $keys = array_keys($audios);
+                $min = min($keys);
+                $max = max($keys);
+            } elseif (!empty($files)) {
+                $keys = array_keys($files);
+                $min = min($keys);
+                $max = max($keys);
+            } else {
+                $min = 1;
+                $max = $part->nb_questions;
+            }
+
+            for ($i = $min; $i <= $max; $i++) {
                 $q = Question::create([
                     'version' => $part->version,
                     'question' => '',
@@ -104,7 +117,7 @@ class ExerciseService {
 
                 for ($j = 0; $j < $part->nb_answers; $j++) {
                     $p = $q->proposals()->create(['value' => 'Answer']);
-                    if ($i === array_search($answers[$i], $matching)) {
+                    if ($j === array_search($answers[$i], $matching)) {
                         $q->answer()->associate($p)->save();
                     }
                 }
