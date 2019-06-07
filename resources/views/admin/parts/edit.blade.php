@@ -30,8 +30,8 @@
             <div class="field-container">
                 <label for="type">Type <span class="required">*</span></label>
                 <select name="type" id="type" required>
-                    <option value="listening">Listening</option>
-                    <option value="reading">Reading</option>
+                    <option value="listening" @if($part->type == 'listening') selected @endif>Listening</option>
+                    <option value="reading" @if($part->type == 'reading') selected @endif>Reading</option>
                 </select>
             </div>
 
