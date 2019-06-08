@@ -376,6 +376,7 @@ class ExerciseService {
 
     protected function manageDocuments($request, &$documents, $field, $type) {
         $already = [];
+        $uid = uniqid();
 
         if ($request->file($field)->getClientMimeType() === 'application/zip') {
             $zip = new \ZipArchive();
@@ -385,6 +386,8 @@ class ExerciseService {
                 $zip->extractTo('./storage/documents');
                 $repository_name = str_replace('.zip', '', $file->getClientOriginalName());
 
+                mkdir('./storage/documents/' . $uid . '_'. $repository_name);
+
                 if ($repository = opendir('./storage/documents/' . $repository_name)) {
                     while (false !== ($current_file = readdir($repository))) {
                         if (preg_match(
@@ -393,6 +396,7 @@ class ExerciseService {
                                 $data_file
                             ) != FALSE) {
 
+                            $new_file_already = '';
                             $new_file = $repository_name
                                 . '_'
                                 . $data_file['number_start']
@@ -400,21 +404,22 @@ class ExerciseService {
                                 . $data_file['number_end'];
 
                             if (!empty($data_file['doc_number'])) {
-                                $new_file .= '%' . $data_file['doc_number'];
+                                $new_file_already = $new_file . '%' . $data_file['doc_number'];
+                                $new_file .= '__' . $data_file['doc_number'];
                             }
 
                             $new_file .= $data_file['extension'];
 
-                            rename('./storage/documents/' . $repository_name . '/' . $current_file, './storage/documents/' . $repository_name . '/' . $new_file);
+                            rename('./storage/documents/' . $repository_name . '/' . $current_file, './storage/documents/' . $uid . '_'. $repository_name . '/' . $new_file);
 
                             if (!in_array('./documents/' . $repository_name . '/' . $new_file, $already)) {
                                 $document = Document::create([
                                     'name' => $new_file,
                                     'type' => $type,
-                                    'url' => './documents/' . $repository_name . '/' . $new_file,
+                                    'url' => './documents/' . $uid . '_' . $repository_name . '/' . $new_file,
                                 ]);
 
-                                $already[] = './documents/' . $repository_name . '/' . $new_file;
+                                $already[] = './documents/' . $repository_name . '/' . $new_file_already;
 
                                 if (empty(intval($data_file['number_end']))) {
                                     $data_file['number_end'] = $data_file['number_start'];
@@ -425,6 +430,10 @@ class ExerciseService {
                             }
                         }
                     }
+                }
+
+                if ($this->is_dir_empty('./storage/documents/' . $repository_name)) {
+                    rmdir('./storage/documents/' . $repository_name);
                 }
             }
         }
@@ -531,5 +540,17 @@ class ExerciseService {
         $success = Exercise::destroy($id);
 
         return $success;
+    }
+
+    private function is_dir_empty($dir) {
+        $handle = opendir($dir);
+        while (false !== ($entry = readdir($handle))) {
+            if ($entry != "." && $entry != "..") {
+                closedir($handle);
+                return FALSE;
+            }
+        }
+        closedir($handle);
+        return TRUE;
     }
 }
