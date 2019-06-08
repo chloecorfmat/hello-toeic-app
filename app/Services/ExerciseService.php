@@ -400,7 +400,7 @@ class ExerciseService {
                                 . $data_file['number_end'];
 
                             if (!empty($data_file['doc_number'])) {
-                                $new_file .= '%' . $data_file['doc_number'];
+                                $new_file .= '__' . $data_file['doc_number'];
                             }
 
                             $new_file .= $data_file['extension'];
