@@ -57,7 +57,10 @@ class ExerciseController extends Controller
      */
     public function show($id)
     {
-
+        $exercise = Exercise::find($id);
+        $questions = $exercise->questions;
+        $part = $exercise->part;
+        return view('admin.exercises.show', compact('exercise', 'questions', 'part'));
     }
 
     /**
