@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Document;
+use App\Explanation;
 use App\Part;
 use App\Proposal;
 use App\Question;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 
@@ -31,8 +33,8 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        $questions = Question::all();
-        return view('admin.questions.index', compact('questions'));
+        $questions = DB::table('questions')->paginate(20);
+        return view('admin.questions.index', ['questions' => $questions]);
     }
 
     /**
@@ -106,10 +108,17 @@ class QuestionController extends Controller
     {
         $question = Question::find($id);
 
-        // Get statistics
-        $statistics = $question->getStatistics();
+        if (!is_null($question)) {
+            // Get statistics
+            $statistics = $question->getStatistics();
 
-        return view('admin.questions.show', compact('question', 'statistics'));
+            // Get explanation
+            $explanation = Explanation::find($question->explanation_id);
+
+            return view('admin.questions.show', compact('question', 'statistics', 'explanation'));
+        }
+
+        abort(404);
     }
 
     /**
@@ -121,7 +130,8 @@ class QuestionController extends Controller
     public function edit($id)
     {
         $datas['question'] = Question::find($id);
-        return view('admin.questions.edit', compact('datas'));
+        $explanations = Explanation::all();
+        return view('admin.questions.edit', compact('datas', 'explanations'));
     }
 
     /**
@@ -143,7 +153,12 @@ class QuestionController extends Controller
         ]);
 
         $question = Question::find($id);
-        $question->question = $request->get('question');
+        if ($request->get('question') == '#none') {
+            $q = '';
+        } else {
+            $q = $request->get('question');
+        }
+        $question->question = $q;
 
         $old_proposals = $question->proposals()->get();
         $new_proposals = $request->get('proposals');
@@ -171,6 +186,9 @@ class QuestionController extends Controller
                 }
             }
         }
+
+        // Manage explanation.
+        $question->explanation_id = $request->get('explanation');
 
         $question->save();
 

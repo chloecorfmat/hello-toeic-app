@@ -154,6 +154,13 @@
                                 </li>
 
                                 <li class="laterale-bar--menu-item">
+                                    <a href="{{ route('explanations.index') }}">
+                                        <i class="menu-ico fas fa-chalkboard-teacher"></i>
+                                        Liste des explications
+                                    </a>
+                                </li>
+
+                                <li class="laterale-bar--menu-item">
                                     <a href="{{ route('games') }}">
                                         <i class="menu-ico fas fa-trophy"></i>
                                         Liste des challenges

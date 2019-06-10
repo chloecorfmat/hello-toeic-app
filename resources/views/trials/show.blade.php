@@ -43,6 +43,14 @@
                                         </li>
                                     @endforeach
                                 </ul>
+
+                                @if ($correction->question->explanation()->first() != null)
+                                @php ($explanation = $correction->question->explanation()->first())
+                                <div class="alert alert-success alert-explanation">
+                                    <p class="important">{{ $explanation->title }}</p>
+                                    <p>{{ $explanation->explanation }}</p>
+                                </div>
+                                @endif
                             </li>
                     @endif
                 @endforeach

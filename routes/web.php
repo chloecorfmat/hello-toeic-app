@@ -45,6 +45,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('admin/parts', 'PartController');
     Route::resource('admin/composite-tests', 'CompositeTestController');
     Route::resource('admin/groups', 'GroupController');
+    Route::resource('admin/explanations', 'ExplanationController');
 
     Route::get('admin/exercises/import/{id?}', 'ExerciseController@import')
         ->name('exercises.import');

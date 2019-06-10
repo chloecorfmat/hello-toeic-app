@@ -117,6 +117,26 @@ Breadcrumbs::for('parts.edit', function ($trail, $part) {
     $trail->push('Modifier', route('parts.edit', $part->id));
 });
 
+Breadcrumbs::for('explanations.index', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Explanations', route('explanations.index'));
+});
+
+Breadcrumbs::for('explanations.create', function ($trail) {
+    $trail->parent('explanations.index');
+    $trail->push('Create', route('explanations.create'));
+});
+
+Breadcrumbs::for('explanations.show', function ($trail, $explanation) {
+    $trail->parent('explanations.index');
+    $trail->push($explanation->title, route('explanations.show', $explanation->id));
+});
+
+Breadcrumbs::for('explanations.edit', function ($trail, $explanation) {
+    $trail->parent('explanations.show', $explanation);
+    $trail->push('Modifier', route('explanations.edit', $explanation->id));
+});
+
 
 /** PAGES for all users */
 Breadcrumbs::for('student.exercises.index', function ($trail) {

@@ -14,7 +14,7 @@
                 <p>{{ $message }}</p>
             </div>
         @endif
-        <div class="table-container">
+        <div class="table-container is-visible">
             <table>
                 <caption class="sr-only">Liste des questions liées au document</caption>
                 <thead>
@@ -28,6 +28,7 @@
                     <th scope="col">Actions</th>
                 </tr>
                 </thead>
+                <tbody class="list">
                 @foreach ($questions as $key => $question)
                     <tr>
                         <td>{{ $question->number }}</td>
@@ -35,9 +36,9 @@
                         @for ($i = 0; $i < 4; $i++)
                             @if(isset($question->proposals[$i]))
                                 <td
-                                    @if (isset($question->answer) && ($question->proposals[$i]->id === $question->answer->id))
+                                        @if (isset($question->answer) && ($question->proposals[$i]->id === $question->answer->id))
                                         class="proposal-answer"
-                                    @endif
+                                        @endif
                                 >
                                     @isset($question->proposals[$i])
                                         {{ $question->proposals[$i]->value }}
@@ -54,16 +55,23 @@
                             @endif
                         @endfor
                         <td>
-                            <ul>
-                                <li>
-                                    <a href="{{ route('questions.show', ['id' => $question->id]) }}">Voir</a>
-                                    <a href="{{ route('questions.edit', ['id' => $question->id]) }}">Éditer</a>
-                                </li>
-                            </ul>
+                            <a href="{{ route('questions.show', ['id' => $question->id]) }}" title="Show question">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            <a href="{{ route('questions.edit', ['id' => $question->id]) }}" title="Edit question">
+                                <i class="fas fa-pencil-alt"></i>
+                            </a>
                         </td>
                     </tr>
                 @endforeach
+                </tbody>
             </table>
+        </div>
+
+        {{ $questions->links() }}
+
+        <div class="container-empty-search" id="js-empty-search" aria-hidden="true">
+            <p class="emphasis">Aucun résultat.</p>
         </div>
     </div>
 @endsection

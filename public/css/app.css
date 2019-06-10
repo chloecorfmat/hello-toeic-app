@@ -227,6 +227,7 @@ th {
 
 a {
   color: #4b3f72;
+  text-decoration: none;
 }
 
 a:hover {
@@ -705,6 +706,11 @@ tr:nth-child(2n) {
 .alert-answer .list-item {
   margin-left: 1.5rem;
   list-style-type: disc;
+}
+
+.alert-explanation {
+  border-radius: 10px;
+  margin: 1rem auto 0;
 }
 
 .breadcrumb {

@@ -19,7 +19,9 @@
 
             <div class="field-container">
                 <label for="question">Question <span class="required">*</span></label>
-                <input type="text" id="question" name="question" value="{{ $datas['question']->question }}" required>
+                @php ($question_value = $datas['question']->question == '' ? '#none' : $datas['question']->question)
+                <input type="text" id="question" name="question" value="{{ $question_value }}" aria-describedby="question-description" required>
+                <p id="question-description">Entrez '#none' pour avoir une question vide.</p>
             </div>
 
             <div>
@@ -63,9 +65,32 @@
                 </select>
             </div>
 
+            <div class="field-container">
+                <label for="choices-explanation">Explanation</label>
+                <select id="choices-explanation" name="explanation" id="explanation">
+                    <option></option>
+                    @foreach ($explanations as $explanation)
+                        <option
+                                value="{{ $explanation->id }}"
+                                @if ($explanation->id == $datas['question']->explanation_id)
+                                    selected
+                                @endif
+                        >
+                            {{ $explanation->title }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
             <button type="submit" class="btn btn-primary">
                 {{ __('Validate') }}
             </button>
         </form>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const choices= new Choices('#choices-explanation');
+        });
+    </script>
 @endsection
