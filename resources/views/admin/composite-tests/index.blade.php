@@ -45,6 +45,11 @@
                             </button>
                         </th>
                         <th scope="col">
+                            <button class="sort" data-sort="visibility">
+                                Visibility <i class="fas fa-arrows-alt-v"></i>
+                            </button>
+                        </th>
+                        <th scope="col">
                             <button class="sort" data-sort="exercises">
                                 Exercises <i class="fas fa-arrows-alt-v"></i>
                             </button>
@@ -57,6 +62,7 @@
                         <tr>
                             <td class="name">{{ $test['name'] }}</td>
                             <td class="version">{{ $test['version'] }}</td>
+                            <td class="visibility">{{ $test['visible'] }}</td>
                             <td>
                                 <ul>
                                     @if ($test['exercise_part1'])<li><a href="{{ action('ExerciseController@show', ['id' => $test['exercise_part1']['id']]) }}">{{ $test['exercise_part1']['name'] }}</li>@endif
@@ -70,7 +76,12 @@
 
                             </td>
                             <td>
-                                <a href="{{ action('CompositeTestController@show', ['id' => $test['id']]) }}">Try !</a>
+                                <a href="{{ action('CompositeTestController@show', ['id' => $test['id']]) }}" title="Execute test">
+                                    <i class="fas fa-play fa-lg"></i>
+                                </a>
+                                <a href="{{ action('Admin\CompositeTestController@edit', ['id' => $test['id']]) }}" title="Edit test">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </a>
                             </td>
                         </tr>
                     @endforeach

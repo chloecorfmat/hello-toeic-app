@@ -119,6 +119,13 @@
                                 </li>
 
                                 <li class="laterale-bar--menu-item">
+                                    <a href="{{ route('lessons.index') }}">
+                                        <i class="menu-ico far fa-calendar-alt"></i>
+                                        Liste des leçons
+                                    </a>
+                                </li>
+
+                                <li class="laterale-bar--menu-item">
                                     <a href="{{ route('documents.index') }}">
                                         <i class="menu-ico far fa-images"></i>
                                         Liste des documents

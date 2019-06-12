@@ -97,6 +97,11 @@ Breadcrumbs::for('composite-tests.create', function ($trail) {
     $trail->push('Create', route('composite-tests.create'));
 });
 
+Breadcrumbs::for('composite-tests.edit', function ($trail, $composite_test) {
+    $trail->parent('composite-tests.index');
+    $trail->push('Edit', route('composite-tests.edit', $composite_test->id));
+});
+
 Breadcrumbs::for('parts.index', function ($trail) {
     $trail->parent('dashboard');
     $trail->push('Parts', route('parts.index'));
@@ -135,6 +140,26 @@ Breadcrumbs::for('explanations.show', function ($trail, $explanation) {
 Breadcrumbs::for('explanations.edit', function ($trail, $explanation) {
     $trail->parent('explanations.show', $explanation);
     $trail->push('Modifier', route('explanations.edit', $explanation->id));
+});
+
+Breadcrumbs::for('lessons.index', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Lessons', route('lessons.index'));
+});
+
+Breadcrumbs::for('lessons.create', function ($trail) {
+    $trail->parent('lessons.index');
+    $trail->push('Create', route('lessons.create'));
+});
+
+Breadcrumbs::for('lessons.show', function ($trail, $lesson) {
+    $trail->parent('lessons.index');
+    $trail->push($lesson->name, route('lessons.show', $lesson->id));
+});
+
+Breadcrumbs::for('lessons.edit', function ($trail, $lesson) {
+    $trail->parent('lessons.show', $lesson);
+    $trail->push('Modifier', route('lessons.edit', $lesson->id));
 });
 
 

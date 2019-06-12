@@ -34,12 +34,92 @@
                 </div>
             </div>
 
-            <h2>Résultats des derniers exercices</h2>
             @if ($message = Session::get('success'))
                 <div class="alert alert-success">
                     <p>{{ $message }}</p>
                 </div>
             @endif
+
+            @if (sizeof($lessons) > 0)
+            <h2>Leçons en cours</h2>
+            <div class="table" id="profile-lessons">
+                    <div class="table--filters">
+                        <div class="field-container">
+                            <label for="search">Search</label>
+                            <input type="text" id="search" name="search" class="search">
+                        </div>
+                    </div>
+
+                    <div class="table-container is-visible">
+                        <table>
+                            <caption class="sr-only">Liste des leçons en cours</caption>
+                            <thead>
+                            <tr>
+                                <th scope="col">
+                                    <button class="sort" data-sort="name">
+                                        Name <i class="fas fa-arrows-alt-v"></i>
+                                    </button>
+                                </th>
+                                <th scope="col">
+                                    <button class="sort" data-sort="start">
+                                        Start datetime <i class="fas fa-arrows-alt-v"></i>
+                                    </button>
+                                </th>
+                                <th scope="col">
+                                    <button class="sort" data-sort="end">
+                                        End datetime <i class="fas fa-arrows-alt-v"></i>
+                                    </button>
+                                </th>
+                                <th scope="col">
+                                    <button class="sort" data-sort="test">
+                                        Composite test <i class="fas fa-arrows-alt-v"></i>
+                                    </button>
+                                </th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody class="list">
+                            @foreach ($lessons as $key => $lesson)
+                                <tr>
+                                    <td class="name">{{ $lesson->name }}</td>
+                                    <td class="start">{{ date('d/m/Y H:i', strtotime($lesson->start_datetime)) }}</td>
+                                    <td class="end">{{ date('d/m/Y H:i', strtotime($lesson->end_datetime)) }}</td>
+                                    <td class="test">{{ $lesson->composite_test()->first()->name }}</td>
+                                    <td>
+                                        <ul>
+                                            <li class="table--action">
+                                                <a
+                                                        href="{{ action('CompositeTestController@show', ['id' => $lesson->composite_test()->first()->id]) }}"
+                                                        title="Execute test"
+                                                >
+                                                    <i class="fas fa-play fa-lg"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="container-pagination">
+                        <button class="btn-pagination" id="js-pagination-prev">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <ul class="pagination"></ul>
+                        <button class="btn-pagination" id="js-pagination-next">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+            <div class="container-empty-search" id="js-empty-search" aria-hidden="true">
+                <p class="emphasis">Aucun résultat.</p>
+            </div>
+            @endif
+
+            <h2>Résultats des derniers exercices</h2>
             @if (!Auth::user()->hasRole('teacher'))
                 <p class="emphasis">La correction des questions liées aux parties de compréhension orale n'est pas affichée.</p>
             @endif

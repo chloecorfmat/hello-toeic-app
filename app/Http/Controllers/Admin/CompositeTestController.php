@@ -28,6 +28,7 @@ class CompositeTestController extends Controller
             $t['name'] = $test->name;
             $t['id'] = $test->id;
             $t['version'] = $test->version;
+            $t['visible'] = $test->visible;
             $t['exercise_part1'] = Exercise::find($test->exercise_part1);
             $t['exercise_part2'] = Exercise::find($test->exercise_part2);
             $t['exercise_part3'] = Exercise::find($test->exercise_part3);
@@ -64,14 +65,16 @@ class CompositeTestController extends Controller
         $compositeTest = [
             'name' => addslashes($request->get('name')),
             'version' => addslashes($request->get('version')),
+            'visible' => addslashes($request->get('visible')),
         ];
 
 
         for($i = 1; $i < 8; $i++) {
-            $exercise = Exercise::find(addslashes($request->get('part_' . $i)));
+            $var = 'exercise_part' . $i;
+            $exercise = Exercise::find(addslashes($request->get($var)));
 
             if (!is_null($exercise)) {
-                $compositeTest['exercise_part' . $i] = $exercise->id;
+                $compositeTest[$var] = $exercise->id;
             }
         }
 
@@ -99,7 +102,9 @@ class CompositeTestController extends Controller
      */
     public function edit($id)
     {
-        //
+        $test = CompositeTest::find($id);
+        $exercises = Exercise::all();
+        return view('admin.composite-tests.edit', compact('test', 'exercises'));
     }
 
     /**
@@ -111,7 +116,26 @@ class CompositeTestController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $composite_test = CompositeTest::find($id);
+
+        $composite_test->name = $request->get('name');
+        $composite_test->version = $request->get('version');
+        $composite_test->visible = $request->get('visible');
+
+        for($i = 1; $i < 8; $i++) {
+            $var = 'exercise_part' . $i;
+            $exercise = Exercise::find(addslashes($request->get($var)));
+
+            if (!is_null($exercise)) {
+                $composite_test->$var = $exercise->id;
+            } else {
+                $composite_test->$var = null;
+            }
+        }
+
+        $composite_test->save();
+
+        return redirect()->route('composite-tests.index')->with('success', 'L\'exercice composé a bien été mis à jour.');
     }
 
     /**

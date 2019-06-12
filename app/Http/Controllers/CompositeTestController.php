@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\CompositeTrial;
 use App\Correction;
+use App\Lesson;
 use App\Services\Mp3Service;
 use App\Trial;
 use Illuminate\Http\Request;
 use App\CompositeTest;
 use App\Exercise;
+use Illuminate\Support\Facades\Auth;
 
 class CompositeTestController extends Controller
 {
@@ -19,7 +21,7 @@ class CompositeTestController extends Controller
      */
     public function index()
     {
-        $compositeTests = CompositeTest::all();
+        $compositeTests = CompositeTest::where('visible', '1')->get();
         $tests = [];
 
         foreach ($compositeTests as $test) {
@@ -79,6 +81,8 @@ class CompositeTestController extends Controller
             'exercise_part7',
         ];
 
+        $user = Auth::user();
+
         $questions = [];
         $source = '';
         $datasources_ar = [];
@@ -89,6 +93,33 @@ class CompositeTestController extends Controller
         if (is_null($test)) {
             abort(404);
         }
+
+        // Check if user can see the test.
+        if (
+            !$test->visible &&
+            !$user->hasRole('teacher')
+
+        ) {
+            $datetime = (new \DateTime())->format('Y-m-d H:i:s');
+            $groups = $user->groups()->get();
+            $gids = [];
+
+            foreach ($groups as $group) {
+                $gids[] = $group->id;
+            }
+
+            $lessons = Lesson::whereIn('group_id', $gids)
+                ->where('start_datetime', '<=', $datetime)
+                ->where('end_datetime', '>=', $datetime)
+                ->where('composite_test_id', $test->id)
+                ->count();
+
+            if ($lessons == 0) {
+                // User cannot access to this test.
+                abort(403);
+            }
+        }
+
 
         foreach ($exercises as $exercise) {
             $ex = Exercise::find($test->$exercise);

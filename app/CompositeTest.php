@@ -9,6 +9,7 @@ class CompositeTest extends Model
     protected $fillable = [
         'name',
         'version',
+        'visible',
         'exercise_part1',
         'exercise_part2',
         'exercise_part3',
