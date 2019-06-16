@@ -17,6 +17,7 @@ class CompositeTest extends Model
         'exercise_part5',
         'exercise_part6',
         'exercise_part7',
+        'updated_at',
     ];
 
     public $timestamps = false;

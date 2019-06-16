@@ -66,6 +66,7 @@ class CompositeTestController extends Controller
             'name' => addslashes($request->get('name')),
             'version' => addslashes($request->get('version')),
             'visible' => addslashes($request->get('visible')),
+            'updated_at' => (new \DateTime()),
         ];
 
 
@@ -121,6 +122,7 @@ class CompositeTestController extends Controller
         $composite_test->name = $request->get('name');
         $composite_test->version = $request->get('version');
         $composite_test->visible = $request->get('visible');
+        $composite_test->updated_at = (new \DateTime());
 
         for($i = 1; $i < 8; $i++) {
             $var = 'exercise_part' . $i;
