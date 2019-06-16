@@ -15,6 +15,10 @@
                     <a href="{{ route('documents.show', ['id' => $document->id]) }}">
                         @if ($document->type === 'image')
                             <img src="{{ url('storage/'.$document->url) }}">
+                        @elseif ($document->type === 'text')
+                            <div class="audio-ico-container">
+                                <i class="fas fa-align-justify fa-5x"></i>
+                            </div>
                         @else
                             <div class="audio-ico-container">
                                 <i class="fas fa-volume-up fa-5x"></i>
