@@ -22,6 +22,7 @@ Route::macro('setGroupNamespace', function ($namespace) {
 });
 
 Route::get('/', 'HomeController@home');
+Route::get('/home', 'HomeController@home');
 
 Auth::routes(['register' => false]);
 
