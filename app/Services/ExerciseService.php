@@ -345,6 +345,7 @@ class ExerciseService {
                         $line,
                         $data_question
                     );
+                    $question_data = [];
                     $question_data['number'] = $data_question['number'];
                     if (isset($data_question['question'])) {
                         $line = str_replace("\r\n", ' ', $data_question['question']);
