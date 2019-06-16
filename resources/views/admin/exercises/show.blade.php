@@ -31,6 +31,7 @@
                         <th scope="col">Proposal B</th>
                         <th scope="col">Proposal C</th>
                         <th scope="col">Proposal D</th>
+                        <th scope="col">Explanation</th>
                         <th scope="col">Actions</th>
                     </tr>
                     </thead>
@@ -60,6 +61,7 @@
                                     <td>/</td>
                                 @endif
                             @endfor
+                            <td>@if ($question->explanation_id) <i class="fas fa-chalkboard-teacher"></i> @else <i class="fas fa-times"></i> @endif</td>
                             <td>
                                 <a href="{{ route('questions.show', ['id' => $question->id]) }}" title="Show question">
                                     <i class="fas fa-eye"></i>

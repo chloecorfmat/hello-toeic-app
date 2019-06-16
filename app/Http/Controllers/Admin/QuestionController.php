@@ -33,7 +33,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        $questions = DB::table('questions')->paginate(20);
+        $questions = Question::paginate(20);
         return view('admin.questions.index', ['questions' => $questions]);
     }
 
@@ -192,7 +192,7 @@ class QuestionController extends Controller
 
         $question->save();
 
-        return redirect('/profile')->with('success', 'Question saved.');
+        return redirect()->route('questions.index')->with('success', 'Question has been saved.');
     }
 
     /**

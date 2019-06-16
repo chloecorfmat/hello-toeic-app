@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\Trial;
 use App\Game;
+use App\Setting;
 
 class StudentController extends Controller
 {
@@ -89,7 +90,12 @@ class StudentController extends Controller
             ->orderBy('datetime', 'DESC')
             ->get();
 
-        return view('admin.students.show', compact('student', 'trials', 'composite_trials', 'composite_trials_names', 'games'));
+        $scores = [
+            'low' => Setting::where('key', 'config.score.low')->first()->value,
+            'intermediate' => Setting::where('key', 'config.score.intermediate')->first()->value
+        ];
+
+        return view('admin.students.show', compact('student', 'trials', 'composite_trials', 'composite_trials_names', 'games', 'scores'));
     }
 
     /**
