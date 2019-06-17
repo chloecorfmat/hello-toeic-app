@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Exercise;
 use App\Trial;
 use App\Correction;
+use Illuminate\Support\Facades\Auth;
 
 class ExerciseController extends Controller
 {
@@ -23,7 +24,7 @@ class ExerciseController extends Controller
      */
     public function index()
     {
-        $exercises = Exercise::all();
+        $exercises = Exercise::where('visible', 1)->get();
         return view('exercises.index', compact('exercises'));
     }
 
@@ -56,10 +57,17 @@ class ExerciseController extends Controller
      */
     public function show($id)
     {
+        $user = Auth::user();
         $exercise = Exercise::find($id);
 
         if (is_null($exercise)) {
             abort(404);
+        }
+
+        if (!$exercise->visible &&
+            !$user->hasRole('teacher')
+        ) {
+            abort(403);
         }
 
         $questions = $exercise->questions()->orderBy('number')->get();

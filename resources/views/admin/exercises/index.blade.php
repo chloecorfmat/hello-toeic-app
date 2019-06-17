@@ -41,6 +41,11 @@
                                 Part <i class="fas fa-arrows-alt-v"></i>
                             </button>
                         </th>
+                        <th scope="col">
+                            <button class="sort" data-sort="visibility">
+                                Visibility <i class="fas fa-arrows-alt-v"></i>
+                            </button>
+                        </th>
                         <th scope="col">Actions</th>
                     </tr>
                     </thead>
@@ -49,8 +54,10 @@
                         <tr>
                             <td class="name">{{ $exercise->name }}</td>
                             <td class="version">{{ $exercise->part->name }}</td>
+                            <td class="visibility">{{ $exercise->visible }}</td>
                             <td>
                                 <a href="{{ route('exercises.show', ['id' => $exercise->id]) }}" title="Show exercise"><i class="fas fa-eye"></i></a>
+                                <a href="{{ route('exercises.edit', $exercise->id) }}" title="Edit exercise"><i class="fas fa-pencil-alt"></i></a>
                                 <a href="{{ action('ExerciseController@show', ['id' => $exercise->id]) }}" title="Execute exercise"><i class="fas fa-play"></i></a>
                                 <a href="{{ route('exercises.delete', $exercise->id) }}" title="Delete exercise"><i class="fas fa-trash"></i></a>
                             </td>

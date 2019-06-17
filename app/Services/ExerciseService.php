@@ -68,6 +68,7 @@ class ExerciseService {
             [
                 'name' => $request->get('name'),
                 'part_id' => $part->id,
+                'updated_at' => (new \DateTime()),
             ]
         );
 

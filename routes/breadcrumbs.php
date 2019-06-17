@@ -32,6 +32,11 @@ Breadcrumbs::for('exercises.delete', function ($trail, $exercise) {
     $trail->push('Delete ' . $exercise->name, route('exercises.delete'));
 });
 
+Breadcrumbs::for('exercises.edit', function ($trail, $exercise) {
+    $trail->parent('exercises.index');
+    $trail->push('Edit ' . $exercise->name, route('exercises.edit', $exercise->id));
+});
+
 Breadcrumbs::for('exercises.import', function ($trail, $part) {
     $trail->parent('parts.show', $part);
     $trail->push('Add exercise', route('exercises.import'));

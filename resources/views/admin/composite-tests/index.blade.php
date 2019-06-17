@@ -73,7 +73,6 @@
                                     @if ($test['exercise_part6'])<li><a href="{{ action('ExerciseController@show', ['id' => $test['exercise_part6']['id']]) }}">{{ $test['exercise_part6']['name'] }}</li>@endif
                                     @if ($test['exercise_part7'])<li><a href="{{ action('ExerciseController@show', ['id' => $test['exercise_part7']['id']]) }}">{{ $test['exercise_part7']['name'] }}</li>@endif
                                 </ul>
-
                             </td>
                             <td>
                                 <a href="{{ action('CompositeTestController@show', ['id' => $test['id']]) }}" title="Execute test">

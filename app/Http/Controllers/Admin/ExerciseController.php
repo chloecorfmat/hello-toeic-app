@@ -71,7 +71,8 @@ class ExerciseController extends Controller
      */
     public function edit($id)
     {
-        //
+        $exercise = Exercise::find($id);
+        return view('admin.exercises.edit', compact('exercise'));
     }
 
     /**
@@ -83,7 +84,15 @@ class ExerciseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $exercise = Exercise::find($id);
+
+        $exercise->name = $request->get('name');
+        $exercise->visible = $request->get('visible');
+        $exercise->updated_at = (new \DateTime());
+
+        $exercise->save();
+
+        return redirect()->route('exercises.index')->with('success', 'Exercise has been updated.');
     }
 
     /**

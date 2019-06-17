@@ -10,6 +10,8 @@ class Exercise extends Model
         'name',
         'part_id',
         'status',
+        'visible',
+        'updated_at',
     ];
 
     public $timestamps = false;
