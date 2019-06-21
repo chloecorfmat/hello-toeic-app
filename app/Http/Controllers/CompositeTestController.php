@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use App\CompositeTrial;
 use App\Correction;
 use App\Lesson;
-use App\Services\Mp3Service;
 use App\Trial;
 use Illuminate\Http\Request;
 use App\CompositeTest;
 use App\Exercise;
 use Illuminate\Support\Facades\Auth;
+use wapmorgan\Mp3Info\Mp3Info;
 
 class CompositeTestController extends Controller
 {
@@ -138,15 +138,9 @@ class CompositeTestController extends Controller
                                 if (!in_array(url('storage/' . $document->url), $datasources_ar)) {
                                     $filename = url('storage/' . $document->url);
                                     $datasources_ar[] = $filename;
-                                    $m = new Mp3Service('storage/' . $document->url);
-                                    $a = $m->get_metadata();
-                                    if ($a['Encoding']=='Unknown')
-                                        $len = 0;
-                                    else if ($a['Encoding']=='VBR')
-                                        $len= $a['Length'] ?? 0;
-                                    else if ($a['Encoding']=='CBR')
-                                        $len= $a['Length'] ?? 0;
-                                    $listening_duration += $len;
+
+                                    $audio = new Mp3Info('storage/' . $document->url);
+                                    $listening_duration += $audio->duration;
                                 }
                             }
                         }

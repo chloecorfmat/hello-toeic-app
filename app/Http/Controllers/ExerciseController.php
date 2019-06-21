@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\Mp3Service;
 use Illuminate\Http\Request;
 use App\Exercise;
 use App\Trial;
 use App\Correction;
 use Illuminate\Support\Facades\Auth;
+
+use wapmorgan\Mp3Info\Mp3Info;
 
 class ExerciseController extends Controller
 {
@@ -94,17 +95,8 @@ class ExerciseController extends Controller
                             $filename = url('storage/' . $document->url);
                             $datasources_ar[] = $filename;
 
-                            $m = new Mp3Service('storage/' . $document->url);
-                            $a = $m->get_metadata();
-
-                            if ($a['Encoding']=='Unknown')
-                                $len = 0;
-                            else if ($a['Encoding']=='VBR')
-                                $len= $a['Length'] ?? 0;
-                            else if ($a['Encoding']=='CBR')
-                                $len= $a['Length'] ?? 0;
-
-                            $listening_duration += $len;
+                            $audio = new Mp3Info('storage/' . $document->url);
+                            $listening_duration += $audio->duration;
                         }
                     }
                 }
