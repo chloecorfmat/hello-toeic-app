@@ -39,7 +39,7 @@
                                 <p class="part-instructions">{{ $question->parts[0]->description }}</p>
                                 <ul class="questions">
                                     @endif
-                                    @if ($current_part == 7)
+                                    @if ($question->parts[0]->texts)
                                         <div>
                                             @foreach ($question->documents as $document)
                                                 @if ($document->type === 'text' && $document->id !== $current_document)
