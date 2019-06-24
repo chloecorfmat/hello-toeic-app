@@ -58,6 +58,12 @@ class GroupController extends Controller
         $diff = $start_date->diff($end_date);
 
         if (!$diff->invert) {
+            $exist = count(Group::where('machine_name', (new StringService($data['name']))->normalize())->get());
+
+            if ($exist > 0) {
+                return redirect()->route('groups.create')->withErrors(['A group with this name already exists.']);
+            }
+
             $group = Group::create([
                 'name' => $data['name'],
                 'start_date' => $data['start'],
