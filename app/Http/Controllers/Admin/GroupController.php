@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Group;
 use App\Http\Controllers\Controller;
+use App\Services\StringService;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -61,10 +62,13 @@ class GroupController extends Controller
                 'name' => $data['name'],
                 'start_date' => $data['start'],
                 'end_date' => $data['end'],
-                'teacher' => $data['teacher']
+                'teacher' => $data['teacher'],
+                'machine_name' => (new StringService($data['name']))->normalize(),
             ]);
 
-            $group->users()->attach($data['students']);
+            if (isset($data['students'])) {
+                $group->users()->attach($data['students']);
+            }
 
             return redirect()->route('groups.index')->with('success', 'Group has been created.');
         } else {
@@ -120,5 +124,87 @@ class GroupController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function assign() {
+        return view('admin.groups.assign');
+    }
+
+    public function storeAssign(Request $request) {
+        $group_warning = "Following groups do not exist : ";
+        $student_warning = "Following students do not exist : ";
+
+        $group_message = "";
+        $student_message = "";
+
+
+        $handle = file($request->file('data')->path());
+        if (sizeof($handle) === 1) {
+            $handle = explode("\r", $handle[0]);
+        }
+
+        $group = null;
+        $students = null;
+
+        foreach ($handle as $line) {
+            if (intval($line) === 0) {
+                if (!is_null($students) && !is_null($group)) {
+                    $group->users()->attach($students);
+                    $group->save();
+                }
+
+                if (str_replace("\n", "", $line) !== "") {
+                    $group = Group::where('machine_name', str_replace("\n", "", $line))->get()->first();
+                    $students = null;
+
+                    if (is_null($group)) {
+                        if ($group_message !== "") {
+                            $group_message .= ', ' . str_replace("\n", "", $line);
+                        } else {
+                            $group_message = $group_warning . str_replace("\n", "", $line);
+                        }
+                    }
+                }
+
+            } else {
+                if (!is_null($group)) {
+                    $student = User::where('matricule', str_replace("\n", "", $line))->get()->first();
+                    if (!is_null($student) && count($student->groups()->where('group_id', $group->id)->get()) === 0) {
+                        $students[] = $student->id;
+                    } else {
+                        if (is_null($student)) {
+                            if ($student_message !== "") {
+                                $student_message .= ', ' . str_replace("\n", "", $line);
+                            } else {
+                                $student_message = $student_warning . str_replace("\n", "", $line);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        if (!is_null($group) && !is_null($students)) {
+            $group->users()->attach($students);
+            $group->save();
+        }
+
+        $message = "";
+
+        if ($group_message !== "") {
+            $message = "<p>" . $group_message . "</p>";
+        }
+
+        if ($student_message !== "") {
+            if ($message !== "") {
+                $message .= "<br />";
+            }
+
+            $message .= "<p>" . $student_message . "</p>";
+        }
+
+        return redirect()->route('groups.index')
+            ->with('success', 'Groups have been imported.')
+            ->with('warning', $message);
     }
 }

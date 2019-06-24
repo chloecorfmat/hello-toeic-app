@@ -140,6 +140,7 @@ class ExerciseService {
 
             foreach ($text['number'] as $number) {
                 $questions_object[$number]->documents()->attach($d);
+                $questions_object[$number]->save();
             }
         }
 

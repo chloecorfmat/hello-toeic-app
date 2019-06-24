@@ -45,7 +45,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('admin/students', 'StudentController');
     Route::resource('admin/parts', 'PartController');
     Route::resource('admin/composite-tests', 'CompositeTestController');
+
+    Route::get('admin/groups/assign', 'GroupController@assign')
+        ->name('groups.assign');
+    Route::post('admin/groups/storeAssign', 'GroupController@storeAssign')
+        ->name('groups.storeAssign');
     Route::resource('admin/groups', 'GroupController');
+
     Route::resource('admin/explanations', 'ExplanationController');
     Route::resource('admin/lessons', 'LessonController');
 

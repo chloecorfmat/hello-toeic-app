@@ -15,6 +15,7 @@
 
         <div class="part-container">
             <p><strong class="important">Name: </strong>{{ $group->name }}</p>
+            <p><strong class="important">Machine name: </strong>{{ $group->machine_name }}</p>
             <p><strong class="important">Teacher: </strong>{{ $teacher->name }}</p>
             <p><strong class="important">Dates: </strong>from {{ date('d/m/Y', strtotime($group->start_date)) }} to {{ date('d/m/Y', strtotime($group->end_date)) }}</p>
         </div>

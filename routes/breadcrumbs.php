@@ -72,6 +72,11 @@ Breadcrumbs::for('groups.show', function ($trail, $group) {
     $trail->push($group->name, route('groups.show', $group));
 });
 
+Breadcrumbs::for('groups.assign', function ($trail) {
+    $trail->parent('groups.index');
+    $trail->push('Assign students in groups', route('groups.assign'));
+});
+
 Breadcrumbs::for('documents.index', function ($trail) {
     $trail->parent('dashboard');
     $trail->push('Documents', route('documents.index'));

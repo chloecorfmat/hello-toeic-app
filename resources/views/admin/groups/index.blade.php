@@ -8,15 +8,20 @@
             <a href="{{ route('groups.create') }}" class="main-content--header-actions">
                 <i class="fas fa-plus-circle"></i>
             </a>
+            <a href="{{ route('groups.assign') }}" class="main-content--header-actions">
+                <i class="fas fa-user-graduate"></i>
+            </a>
         </div>
 
         @if ($message = Session::get('success'))
             <div class="alert alert-success">
-                <p>{{ $message }}</p>
+                <p>{!! html_entity_decode($message) !!}</p>
             </div>
-        @elseif ($message = Session::get('warning'))
+        @endif
+
+        @if ($message = Session::get('warning'))
             <div class="alert alert-warning">
-                <p>{{ $message }}</p>
+                <p>{!! html_entity_decode($message) !!}</p>
             </div>
         @elseif ($message = Session::get('error'))
             <div class="alert alert-error">
@@ -63,7 +68,10 @@
                     <tbody class="list">
                     @foreach ($groups as $key => $group)
                         <tr>
-                            <td class="name">{{ $group->name }}</td>
+                            <td class="name">
+                                {{ $group->name }}
+                                <span class="emphasis">({{ $group->machine_name }})</span>
+                            </td>
                             <td class="teacher">{{ $teachers[$group->teacher]->name  }}</td>
                             <td class="start">{{ date('d/m/Y', strtotime($group->start_date)) }}</td>
                             <td class="end">{{ date('d/m/Y', strtotime($group->end_date)) }}</td>

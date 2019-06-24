@@ -10,7 +10,8 @@ class Group extends Model
         'name',
         'start_date',
         'end_date',
-        'teacher'
+        'teacher',
+        'machine_name',
     ];
 
     public $timestamps = false;

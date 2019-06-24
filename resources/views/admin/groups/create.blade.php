@@ -41,8 +41,8 @@
             </div>
 
             <div class="field-container">
-                <label for="students">Students <span class="required">*</span></label>
-                <select name="students[]" id="students" required multiple>
+                <label for="students">Students</label>
+                <select name="students[]" id="students" multiple>
                     @foreach($students as $student)
                         <option value="{{ $student->id }}">{{ $student->name }}</option>
                     @endforeach
