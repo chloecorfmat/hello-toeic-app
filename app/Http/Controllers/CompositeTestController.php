@@ -94,6 +94,11 @@ class CompositeTestController extends Controller
             abort(404);
         }
 
+        if (is_null($user)) {
+            abort(403);
+        }
+
+
         // Check if user can see the test.
         if (
             !$test->visible &&
