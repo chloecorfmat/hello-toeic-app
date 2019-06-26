@@ -94,8 +94,8 @@
 /***/ (function(module, exports) {
 
 window.addEventListener('load', initialiser);
-var DURATION_WRITING = 75;
-var DURATION_UNIT = 'minutes';
+var DURATION_WRITING = 75 * 60;
+var DURATION_UNIT = 'seconds';
 var SECOND = moment.duration(1, 'seconds');
 var listening_duration = moment.duration(DURATION_LISTENING, DURATION_UNIT);
 
