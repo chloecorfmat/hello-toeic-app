@@ -94,7 +94,6 @@
 /***/ (function(module, exports) {
 
 window.addEventListener('load', initialiser);
-var DURATION_WRITING = 75 * 60;
 var DURATION_UNIT = 'seconds';
 var SECOND = moment.duration(1, 'seconds');
 var listening_duration = moment.duration(DURATION_LISTENING, DURATION_UNIT);
@@ -176,41 +175,12 @@ function initialiser(e) {
         });
 
         if (document.querySelector('.fa-glasses') != null) {
-          writing(interval);
+          reading(interval);
         }
       }
     });
     document.addEventListener('scroll', stickyPlayer);
   }
-  /**document.querySelectorAll("#test .img-preview").forEach(function(el) {
-      el.addEventListener('click', function() {
-          var i = this.querySelector('img');
-           if (i.classList.contains('on-preview')) {
-              i.classList.remove('on-preview');
-              document.querySelector('.preview').style.backgroundImage = "";
-              document.querySelector('.preview').classList.add("hidden");
-          } else {
-               document.querySelectorAll('.on-preview').forEach(function(on) {
-                  on.classList.remove('on-preview');
-              });
-               i.classList.add('on-preview');
-              document.querySelector('.preview').style.backgroundImage = "url(" + i.src + ")";
-              document.querySelector('.preview').classList.remove('hidden');
-          }
-      }, false);
-       document.body.addEventListener('click', function(e) {
-          if (e.target.closest('.preview')) return;
-          if (e.target.closest('.img-preview')) return;
-           if (!document.querySelector('.preview').classList.contains('hidden')) {
-              document.querySelectorAll('.on-preview').forEach(function (el) {
-                  el.classList.remove('on-preview');
-              });
-               document.querySelector('.preview').style.backgroundImage = "";
-              document.querySelector('.preview').classList.add('hidden');
-          }
-      }, false);
-  }); **/
-
 } // Get timer for listening exercises.
 
 
@@ -235,12 +205,12 @@ function stickyPlayer(e) {
       player.classList.remove('sticky-player');
     }
   }
-} // Get timer for writing exercises.
+} // Get timer for reading exercises.
 
 
-function writing(interval) {
+function reading(interval) {
   var timer = document.getElementById('timer');
-  var duration = moment.duration(DURATION_WRITING, DURATION_UNIT);
+  var duration = moment.duration(DURATION_READING, DURATION_UNIT);
   interval = setInterval(function () {
     duration = duration.subtract(SECOND);
     timer.innerText = duration.format("hh:mm:ss", {

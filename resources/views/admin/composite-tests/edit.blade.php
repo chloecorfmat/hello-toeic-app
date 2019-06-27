@@ -42,30 +42,45 @@
                 <p id="visible-description">1 for public, 0 for private.</p>
             </div>
 
-            @php($p = "version")
-            {{ $test->$p }}
+            <div class="field-container">
+                <label for="reading-duration">Reading duration</label>
+                <input
+                        type="number"
+                        id="reading-duration"
+                        name="reading_duration"
+                        min="0"
+                        step="1"
+                        aria-describedby="reading-duration-description"
+                        value="{{ $test->reading_duration }}"
+                >
+                <p id="reading-timer-description">Duration of reading exercises (in seconds)</p>
+            </div>
+            <fieldset>
+                <legend>Composition du test</legend>
+                <p>Il faut contribuer les exercices de la partie "listening" avant ceux de la partie "reading". Le timer démarre avec les fichiers audios lorsqu'un test est effectué par un étudiant.</p>
 
-            @for ($i = 1; $i < 8; $i++)
-                <div class="field-container">
-                    <label for="exercise_part{{ $i }}">Part {{ $i }}</label>
-                    <select id="exercise_part{{ $i }}" name="exercise_part{{ $i }}">
-                        <option></option>
-                        @foreach ($exercises as $exercise)
-                            @php($p = "exercise_part" . $i)
-                            <option
-                                    value="{{ $exercise->id }}"
+                @for ($i = 1; $i < 8; $i++)
+                    <div class="field-container">
+                        <label for="exercise_part{{ $i }}">Part {{ $i }}</label>
+                        <select id="exercise_part{{ $i }}" name="exercise_part{{ $i }}">
+                            <option></option>
+                            @foreach ($exercises as $exercise)
+                                @php($p = "exercise_part" . $i)
+                                <option
+                                        value="{{ $exercise->id }}"
 
-                                    @if($test->$p == $exercise->id)
-                                        selected
-                                    @endif
-                            >
+                                        @if($test->$p == $exercise->id)
+                                            selected
+                                        @endif
+                                >
 
-                                {{ $exercise->name }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
-            @endfor
+                                    {{ $exercise->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                @endfor
+            </fieldset>
 
             <button type="submit" class="btn btn-primary">
                 {{ __('Validate') }}

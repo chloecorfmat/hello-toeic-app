@@ -19,7 +19,7 @@ class SettingTableSeeder extends Seeder
             'name' => 'Send e-mails ?',
         ]);**/
 
-        Setting::create([
+        /**Setting::create([
             'key' => 'config.score.intermediate',
             'type' => 'config',
             'value' => '85',
@@ -31,6 +31,13 @@ class SettingTableSeeder extends Seeder
             'type' => 'config',
             'value' => '65',
             'name' => 'Score insuffisant (%)',
+        ]);**/
+
+        Setting::create([
+            'key' => 'config.default.reading.duration',
+            'type' => 'config',
+            'value' => strval(75*60),
+            'name' => 'Default timer (reading exercise)',
         ]);
     }
 }

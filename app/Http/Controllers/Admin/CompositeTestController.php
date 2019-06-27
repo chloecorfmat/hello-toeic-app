@@ -69,6 +69,10 @@ class CompositeTestController extends Controller
             'updated_at' => (new \DateTime()),
         ];
 
+        if (!is_null($request->get('reading_duration'))) {
+            $compositeTest["reading_duration"] = addslashes($request->get('reading_duration'));
+        }
+
 
         for($i = 1; $i < 8; $i++) {
             $var = 'exercise_part' . $i;
@@ -123,6 +127,10 @@ class CompositeTestController extends Controller
         $composite_test->version = $request->get('version');
         $composite_test->visible = $request->get('visible');
         $composite_test->updated_at = (new \DateTime());
+
+        if (!is_null($request->get('reading_duration'))) {
+            $composite_test->reading_duration = addslashes($request->get('reading_duration'));
+        }
 
         for($i = 1; $i < 8; $i++) {
             $var = 'exercise_part' . $i;

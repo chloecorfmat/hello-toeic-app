@@ -245,6 +245,13 @@
         @else
             const DURATION_LISTENING = 0;
         @endif
+
+        @if(isset($reading_duration) && $reading_duration != 0)
+            const DURATION_READING = {{ $reading_duration }};
+        @else
+            const DURATION_READING = 0;
+        @endif
+
     </script>
     <script src="{{ asset('js/all.js') }}" defer></script>
 </body>

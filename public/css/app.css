@@ -207,6 +207,7 @@ h2,
 h3,
 input,
 label,
+legend,
 li,
 p,
 td,
@@ -218,6 +219,7 @@ caption,
 h1,
 h2,
 label,
+legend,
 li,
 p,
 td,
@@ -478,6 +480,12 @@ form .btn {
   form .btn {
     width: initial;
   }
+}
+
+legend {
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin: 1rem 0;
 }
 
 .question-legend {

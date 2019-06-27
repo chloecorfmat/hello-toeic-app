@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\CompositeTrial;
 use App\Correction;
 use App\Lesson;
+use App\Setting;
 use App\Trial;
 use Illuminate\Http\Request;
 use App\CompositeTest;
@@ -159,13 +160,19 @@ class CompositeTestController extends Controller
             }
         }
 
+        if (!is_null($test->reading_timer)) {
+            $reading_duration = $test->reading_timer;
+        } else {
+            $reading_duration = Setting::where('key', 'config.default.reading.duration')->first()->value;
+        }
+
         $datas = [
             'test' => $test,
             'questions' => $questions,
         ];
 
 
-        return view('composite-tests.show', compact('datas', 'datasources', 'source', 'listening_duration'));
+        return view('composite-tests.show', compact('datas', 'datasources', 'source', 'listening_duration', 'reading_duration'));
     }
 
     /**
