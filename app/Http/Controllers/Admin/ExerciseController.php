@@ -147,12 +147,13 @@ class ExerciseController extends Controller
      */
     public function storeImport(Request $request)
     {
+        // TRUE if success, string with error message if not.
         $success = (new ExerciseService())->import($request);
 
-        if ($success) {
+        if ($success === TRUE) {
             return redirect()->route('exercises.index')->with('success', 'Exercise has been imported.');
         }
 
-        return redirect()->route('exercises.index')->with('error', 'An error occurred.');
+        return redirect()->route('exercises.import', ['id' => $request->get('part')])->withErrors([$success]);
     }
 }

@@ -64,100 +64,107 @@ class ExerciseService {
             $this->manageDocuments($request, $audios, 'audios', 'audio');
         }
 
-        $exercice = Exercise::create(
-            [
-                'name' => $request->get('name'),
-                'part_id' => $part->id,
-                'updated_at' => (new \DateTime()),
-            ]
-        );
+        $checked = $this->validateImport($questions, $part);
 
-        foreach ($questions as $question) {
-            $q = Question::create([
-                'version' => $part->version,
-                'question' => $question['question'],
-                'number' => $question['number'],
-            ]);
 
-            $questions_object[$question['number']] = $q;
+        if ($checked === TRUE) {
+            $exercice = Exercise::create(
+                [
+                    'name' => $request->get('name'),
+                    'part_id' => $part->id,
+                    'updated_at' => (new \DateTime()),
+                ]
+            );
 
-            $exercice->questions()->attach($q, ['number' => $question['number']]);
-            $q->parts()->attach($part);
-
-            foreach ($question['answers'] as $answer) {
-                $p = $q->proposals()->create([
-                    'value' => $answer['answer'],
-                ]);
-
-                if ($answer['index'] === $answers[$question['number']]) {
-                    $q->answer()->associate($p)->save();
-                }
-            }
-        }
-
-        if (empty($questions) && $part->nb_questions !== 0) {
-            if (!empty($audios)) {
-                $keys = array_keys($audios);
-                $min = min($keys);
-                $max = max($keys);
-            } elseif (!empty($files)) {
-                $keys = array_keys($files);
-                $min = min($keys);
-                $max = max($keys);
-            } else {
-                $min = 1;
-                $max = $part->nb_questions;
-            }
-
-            for ($i = $min; $i <= $max; $i++) {
+            foreach ($questions as $question) {
                 $q = Question::create([
                     'version' => $part->version,
-                    'question' => '',
-                    'number' => $i,
+                    'question' => $question['question'],
+                    'number' => $question['number'],
                 ]);
 
-                for ($j = 0; $j < $part->nb_answers; $j++) {
-                    $p = $q->proposals()->create(['value' => 'Answer']);
-                    if ($j === array_search($answers[$i], $matching)) {
+                $questions_object[$question['number']] = $q;
+
+                $exercice->questions()->attach($q, ['number' => $question['number']]);
+                $q->parts()->attach($part);
+
+                foreach ($question['answers'] as $answer) {
+                    $p = $q->proposals()->create([
+                        'value' => $answer['answer'],
+                    ]);
+
+                    if ($answer['index'] === $answers[$question['number']]) {
                         $q->answer()->associate($p)->save();
                     }
                 }
-
-                $questions_object[$i] = $q;
-                $exercice->questions()->attach($q, ['number' => $i]);
-                $q->parts()->attach($part);
             }
-        }
 
+            if (empty($questions) && $part->nb_questions !== 0) {
+                if (!empty($audios)) {
+                    $keys = array_keys($audios);
+                    $min = min($keys);
+                    $max = max($keys);
+                } elseif (!empty($files)) {
+                    $keys = array_keys($files);
+                    $min = min($keys);
+                    $max = max($keys);
+                } else {
+                    $min = 1;
+                    $max = $part->nb_questions;
+                }
 
-        // Link documents (audios + files + texts) to question.
-        foreach ($texts as $text) {
-            $d = Document::create([
-                'name' => '',
-                'type' => 'text',
-                'content' => $text['content'],
-            ]);
+                for ($i = $min; $i <= $max; $i++) {
+                    $q = Question::create([
+                        'version' => $part->version,
+                        'question' => '',
+                        'number' => $i,
+                    ]);
 
-            foreach ($text['number'] as $number) {
-                $questions_object[$number]->documents()->attach($d);
-                $questions_object[$number]->save();
+                    for ($j = 0; $j < $part->nb_answers; $j++) {
+                        $p = $q->proposals()->create(['value' => 'Answer']);
+                        if ($j === array_search($answers[$i], $matching)) {
+                            $q->answer()->associate($p)->save();
+                        }
+                    }
+
+                    $questions_object[$i] = $q;
+                    $exercice->questions()->attach($q, ['number' => $i]);
+                    $q->parts()->attach($part);
+                }
             }
-        }
 
-        foreach ($files as $number => $data) {
-            $question = $questions_object[$number];
 
-            foreach ($data as $file) {
-                $question->documents()->attach($file);
+            // Link documents (audios + files + texts) to question.
+            foreach ($texts as $text) {
+                $d = Document::create([
+                    'name' => '',
+                    'type' => 'text',
+                    'content' => $text['content'],
+                ]);
+
+                foreach ($text['number'] as $number) {
+                    $questions_object[$number]->documents()->attach($d);
+                    $questions_object[$number]->save();
+                }
             }
-        }
 
-        foreach ($audios as $number => $data) {
-            $question = $questions_object[$number];
+            foreach ($files as $number => $data) {
+                $question = $questions_object[$number];
 
-            foreach ($data as $audio) {
-                $question->documents()->attach($audio);
+                foreach ($data as $file) {
+                    $question->documents()->attach($file);
+                }
             }
+
+            foreach ($audios as $number => $data) {
+                $question = $questions_object[$number];
+
+                foreach ($data as $audio) {
+                    $question->documents()->attach($audio);
+                }
+            }
+        } else {
+            return $checked;
         }
 
         return TRUE;
@@ -543,6 +550,15 @@ class ExerciseService {
         $success = Exercise::destroy($id);
 
         return $success;
+    }
+
+    protected function validateImport($questions, $part) {
+
+        if ($part->questions && ($part->nb_questions !== sizeof($questions))) {
+            return "You need " . $part->nb_questions . " questions. Only " . sizeof($questions) . " found.";
+        }
+
+        return TRUE;
     }
 
     private function is_dir_empty($dir) {
