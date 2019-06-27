@@ -73,7 +73,6 @@ class CompositeTestController extends Controller
             $compositeTest["reading_duration"] = addslashes($request->get('reading_duration'));
         }
 
-
         for($i = 1; $i < 8; $i++) {
             $var = 'exercise_part' . $i;
             $exercise = Exercise::find(addslashes($request->get($var)));
@@ -130,6 +129,8 @@ class CompositeTestController extends Controller
 
         if (!is_null($request->get('reading_duration'))) {
             $composite_test->reading_duration = addslashes($request->get('reading_duration'));
+        } else {
+            $composite_test->reading_duration = null;
         }
 
         for($i = 1; $i < 8; $i++) {
