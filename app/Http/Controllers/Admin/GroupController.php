@@ -214,6 +214,29 @@ class GroupController extends Controller
             ->with('warning', $message);
     }
 
+    public function unassign($group, $student) {
+        $g_model = Group::find($group);
+        $s_model = User::find($student);
+
+        if (!is_null($s_model)) {
+            $s_groups = $s_model->groups()->get();
+
+            foreach ($s_groups as $s_group) {
+                if ($s_group->id == $group) {
+                    $g_model->users()->detach($student);
+
+                    return redirect()
+                        ->route('groups.show', ['id' => $group])
+                        ->with('success', $s_model->name . ' has been deleted from group "' . $g_model->name . '".');
+                }
+            }
+        }
+
+        return redirect()
+            ->route('groups.show', ['id' => $group])
+            ->with('error', 'An error occurred.');
+    }
+
     public function import() {
         return view('admin.groups.import');
     }

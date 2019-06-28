@@ -50,6 +50,8 @@ Route::group(['middleware' => ['auth']], function () {
         ->name('groups.assign');
     Route::post('admin/groups/storeAssign', 'GroupController@storeAssign')
         ->name('groups.storeAssign');
+    Route::get('admin/groups/unassign/{group}/{student}', 'GroupController@unassign')
+        ->name('groups.unassign');
     Route::get('admin/groups/import', 'GroupController@import')
         ->name('groups.import');
     Route::post('admin/groups/storeImport', 'GroupController@storeImport')

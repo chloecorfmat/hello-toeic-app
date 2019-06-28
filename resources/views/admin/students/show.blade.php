@@ -24,6 +24,18 @@
                     (Not validate)
                 @endif
             </p>
+            <div>
+                <p>
+                    <strong class="important">Groups :</strong>
+                </p>
+                <ul>
+                    @foreach ($student->groups()->get() as $group)
+                        <li>
+                            <a href="{{ route('groups.show', ['id' => $group->id]) }}">{{ $group->name }}</a>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
         </div>
 
         <div class="part-container">

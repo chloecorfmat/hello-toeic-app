@@ -13,6 +13,12 @@
             </div>
         @endif
 
+        @if ($message = Session::get('error'))
+            <div class="alert alert-error">
+                <p>{{ $message }}</p>
+            </div>
+        @endif
+
         <div class="part-container">
             <p><strong class="important">Name: </strong>{{ $group->name }}</p>
             <p><strong class="important">Machine name: </strong>{{ $group->machine_name }}</p>
@@ -24,7 +30,14 @@
             <h2>Students</h2>
             <ul>
                 @foreach($students as $student)
-                    <li>{{ $student->name }}</li>
+                    <li>
+                        <a href="{{ route('students.show', ['id' => $student->id]) }}">
+                            {{ $student->name }}
+                        </a> :
+                        <a href="{{ route('groups.unassign', ['group' => $group->id, 'student' => $student->id]) }}">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </li>
                 @endforeach
             </ul>
         </div>
