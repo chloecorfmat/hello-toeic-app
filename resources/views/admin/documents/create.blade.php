@@ -6,7 +6,7 @@
         <h1>Ajouter un document</h1>
         @if ($errors->any())
             <div>
-                <ul>
+                <ul class="alert alert-error">
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
                     @endforeach
