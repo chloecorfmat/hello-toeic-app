@@ -11,6 +11,9 @@
             <a href="{{ route('groups.assign') }}" class="main-content--header-actions">
                 <i class="fas fa-user-graduate"></i>
             </a>
+            <a href="{{ route('groups.import') }}" class="main-content--header-actions">
+                <i class="fas fa-upload"></i>
+            </a>
         </div>
 
         @if ($message = Session::get('success'))

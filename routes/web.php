@@ -50,6 +50,11 @@ Route::group(['middleware' => ['auth']], function () {
         ->name('groups.assign');
     Route::post('admin/groups/storeAssign', 'GroupController@storeAssign')
         ->name('groups.storeAssign');
+    Route::get('admin/groups/import', 'GroupController@import')
+        ->name('groups.import');
+    Route::post('admin/groups/storeImport', 'GroupController@storeImport')
+        ->name('groups.storeImport');
+
     Route::resource('admin/groups', 'GroupController');
 
     Route::resource('admin/explanations', 'ExplanationController');

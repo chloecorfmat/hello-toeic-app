@@ -77,6 +77,11 @@ Breadcrumbs::for('groups.assign', function ($trail) {
     $trail->push('Assign students in groups', route('groups.assign'));
 });
 
+Breadcrumbs::for('groups.import', function ($trail) {
+    $trail->parent('groups.index');
+    $trail->push('Import groups', route('groups.import'));
+});
+
 Breadcrumbs::for('documents.index', function ($trail) {
     $trail->parent('dashboard');
     $trail->push('Documents', route('documents.index'));

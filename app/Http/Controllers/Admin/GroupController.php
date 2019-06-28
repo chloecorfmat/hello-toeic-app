@@ -213,4 +213,90 @@ class GroupController extends Controller
             ->with('success', 'Groups have been imported.')
             ->with('warning', $message);
     }
+
+    public function import() {
+        return view('admin.groups.import');
+    }
+
+    public function storeImport(Request $request) {
+        $errors = [];
+        $groups = [];
+        $handle = file($request->file('data')->path());
+        if (sizeof($handle) === 1) {
+            $handle = explode("\r", $handle[0]);
+        }
+
+        $i = 0;
+
+        while($i < sizeof($handle)) {
+            $line = str_replace("\n", "", $handle[$i]);
+            if (!empty($line)) {
+                $data = explode("\t", $line);
+
+                $teacher = User::where('name', $data[1])->get()->first();
+                $is_teacher = $teacher ? $teacher->hasRole('teacher') : false;
+
+                if ($is_teacher) {
+                    $machine_name = (new StringService($data[0]))->normalize();
+
+                    $exist = count(Group::where('machine_name', (new StringService($data[0]))->normalize())->get());
+
+                    if ($exist > 0) {
+                        $errors[] = 'Group "' . $data[0] . '" already exists.';
+                    } else {
+                        $start_date = \DateTime::createFromFormat('d/m/Y', $data[2]);
+                        $end_date = \DateTime::createFromFormat('d/m/Y', $data[3]);
+
+                        $diff = $start_date->diff($end_date);
+
+                        if ($diff->invert) {
+                            $errors[] = 'For group "' . $data[0] . '" start date must be before end date.';
+                        } else {
+
+                            $imported = FALSE;
+
+                            foreach ($groups as $group) {
+                                if ($machine_name === $group['machine_name']) {
+                                    $imported = TRUE;
+                                }
+                            }
+
+                            if (!$imported) {
+                                $groups[] = [
+                                    'name' => addslashes($data[0]),
+                                    'start_date' => $start_date,
+                                    'end_date' => $end_date,
+                                    'teacher' => $teacher->id,
+                                    'machine_name' => $machine_name,
+                                ];
+                            } else {
+                                $errors[] = 'Group "' . $data[0] . '" should be already imported in this file.';
+                            }
+                        }
+
+                    }
+                } else {
+                    $errors[] = addslashes($data[1]) . " is not a teacher.";
+                }
+            }
+            $i++;
+        }
+
+        if (empty($errors)) {
+            foreach ($groups as $group) {
+                Group::create([
+                    'name' => $group['name'],
+                    'start_date' => $group['start_date'],
+                    'end_date' => $group['end_date'],
+                    'teacher' => $group['teacher'],
+                    'machine_name' => $group['machine_name'],
+                ]);
+            }
+
+            return redirect()->route('groups.index')->with('success', 'Groups have been created');
+        } else {
+            return redirect()->route('groups.import')->withErrors($errors);
+        }
+
+    }
 }
