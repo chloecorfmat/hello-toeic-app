@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Services\StringService;
 use App\User;
 use Illuminate\Http\Request;
+use Webpatser\Sanitize\Sanitize;
 
 
 class GroupController extends Controller
@@ -58,7 +59,7 @@ class GroupController extends Controller
         $diff = $start_date->diff($end_date);
 
         if (!$diff->invert) {
-            $exist = count(Group::where('machine_name', (new StringService($data['name']))->normalize())->get());
+            $exist = count(Group::where('machine_name', Sanitize::string($data['name']))->get());
 
             if ($exist > 0) {
                 return redirect()->route('groups.create')->withErrors(['A group with this name already exists.']);
@@ -69,7 +70,7 @@ class GroupController extends Controller
                 'start_date' => $data['start'],
                 'end_date' => $data['end'],
                 'teacher' => $data['teacher'],
-                'machine_name' => (new StringService($data['name']))->normalize(),
+                'machine_name' => Sanitize::string($data['name']),
             ]);
 
             if (isset($data['students'])) {
@@ -253,6 +254,7 @@ class GroupController extends Controller
 
         while($i < sizeof($handle)) {
             $line = str_replace("\n", "", $handle[$i]);
+            $line_nb = $i+1;
             if (!empty($line)) {
                 $data = explode("\t", $line);
 
@@ -260,12 +262,12 @@ class GroupController extends Controller
                 $is_teacher = $teacher ? $teacher->hasRole('teacher') : false;
 
                 if ($is_teacher) {
-                    $machine_name = (new StringService($data[0]))->normalize();
+                    $machine_name = Sanitize::string($data[0]);
 
-                    $exist = count(Group::where('machine_name', (new StringService($data[0]))->normalize())->get());
+                    $exist = count(Group::where('machine_name', Sanitize::string($data[0]))->get());
 
                     if ($exist > 0) {
-                        $errors[] = 'Group "' . $data[0] . '" already exists.';
+                        $errors[] = '(l.' . $line_nb . ') : Group "' . $data[0] . '" already exists.';
                     } else {
                         $start_date = \DateTime::createFromFormat('d/m/Y', $data[2]);
                         $end_date = \DateTime::createFromFormat('d/m/Y', $data[3]);
@@ -273,7 +275,7 @@ class GroupController extends Controller
                         $diff = $start_date->diff($end_date);
 
                         if ($diff->invert) {
-                            $errors[] = 'For group "' . $data[0] . '" start date must be before end date.';
+                            $errors[] = '(l.' . $line_nb . ') : For group "' . $data[0] . '" start date must be before end date.';
                         } else {
 
                             $imported = FALSE;
@@ -293,13 +295,13 @@ class GroupController extends Controller
                                     'machine_name' => $machine_name,
                                 ];
                             } else {
-                                $errors[] = 'Group "' . $data[0] . '" should be already imported in this file.';
+                                $errors[] = '(l.' . $line_nb . ') : Group "' . $data[0] . '" should be already imported in this file.';
                             }
                         }
 
                     }
                 } else {
-                    $errors[] = addslashes($data[1]) . " is not a teacher.";
+                    $errors[] = '(l.' . $line_nb . ') : ' . addslashes($data[1]) . " is not a teacher.";
                 }
             }
             $i++;

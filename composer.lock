@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "20d549d1c35e67fbad1c8cd1dd7c6a3f",
+    "content-hash": "8aff5bf6ab15e474ce97600d02a2c18a",
     "packages": [
         {
             "name": "davejamesmiller/laravel-breadcrumbs",
@@ -3377,6 +3377,46 @@
                 "mpeg"
             ],
             "time": "2018-12-14T21:03:35+00:00"
+        },
+        {
+            "name": "webpatser/laravel-sanitize",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webpatser/laravel-sanitize.git",
+                "reference": "b7df547dd8901a297eab21c716639d217aa3a240"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webpatser/laravel-sanitize/zipball/b7df547dd8901a297eab21c716639d217aa3a240",
+                "reference": "b7df547dd8901a297eab21c716639d217aa3a240",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "laravel-library",
+            "autoload": {
+                "psr-0": {
+                    "Webpatser\\Sanitize": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christoph Kempen",
+                    "email": "christoph@downsized.nl"
+                }
+            ],
+            "description": "Laravel package to sanatize a string for use as URL's. It uses the PHP Normalizer class and fills whitespace with dashes.",
+            "homepage": "https://github.com/webpatser/laravel-sanitize",
+            "keywords": [
+                "laravel sanitize URL"
+            ],
+            "time": "2013-11-01T14:19:01+00:00"
         }
     ],
     "packages-dev": [
