@@ -35,15 +35,15 @@
                                     @php ($qs[] = $question)
                                 @else
                                     @if (!empty($qs))
-                                        {!! $render->inline($d->content, $qs, -1) !!}
+                                        <li class="block-question">
+                                            {!! $render->inline($d->content, $qs, -1) !!}
+                                        </li>
                                     @endif
                                     @php ($d = $question->documents()->get()[0])
+                                    @php ($qs = [])
                                     @php ($qs[] = $question)
                                 @endif
                             @endforeach
-                            <li class="block-question">
-                                {!! $render->inline($questions[0]->documents()->get()[0]->content, $questions, -1) !!}
-                            </li>
                         </ul>
                     </li>
                 </ol>
