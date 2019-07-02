@@ -20,7 +20,7 @@ class RenderService {
             }
             $proposals = $question->proposals()->get();
             $build = "<select name='" . $name . "'>";
-            $build .= "<option>-</option>";
+            $build .= "<option value=''>-</option>";
 
             foreach ($proposals as $proposal) {
                 $build .= "<option value='";

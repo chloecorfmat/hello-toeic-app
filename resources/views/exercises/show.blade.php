@@ -28,6 +28,19 @@
                         </h2>
                         <p class="part-instructions">{{ $part->description }}</p>
                         <ul class="questions">
+                            @php ($d = null)
+                            @php ($qs = [])
+                            @foreach ($questions as $question)
+                                @if (!is_null($d) && ($d->id == $question->documents()->get()[0]->id))
+                                    @php ($qs[] = $question)
+                                @else
+                                    @if (!empty($qs))
+                                        {!! $render->inline($d->content, $qs, -1) !!}
+                                    @endif
+                                    @php ($d = $question->documents()->get()[0])
+                                    @php ($qs[] = $question)
+                                @endif
+                            @endforeach
                             <li class="block-question">
                                 {!! $render->inline($questions[0]->documents()->get()[0]->content, $questions, -1) !!}
                             </li>
