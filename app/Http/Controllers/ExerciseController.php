@@ -105,7 +105,8 @@ class ExerciseController extends Controller
 
         $datasources = implode(', ', $datasources_ar);
 
-        return view('exercises.show', compact('exercise', 'questions', 'datasources', 'source', 'listening_duration'));
+        $part = $exercise->part; // Finally, an exercise has only one part.
+        return view('exercises.show', compact('exercise', 'questions', 'datasources', 'source', 'listening_duration', 'part'));
     }
 
     /**

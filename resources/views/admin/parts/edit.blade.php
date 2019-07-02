@@ -95,6 +95,29 @@
             </fieldset>
 
             <fieldset class="form-radio-el">
+                <legend class="question-legend">Inline ?</legend>
+                <p>Has an impact only for exercises which has texts.</p>
+                <div>
+                    <label for="isInline">
+                        <input type="radio" id="isInline"
+                               name="inline" value="true"
+                               @if ($part->inline) checked @endif
+                        />
+                        <span class="radio-el"></span>
+                        Yes
+                    </label>
+                    <label for="isNotInline">
+                        <input type="radio" id="isNotInline"
+                               name="inline" value="false"
+                               @if (!$part->inline) checked @endif
+                        />
+                        <span class="radio-el"></span>
+                        No
+                    </label>
+                </div>
+            </fieldset>
+
+            <fieldset class="form-radio-el">
                 <legend class="question-legend">Files ?</legend>
                 <div>
                     <label for="hasFiles">

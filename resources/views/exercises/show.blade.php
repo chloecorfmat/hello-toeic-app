@@ -5,13 +5,37 @@
     @php ($current_part = null)
     @php ($current_document = null)
     <div class="main-content">
-
         <h1>{{ $exercise->name }}</h1>
 
         <form method="POST" action="{{ route('student.exercises.update', ['id' => $exercise->id]) }}" id="test" class="test">
             @csrf
             {{ method_field('PUT')}}
-            <ol>
+            @if ($part->inline)
+                @inject('render', 'App\Services\RenderService')
+                <ol>
+                    <li class="part" id="part_{{ $part->id }}">
+                        <button class="js-part-close btn-close" type="button" title="Close">
+                            <i class="fas fa-times fa-2x"></i>
+                        </button>
+
+                        <h2>
+                            @if ($part->type == "listening")
+                                <i class="fas fa-volume-up"></i>
+                            @else
+                                <i class="fas fa-glasses"></i>
+                            @endif
+                            {{ $part->name }}
+                        </h2>
+                        <p class="part-instructions">{{ $part->description }}</p>
+                        <ul class="questions">
+                            <li class="block-question">
+                                {!! $render->inline($questions[0]->documents()->get()[0]->content, $questions, -1) !!}
+                            </li>
+                        </ul>
+                    </li>
+                </ol>
+            @else
+                <ol>
                 @foreach ($questions as $key => $question)
                     @if ($current_part !== $question->parts[0]->id)
                         @if ($current_part == null)
@@ -99,6 +123,7 @@
                                 </ul>
                             </li>
             </ol>
+            @endif
             <button type="submit" class="btn">
                 {{ __('Validate') }}
             </button>

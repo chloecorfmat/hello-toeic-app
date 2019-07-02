@@ -27,8 +27,15 @@
                         </h2>
 
                         <p class="part-instructions">{{ $exercise['part']->description }}</p>
+
                         <ul class="questions">
-                            @foreach ($exercise['questions'] as $question)
+                            @if($exercise['part']->inline)
+                                @inject('render', 'App\Services\RenderService')
+                                <li class="block-question">
+                                    {!! $render->inline($exercise['questions'][0]->documents()->get()[0]->content, $exercise['questions'], $exercise['exercise']->id) !!}
+                                </li>
+                            @else
+                                @foreach ($exercise['questions'] as $question)
                             @if ($exercise['part']->texts)
                                 <div>
                                     @foreach ($question->documents as $document)
@@ -87,6 +94,7 @@
                                 </div>
                             </li>
                             @endforeach
+                            @endif
                         </ul>
                     </li>
                 @endforeach

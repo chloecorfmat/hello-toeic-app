@@ -44,6 +44,7 @@ class PartController extends Controller
     {
         $texts = $request->get('texts') === 'true' ? 1 : 0;
         $files = $request->get('files') === 'true' ? 1 : 0;
+        $inline = $request->get('inline') === 'true' ? 1 : 0;
         $questions = $request->get('questions') === 'true' ? 1 : 0;
 
         Part::create([
@@ -56,6 +57,7 @@ class PartController extends Controller
             'files' => $files,
             'questions' => $questions,
             'nb_answers' => $request->get('nb-answers'),
+            'inline' => $inline,
         ]);
 
         return redirect()->route('parts.index')->with('success', 'Part has been created.');
@@ -102,6 +104,7 @@ class PartController extends Controller
         $part->description = $request->get('description');
         $part->nb_questions = $request->get('nb-questions');
         $part->texts = $request->get('texts') === 'true' ? 1 : 0;
+        $part->inline = $request->get('inline') === 'true' ? 1 : 0;
         $part->files = $request->get('files') === 'true' ? 1 : 0;
         $part->questions = $request->get('questions') === 'true' ? 1 : 0;
         $part->nb_answers = $request->get('nb-answers');
