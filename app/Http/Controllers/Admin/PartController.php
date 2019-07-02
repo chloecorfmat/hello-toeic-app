@@ -47,6 +47,12 @@ class PartController extends Controller
         $inline = $request->get('inline') === 'true' ? 1 : 0;
         $questions = $request->get('questions') === 'true' ? 1 : 0;
 
+        if ($inline &&
+            (!$texts || $request->get('type') !== "reading"))
+        {
+            return redirect()->route('parts.create')->withErrors(['Inline exercise must have texts and reading type.']);
+        }
+
         Part::create([
             'name' => $request->get('name'),
             'version' => $request->get('version'),
@@ -97,6 +103,12 @@ class PartController extends Controller
     public function update(Request $request, $id)
     {
         $part = Part::find($id);
+
+        if ($request->get('inline') === 'true' &&
+            ($request->get('texts') !== 'true') || $request->get('type') !== "reading")
+        {
+            return redirect()->route('parts.edit', ['id' => $id])->withErrors(['Inline exercise must have texts and reading type.']);
+        }
 
         $part->name = $request->get('name');
         $part->version = $request->get('version');
