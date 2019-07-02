@@ -31,9 +31,27 @@
                         <ul class="questions">
                             @if($exercise['part']->inline)
                                 @inject('render', 'App\Services\RenderService')
-                                <li class="block-question">
-                                    {!! $render->inline($exercise['questions'][0]->documents()->get()[0]->content, $exercise['questions'], $exercise['exercise']->id) !!}
-                                </li>
+                                @php ($d = null)
+                                @php ($qs = [])
+                                @foreach ($exercise['questions'] as $question)
+                                    @if (!is_null($d) && ($d->id == $question->documents()->get()[0]->id))
+                                        @php ($qs[] = $question)
+                                    @else
+                                        @if (!empty($qs))
+                                            <li class="block-question">
+                                                {!! $render->inline($d->content, $qs, $exercise['exercise']->id) !!}
+                                            </li>
+                                        @endif
+                                        @php ($d = $question->documents()->get()[0])
+                                        @php ($qs = [])
+                                        @php ($qs[] = $question)
+                                    @endif
+                                @endforeach
+                                @if (!empty($qs))
+                                    <li class="block-question">
+                                        {!! $render->inline($d->content, $qs, $exercise['exercise']->id) !!}
+                                    </li>
+                                @endif
                             @else
                                 @foreach ($exercise['questions'] as $question)
                             @if ($exercise['part']->texts)

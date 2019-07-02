@@ -44,6 +44,11 @@
                                     @php ($qs[] = $question)
                                 @endif
                             @endforeach
+                            @if (!empty($qs))
+                                <li class="block-question">
+                                    {!! $render->inline($d->content, $qs, -1) !!}
+                                </li>
+                            @endif
                         </ul>
                     </li>
                 </ol>
