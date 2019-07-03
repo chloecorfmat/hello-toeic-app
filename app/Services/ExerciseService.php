@@ -565,8 +565,11 @@ class ExerciseService {
         $handle = opendir($dir);
         while (false !== ($entry = readdir($handle))) {
             if ($entry != "." && $entry != "..") {
-                closedir($handle);
-                return FALSE;
+                if ($entry == ".DS_Store") {
+                    unlink($dir . '/' . $entry);
+                } else {
+                    return FALSE;
+                }
             }
         }
         closedir($handle);
