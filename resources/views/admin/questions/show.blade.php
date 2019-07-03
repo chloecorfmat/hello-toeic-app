@@ -16,7 +16,11 @@
                 @foreach ($question->documents()->get() as $document)
                     <li>
                         <a href="{{ route('documents.show', ['id' => $document->id]) }}">
-                            {{ $document->name }}
+                            @if (!empty($document->name))
+                                {{ $document->name }} <span class="emphasis">({{ $document->type }})</span>
+                            @else
+                                <span class="emphasis">Unamed document ({{ $document->type }})</span>
+                            @endif
                         </a>
                     </li>
                 @endforeach
