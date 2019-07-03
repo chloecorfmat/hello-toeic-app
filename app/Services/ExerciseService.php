@@ -554,7 +554,7 @@ class ExerciseService {
 
     protected function validateImport($questions, $part) {
 
-        if ($part->questions && ($part->nb_questions !== sizeof($questions))) {
+        if ($part->questions && ($part->nb_questions != sizeof($questions))) {
             return "You need " . $part->nb_questions . " questions. Only " . sizeof($questions) . " found.";
         }
 
