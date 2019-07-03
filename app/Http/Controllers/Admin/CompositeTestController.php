@@ -73,12 +73,20 @@ class CompositeTestController extends Controller
             $compositeTest["reading_duration"] = addslashes($request->get('reading_duration'));
         }
 
+        $last_ex_type = null;
         for($i = 1; $i < 8; $i++) {
             $var = 'exercise_part' . $i;
             $exercise = Exercise::find(addslashes($request->get($var)));
 
             if (!is_null($exercise)) {
+                if ($last_ex_type == 'reading' && $exercise->part->type == 'listening') {
+                    return redirect()->route('composite-tests.create')->withErrors(['Les exercices de type "listening" doivent être avant les exercices de type "reading".']);
+                }
+                $last_ex_type = $exercise->part->type;
+
                 $compositeTest[$var] = $exercise->id;
+
+
             }
         }
 
@@ -133,11 +141,16 @@ class CompositeTestController extends Controller
             $composite_test->reading_duration = null;
         }
 
+        $last_ex_type = null;
         for($i = 1; $i < 8; $i++) {
             $var = 'exercise_part' . $i;
             $exercise = Exercise::find(addslashes($request->get($var)));
 
             if (!is_null($exercise)) {
+                if ($last_ex_type == 'reading' && $exercise->part->type == 'listening') {
+                    return redirect()->route('composite-tests.edit', ['id' => $id])->withErrors(['Les exercices de type "listening" doivent être avant les exercices de type "reading".']);
+                }
+                $last_ex_type = $exercise->part->type;
                 $composite_test->$var = $exercise->id;
             } else {
                 $composite_test->$var = null;

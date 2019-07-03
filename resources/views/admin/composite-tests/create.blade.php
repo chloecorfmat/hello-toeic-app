@@ -6,6 +6,16 @@
             {{ Breadcrumbs::render('composite-tests.create') }}
             <h1>Créer un test composé</h1>
         </div>
+        @if ($errors->any())
+            <div>
+                <ul class="alert alert-error">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         @if ($message = Session::get('success'))
             <div class="alert alert-success">
                 <p>{{ $message }}</p>
