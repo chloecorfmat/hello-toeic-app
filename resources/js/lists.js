@@ -75,4 +75,19 @@ function lists(e) {
         var list = new List('students', options);
         listOverride(list);
     }
+
+    if (document.getElementById('exercises') !== null) {
+        var options = {
+            valueNames: ['name', 'part', 'visibility'],
+            page: 30,
+            pagination: {
+                paginationClass: "pagination",
+                outerWindow: 0,
+                innerWindow: 2
+            }
+        };
+
+        var list = new List('exercises', options);
+        listOverride(list);
+    }
 }

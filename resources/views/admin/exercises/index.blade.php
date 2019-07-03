@@ -18,7 +18,7 @@
             </div>
         @endif
 
-        <div class="table" id="tests">
+        <div class="table" id="exercises">
             <h2>Tous les exercices</h2>
             <div class="table--filters">
                 <div class="field-container">
@@ -53,7 +53,7 @@
                     @foreach ($exercises as $key => $exercise)
                         <tr>
                             <td class="name">{{ $exercise->name }}</td>
-                            <td class="version">{{ $exercise->part->name }}</td>
+                            <td class="part">{{ $exercise->part->name }}</td>
                             <td class="visibility">{{ $exercise->visible }}</td>
                             <td>
                                 <a href="{{ route('exercises.show', ['id' => $exercise->id]) }}" title="Show exercise"><i class="fas fa-eye"></i></a>
