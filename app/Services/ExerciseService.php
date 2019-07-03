@@ -446,6 +446,44 @@ class ExerciseService {
                     rmdir('./storage/documents/' . $repository_name);
                 }
             }
+        } elseif ($request->file($field)->getClientMimeType() === "audio/mpeg") {
+            $name = $request->file('audios')->getClientOriginalName();
+
+            if (preg_match(
+                    '/^(?<name>.*)_(?P<number_start>\d+)[~-]?(?P<number_end>\d*)%?(?P<doc_number>\d*)(?P<extension>.\w+)$/',
+                    $name,
+                    $data_file
+                ) != FALSE) {
+
+                $new_file = $uid
+                    . '_'
+                    . $data_file['name']
+                    . '_'
+                    . $data_file['number_start']
+                    . '-'
+                    . $data_file['number_end'];
+
+                if (!empty($data_file['doc_number'])) {
+                    $new_file .= '__' . $data_file['doc_number'];
+                }
+
+                $new_file .= $data_file['extension'];
+
+                $document = Document::create([
+                    'name' => $new_file,
+                    'type' => $type,
+                    'url' => './documents/' . $new_file,
+                ]);
+
+                rename($request->file($field), './storage/documents/' . $new_file);
+
+                if (empty(intval($data_file['number_end']))) {
+                    $data_file['number_end'] = $data_file['number_start'];
+                }
+                for ($i = intval($data_file['number_start']); $i <= intval($data_file['number_end']); $i++) {
+                    $documents[$i][] = $document;
+                }
+            }
         }
     }
 
