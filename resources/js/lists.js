@@ -3,7 +3,7 @@ window.addEventListener('load', lists);
 function lists(e) {
     if (document.getElementById('composite-tests') !== null) {
         var options = {
-            valueNames: ['name', 'version', 'exercises'],
+            valueNames: ['name', 'version', 'visibility', 'exercises'],
             page: 30,
             pagination: {
                 paginationClass: "pagination",
@@ -88,6 +88,51 @@ function lists(e) {
         };
 
         var list = new List('exercises', options);
+        listOverride(list);
+    }
+
+    if (document.getElementById('explanations') !== null) {
+        var options = {
+            valueNames: ['title', 'explanation'],
+            page: 30,
+            pagination: {
+                paginationClass: "pagination",
+                outerWindow: 0,
+                innerWindow: 2
+            }
+        };
+
+        var list = new List('explanations', options);
+        listOverride(list);
+    }
+
+    if (document.getElementById('parts') !== null) {
+        var options = {
+            valueNames: ['name', 'version'],
+            page: 30,
+            pagination: {
+                paginationClass: "pagination",
+                outerWindow: 0,
+                innerWindow: 2
+            }
+        };
+
+        var list = new List('parts', options);
+        listOverride(list);
+    }
+
+    if (document.getElementById('groups') !== null) {
+        var options = {
+            valueNames: ['name', 'teacher', 'start', 'end'],
+            page: 30,
+            pagination: {
+                paginationClass: "pagination",
+                outerWindow: 0,
+                innerWindow: 2
+            }
+        };
+
+        var list = new List('groups', options);
         listOverride(list);
     }
 }

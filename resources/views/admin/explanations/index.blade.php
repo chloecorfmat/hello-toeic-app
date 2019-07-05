@@ -21,7 +21,7 @@
             </div>
         @endif
 
-        <div class="table" id="tests">
+        <div class="table" id="explanations">
             <h2>Toutes les explications</h2>
             <div class="table--filters">
                 <div class="field-container">
@@ -40,7 +40,7 @@
                             </button>
                         </th>
                         <th scope="col">
-                            <button class="sort" data-sort="details">
+                            <button class="sort" data-sort="explanation">
                                 Details <i class="fas fa-arrows-alt-v"></i>
                             </button>
                         </th>
