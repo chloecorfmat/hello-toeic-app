@@ -13,7 +13,7 @@ class Explanation extends Model
 
     public $timestamps = false;
 
-    public function question() {
-        return $this->hasOne('App\Question', 'explanation_id', 'id');
+    public function questions() {
+        return $this->hasMany('App\Question', 'explanation_id', 'id');
     }
 }

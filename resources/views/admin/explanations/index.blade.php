@@ -55,6 +55,7 @@
                             <td>
                                 <a href="{{ route('explanations.show', ['id' => $explanation->id]) }}" title="Show explanation"><i class="fas fa-eye"></i></a>
                                 <a href="{{ route('explanations.edit', ['id' => $explanation->id]) }}" title="Edit explanation"><i class="fas fa-pencil-alt"></i></a>
+                                <a href="{{ route('explanations.delete', $explanation->id) }}" title="Delete explanation"><i class="fas fa-trash"></i></a>
                             </td>
                         </tr>
                     @endforeach

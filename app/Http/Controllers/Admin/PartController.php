@@ -126,6 +126,18 @@ class PartController extends Controller
         return redirect()->route('parts.index')->with('success', 'Parts has been updated.');
     }
 
+
+    /**
+     * Display a confirmation form before destroy model.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function delete($id)
+    {
+        $part = Part::find($id);
+        return view('admin.parts.delete', compact('part'));
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -134,6 +146,14 @@ class PartController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $part = Part::find($id);
+        $count = $part->tests()->count();
+
+        if ($count == 0) {
+            $part->delete();
+            return redirect()->route('parts.index')->with('success', 'Part has been deleted.');
+        }
+
+        return redirect()->route('parts.index')->with('error', 'Aucun exercice de ce type ne doit exister.');
     }
 }

@@ -94,6 +94,17 @@ class ExplanationController extends Controller
     }
 
     /**
+     * Display a confirmation form before destroy model.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function delete($id)
+    {
+        $explanation = Explanation::find($id);
+        return view('admin.explanations.delete', compact('explanation'));
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -101,6 +112,14 @@ class ExplanationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $explanation = Explanation::find($id);
+        $count = $explanation->questions()->count();
+
+        if ($count == 0) {
+            $explanation->delete();
+            return redirect()->route('explanations.index')->with('success', 'Explanation has been deleted.');
+        }
+
+        return redirect()->route('explanations.index')->with('error', 'Aucune question ne doit être rattachée à cette explication.');
     }
 }

@@ -138,6 +138,11 @@ Breadcrumbs::for('parts.edit', function ($trail, $part) {
     $trail->push('Modifier', route('parts.edit', $part->id));
 });
 
+Breadcrumbs::for('parts.delete', function ($trail, $part) {
+    $trail->parent('parts.index');
+    $trail->push('Delete part: ' . $part->name, route('parts.delete'));
+});
+
 Breadcrumbs::for('explanations.index', function ($trail) {
     $trail->parent('dashboard');
     $trail->push('Explanations', route('explanations.index'));
@@ -156,6 +161,11 @@ Breadcrumbs::for('explanations.show', function ($trail, $explanation) {
 Breadcrumbs::for('explanations.edit', function ($trail, $explanation) {
     $trail->parent('explanations.show', $explanation);
     $trail->push('Modifier', route('explanations.edit', $explanation->id));
+});
+
+Breadcrumbs::for('explanations.delete', function ($trail, $explanation) {
+    $trail->parent('explanations.index');
+    $trail->push('Delete explanation: ' . $explanation->title, route('explanations.delete'));
 });
 
 Breadcrumbs::for('lessons.index', function ($trail) {

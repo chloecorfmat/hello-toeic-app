@@ -59,6 +59,7 @@
                                 <a href="{{ route('parts.show', ['id' => $part->id]) }}" title="Show exercise"><i class="fas fa-eye"></i></a>
                                 <a href="{{ route('parts.edit', ['id' => $part->id]) }}" title="Edit exercise"><i class="fas fa-pencil-alt"></i></a>
                                 <a href="{{ route('exercises.import', ['id' => $part->id]) }}" title="Add an exercise"><i class="fas fa-upload"></i></a>
+                                <a href="{{ route('parts.delete', $part->id) }}" title="Delete part"><i class="fas fa-trash"></i></a>
                             </td>
                         </tr>
                     @endforeach

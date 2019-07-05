@@ -43,8 +43,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('admin/questions', 'QuestionController');
     Route::resource('admin/documents', 'DocumentController');
     Route::resource('admin/students', 'StudentController');
-    Route::resource('admin/parts', 'PartController');
     Route::resource('admin/composite-tests', 'CompositeTestController');
+
+    Route::get('admin/parts/delete/{id?}', 'PartController@delete')
+        ->name('parts.delete');
+    Route::resource('admin/parts', 'PartController');
 
     Route::get('admin/groups/assign', 'GroupController@assign')
         ->name('groups.assign');
@@ -59,7 +62,10 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::resource('admin/groups', 'GroupController');
 
+    Route::get('admin/explanations/delete/{id?}', 'ExplanationController@delete')
+        ->name('explanations.delete');
     Route::resource('admin/explanations', 'ExplanationController');
+
     Route::resource('admin/lessons', 'LessonController');
 
     Route::get('admin/exercises/import/{id?}', 'ExerciseController@import')
