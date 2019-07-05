@@ -10,12 +10,21 @@
             </a>
         </div>
 
-        <p>Nom : <span>{{ $datas['document']->name }}</span></p>
+        <p>Nom :
+            @if (empty($datas['document']->name))
+            <span class="emphasis">Unamed document
+            @else
+            <span>{{ $datas['document']->name }}
+            @endif
+            </span>
+        </p>
 
+        @if (!empty($datas['document']->url)))
         <div class="file--preview">
             <img src="{{ url('storage/' . $datas['document']->url) }}"/>
             <p>{{ $datas['document']->url }}</p>
         </div>
+        @endif
 
         <h2>Questions</h2>
         <div class="table-container is-visible">

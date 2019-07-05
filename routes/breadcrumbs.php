@@ -94,7 +94,8 @@ Breadcrumbs::for('documents.create', function ($trail) {
 
 Breadcrumbs::for('documents.show', function ($trail, $document) {
     $trail->parent('documents.index');
-    $trail->push($document->name, route('documents.show', $document->id));
+    $name = !empty($document->name) ? $document->name : "Unamed document";
+    $trail->push($name, route('documents.show', $document->id));
 });
 
 Breadcrumbs::for('documents.edit', function ($trail, $document) {
