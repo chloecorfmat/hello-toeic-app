@@ -10,7 +10,7 @@
             </a>
         </div>
 
-        <p>Nom :
+        <p><span class="important">Name:</span>
             @if (empty($datas['document']->name))
             <span class="emphasis">Unamed document
             @else
@@ -23,6 +23,13 @@
         <div class="file--preview">
             <img src="{{ url('storage/' . $datas['document']->url) }}"/>
             <p>{{ $datas['document']->url }}</p>
+        </div>
+        @endif
+
+        @if (!empty($datas['document']->content))
+        <div class="content--preview">
+            <p class="important">Content:</p>
+            <p>{!! $datas['document']->content !!}</p>
         </div>
         @endif
 

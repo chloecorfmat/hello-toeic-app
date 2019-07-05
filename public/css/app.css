@@ -954,6 +954,10 @@ tr:nth-child(2n) {
   justify-content: center;
 }
 
+.content--preview {
+  margin-top: 2rem;
+}
+
 .list-tests h2 {
   margin-bottom: 1rem;
 }
