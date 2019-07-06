@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Correction;
 use App\Document;
 use App\Explanation;
+use App\Game;
 use App\Part;
 use App\Proposal;
 use App\Question;
@@ -23,7 +25,7 @@ class QuestionController extends Controller
         $this->middleware(['permission:question-show'])->only('show');
 
         // This route are currently not used.
-        $this->middleware(['role:admin'])->only('destroy');
+        $this->middleware(['role:teacher'])->only('destroy');
     }
 
     /**
@@ -90,9 +92,11 @@ class QuestionController extends Controller
             }
         }
 
-        foreach ($datas['documents'] as $document_id) {
-            $document = Document::find($document_id);
-            $question->documents()->attach($document);
+        if (isset($datas['documents'])) {
+            foreach ($datas['documents'] as $document_id) {
+                $document = Document::find($document_id);
+                $question->documents()->attach($document);
+            }
         }
 
         return redirect()->route('questions.index')->with('success', 'Question has been created.');
@@ -196,6 +200,17 @@ class QuestionController extends Controller
     }
 
     /**
+     * Display a confirmation form before destroy model.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function delete($id)
+    {
+        $question = Question::find($id);
+        return view('admin.questions.delete', compact('question'));
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -203,6 +218,41 @@ class QuestionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $errors = [];
+        $delete = true;
+
+        $question = Question::find($id);
+
+        $count_games = Game::where('error_id', $id)->count();
+
+        if ($count_games > 0) {
+            $errors[] = "Il existe des challenges avec cette erreur.";
+            $delete = false;
+        }
+
+        $count_corrections = Correction::where('question_id', $id)->count();
+
+        if ($count_corrections > 0) {
+            $errors[] = "Il existe des soumissions d'exercice avec cette question.";
+            $delete = false;
+        }
+
+        if ($delete) {
+            $question->parts()->detach();
+            $proposals = $question->proposals()->get();
+
+            $question->answer()->dissociate();
+            $question->save();
+
+            foreach ($proposals as $proposal) {
+                $proposal->question()->dissociate();
+                $proposal->delete();
+            }
+
+            $question->delete();
+            return redirect()->route('questions.index')->with('success', 'Question has been deleted.');
+        }
+
+        return redirect()->route('questions.index')->withErrors($errors);
     }
 }

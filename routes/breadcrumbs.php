@@ -37,6 +37,45 @@ Breadcrumbs::for('exercises.edit', function ($trail, $exercise) {
     $trail->push('Edit ' . $exercise->name, route('exercises.edit', $exercise->id));
 });
 
+Breadcrumbs::for('questions.index', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Questions', route('questions.index'));
+});
+
+Breadcrumbs::for('questions.create', function ($trail) {
+    $trail->parent('questions.index');
+    $trail->push('Create', route('questions.create'));
+});
+
+Breadcrumbs::for('questions.show', function ($trail, $question) {
+    $trail->parent('questions.index');
+
+    if (empty($question->question)) {
+        $name = "#none (" . $question->id .")" ;
+    } else {
+        $name = $question->question;
+    }
+
+    $trail->push($name, route('questions.show', $question->id));
+});
+
+Breadcrumbs::for('questions.edit', function ($trail, $question) {
+    $trail->parent('questions.show', $question);
+    $trail->push('Modifier', route('questions.edit', $question->id));
+});
+
+Breadcrumbs::for('questions.delete', function ($trail, $question) {
+    $trail->parent('questions.index');
+
+    if (empty($question->question)) {
+        $name = "#none (" . $question->id .")" ;
+    } else {
+        $name = $question->question;
+    }
+
+    $trail->push('Delete question: ' . $name, route('questions.delete'));
+});
+
 Breadcrumbs::for('exercises.import', function ($trail, $part) {
     $trail->parent('parts.show', $part);
     $trail->push('Add exercise', route('exercises.import'));

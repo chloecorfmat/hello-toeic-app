@@ -3,6 +3,7 @@
 @section('content')
     <div class="main-content">
         <div class="main-content--header">
+            {{ Breadcrumbs::render('questions.index') }}
             <h1>Liste des questions</h1>
             <a href="{{ route('questions.create') }}" class="main-content--header-actions">
                 <i class="fas fa-plus-circle"></i>
@@ -14,6 +15,17 @@
                 <p>{{ $message }}</p>
             </div>
         @endif
+
+        @if ($errors->any())
+            <div>
+                <ul class="alert alert-error">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <div class="table-container is-visible">
             <table>
                 <caption class="sr-only">Liste des questions</caption>
@@ -60,6 +72,9 @@
                             </a>
                             <a href="{{ route('questions.edit', ['id' => $question->id]) }}" title="Edit question">
                                 <i class="fas fa-pencil-alt"></i>
+                            </a>
+                            <a href="{{ route('questions.delete', $question->id) }}" title="Delete question">
+                                <i class="fas fa-trash"></i>
                             </a>
                         </td>
                     </tr>

@@ -40,7 +40,10 @@ Route::group(['middleware' => ['auth']], function () {
         ->name('users.storeImport');
     Route::resource('admin/users', 'UserController');
 
+    Route::get('admin/questions/delete/{id?}', 'QuestionController@delete')
+        ->name('questions.delete');
     Route::resource('admin/questions', 'QuestionController');
+
     Route::resource('admin/documents', 'DocumentController');
     Route::resource('admin/students', 'StudentController');
     Route::resource('admin/composite-tests', 'CompositeTestController');

@@ -3,6 +3,7 @@
 @section('content')
     @php ($index = ['A', 'B', 'C', 'D'])
     <div class="main-content">
+        {{ Breadcrumbs::render('questions.edit', $datas['question']) }}
         <h1>Modifier la question</h1>
         @if ($errors->any())
             <div>
