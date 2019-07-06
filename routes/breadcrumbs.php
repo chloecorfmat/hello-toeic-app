@@ -188,6 +188,11 @@ Breadcrumbs::for('lessons.edit', function ($trail, $lesson) {
     $trail->push('Modifier', route('lessons.edit', $lesson->id));
 });
 
+Breadcrumbs::for('lessons.delete', function ($trail, $lesson) {
+    $trail->parent('lessons.index');
+    $trail->push('Delete lesson: ' . $lesson->name, route('lessons.delete'));
+});
+
 
 /** PAGES for all users */
 Breadcrumbs::for('student.exercises.index', function ($trail) {

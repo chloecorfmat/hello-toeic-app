@@ -147,6 +147,17 @@ class LessonController extends Controller
     }
 
     /**
+     * Display a confirmation form before destroy model.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function delete($id)
+    {
+        $lesson = Lesson::find($id);
+        return view('admin.lessons.delete', compact('lesson'));
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -154,6 +165,8 @@ class LessonController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $lesson = Lesson::find($id);
+        $lesson->delete();
+        return redirect()->route('lessons.index')->with('success', 'Lesson has been deleted.');
     }
 }

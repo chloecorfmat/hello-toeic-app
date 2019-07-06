@@ -73,6 +73,7 @@
                             <td>
                                 <a href="{{ route('lessons.show', ['id' => $lesson->id]) }}" title="Show lesson"><i class="fas fa-eye"></i></a>
                                 <a href="{{ route('lessons.edit', ['id' => $lesson->id]) }}" title="Edit lesson"><i class="fas fa-pencil-alt"></i></a>
+                                <a href="{{ route('lessons.delete', $lesson->id) }}" title="Delete lesson"><i class="fas fa-trash"></i></a>
                             </td>
                         </tr>
                     @endforeach
