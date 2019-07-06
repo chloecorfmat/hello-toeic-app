@@ -71,7 +71,11 @@
             <div class="container">
                 @auth
                     <div class="laterale-bar">
-                        <a class="profile" href="{{ route('profile') }}">
+                        <a
+                                class="profile"
+                                href="{{ route('student.users.show', ['id' => Auth::user()->id]) }}"
+                                title="Display your profile (and edit password)"
+                        >
                             <i class="user-ico fas fa-user-circle fa-4x"></i>
                         </a>
                         <h2>{{ Auth::user()->name }}</h2>
