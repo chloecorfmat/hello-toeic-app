@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Group;
 use App\Http\Controllers\Controller;
 use App\Mail\UserAccountCreated;
 use App\Setting;
@@ -9,6 +10,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -24,7 +26,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+
+        return view('admin.users.index', compact('users'));
     }
 
     /**
@@ -34,8 +38,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
-
+        $is_admin = auth()->user()->hasRole('admin');
+        return view('admin.users.create', compact('is_admin'));
     }
 
     /**
@@ -46,7 +50,30 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $existEmail = User::where('email', $request->get('email'))->count();
+        $existMatricule = User::where('matricule', $request->get('matricule'))->count();
+
+        if (!$existEmail && !$existMatricule) {
+            $user = User::create([
+                'name' => $request->get('name'),
+                'matricule' => $request->get('matricule'),
+                'email' => $request->get('email'),
+                'course' => $request->get('course'),
+                'password' => Hash::make($request->get('matricule')),
+                'passed' => $request->get('passed'),
+            ]);
+
+            $user->assignRole($request->get('role'));
+
+            if (Setting::where('key', 'ff.email')->first()->value == true) {
+                Mail::to($user)->send(new UserAccountCreated($user));
+            }
+
+            return redirect()->route('users.index')->with('success', 'User has been created.');
+        }
+
+        return redirect()->route('users.create')->withErrors(['Cet utilisateur existe déjà.']);
+
     }
 
     /**
@@ -57,7 +84,12 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+
+        if ($user->hasRole('student')) {
+            return redirect()->route('students.show', ['id' => $id]);
+        }
+        return view('admin.users.show', compact('user'));
     }
 
     /**
@@ -68,7 +100,20 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $groups = [];
+        $current_groups = [];
+        $user = User::find($id);
+        $is_student = $user->hasRole('student');
+
+        if ($is_student) {
+            $groups = Group::all();
+            $currents = $user->groups()->get();
+
+            foreach ($currents as $group) {
+                $current_groups[] = $group->id;
+            }
+        }
+        return view('admin.users.edit', compact('user', 'is_student', 'groups', 'current_groups'));
     }
 
     /**
@@ -80,7 +125,31 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+
+        $existEmail = User::where('email', $request->get('email'))
+            ->where('id', '<>', $id)
+            ->count();
+        $existMatricule = User::where('matricule', $request->get('matricule'))
+            ->where('id', '<>', $id)
+            ->count();
+
+        if (!$existEmail && !$existMatricule) {
+            $user->name = $request->get('name');
+            $user->matricule = $request->get('matricule');
+            $user->email = $request->get('email');
+            $user->course = $request->get('course');
+            $user->passed = $request->get('passed');
+
+            $user->groups()->detach();
+            $user->groups()->attach($request->get('groups'));
+
+            $user->save();
+
+            return redirect()->route('users.edit', [$id])->with('success', 'User has been update.');
+        }
+
+        return redirect()->route('users.edit', [$id])->withErrors(['Un utilisateur avec ce matricule ou cette adresse e-mail existe déjà.']);
     }
 
     /**

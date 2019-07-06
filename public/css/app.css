@@ -509,6 +509,7 @@ legend {
 .field-container input[type=text],
 .field-container input[type=number],
 .field-container input[type=password],
+.field-container input[type=date],
 .field-container input[type=email],
 .field-container select {
   background: #f4f4f4;
@@ -529,6 +530,8 @@ legend {
 .field-container input[type=number]:focus,
 .field-container input[type=password]:active,
 .field-container input[type=password]:focus,
+.field-container input[type=date]:active,
+.field-container input[type=date]:focus,
 .field-container input[type=email]:active,
 .field-container input[type=email]:focus,
 .field-container select:active,
@@ -542,6 +545,7 @@ legend {
   .field-container input[type=text],
   .field-container input[type=number],
   .field-container input[type=password],
+  .field-container input[type=date],
   .field-container input[type=email],
   .field-container select {
     width: 50%;

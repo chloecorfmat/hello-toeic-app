@@ -20,6 +20,26 @@ Breadcrumbs::for('config.index', function ($trail) {
     $trail->push('Configuration', route('config.index'));
 });
 
+Breadcrumbs::for('users.index', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Utilisateurs', route('users.index'));
+});
+
+Breadcrumbs::for('users.create', function ($trail) {
+    $trail->parent('users.index');
+    $trail->push('Create', route('users.create'));
+});
+
+Breadcrumbs::for('users.show', function ($trail, $user) {
+    $trail->parent('users.index');
+    $trail->push($user->name, route('users.show', $user->id));
+});
+
+Breadcrumbs::for('users.edit', function ($trail, $user) {
+    $trail->parent('users.show', $user);
+    $trail->push('Modifier', route('users.edit', $user->id));
+});
+
 
 /** ADMIN PAGES for teacher users */
 Breadcrumbs::for('exercises.index', function ($trail) {

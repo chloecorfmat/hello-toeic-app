@@ -3,10 +3,10 @@
 @section('content')
     <div class="main-content">
         <div class="main-content--header">
-            {{ Breadcrumbs::render('students.index') }}
-            <h1>Liste des étudiants</h1>
-            <a href="{{ route('users.import') }}" class="main-content--header-actions">
-                <i class="fas fa-upload"></i>
+            {{ Breadcrumbs::render('users.index') }}
+            <h1>Liste des utilisateurs</h1>
+            <a href="{{ route('users.create') }}" class="main-content--header-actions">
+                <i class="fas fa-plus-circle"></i>
             </a>
         </div>
 
@@ -24,7 +24,7 @@
             </div>
         @endif
 
-        <div class="table" id="students">
+        <div class="table" id="users">
             <div class="table--filters">
                 <div class="field-container">
                     <label for="search">Search</label>
@@ -33,7 +33,7 @@
             </div>
             <div class="table-container is-visible">
                 <table>
-                    <caption class="sr-only">Liste des étudiants</caption>
+                    <caption class="sr-only">Liste des utilisateurs</caption>
                     <thead>
                     <tr>
                         <th scope="col">
@@ -42,41 +42,35 @@
                             </button>
                         </th>
                         <th scope="col">
-                            <button class="sort" data-sort="student">
+                            <button class="sort" data-sort="user">
                                 Student <i class="fas fa-arrows-alt-v"></i>
                             </button>
                         </th>
                         <th scope="col">
-                            <button class="sort" data-sort="course">
-                                Course <i class="fas fa-arrows-alt-v"></i>
-                            </button>
-                        </th>
-                        <th scope="col">
-                            <button class="sort" data-sort="passed">
-                                Passed <i class="fas fa-arrows-alt-v"></i>
+                            <button class="sort" data-sort="role">
+                                Role <i class="fas fa-arrows-alt-v"></i>
                             </button>
                         </th>
                         <th scope="col">Actions</th>
                     </tr>
                     </thead>
                     <tbody class="list">
-                    @foreach ($students as $key => $student)
+                    @foreach ($users as $key => $user)
                         <tr>
-                            <td class="matricule">{{ $student->matricule }}</td>
-                            <td class="student">{{ $student->name }}</td>
-                            <td class="course">{{ $student->course }}</td>
-                            <td class="passed">
-                                @if (!is_null($student->passed))
-                                    <i class="fas fa-check-circle"></i>
-                                @else
-                                    <i class="fas fa-times-circle"></i>
-                                @endif
+                            <td class="matricule">{{ $user->matricule }}</td>
+                            <td class="user">{{ $user->name }}</td>
+                            <td class="role">
+                                <ul>
+                                    @foreach($user->getRoleNames() as $role)
+                                        <li>{{ $role }}</li>
+                                    @endforeach
+                                </ul>
                             </td>
                             <td>
                                 <ul>
                                     <li>
-                                        <a href="{{ route('students.show', ['id' => $student->id]) }}" title="Show student"><i class="fas fa-eye"></i></a>
-                                        <a href="{{ route('users.edit', ['id' => $student->id]) }}" title="Edit student"><i class="fas fa-pencil-alt"></i></a>
+                                        <a href="{{ route('users.show', ['id' => $user->id]) }}" title="Show user"><i class="fas fa-eye"></i></a>
+                                        <a href="{{ route('users.edit', ['id' => $user->id]) }}" title="Edit user"><i class="fas fa-pencil-alt"></i></a>
                                     </li>
                                 </ul>
                             </td>

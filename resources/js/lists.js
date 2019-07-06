@@ -135,4 +135,19 @@ function lists(e) {
         var list = new List('groups', options);
         listOverride(list);
     }
+
+    if (document.getElementById('users') !== null) {
+        var options = {
+            valueNames: ['matricule', 'user', 'role'],
+            page: 30,
+            pagination: {
+                paginationClass: "pagination",
+                outerWindow: 0,
+                innerWindow: 2
+            }
+        };
+
+        var list = new List('users', options);
+        listOverride(list);
+    }
 }
