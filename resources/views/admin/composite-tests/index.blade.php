@@ -50,9 +50,7 @@
                             </button>
                         </th>
                         <th scope="col">
-                            <button class="sort" data-sort="exercises">
-                                Exercises <i class="fas fa-arrows-alt-v"></i>
-                            </button>
+                            Exercises
                         </th>
                         <th scope="col">Actions</th>
                     </tr>
