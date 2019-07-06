@@ -110,13 +110,6 @@
                             <h3>Admin</h3>
                             <ul class="laterale-bar--menu-list">
                                 <li class="laterale-bar--menu-item">
-                                    <a href="{{ route('users.index') }}">
-                                        <i class="menu-ico fas fa-user"></i>
-                                        Liste des utilisateurs
-                                    </a>
-                                </li>
-
-                                <li class="laterale-bar--menu-item">
                                     <a href="{{ route('students.index') }}">
                                         <i class="menu-ico fas fa-user-graduate"></i>
                                         Liste des étudiants

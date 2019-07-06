@@ -26,7 +26,13 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $is_admin = auth()->user()->hasRole('admin');
+        if ($is_admin) {
+            $users = User::all();
+        } else {
+            // Get all students.
+            $users = User::whereHas("roles", function($q){ $q->where("name", "student"); })->get();
+        }
 
         return view('admin.users.index', compact('users'));
     }
@@ -100,9 +106,15 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        $current_is_admin = auth()->user()->hasRole('admin');
+        $user = User::find($id);
+
+        if (!$current_is_admin && !$user->hasRole('student') ) {
+            abort(403);
+        }
+
         $groups = [];
         $current_groups = [];
-        $user = User::find($id);
         $is_student = $user->hasRole('student');
 
         if ($is_student) {
