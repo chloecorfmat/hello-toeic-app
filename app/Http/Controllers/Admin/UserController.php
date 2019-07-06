@@ -31,10 +31,10 @@ class UserController extends Controller
             $users = User::all();
         } else {
             // Get all students.
-            $users = User::whereHas("roles", function($q){ $q->where("name", "student"); })->get();
+            $users = User::whereHas("roles", function($q){ $q->whereIn("name", ["student", "teacher"]); })->get();
         }
 
-        return view('admin.users.index', compact('users'));
+        return view('admin.users.index', compact('users', 'is_admin'));
     }
 
     /**

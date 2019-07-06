@@ -70,7 +70,9 @@
                                 <ul>
                                     <li>
                                         <a href="{{ route('users.show', ['id' => $user->id]) }}" title="Show user"><i class="fas fa-eye"></i></a>
-                                        <a href="{{ route('users.edit', ['id' => $user->id]) }}" title="Edit user"><i class="fas fa-pencil-alt"></i></a>
+                                        @if ($user->hasRole('student') || $is_admin)
+                                            <a href="{{ route('users.edit', ['id' => $user->id]) }}" title="Edit user"><i class="fas fa-pencil-alt"></i></a>
+                                        @endif
                                     </li>
                                 </ul>
                             </td>
