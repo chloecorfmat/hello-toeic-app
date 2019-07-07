@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\CompositeTrial;
+use App\Game;
 use App\Setting;
 use App\Trial;
 use Illuminate\Http\Request;
@@ -68,6 +69,9 @@ class ResultController extends Controller
      */
     public function games()
     {
-        return view('admin.results.games');
+        $games = Game::orderBy('datetime', 'DESC')
+            ->get();
+
+        return view('admin.results.games', compact('games'));
     }
 }

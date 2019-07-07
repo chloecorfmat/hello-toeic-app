@@ -2,8 +2,11 @@
 
 @section('content')
     <div class="main-content">
-        {{ Breadcrumbs::render('results.exercises') }}
-        <h1>Résultats des exercices</h1>
+        <div class="main-content--header">
+            {{ Breadcrumbs::render('results.exercises') }}
+            <h1>Résultats des exercices</h1>
+        </div>
+
         @if ($errors->any())
             <div>
                 <ul class="alert alert-error">
