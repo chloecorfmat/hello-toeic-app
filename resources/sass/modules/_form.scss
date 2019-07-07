@@ -37,12 +37,14 @@ legend {
     input[type="password"],
     input[type="date"],
     input[type="email"],
+    textarea,
     select {
         background: $light-grey;
         border-radius: 5px;
         border: 1px solid $tertiary-color-2;
         box-sizing: border-box;
         color: $secondary-color-1;
+        font-family: $main-font;
         font-size: .9rem;
         line-height: 1.5;
         margin-top: .25rem;

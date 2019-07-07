@@ -105,12 +105,15 @@ class DocumentController extends Controller
     {
         $document = Document::find($id);
 
-        $document->name = $request->get('name');
-        $document->type = $request->get('type');
+        $document->name = $request->get('name') ?? "";
 
         if (!is_null($request->file('file'))) {
             $path = Storage::disk('public')->put('documents', $request->file('file'));
             $document->url = $path;
+        }
+
+        if (!is_null($request->get('content'))) {
+            $document->content = $request->get('content');
         }
 
         $document->save();

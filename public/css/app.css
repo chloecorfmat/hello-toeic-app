@@ -511,12 +511,14 @@ legend {
 .field-container input[type=password],
 .field-container input[type=date],
 .field-container input[type=email],
+.field-container textarea,
 .field-container select {
   background: #f4f4f4;
   border-radius: 5px;
   border: 1px solid #c5cbd3;
   box-sizing: border-box;
   color: #4b3f72;
+  font-family: "Nunito", sans-serif;
   font-size: 0.9rem;
   line-height: 1.5;
   margin-top: 0.25rem;
@@ -534,6 +536,8 @@ legend {
 .field-container input[type=date]:focus,
 .field-container input[type=email]:active,
 .field-container input[type=email]:focus,
+.field-container textarea:active,
+.field-container textarea:focus,
 .field-container select:active,
 .field-container select:focus {
   background: #fff;
@@ -547,6 +551,7 @@ legend {
   .field-container input[type=password],
   .field-container input[type=date],
   .field-container input[type=email],
+  .field-container textarea,
   .field-container select {
     width: 50%;
   }
