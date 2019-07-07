@@ -25,8 +25,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
     <!-- Include Choices CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
-    <!-- Include Quill -->
-    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -268,8 +266,6 @@
     <!-- Include Choices JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 
-    <!-- Include Quill JavaScript -->
-    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <script>
         @if(isset($listening_duration) && $listening_duration != 0)
             const DURATION_LISTENING = {{ $listening_duration }};
