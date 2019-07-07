@@ -440,6 +440,20 @@ function lists(e) {
     var list = new List('results-composite-tests', options);
     listOverride(list);
   }
+
+  if (document.getElementById('results-exercises') !== null) {
+    var options = {
+      valueNames: ['date', 'student', 'exercise', 'score'],
+      page: 30,
+      pagination: {
+        paginationClass: "pagination",
+        outerWindow: 0,
+        innerWindow: 2
+      }
+    };
+    var list = new List('results-exercises', options);
+    listOverride(list);
+  }
 }
 
 function listOverride(list) {

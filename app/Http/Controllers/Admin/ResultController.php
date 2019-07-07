@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\CompositeTrial;
 use App\Setting;
+use App\Trial;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -49,7 +50,15 @@ class ResultController extends Controller
      */
     public function exercises()
     {
-        return view('admin.results.exercises');
+        $scores = [
+            'low' => Setting::where('key', 'config.score.low')->first()->value,
+            'intermediate' => Setting::where('key', 'config.score.intermediate')->first()->value
+        ];
+
+        $trials = Trial::orderBy('datetime', 'DESC')
+            ->get();
+
+        return view('admin.results.exercises', compact('trials', 'scores'));
     }
 
     /**
