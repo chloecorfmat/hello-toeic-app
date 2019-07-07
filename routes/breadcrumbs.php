@@ -252,6 +252,26 @@ Breadcrumbs::for('lessons.delete', function ($trail, $lesson) {
     $trail->push('Delete lesson: ' . $lesson->name, route('lessons.delete'));
 });
 
+Breadcrumbs::for('results.index', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Résultats', route('results.index'));
+});
+
+Breadcrumbs::for('results.composite-tests', function ($trail) {
+    $trail->parent('results.index');
+    $trail->push('Composite tests', route('results.composite-tests'));
+});
+
+Breadcrumbs::for('results.exercises', function ($trail) {
+    $trail->parent('results.index');
+    $trail->push('Exercises', route('results.exercises'));
+});
+
+Breadcrumbs::for('results.games', function ($trail) {
+    $trail->parent('results.index');
+    $trail->push('Challenges', route('results.games'));
+});
+
 
 /** PAGES for all users */
 Breadcrumbs::for('student.exercises.index', function ($trail) {

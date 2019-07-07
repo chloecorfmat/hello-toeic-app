@@ -16,7 +16,6 @@
         <h1>Dashboard</h1>
         <!-- Results -->
         <div class="part-container">
-
             <div class="card-container">
                 <div class="card">
                     <p class="card-text"><span class="card-number">{{ $stats['composite-trials'] }} </span>tests composés effectués</p>
@@ -41,8 +40,8 @@
             @endif
 
             @if (sizeof($lessons) > 0)
-            <h2>Leçons en cours</h2>
-            <div class="table" id="profile-lessons">
+                <h2>Leçons en cours</h2>
+                <div class="table" id="profile-lessons">
                     <div class="table--filters">
                         <div class="field-container">
                             <label for="search">Search</label>
@@ -114,11 +113,12 @@
                     </div>
                 </div>
 
-            <div class="container-empty-search" id="js-empty-search" aria-hidden="true">
-                <p class="emphasis">Aucun résultat.</p>
-            </div>
+                <div class="container-empty-search" id="js-empty-search" aria-hidden="true">
+                    <p class="emphasis">Aucun résultat.</p>
+                </div>
             @endif
-
+        </div>
+        <div class="part-container">
             <h2>Résultats des derniers exercices</h2>
             @if (!Auth::user()->hasRole('teacher'))
                 <p class="emphasis">La correction des questions liées aux parties de compréhension orale n'est pas affichée.</p>
@@ -146,13 +146,6 @@
                                     Nom du test <i class="fas fa-arrows-alt-v"></i>
                                 </button>
                             </th>
-                            @can('dashboard-students-see')
-                                <th scope="col">
-                                    <button class="sort" data-sort="student">
-                                        Étudiant <i class="fas fa-arrows-alt-v"></i>
-                                    </button>
-                                </th>
-                            @endcan
                             <th scope="col">
                                 <button class="sort" data-sort="score">
                                     Score <i class="fas fa-arrows-alt-v"></i>
@@ -166,9 +159,6 @@
                             <tr>
                                 <td class="date">{{ date('d/m/Y H:i', strtotime($trial->datetime)) }}</td>
                                 <td class="test">{{ $trial->test->name }}</td>
-                                @can('dashboard-students-see')
-                                    <td class="student">{{  $trial->user->name }}</td>
-                                @endcan
                                 @php ($max = $trial->test->part->nb_questions*5)
                                 @php ($score = $trial->score)
                                 @php ($percent = round(100*$score/$max, 1))
@@ -228,22 +218,89 @@
             </div>
         </div>
 
-        @role('student')
-        <!-- Statistiques -->
-        <!--<div class="part-container">
-            <h2>Progression</h2>
-            <div class="charts">
-                <canvas class="chart" id="progression"></canvas>
-            </div>
-        </div>-->
-        @endrole
+        <div class="part-container">
+            <h2>Résultats des derniers tests composés</h2>
+            @if (!Auth::user()->hasRole('teacher'))
+                <p class="emphasis">La correction des questions liées aux parties de compréhension orale n'est pas affichée.</p>
+            @endif
+            <div class="table" id="profile-composite-tests">
+                <div class="table--filters">
+                    <div class="field-container">
+                        <label for="search">Search</label>
+                        <input type="text" id="search" name="search" class="search">
+                    </div>
+                </div>
 
+                <div class="table-container is-visible">
+                    <table>
+                        <caption class="sr-only">Liste des composite tests passés</caption>
+                        <thead>
+                        <tr>
+                            <th scope="col">
+                                <button class="sort" data-sort="date">
+                                    Date <i class="fas fa-arrows-alt-v"></i>
+                                </button>
+                            </th>
+                            <th scope="col">
+                                <button class="sort" data-sort="test">
+                                    Nom du test <i class="fas fa-arrows-alt-v"></i>
+                                </button>
+                            </th>
+                            <th scope="col">
+                                <button class="sort" data-sort="score">
+                                    Score <i class="fas fa-arrows-alt-v"></i>
+                                </button>
+                            </th>
+                            @role('student')
+                            <th scope="col">Actions</th>
+                            @endrole
+                        </tr>
+                        </thead>
+                        <tbody class="list">
+                        @foreach ($composite_trials as $key => $trial)
+                            <tr>
+                                <td class="date">{{ date('d/m/Y H:i', strtotime($trial->datetime)) }}</td>
+                                <td class="test">{{ $trial->composite_test->name }}</td>
+                                @php ($max = $trial->composite_test->max_score())
+                                @php ($score = $trial->score)
+                                @php ($percent = round(100*$score/$max, 1))
+                                @php ($class_score = $percent >= $scores['intermediate'] ? 'score--high' : ($percent >= $scores['low'] ? 'score--medium' : 'score--low'))
+                                <td class="score {{ $class_score }}"><span class="important">{{ $score }}/{{ $max }}</span> ({{ $percent }}%)</td>
+                                @role('student')
+                                <td>
+                                    <ul>
+                                        <li class="table--action">
+                                            <a
+                                                    href="{{ action('ExerciseController@show', ['id' => $trial->test->id]) }}"
+                                                    title="Execute exercise"
+                                            >
+                                                <i class="fas fa-play fa-lg"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </td>
+                                @endrole
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="container-pagination">
+                    <button class="btn-pagination" id="js-pagination-prev">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <ul class="pagination"></ul>
+                    <button class="btn-pagination" id="js-pagination-next">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="container-empty-search" id="js-empty-search" aria-hidden="true">
+                <p class="emphasis">Aucun résultat.</p>
+            </div>
+        </div>
     </div>
 
-    {{--
-    <script>
-        var chart_axisX = "{{ $datas['axisX'] }}";
-        var chart_axisY = "{{ $datas['axisY'] }}";
-    </script>
-    --}}
 @endsection

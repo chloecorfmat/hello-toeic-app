@@ -426,6 +426,20 @@ function lists(e) {
     var list = new List('users', options);
     listOverride(list);
   }
+
+  if (document.getElementById('results-composite-tests') !== null) {
+    var options = {
+      valueNames: ['date', 'student', 'test', 'score'],
+      page: 30,
+      pagination: {
+        paginationClass: "pagination",
+        outerWindow: 0,
+        innerWindow: 2
+      }
+    };
+    var list = new List('results-composite-tests', options);
+    listOverride(list);
+  }
 }
 
 function listOverride(list) {

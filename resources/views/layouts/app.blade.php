@@ -109,6 +109,14 @@
                         <div class="laterale-bar--part laterale-bar--menu">
                             <h3>Admin</h3>
                             <ul class="laterale-bar--menu-list">
+
+                                <li class="laterale-bar--menu-item">
+                                    <a href="{{ route('results.index') }}">
+                                        <i class="menu-ico fas fa-star"></i>
+                                        Résultats
+                                    </a>
+                                </li>
+
                                 <li class="laterale-bar--menu-item">
                                     <a href="{{ route('users.index') }}">
                                         <i class="menu-ico fas fa-user"></i>

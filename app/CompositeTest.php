@@ -23,32 +23,32 @@ class CompositeTest extends Model
 
     public $timestamps = false;
 
-    public function testPart1() {
-        return $this->hasOne('App\Exercise', 'exercise_part1', 'id');
+    public function exercisePart1() {
+        return $this->hasOne('App\Exercise', 'id', 'exercise_part1');
     }
 
-    public function testPart2() {
-        return $this->hasOne('App\Exercise', 'exercise_part2', 'id');
+    public function exercisePart2() {
+        return $this->hasOne('App\Exercise', 'id', 'exercise_part2');
     }
 
-    public function testPart3() {
-        return $this->hasOne('App\Exercise', 'exercise_part3', 'id');
+    public function exercisePart3() {
+        return $this->hasOne('App\Exercise', 'id', 'exercise_part3');
     }
 
-    public function testPart4() {
-        return $this->hasOne('App\Exercise', 'exercise_part4', 'id');
+    public function exercisePart4() {
+        return $this->hasOne('App\Exercise', 'id', 'exercise_part4');
     }
 
-    public function testPart5() {
-        return $this->hasOne('App\Exercise', 'exercise_part5', 'id');
+    public function exercisePart5() {
+        return $this->hasOne('App\Exercise', 'id', 'exercise_part5');
     }
 
-    public function testPart6() {
-        return $this->hasOne('App\Exercise', 'exercise_part6', 'id');
+    public function exercisePart6() {
+        return $this->hasOne('App\Exercise', 'id', 'exercise_part6');
     }
 
-    public function testPart7() {
-        return $this->hasOne('App\Exercise', 'exercise_part7', 'id');
+    public function exercisePart7() {
+        return $this->hasOne('App\Exercise', 'id', 'exercise_part7');
     }
 
     public function compositeTestId() {
@@ -57,5 +57,20 @@ class CompositeTest extends Model
 
     public function lessons() {
         return $this->hasMany('App\Lesson', 'composite_test_id', 'id');
+    }
+
+    public function max_score() {
+        $prefix = "exercise_part";
+        $nb_questions = 0;
+
+        for ($i = 1; $i < 8; $i++) {
+            $variable = $prefix . $i;
+            if (!is_null($this->$variable)) {
+                $exercise = Exercise::find($this->$variable);
+                $nb_questions += $exercise->part->nb_questions;
+            }
+        }
+
+        return $nb_questions * 5;
     }
 }

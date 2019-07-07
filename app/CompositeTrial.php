@@ -15,8 +15,8 @@ class CompositeTrial extends Model
 
     public $timestamps = false;
 
-    public function compositeTestId() {
-        return $this->hasOne('App\CompositeTest', 'composite_test_id', 'id');
+    public function composite_test() {
+        return $this->hasOne('App\CompositeTest', 'id', 'composite_test_id');
     }
 
     public function user() {

@@ -91,6 +91,15 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/admin/config', 'ConfigController@store')
         ->name('config.store');
 
+    Route::get('admin/results', 'ResultController@index')
+        ->name('results.index');
+    Route::get('admin/results/composite-tests', 'ResultController@compositeTests')
+        ->name('results.composite-tests');
+    Route::get('admin/results/exercises', 'ResultController@exercises')
+        ->name('results.exercises');
+    Route::get('admin/results/games', 'ResultController@games')
+        ->name('results.games');
+
 });
 
 

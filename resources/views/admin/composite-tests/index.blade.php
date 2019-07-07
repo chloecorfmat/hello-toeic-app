@@ -6,10 +6,11 @@
             {{ Breadcrumbs::render('composite-tests.index') }}
             <h1>
                 Liste des tests composés
-                <a href="{{ route('composite-tests.create') }}" class="main-content--header-actions">
-                    <i class="fas fa-plus-circle"></i>
-                </a>
             </h1>
+
+            <a href="{{ route('composite-tests.create') }}" class="main-content--header-actions">
+                <i class="fas fa-plus-circle"></i>
+            </a>
         </div>
         @if ($message = Session::get('success'))
             <div class="alert alert-success">
