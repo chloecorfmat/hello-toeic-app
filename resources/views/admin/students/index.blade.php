@@ -77,6 +77,7 @@
                                     <li>
                                         <a href="{{ route('students.show', ['id' => $student->id]) }}" title="Show student"><i class="fas fa-eye"></i></a>
                                         <a href="{{ route('users.edit', ['id' => $student->id]) }}" title="Edit student"><i class="fas fa-pencil-alt"></i></a>
+                                        <a href="{{ route('users.delete', $student->id) }}" title="Delete student"><i class="fas fa-trash"></i></a>
                                     </li>
                                 </ul>
                             </td>

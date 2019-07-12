@@ -73,6 +73,7 @@
                                         @if ($user->hasRole('student') || $is_admin)
                                             <a href="{{ route('users.edit', ['id' => $user->id]) }}" title="Edit user"><i class="fas fa-pencil-alt"></i></a>
                                         @endif
+                                        <a href="{{ route('users.delete', $user->id) }}" title="Delete user"><i class="fas fa-trash"></i></a>
                                     </li>
                                 </ul>
                             </td>

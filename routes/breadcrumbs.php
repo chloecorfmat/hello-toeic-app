@@ -40,6 +40,11 @@ Breadcrumbs::for('users.edit', function ($trail, $user) {
     $trail->push('Modifier', route('users.edit', $user->id));
 });
 
+Breadcrumbs::for('users.delete', function ($trail, $user) {
+    $trail->parent('dashboard');
+    $trail->push('Delete user: ' . $user->name, route('users.delete'));
+});
+
 
 /** ADMIN PAGES for teacher users */
 Breadcrumbs::for('exercises.index', function ($trail) {

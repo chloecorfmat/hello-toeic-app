@@ -38,6 +38,8 @@ Route::group(['middleware' => ['auth']], function () {
         ->name('users.import');
     Route::post('admin/users/storeImport', 'UserController@storeImport')
         ->name('users.storeImport');
+    Route::get('admin/users/delete/{id?}', 'UserController@delete')
+        ->name('users.delete');
     Route::resource('admin/users', 'UserController');
 
     Route::get('admin/questions/delete/{id?}', 'QuestionController@delete')

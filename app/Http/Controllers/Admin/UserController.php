@@ -172,7 +172,44 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $composite_trials = $user->composite_trials()->get();
+        $trials = $user->trials()->get();
+        $games = $user->games()->get();
+
+        foreach ($trials as $trial) {
+            $trial->composite_trial_id = null;
+            $trial->corrections()->delete();
+            $trial->save();
+            $trial->delete();
+        }
+
+        foreach ($composite_trials as $composite_trial) {
+            $composite_trial->delete();
+        }
+
+        foreach ($games as $game) {
+            $game->delete();
+        }
+
+        $user->delete();
+
+        if (auth()->user()->hasRole('admin')) {
+            return redirect()->route('users.index')->with('success', 'User has been deleted.');
+        }
+
+        return redirect()->route('students.index')->with('success', 'Student has been deleted.');
+    }
+
+    /**
+     * Display a confirmation form before destroy model.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function delete($id)
+    {
+        $user = User::find($id);
+        return view('admin.users.delete', compact('user'));
     }
 
     public function import() {
