@@ -203,7 +203,7 @@ class UserController extends Controller
                         'matricule' => $data[5],
                         'email' => $email,
                         'course' => $data[3] . $data[2],
-                        'password' => Hash::make($data[5]),
+                        'password' => Hash::make(str_replace("\n", "", $data[5])),
                     ]);
 
                     $user->assignRole($role);
