@@ -18,6 +18,7 @@
             </div>
         @endif
 
+        <p>Params to configure.</p>
         <div class="container">
             <form method="POST" action="{{ route('config.store') }}">
                 @csrf

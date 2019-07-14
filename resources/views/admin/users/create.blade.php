@@ -13,6 +13,11 @@
                 </ul>
             </div>
         @endif
+
+        @if(!$is_admin)
+            <p>Teachers can only create students.</p>
+        @endif
+
         <form method="POST" action="{{ route('users.store') }}" enctype="multipart/form-data">
             @csrf
 

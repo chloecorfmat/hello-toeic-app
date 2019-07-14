@@ -13,6 +13,7 @@
                 </ul>
             </div>
         @endif
+        <p>You can create many groups by file import.</p>
         <form method="POST" action="{{ route('groups.storeImport') }}" enctype="multipart/form-data">
             @csrf
 

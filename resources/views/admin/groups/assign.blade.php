@@ -13,6 +13,7 @@
                 </ul>
             </div>
         @endif
+        <p>You can assign users in groups by file import.</p>
         <form method="POST" action="{{ route('groups.storeAssign') }}" enctype="multipart/form-data">
             @csrf
 

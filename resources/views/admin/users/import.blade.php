@@ -4,11 +4,10 @@
     <div class="main-content">
         <div class="main-content--header">
             {{ Breadcrumbs::render('users.import') }}
-            <h1>
-                Import users
-            </h1>
+            <h1>Import users</h1>
         </div>
 
+        <p>You can import many users in one shot.</p>
         <form method="POST" action="{{ route('users.storeImport') }}" enctype="multipart/form-data">
             @csrf
 
@@ -19,7 +18,8 @@
 
             <div class="field-container">
                 <label for="suffix_mail">Suffix mail <span class="required">*</span></label>
-                <input type="text" id="suffix_mail" name="suffix_mail" placeholder="@enssat.fr" required>
+                <input type="text" id="suffix_mail" name="suffix_mail" placeholder="@enssat.fr" aria-describedby="suffix-description" required>
+                <p id="suffix-description">It will be used to generate email addresses.</p>
             </div>
 
             @role('admin')

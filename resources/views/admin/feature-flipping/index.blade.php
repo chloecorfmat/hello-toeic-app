@@ -20,6 +20,7 @@
             </div>
         @endif
 
+        <p>Features to enable or disable.</p>
         <div class="container">
             <form method="POST" action="{{ route('feature-flipping.store') }}">
                 @csrf

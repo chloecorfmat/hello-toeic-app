@@ -49,7 +49,8 @@
 
             <div class="field-container">
                 <label for="choices-test">Test <span class="required">*</span></label>
-                <select id="choices-test" name="test" id="test" required>
+                <p class="test-description">Test concerned should be a composite test.</p>
+                <select id="choices-test" name="test" id="test" required aria-describedby="test-description">
                     <option></option>
                     @foreach ($tests as $test)
                         <option

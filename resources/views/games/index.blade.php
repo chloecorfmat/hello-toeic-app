@@ -11,6 +11,7 @@
         @endif
 
         <h2>Best scores</h2>
+        <p>10 best scores of students.</p>
         <div class="table">
             <div class="table-container is-visible">
                 <table>
@@ -44,6 +45,7 @@
         </div>
 
         <h2>Scores</h2>
+        <p>Your own scores.</p>
         <div class="table" id="games">
             <div class="table--filters">
                 <div class="field-container">

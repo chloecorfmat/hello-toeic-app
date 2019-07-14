@@ -168,6 +168,10 @@ h2 {
   margin: 1rem auto;
 }
 
+h2 + p {
+  margin: 0.5rem 0;
+}
+
 h3 {
   font-size: 1.3rem;
   font-weight: 700;
@@ -362,6 +366,10 @@ body {
   flex-direction: column;
   height: 100%;
   flex-grow: 1;
+}
+
+.container p {
+  margin: 1rem 0;
 }
 
 @media screen and (min-width: 920px) {
