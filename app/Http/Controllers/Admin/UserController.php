@@ -72,7 +72,7 @@ class UserController extends Controller
             $user->assignRole($request->get('role'));
 
             if (Setting::where('key', 'ff.email')->first()->value == true) {
-                Mail::to($user)->send(new UserAccountCreated($user));
+                //Mail::to($user)->send(new UserAccountCreated($user));
             }
 
             return redirect()->route('users.index')->with('success', 'User has been created.');
@@ -246,7 +246,7 @@ class UserController extends Controller
                     $user->assignRole($role);
 
                     if (Setting::where('key', 'ff.email')->first()->value == true) {
-                        Mail::to($user)->send(new UserAccountCreated($user));
+                        //Mail::to($user)->send(new UserAccountCreated($user));
                     }
 
                 } else {
