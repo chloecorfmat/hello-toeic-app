@@ -154,15 +154,18 @@ class GroupController extends Controller
         $students = null;
 
         foreach ($handle as $line) {
-            if (intval($line) === 0) {
+            $line = str_replace("\n", "", $line);
+            if (!is_numeric($line)) {
                 if (!is_null($students) && !is_null($group)) {
                     $group->users()->attach($students);
                     $group->save();
+
+                    $group = null;
+                    $student = null;
                 }
 
-                if (str_replace("\n", "", $line) !== "") {
+                if ($line !== "") {
                     $group = Group::where('machine_name', str_replace("\n", "", $line))->get()->first();
-                    $students = null;
 
                     if (is_null($group)) {
                         if ($group_message !== "") {
