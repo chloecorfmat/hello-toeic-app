@@ -161,11 +161,12 @@ class GroupController extends Controller
                     $group->save();
 
                     $group = null;
-                    $student = null;
+                    $students = null;
                 }
 
                 if ($line !== "") {
                     $group = Group::where('machine_name', str_replace("\n", "", $line))->get()->first();
+                    $students = null;
 
                     if (is_null($group)) {
                         if ($group_message !== "") {
