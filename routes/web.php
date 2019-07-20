@@ -93,6 +93,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/admin/config', 'ConfigController@store')
         ->name('config.store');
 
+    Route::get('/admin/wordings', 'WordingController@index')
+        ->name('wordings.index');
+    Route::post('/admin/wordings', 'WordingController@store')
+        ->name('wordings.store');
+
     Route::get('admin/results', 'ResultController@index')
         ->name('results.index');
     Route::get('admin/results/composite-tests', 'ResultController@compositeTests')

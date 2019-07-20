@@ -20,6 +20,11 @@ Breadcrumbs::for('config.index', function ($trail) {
     $trail->push('Configuration', route('config.index'));
 });
 
+Breadcrumbs::for('wordings.index', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push((new \App\Services\RenderService())->t('wording.wordings.index.title'), route('wordings.index'));
+});
+
 Breadcrumbs::for('users.index', function ($trail) {
     $trail->parent('dashboard');
     $trail->push('Utilisateurs', route('users.index'));

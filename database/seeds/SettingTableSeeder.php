@@ -33,11 +33,34 @@ class SettingTableSeeder extends Seeder
             'name' => 'Score insuffisant (%)',
         ]);**/
 
-        Setting::create([
+        /**Setting::create([
             'key' => 'config.default.reading.duration',
             'type' => 'config',
             'value' => strval(75*60),
             'name' => 'Default timer (reading exercise)',
+        ]);**/
+
+        Setting::create([
+            'key' => 'wording.wordings.index.explanation',
+            'type' => 'wording',
+            'value' => 'Wordings to display in interface.',
+            'name' => '',
+        ])
+
+        Setting::create([
+            'key' => 'wording.wordings.index.title',
+            'type' => 'wording',
+            'value' => 'Wordings',
+            'name' => '',
         ]);
+
+        Setting::create([
+            'key' => 'wording.wordings.index.success',
+            'type' => 'wording',
+            'value' => 'Wordings have been saved.',
+            'name' => '',
+        ]);
+
+        // HERE !
     }
 }

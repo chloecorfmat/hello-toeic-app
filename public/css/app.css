@@ -614,6 +614,10 @@ legend {
   margin-bottom: 1rem;
 }
 
+.form-wordings {
+  width: 100%;
+}
+
 .table-container {
   border-radius: 5px;
   border: 1px solid #c5cbd3;

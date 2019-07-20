@@ -1,3 +1,5 @@
+@inject('render', 'App\Services\RenderService')
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -219,14 +221,12 @@
                                         Feature flipping
                                     </a>
                                 </li>
-                                {{--
                                 <li class="laterale-bar--menu-item">
-                                    <a href="{{ route('feature-flipping.index') }}">
+                                    <a href="{{ route('wordings.index') }}">
                                         <i class="menu-ico fas fa-language"></i>
-                                        Translations
+                                        {{ $render->t('wording.wordings.index.title') }}
                                     </a>
                                 </li>
-                                --}}
                                 <li class="laterale-bar--menu-item">
                                     <a href="{{ route('config.index') }}">
                                         <i class="menu-ico fas fa-cogs"></i>
