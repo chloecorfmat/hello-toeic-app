@@ -45,7 +45,7 @@ class SettingTableSeeder extends Seeder
             'type' => 'wording',
             'value' => 'Wordings to display in interface.',
             'name' => '',
-        ])
+        ]);
 
         Setting::create([
             'key' => 'wording.wordings.index.title',
