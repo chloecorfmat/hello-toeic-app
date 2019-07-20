@@ -40,7 +40,7 @@ class SettingTableSeeder extends Seeder
             'name' => 'Default timer (reading exercise)',
         ]);**/
 
-        Setting::create([
+        /**Setting::create([
             'key' => 'wording.wordings.index.explanation',
             'type' => 'wording',
             'value' => 'Wordings to display in interface.',
@@ -59,8 +59,14 @@ class SettingTableSeeder extends Seeder
             'type' => 'wording',
             'value' => 'Wordings have been saved.',
             'name' => '',
-        ]);
+        ]);**/
 
         // HERE !
+        /**Setting::create([
+        'key' => 'wording.wordings.index.success',
+        'type' => 'wording',
+        'value' => 'Wordings have been saved.',
+        'name' => '',
+        ]);**/
     }
 }
