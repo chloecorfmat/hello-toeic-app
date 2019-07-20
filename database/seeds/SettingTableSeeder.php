@@ -61,8 +61,7 @@ class SettingTableSeeder extends Seeder
             'name' => '',
         ]);**/
 
-        // HERE !
-        Setting::create([
+        /**Setting::create([
         'key' => 'wording.app.login',
         'type' => 'wording',
         'value' => 'Login',
@@ -263,7 +262,9 @@ class SettingTableSeeder extends Seeder
             'type' => 'wording',
             'value' => 'Play',
             'name' => '',
-        ]);
+        ]);**/
+
+        // HERE !
 
 
     }
