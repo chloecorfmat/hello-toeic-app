@@ -50,7 +50,7 @@
                     @endforeach
                     <div>
                         <button type="submit" class="btn btn-primary">
-                            {{ __('Save') }}
+                            {{ __('common.save') }}
                         </button>
                     </div>
                 </form>

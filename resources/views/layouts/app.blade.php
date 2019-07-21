@@ -223,7 +223,7 @@
                                 <li class="laterale-bar--menu-item">
                                     <a href="{{ route('wordings.index') }}">
                                         <i class="menu-ico fas fa-language"></i>
-                                        {{__('app.wordings')}}
+                                        {{__('wordings.title')}}
                                     </a>
                                 </li>
                                 <li class="laterale-bar--menu-item">
