@@ -491,6 +491,112 @@ class LanguageLinesTableSeeder extends Seeder
 
         // @TODO :  HERE !
 
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'role',
+            'text' => ['en' => 'Role', 'fr' => 'Rôle'],
+        ]);
 
+        LanguageLine::create([
+            'group' => 'users',
+            'key' => 'edit',
+            'text' => ['en' => 'User edit', 'fr' => 'Modifier l\'utilisateur'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'users',
+            'key' => 'show',
+            'text' => ['en' => 'User show', 'fr' => 'Voir l\'utilisateur'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'users',
+            'key' => 'delete',
+            'text' => ['en' => 'User delete', 'fr' => 'Supprimer l\'utilisateur'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'users',
+            'key' => 'delete-this',
+            'text' => ['en' => 'Delete the user :name', 'fr' => 'Supprimer l\'utilisateur :name'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'users',
+            'key' => 'edit-this',
+            'text' => ['en' => 'Edit the user :name', 'fr' => 'Modifier l\'utilisateur :name'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'users',
+            'key' => 'add',
+            'text' => ['en' => 'User add', 'fr' => 'Créer un utilisateur'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'users',
+            'key' => 'add_limitation',
+            'text' => ['en' => 'Teachers can only create students.', 'fr' => 'Teachers can only create students.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'teacher',
+            'text' => ['en' => 'Teacher', 'fr' => 'Enseignant'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'admin',
+            'text' => ['en' => 'Admin', 'fr' => 'Administrateur'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'action_irreversible',
+            'text' => ['en' => 'Cette action est irréversible.', 'fr' => 'Cette action est irréversible.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'users',
+            'key' => 'delete_sure',
+            'text' => ['en' => 'Are you sure ?', 'fr' => 'Êtes-vous sûr de vouloir supprimer cet utilisateur ?'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'app',
+            'key' => 'groups',
+            'text' => ['en' => 'Groups', 'fr' => 'Groupes'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'users',
+            'key' => 'import_title',
+            'text' => ['en' => 'Import users', 'fr' => 'Import users'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'users',
+            'key' => 'import_explanation',
+            'text' => ['en' => 'You can import many users in one shot.', 'fr' => 'You can import many users in one shot.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'file',
+            'text' => ['en' => 'File', 'fr' => 'Fichier'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'email_suffix',
+            'text' => ['en' => 'E-mail suffix', 'fr' => 'E-mail suffix'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'details',
+            'text' => ['en' => 'Details', 'fr' => 'Détails'],
+        ]);
     }
 }

@@ -3,7 +3,7 @@
 @section('content')
     <div class="main-content">
         {{ Breadcrumbs::render('users.delete', $user) }}
-        <h1>Delete the user: {{ $user->name }}</h1>
+        <h1>{{ __('users.delete-this', ['name' => $user->name]) }}</h1>
         @if ($errors->any())
             <div>
                 <ul class="alert alert-error">
@@ -17,9 +17,9 @@
         <form action="{{ route('users.destroy', $user->id) }}" method="POST">
             @method('DELETE')
             @csrf
-            <p class="important">Êtes-vous sûr de vouloir supprimer cet utilisateur ? <span class="emphasis">Cette action est irréversible.</span></p>
+            <p class="important">{{ __('common.delete_sure') }} <span class="emphasis">{{ __('common.action_irreversible') }}</span></p>
 
-            <button type="submit" class="btn btn-primary">Delete</button>
+            <button type="submit" class="btn btn-primary">{{ __('common.delete') }}</button>
         </form>
     </div>
 @endsection

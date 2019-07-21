@@ -4,7 +4,7 @@
     <div class="main-content">
         <div class="main-content--header">
             {{ Breadcrumbs::render('users.index') }}
-            <h1>Liste des utilisateurs</h1>
+            <h1>{{ __('users.list') }}</h1>
             <a href="{{ route('users.create') }}" class="main-content--header-actions">
                 <i class="fas fa-plus-circle"></i>
             </a>
@@ -27,31 +27,31 @@
         <div class="table" id="users">
             <div class="table--filters">
                 <div class="field-container">
-                    <label for="search">Search</label>
+                    <label for="search">{{ __('common.search') }}</label>
                     <input type="text" id="search" name="search" class="search">
                 </div>
             </div>
             <div class="table-container is-visible">
                 <table>
-                    <caption class="sr-only">Liste des utilisateurs</caption>
+                    <caption class="sr-only">{{ __('users.list') }}</caption>
                     <thead>
                     <tr>
                         <th scope="col">
                             <button class="sort" data-sort="matricule">
-                                Matricule <i class="fas fa-arrows-alt-v"></i>
+                                {{ __('common.matricule') }} <i class="fas fa-arrows-alt-v"></i>
                             </button>
                         </th>
                         <th scope="col">
                             <button class="sort" data-sort="user">
-                                Student <i class="fas fa-arrows-alt-v"></i>
+                                {{ __('common.student') }} <i class="fas fa-arrows-alt-v"></i>
                             </button>
                         </th>
                         <th scope="col">
                             <button class="sort" data-sort="role">
-                                Role <i class="fas fa-arrows-alt-v"></i>
+                                {{ __('common.role') }} <i class="fas fa-arrows-alt-v"></i>
                             </button>
                         </th>
-                        <th scope="col">Actions</th>
+                        <th scope="col">{{ __('common.actions') }}</th>
                     </tr>
                     </thead>
                     <tbody class="list">
@@ -69,11 +69,11 @@
                             <td>
                                 <ul>
                                     <li>
-                                        <a href="{{ route('users.show', ['id' => $user->id]) }}" title="Show user"><i class="fas fa-eye"></i></a>
+                                        <a href="{{ route('users.show', ['id' => $user->id]) }}" title="{{ __('users.show') }}"><i class="fas fa-eye"></i></a>
                                         @if ($user->hasRole('student') || $is_admin)
-                                            <a href="{{ route('users.edit', ['id' => $user->id]) }}" title="Edit user"><i class="fas fa-pencil-alt"></i></a>
+                                            <a href="{{ route('users.edit', ['id' => $user->id]) }}" title="{{ __('users.edit') }}"><i class="fas fa-pencil-alt"></i></a>
                                         @endif
-                                        <a href="{{ route('users.delete', $user->id) }}" title="Delete user"><i class="fas fa-trash"></i></a>
+                                        <a href="{{ route('users.delete', $user->id) }}" title="{{ __('users.delete') }}"><i class="fas fa-trash"></i></a>
                                     </li>
                                 </ul>
                             </td>
@@ -94,7 +94,7 @@
             </div>
         </div>
         <div class="container-empty-search" id="js-empty-search" aria-hidden="true">
-            <p class="emphasis">Aucun résultat.</p>
+            <p class="emphasis">{{ __('common.no-result') }}</p>
         </div>
     </div>
 @endsection

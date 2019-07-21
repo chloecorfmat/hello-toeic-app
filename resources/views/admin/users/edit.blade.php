@@ -3,7 +3,7 @@
 @section('content')
     <div class="main-content">
         {{ Breadcrumbs::render('users.edit', $user) }}
-        <h1>Modifier un utilisateur : {{ $user->name }}</h1>
+        <h1>{{ __('users.edit-this', ['name' => $user->name]) }}</h1>
         @if ($errors->any())
             <div>
                 <ul class="alert alert-error">
@@ -33,7 +33,7 @@
             {{ method_field('PUT')}}
 
             <div class="field-container">
-                <label for="name">Nom <span class="required">*</span></label>
+                <label for="name">{{ __('common.name') }} <span class="required">*</span></label>
                 <input
                         type="text"
                         id="name"
@@ -46,7 +46,7 @@
             </div>
 
             <div class="field-container">
-                <label for="matricule">Matricule <span class="required">*</span></label>
+                <label for="matricule">{{ __('common.matricule') }} <span class="required">*</span></label>
                 <input
                         type="number"
                         id="matricule"
@@ -62,7 +62,7 @@
             </div>
 
             <div class="field-container">
-                <label for="email">E-mail <span class="required">*</span></label>
+                <label for="email">{{ __('common.email') }} <span class="required">*</span></label>
                 <input
                         type="email"
                         id="email"
@@ -73,7 +73,7 @@
             </div>
 
             <div class="field-container">
-                <label for="course">Course</label>
+                <label for="course">{{ __('common.course') }}</label>
                 <input
                        type="text"
                        id="course"
@@ -85,7 +85,7 @@
             </div>
 
             <div class="field-container">
-                <label for="passed">Toeic success ?</label>
+                <label for="passed">{{ __('common.toeic') }}</label>
                 <input
                         type="date"
                         id="passed"
@@ -98,7 +98,7 @@
 
             @if ($is_student)
                 <div class="field-container">
-                    <label for="groups">Groups</label>
+                    <label for="groups">{{ __('app.groups') }}</label>
                     <select id="groups" name="groups[]" multiple="">
                         <option></option>
                         @foreach ($groups as $group)
@@ -116,7 +116,7 @@
             @endif
 
             <button type="submit" class="btn btn-primary">
-                {{ __('Validate') }}
+                {{ __('common.validate') }}
             </button>
         </form>
     </div>

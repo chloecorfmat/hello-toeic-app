@@ -4,35 +4,35 @@
     <div class="main-content">
         <div class="main-content--header">
             {{ Breadcrumbs::render('users.import') }}
-            <h1>Import users</h1>
+            <h1>{{ __('users.import_title') }}</h1>
         </div>
 
-        <p>You can import many users in one shot.</p>
+        <p>{{ __('users.import_title') }}</p>
         <form method="POST" action="{{ route('users.storeImport') }}" enctype="multipart/form-data">
             @csrf
 
             <div class="field-container">
-                <label for="file">File <span class="required">*</span></label>
+                <label for="file">{{ __('common.file') }} <span class="required">*</span></label>
                 <input type="file" id="file" name="file" required>
             </div>
 
             <div class="field-container">
-                <label for="suffix_mail">Suffix mail <span class="required">*</span></label>
+                <label for="suffix_mail">{{ __('common.email_suffix') }} <span class="required">*</span></label>
                 <input type="text" id="suffix_mail" name="suffix_mail" placeholder="@enssat.fr" aria-describedby="suffix-description" required>
                 <p id="suffix-description">It will be used to generate email addresses.</p>
             </div>
 
             @role('admin')
             <div class="field-container">
-                <label for="role">Rôle <span class="required">*</span></label>
+                <label for="role">{{ __('common.role') }} <span class="required">*</span></label>
                 <select
                         name="role"
                         id="role"
                         required
                 >
-                    <option value="student">Student</option>
+                    <option value="student">{{ __('common.student') }}</option>
 
-                    <option value="teacher">Teacher</option>
+                    <option value="teacher">{{ __('common.teacher') }}</option>
                 </select>
             </div>
             @endrole
@@ -42,7 +42,7 @@
             @endrole
 
             <button type="submit" class="btn btn-primary">
-                {{ __('Validate') }}
+                {{ __('common.validate') }}
             </button>
         </form>
     </div>
