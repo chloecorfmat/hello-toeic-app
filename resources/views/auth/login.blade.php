@@ -5,7 +5,7 @@
 @section('content')
 <div class="login">
     <div class="form-container">
-        <h1>Login</h1>
+        <h1>{{ __('common.login') }}</h1>
 
         @foreach($errors->all() as $error)
             <div class="alert alert-error">
@@ -18,17 +18,17 @@
         <form method="POST" action="{{ route('login') }}">
             @csrf
             <div class="field-container">
-                <label for="email">E-mail address <span class="required">*</span></label>
+                <label for="email">{{ __('common.email') }} <span class="required">*</span></label>
                 <input type="email" id="email" name="email" value="{{ old('email') }}" required autofocus>
             </div>
 
             <div class="field-container">
-                <label for="password">Password <span class="required">*</span></label>
+                <label for="password">{{ __('common.password') }} <span class="required">*</span></label>
                 <input type="password" id="password" name="password" required>
             </div>
 
             <button type="submit" class="btn btn-primary">
-                {{ __('Login') }}
+                {{ __('common.login') }}
             </button>
         </form>
     </div>
