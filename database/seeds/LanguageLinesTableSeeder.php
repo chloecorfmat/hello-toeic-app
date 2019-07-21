@@ -469,9 +469,8 @@ class LanguageLinesTableSeeder extends Seeder
             'group' => 'profile',
             'key' => 'password.repeat',
             'text' => ['en' => 'Repeat password', 'fr' => 'Répéter le mot de passe'],
-        ]);**/
+        ]);
 
-        // @TODO :  HERE !
         LanguageLine::create([
             'group' => 'exercises',
             'key' => 'results',
@@ -488,7 +487,9 @@ class LanguageLinesTableSeeder extends Seeder
             'group' => 'games',
             'key' => 'results',
             'text' => ['en' => 'Résultats des challenges', 'fr' => 'Résultats des challenges'],
-        ]);
+        ]);**/
+
+        // @TODO :  HERE !
 
 
     }
