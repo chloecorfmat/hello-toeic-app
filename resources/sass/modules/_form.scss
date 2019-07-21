@@ -127,3 +127,22 @@ legend {
 .form-wordings {
     width: 100%;
 }
+
+.fields {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .field {
+        flex-grow: 1;
+
+        &:not(:first-child) {
+            margin-left: 2rem;
+        }
+
+        input[type="text"] {
+            width: 100%;
+        }
+    }
+}
+

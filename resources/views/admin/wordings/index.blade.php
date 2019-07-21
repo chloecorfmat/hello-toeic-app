@@ -25,17 +25,27 @@
                     @csrf
                     @foreach ($wordings as $key => $wording)
                         <div class="field-container">
-                            <label class="form-label-text" for="{{ $wording->key }}">
-                                <span>{{ $wording->key }}</span>
-                            </label>
-                            <input
-                                    type="text"
-                                    name="{{ $wording->key }}"
-                                    value="{{ $wording->value }}"
-                                    id="{{ $wording->key }}"
-                                    required
-                            >
-                            <p>{{ $wording->value }}</p>
+                            <fieldset>
+                                <legend>{{ $wording->group }}.{{ $wording->key }}</legend>
+                                <div class="fields">
+                                    @foreach ($wording->text as $lang => $value)
+                                        <div class="field">
+                                            <label class="form-label-text" for="{{ $wording->key }}">
+                                                <span>{{ $lang }}</span>
+                                            </label>
+                                            <input
+                                                    type="text"
+                                                    name="{{ $wording->group }}.{{ $wording->key }}.{{ $lang }}"
+                                                    value="{{ $value }}"
+                                                    id="{{ $wording->group }}.{{ $wording->key }}.{{ $lang }}"
+                                                    required
+                                            >
+                                            <p>{{ $value }}</p>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </fieldset>
+
                         </div>
                     @endforeach
                     <div>

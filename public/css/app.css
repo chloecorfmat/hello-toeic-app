@@ -618,6 +618,24 @@ legend {
   width: 100%;
 }
 
+.fields {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.fields .field {
+  flex-grow: 1;
+}
+
+.fields .field:not(:first-child) {
+  margin-left: 2rem;
+}
+
+.fields .field input[type=text] {
+  width: 100%;
+}
+
 .table-container {
   border-radius: 5px;
   border: 1px solid #c5cbd3;

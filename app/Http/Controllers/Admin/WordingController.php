@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Services\RenderService;
-use App\Setting;
 use Illuminate\Http\Request;
+use Spatie\TranslationLoader\LanguageLine;
 
 class WordingController extends Controller
 {
@@ -16,7 +16,10 @@ class WordingController extends Controller
      */
     public function index()
     {
-        $wordings = Setting::where('type', 'wording')->get();
+        $wordings = [];
+        $language_lines = LanguageLine::all();
+
+        $wordings = $language_lines;
 
         return view('admin.wordings.index',compact('wordings'));
     }
@@ -40,14 +43,20 @@ class WordingController extends Controller
     public function store(Request $request)
     {
         $datas = $request->all();
-        $wordings = Setting::where('type', 'wording')->get();
+        $wordings = LanguageLine::all();
 
         foreach ($wordings as $wording) {
-            if (isset($datas[str_replace('.', '_', $wording->key)])) {
-                $wording->value = $datas[str_replace('.', '_', $wording->key)];
+            $fr = $datas[$wording->group . '_' . $wording->key . '_fr'];
+            $en = $datas[$wording->group . '_' . $wording->key . '_en'];
+
+            if (!is_null($en) && !is_null($fr)) {
+                $wording->text = [
+                    'en' => $en,
+                    'fr' => $fr,
+                ];
                 $wording->save();
             } else {
-                return redirect()->route('wordings.index')->with('error', 'An error occured on "' . $wording->name .'" update.');
+                return redirect()->route('wordings.index')->with('error', 'An error occured on "' . $wording->group . '_' . $wording->key .'" update.');
             }
         }
 
