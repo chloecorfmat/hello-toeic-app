@@ -4,7 +4,7 @@
     <div class="main-content">
         <div class="main-content--header">
             {{ Breadcrumbs::render('results.index') }}
-            <h1>Résultats</h1>
+            <h1>{{ __('app.results') }}</h1>
         </div>
 
         @if ($errors->any())
@@ -22,21 +22,21 @@
                 <li>
                     <a href="{{ route('results.exercises') }}">
                         <i class="menu-ico fas fa-star"></i>
-                        Résultats des exercices
+                        {{ __('exercises.results') }}
                     </a>
                 </li>
 
                 <li>
                     <a href="{{ route('results.composite-tests') }}">
                         <i class="menu-ico fas fa-star"></i>
-                        Résultats des tests composés
+                        {{ __('composite-tests.results') }}
                     </a>
                 </li>
 
                 <li>
                     <a href="{{ route('results.games') }}">
                         <i class="menu-ico fas fa-star"></i>
-                        Résultats des challenges
+                        {{ __('games.results') }}
                     </a>
                 </li>
             </ul>

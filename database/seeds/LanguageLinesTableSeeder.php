@@ -472,5 +472,24 @@ class LanguageLinesTableSeeder extends Seeder
         ]);**/
 
         // @TODO :  HERE !
+        LanguageLine::create([
+            'group' => 'exercises',
+            'key' => 'results',
+            'text' => ['en' => 'Résultats des exercices', 'fr' => 'Résultats des exercices'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'composite-tests',
+            'key' => 'results',
+            'text' => ['en' => 'Résultats des composite tests', 'fr' => 'Résultats des tests composés'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'games',
+            'key' => 'results',
+            'text' => ['en' => 'Résultats des challenges', 'fr' => 'Résultats des challenges'],
+        ]);
+
+
     }
 }

@@ -4,7 +4,7 @@
     <div class="main-content">
         <div class="main-content--header">
             {{ Breadcrumbs::render('results.games') }}
-            <h1>Résultats des challenges</h1>
+            <h1>{{ __('games.results') }}</h1>
         </div>
 
         @if ($errors->any())
@@ -22,28 +22,28 @@
             <div class="table" id="games">
                 <div class="table--filters">
                     <div class="field-container">
-                        <label for="search">Search</label>
+                        <label for="search">{{ __('common.search') }}</label>
                         <input type="text" id="search" name="search" class="search">
                     </div>
                 </div>
                 <div class="table-container is-visible">
                     <table>
-                        <caption class="sr-only">Challenges list</caption>
+                        <caption class="sr-only">{{ __('games.results') }}/caption>
                         <thead>
                         <tr>
                             <th>
                                 <button class="sort" data-sort="date">
-                                    Date <i class="fas fa-arrows-alt-v"></i>
+                                    {{ __('common.date') }} <i class="fas fa-arrows-alt-v"></i>
                                 </button>
                             </th>
                             <th>
                                 <button class="sort" data-sort="student">
-                                    Étudiant <i class="fas fa-arrows-alt-v"></i>
+                                    {{ __('common.student') }} <i class="fas fa-arrows-alt-v"></i>
                                 </button>
                             </th>
                             <th>
                                 <button class="sort" data-sort="score">
-                                    Score <i class="fas fa-arrows-alt-v"></i>
+                                    {{ __('common.score') }} <i class="fas fa-arrows-alt-v"></i>
                                 </button>
                             </th>
                         </tr>
@@ -72,7 +72,7 @@
             </div>
 
             <div class="container-empty-search" id="js-empty-search" aria-hidden="true">
-                <p class="emphasis">Aucun résultat.</p>
+                <p class="emphasis">{{ __('common.no-result') }}</p>
             </div>
         </div>
 

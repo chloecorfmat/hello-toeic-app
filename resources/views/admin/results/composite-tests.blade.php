@@ -4,7 +4,7 @@
     <div class="main-content">
         <div class="main-content--header">
             {{ Breadcrumbs::render('results.composite-tests') }}
-            <h1>Résultats des tests composés</h1>
+            <h1>{{ __('composite-tests.results') }}</h1>
         </div>
 
         @if ($errors->any())
@@ -20,42 +20,42 @@
         <div class="part-container">
             <h2>Résultats des derniers tests composés</h2>
             @if (!Auth::user()->hasRole('teacher'))
-                <p class="emphasis">La correction des questions liées aux parties de compréhension orale n'est pas affichée.</p>
+                <p class="emphasis">{{ __('correction.limitation') }}</p>
             @endif
             <div class="table" id="results-composite-tests">
                 <div class="table--filters">
                     <div class="field-container">
-                        <label for="search">Search</label>
+                        <label for="search">{{ __('common.search') }}</label>
                         <input type="text" id="search" name="search" class="search">
                     </div>
                 </div>
 
                 <div class="table-container is-visible">
                     <table>
-                        <caption class="sr-only">Liste des composite tests passés</caption>
+                        <caption class="sr-only">{{ __('composite-tests.results') }}</caption>
                         <thead>
                         <tr>
                             <th scope="col">
                                 <button class="sort" data-sort="date">
-                                    Date <i class="fas fa-arrows-alt-v"></i>
+                                    {{ __('common.date') }} <i class="fas fa-arrows-alt-v"></i>
                                 </button>
                             </th>
                             <th scope="col">
                                 <button class="sort" data-sort="student">
-                                    Student <i class="fas fa-arrows-alt-v"></i>
+                                    {{ __('common.student') }} <i class="fas fa-arrows-alt-v"></i>
                                 </button>
                             </th>
                             <th scope="col">
                                 <button class="sort" data-sort="test">
-                                    Nom du test <i class="fas fa-arrows-alt-v"></i>
+                                    {{ __('common.name') }} <i class="fas fa-arrows-alt-v"></i>
                                 </button>
                             </th>
                             <th scope="col">
                                 <button class="sort" data-sort="score">
-                                    Score <i class="fas fa-arrows-alt-v"></i>
+                                    {{ __('common.score') }} <i class="fas fa-arrows-alt-v"></i>
                                 </button>
                             </th>
-                            <th scope="col">Exercises</th>
+                            <th scope="col">{{ __('app.exercises') }}</th>
                         </tr>
                         </thead>
                         <tbody class="list">
@@ -98,7 +98,7 @@
             </div>
 
             <div class="container-empty-search" id="js-empty-search" aria-hidden="true">
-                <p class="emphasis">Aucun résultat.</p>
+                <p class="emphasis">{{ __('common.no-result') }}</p>
             </div>
         </div>
 

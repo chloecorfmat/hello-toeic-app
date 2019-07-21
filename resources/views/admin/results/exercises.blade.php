@@ -4,7 +4,7 @@
     <div class="main-content">
         <div class="main-content--header">
             {{ Breadcrumbs::render('results.exercises') }}
-            <h1>Résultats des exercices</h1>
+            <h1>{{ __('exercises.results') }}</h1>
         </div>
 
         @if ($errors->any())
@@ -18,44 +18,44 @@
         @endif
 
         <div class="part-container">
-            <h2>Résultats des derniers exercices</h2>
+            <h2>{{ __('exercises.results') }}</h2>
             @if (!Auth::user()->hasRole('teacher'))
-                <p class="emphasis">La correction des questions liées aux parties de compréhension orale n'est pas affichée.</p>
+                <p class="emphasis">{{ __('correction.limitation') }}</p>
             @endif
             <div class="table" id="results-exercises">
                 <div class="table--filters">
                     <div class="field-container">
-                        <label for="search">Search</label>
+                        <label for="search">{{ __('common.search') }}</label>
                         <input type="text" id="search" name="search" class="search">
                     </div>
                 </div>
 
                 <div class="table-container is-visible">
                     <table>
-                        <caption class="sr-only">Liste des tests passés</caption>
+                        <caption class="sr-only">{{ __('exercises.results') }}</caption>
                         <thead>
                         <tr>
                             <th scope="col">
                                 <button class="sort" data-sort="date">
-                                    Date <i class="fas fa-arrows-alt-v"></i>
+                                    {{ __('common.date') }} <i class="fas fa-arrows-alt-v"></i>
                                 </button>
                             </th>
                             <th scope="col">
                                 <button class="sort" data-sort="student">
-                                    Student <i class="fas fa-arrows-alt-v"></i>
+                                    {{ __('common.student') }} <i class="fas fa-arrows-alt-v"></i>
                                 </button>
                             </th>
                             <th scope="col">
                                 <button class="sort" data-sort="exercise">
-                                    Nom du test <i class="fas fa-arrows-alt-v"></i>
+                                    {{ __('common.name') }} <i class="fas fa-arrows-alt-v"></i>
                                 </button>
                             </th>
                             <th scope="col">
                                 <button class="sort" data-sort="score">
-                                    Score <i class="fas fa-arrows-alt-v"></i>
+                                    {{ __('common.score') }} <i class="fas fa-arrows-alt-v"></i>
                                 </button>
                             </th>
-                            <th scope="col">Actions</th>
+                            <th scope="col">{{ __('common.actions') }}</th>
                         </tr>
                         </thead>
                         <tbody class="list">
@@ -74,7 +74,7 @@
                                         <li class="table--action">
                                             <a
                                                     href="{{ route('student.trials.show', ['id' => $trial->id]) }}"
-                                                    title="Show solution"
+                                                    title="{{ __('correction.show') }}"
                                             >
                                                 <i class="fas fa-eye fa-lg"></i>
                                             </a>
@@ -99,7 +99,7 @@
             </div>
 
             <div class="container-empty-search" id="js-empty-search" aria-hidden="true">
-                <p class="emphasis">Aucun résultat.</p>
+                <p class="emphasis">{{ __('common.no-result') }}</p>
             </div>
         </div>
     </div>
