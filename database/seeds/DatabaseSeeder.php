@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         //$this->call('DocumentTableSeeder');
         //$this->call('QuestionTableSeeder');
 
-        $this->call('SettingTableSeeder');
+        //$this->call('SettingTableSeeder');
+        $this->call('LanguageLinesTableSeeder');
     }
 }

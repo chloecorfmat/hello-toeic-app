@@ -1,5 +1,3 @@
-@inject('render', 'App\Services\RenderService')
-
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -45,7 +43,7 @@
                 @guest
                     <li class="header--actions-list-item">
                         <a href="{{ route('login') }}">
-                            <span>{{ $render->t('wording.app.login') }}</span>
+                            <span>{{__('app.login')}}</span>
                         </a>
                     </li>
                 @else
@@ -58,7 +56,7 @@
                     <li class="header--actions-list-item">
                         <form id="logout-form" action="{{ route('logout') }}" method="POST">
                             @csrf
-                            <button class="header--logout-btn" type="submit" title="{{ $render->t('wording.app.logout') }}">
+                            <button class="header--logout-btn" type="submit" title="{{__('common.logout')}}">
                                 <i class="fas fa-power-off fa-lg"></i>
                             </button>
                         </form>
@@ -86,23 +84,23 @@
                         @yield('laterale-bar-content-begin')
 
                         <div class="laterale-bar--part laterale-bar--menu">
-                            <h3>{{ $render->t('wording.app.training') }}</h3>
+                            <h3>{{__('app.training')}}</h3>
                             <!--<a href="{{ route('train') }}" class="btn">S'entraîner</a>-->
 
                             <ul class="laterale-bar--menu-list">
                                 <li>
                                     <a class="btn btn-training" href="{{ route('student.composite-tests.index') }}">
-                                        <i class="fas fa-graduation-cap"></i> {{ $render->t('wording.app.composite-tests') }}
+                                        <i class="fas fa-graduation-cap"></i> {{__('app.composite-tests')}}
                                     </a>
                                 </li>
                                 <li>
                                     <a class="btn btn-training" href="{{ route('student.exercises.index') }}">
-                                        <i class="fas fa-question"></i> {{ $render->t('wording.app.exercises') }}
+                                        <i class="fas fa-question"></i> {{__('app.exercises')}}
                                     </a>
                                 </li>
                                 <li>
                                     <a class="btn btn-training" href="{{ route('games') }}">
-                                        <i class="fas fa-medal"></i> {{ $render->t('wording.app.challenges') }}
+                                        <i class="fas fa-medal"></i> {{__('app.games')}}
                                     </a>
                                 </li>
                             </ul>
@@ -110,90 +108,90 @@
 
                         @role('teacher')
                         <div class="laterale-bar--part laterale-bar--menu">
-                            <h3>{{ $render->t('wording.app.manage') }}</h3>
+                            <h3>{{__('app.manage')}}</h3>
                             <ul class="laterale-bar--menu-list">
 
                                 <li class="laterale-bar--menu-item">
                                     <a href="{{ route('results.index') }}">
                                         <i class="menu-ico fas fa-star"></i>
-                                        {{ $render->t('wording.app.results') }}
+                                        {{__('app.results')}}
                                     </a>
                                 </li>
 
                                 <li class="laterale-bar--menu-item">
                                     <a href="{{ route('users.index') }}">
                                         <i class="menu-ico fas fa-user"></i>
-                                        {{ $render->t('wording.app.users-list') }}
+                                        {{__('users.list')}}
                                     </a>
                                 </li>
 
                                 <li class="laterale-bar--menu-item">
                                     <a href="{{ route('students.index') }}">
                                         <i class="menu-ico fas fa-user-graduate"></i>
-                                        {{ $render->t('wording.app.students-list') }}
+                                        {{__('students.list')}}
                                     </a>
                                 </li>
 
                                 <li class="laterale-bar--menu-item">
                                     <a href="{{ route('groups.index') }}">
                                         <i class="menu-ico fas fa-users"></i>
-                                        {{ $render->t('wording.app.groups-list') }}
+                                        {{__('groups.list')}}
                                     </a>
                                 </li>
 
                                 <li class="laterale-bar--menu-item">
                                     <a href="{{ route('lessons.index') }}">
                                         <i class="menu-ico far fa-calendar-alt"></i>
-                                        {{ $render->t('wording.app.lessons-list') }}
+                                        {{__('lessons.list')}}
                                     </a>
                                 </li>
 
                                 <li class="laterale-bar--menu-item">
                                     <a href="{{ route('documents.index') }}">
                                         <i class="menu-ico far fa-images"></i>
-                                        {{ $render->t('wording.app.documents-list') }}
+                                        {{__('documents.list')}}
                                     </a>
                                 </li>
 
                                 <li class="laterale-bar--menu-item">
                                     <a href="{{ route('questions.index') }}">
                                         <i class="menu-ico fas fa-question"></i>
-                                        {{ $render->t('wording.app.questions-list') }}
+                                        {{__('questions.list')}}
                                     </a>
                                 </li>
 
                                 <li class="laterale-bar--menu-item">
                                     <a href="{{ route('exercises.index') }}">
                                         <i class="menu-ico fas fa-list"></i>
-                                        {{ $render->t('wording.app.exercises-list') }}
+                                        {{__('exercises.list')}}
                                     </a>
                                 </li>
 
                                 <li class="laterale-bar--menu-item">
                                     <a href="{{ route('composite-tests.index') }}">
                                         <i class="menu-ico fas fa-list"></i>
-                                        {{ $render->t('wording.app.composite-tests-list') }}
+                                        {{__('composite-tests.list')}}
                                     </a>
                                 </li>
 
                                 <li class="laterale-bar--menu-item">
                                     <a href="{{ route('parts.index') }}">
                                         <i class="menu-ico fas fa-list"></i>
-                                        {{ $render->t('wording.app.parts-list') }}
+                                        {{__('parts.list')}}
                                     </a>
                                 </li>
 
                                 <li class="laterale-bar--menu-item">
                                     <a href="{{ route('explanations.index') }}">
                                         <i class="menu-ico fas fa-chalkboard-teacher"></i>
-                                        {{ $render->t('wording.app.explanations-list') }}
+                                        {{__('explanations.list')}}
                                     </a>
                                 </li>
 
                                 <li class="laterale-bar--menu-item">
                                     <a href="{{ route('games') }}">
                                         <i class="menu-ico fas fa-trophy"></i>
-                                        {{ $render->t('wording.app.games-list') }}
+                                        {{__('games.list')}}
                                     </a>
                                 </li>
                             </ul>
@@ -202,36 +200,36 @@
 
                         @role('admin')
                         <div class="laterale-bar--part laterale-bar--menu">
-                            <h3>{{ $render->t('wording.app.admin') }}</h3>
+                            <h3>{{__('app.admin')}}</h3>
                             <ul class="laterale-bar--menu-list">
                                 <li class="laterale-bar--menu-item">
                                     <a href="{{ route('users.index') }}">
                                         <i class="menu-ico fas fa-user"></i>
-                                        {{ $render->t('wording.app.users-list') }}
+                                        {{__('users.list')}}
                                     </a>
                                 </li>
                                 <li class="laterale-bar--menu-item">
                                     <a href="{{ route('permissions.index') }}">
                                         <i class="menu-ico fas fa-key"></i>
-                                        {{ $render->t('wording.app.permissions') }}
+                                        {{__('app.permissions')}}
                                     </a>
                                 </li>
                                 <li class="laterale-bar--menu-item">
                                     <a href="{{ route('feature-flipping.index') }}">
                                         <i class="menu-ico fas fa-arrows-alt-h"></i>
-                                        {{ $render->t('wording.app.feature-flipping') }}
+                                        {{__('app.feature-flipping')}}
                                     </a>
                                 </li>
                                 <li class="laterale-bar--menu-item">
                                     <a href="{{ route('wordings.index') }}">
                                         <i class="menu-ico fas fa-language"></i>
-                                        {{ $render->t('wording.wordings.index.title') }}
+                                        {{__('app.wordings')}}
                                     </a>
                                 </li>
                                 <li class="laterale-bar--menu-item">
                                     <a href="{{ route('config.index') }}">
                                         <i class="menu-ico fas fa-cogs"></i>
-                                        {{ $render->t('wording.app.configuration') }}
+                                        {{__('app.configuration')}}
                                     </a>
                                 </li>
                             </ul>
@@ -240,8 +238,8 @@
 
 
                         <div class="laterale-bar--part laterale-bar--languages">
-                            <a href="locale/en" title="English"><i class="flag-icon flag-icon-gb"></i></a>
-                            <a href="locale/fr" title="Français"><i class="flag-icon flag-icon-fr"></i></a>
+                            <a href="{{ route('app.setlang', ['lang' => 'en']) }}" title="English"><i class="flag-icon flag-icon-gb"></i></a>
+                            <a href="{{ route('app.setlang', ['lang' => 'fr']) }}" title="Français"><i class="flag-icon flag-icon-fr"></i></a>
                         </div>
 
                         @if(isset($datasources) && !empty($datasources))

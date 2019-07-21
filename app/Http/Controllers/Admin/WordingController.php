@@ -16,10 +16,9 @@ class WordingController extends Controller
      */
     public function index()
     {
-        $wordings = [];
-        $language_lines = LanguageLine::all();
-
-        $wordings = $language_lines;
+        $wordings = LanguageLine::orderBy('group', 'asc')
+            ->orderBy('key', 'asc')
+            ->get();
 
         return view('admin.wordings.index',compact('wordings'));
     }
