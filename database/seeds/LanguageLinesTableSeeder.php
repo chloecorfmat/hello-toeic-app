@@ -596,7 +596,7 @@ class LanguageLinesTableSeeder extends Seeder
             'key' => 'details',
             'text' => ['en' => 'Details', 'fr' => 'Détails'],
         ]);
-         **/
+
         LanguageLine::create([
             'group' => 'permissions',
             'key' => 'manage',
@@ -619,7 +619,7 @@ class LanguageLinesTableSeeder extends Seeder
             'group' => 'config',
             'key' => 'explanation',
             'text' => ['en' => 'Params to configure.', 'fr' => 'Params to configure.'],
-        ]);
+        ]);**/
 
         // @TODO :  HERE !
 

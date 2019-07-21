@@ -7,7 +7,7 @@
             <div class="main-content--header">
                 {{ Breadcrumbs::render('wordings.index') }}
                 <h1>
-                    {{ $render->t('wording.wordings.index.title') }}
+                    {{ __('wordings.title') }}
                 </h1>
             </div>
             @if ($message = Session::get('success'))
@@ -19,7 +19,7 @@
                     <p>{{ $message }}</p>
                 </div>
             @endif
-            <h2>{{ $render->t('wording.wordings.index.explanation') }}</h2>
+            <h2>{{ __('wordings.explanation') }}</h2>
 
             <form method="POST" action="{{ route('wordings.store') }}" class="form-wordings">
                     @csrf
