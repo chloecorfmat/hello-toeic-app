@@ -180,5 +180,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('games/play', 'GameController@play')->name('games.play');
     Route::get('games', 'GameController@index')->name('games');
     Route::post('games/continue', 'GameController@continue')->name('games.continue');
+
+    // Route qui permet de connaître la langue active
+    Route::get('locale', 'LocalizationController@getLang')->name('app.getlang');
+
+// Route qui permet de modifier la langue
+    Route::get('locale/{lang}', 'LocalizationController@setLang')->name('app.setlang');
 });
 
