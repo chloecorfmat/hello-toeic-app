@@ -12,21 +12,21 @@
 @section('content')
     <div class="main-content">
         <div class="main-content--header">
-            <h1>Profile</h1>
+            <h1>{{ __('app.profile') }}</h1>
         </div>
 
         <div class="part-container">
-            <p><strong class="important">Name:</strong> {{ $user->name }}</p>
-            <p><strong class="important">Matricule:</strong> {{ $user->matricule }}</p>
-            <p><strong class="important">E-mail:</strong> {{ $user->email }}</p>
-            <p><strong class="important">Course:</strong>
+            <p><strong class="important">{{ __('common.name') }}:</strong> {{ $user->name }}</p>
+            <p><strong class="important">{{ __('common.matricule') }}:</strong> {{ $user->matricule }}</p>
+            <p><strong class="important">{{ __('common.email') }}:</strong> {{ $user->email }}</p>
+            <p><strong class="important">{{ __('common.course') }}:</strong>
                 @if (!is_null($user->course))
                     {{ $user->course }}
                 @else
                     -
                 @endif
             </p>
-            <p><strong class="important">Toeic:</strong>
+            <p><strong class="important">{{ __('common.toeic') }}:</strong>
                 @if (!is_null($user->passed))
                     <i class="fas fa-check-circle"></i>
                 @else
@@ -34,7 +34,7 @@
                 @endif
             </p>
 
-            <h2>Update password</h2>
+            <h2>{{ __('profile.password.update') }}</h2>
 
             @if ($message = Session::get('success'))
                 <div class="alert alert-success">
@@ -50,23 +50,23 @@
                 </div>
             @endif
 
-            <p class="emphasis">Password should contain at least 1 lowercase, 1 uppercase, 1 number, 1 special char and contain between 6 and 16 characters.</p>
+            <p class="emphasis">{{ __('profile.password.limitation') }}</p>
             <form method="POST" action="{{ route('student.users.update', ['id' => $user->id]) }}">
                 @csrf
                 {{ method_field('PUT')}}
 
                 <div class="field-container">
-                    <label for="password">Password <span class="required">*</span></label>
+                    <label for="password">{{ __('common.password') }} <span class="required">*</span></label>
                     <input type="password" id="password" name="password" required>
                 </div>
 
                 <div class="field-container">
-                    <label for="password_repeat">Repeat password <span class="required">*</span></label>
+                    <label for="password_repeat">{{ __('profile.password.repeat') }} <span class="required">*</span></label>
                     <input type="password" id="password_repeat" name="password_repeat" required>
                 </div>
 
                 <button type="submit" class="btn btn-primary">
-                    {{ __('Validate') }}
+                    {{ __('common.validate') }}
                 </button>
             </form>
         </div>

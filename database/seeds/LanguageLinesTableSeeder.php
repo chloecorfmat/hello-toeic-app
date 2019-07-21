@@ -216,7 +216,7 @@ class LanguageLinesTableSeeder extends Seeder
             'text' => ['en' => 'Import groups', 'fr' => 'Import groups'],
         ]);**/
 
-        LanguageLine::create([
+        /**LanguageLine::create([
             'group' => 'composite-tests',
             'key' => 'all',
             'text' => ['en' => 'All composite tests', 'fr' => 'Tous les tests composés'],
@@ -250,8 +250,226 @@ class LanguageLinesTableSeeder extends Seeder
             'group' => 'common',
             'key' => 'no-result',
             'text' => ['en' => 'No result.', 'fr' => 'Aucun résultats.'],
+        ]);**/
+
+        // @TODO :  HERE !
+        LanguageLine::create([
+            'group' => 'exercises',
+            'key' => 'all',
+            'text' => ['en' => 'All exercises', 'fr' => 'Tous les exercices'],
         ]);
 
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'part',
+            'text' => ['en' => 'Part', 'fr' => 'Type d\'exercice'],
+        ]);
 
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'best-scores',
+            'text' => ['en' => 'Best scores', 'fr' => 'Meilleurs scores'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'best-scores-of',
+            'text' => ['en' => ':number best scores of :type', 'fr' => ':number meilleurs scores des :type'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'students',
+            'text' => ['en' => 'students', 'fr' => 'étudiants'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'position',
+            'text' => ['en' => 'Position', 'fr' => 'Position'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'student',
+            'text' => ['en' => 'Student', 'fr' => 'Étudiant'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'score',
+            'text' => ['en' => 'Score', 'fr' => 'Score'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'scores',
+            'text' => ['en' => 'Scores', 'fr' => 'Scores'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'own-scores',
+            'text' => ['en' => 'Your own scores', 'fr' => 'Vos scores'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'date',
+            'text' => ['en' => 'Date', 'fr' => 'Date'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'app',
+            'key' => 'profile',
+            'text' => ['en' => 'Profile', 'fr' => 'Profil'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'learn-more',
+            'text' => ['en' => 'Learn more', 'fr' => 'En savoir plus'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'composite-tests',
+            'key' => 'done',
+            'text' => ['en' => 'composite tests done', 'fr' => 'tests composés réalisés'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'exercises',
+            'key' => 'done',
+            'text' => ['en' => 'exercises done', 'fr' => 'exercices réalisés'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'games',
+            'key' => 'done',
+            'text' => ['en' => 'challenges done', 'fr' => 'challenges réalisés'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'lessons',
+            'key' => 'in-progress',
+            'text' => ['en' => 'Lessons in progress', 'fr' => 'Leçons en cours'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'lessons',
+            'key' => 'in-progress.list',
+            'text' => ['en' => 'Lessons in progress list', 'fr' => 'Liste des leçons en cours'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'datetime.start',
+            'text' => ['en' => 'Start datetime', 'fr' => 'Date et heure de début'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'datetime.end',
+            'text' => ['en' => 'End datetime', 'fr' => 'Date et heure de fin'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'app',
+            'key' => 'composite-test',
+            'text' => ['en' => 'Composite test', 'fr' => 'Test composé'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'composite-tests',
+            'key' => 'execute',
+            'text' => ['en' => 'Execute composite test', 'fr' => 'Exécuter le test composé'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'exercises',
+            'key' => 'results.last',
+            'text' => ['en' => 'Résultats des derniers exercices', 'fr' => 'Résultats des derniers exercices'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'correction',
+            'key' => 'limitation',
+            'text' => ['en' => 'La correction des questions liées aux parties de compréhension orale n\'est pas affichée.', 'fr' => 'La correction des questions liées aux parties de compréhension orale n\'est pas affichée.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'exercises',
+            'key' => 'execute',
+            'text' => ['en' => 'Execute exercise', 'fr' => 'Exécuter l\'exercice'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'correction',
+            'key' => 'show',
+            'text' => ['en' => 'Show solution', 'fr' => 'Voir la solution'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'composite-tests',
+            'key' => 'results.last',
+            'text' => ['en' => 'Résultats des derniers tests composés', 'fr' => 'Résultats des derniers tests composés'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'matricule',
+            'text' => ['en' => 'Matricule', 'fr' => 'Matricule'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'email',
+            'text' => ['en' => 'E-mail', 'fr' => 'E-mail'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'course',
+            'text' => ['en' => 'Course', 'fr' => 'Filière'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'toeic',
+            'text' => ['en' => 'Toeic', 'fr' => 'Toeic'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'profile',
+            'key' => 'password.update',
+            'text' => ['en' => 'Update password', 'fr' => 'Mettre à jour le mot de passe'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'profile',
+            'key' => 'password.limitation',
+            'text' => [
+                'en' => 'Password should contain at least 1 lowercase, 1 uppercase, 1 number, 1 special char and contain between 6 and 16 characters.',
+                'fr' => 'Password should contain at least 1 lowercase, 1 uppercase, 1 number, 1 special char and contain between 6 and 16 characters'
+            ],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'validate',
+            'text' => ['en' => 'Validate', 'fr' => 'Valider'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'password',
+            'text' => ['en' => 'Password', 'fr' => 'Mot de passe'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'profile',
+            'key' => 'password.repeat',
+            'text' => ['en' => 'Repeat password', 'fr' => 'Répéter le mot de passe'],
+        ]);
     }
 }

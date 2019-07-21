@@ -3,24 +3,24 @@
 @section('content')
     <div class="main-content">
         {{ Breadcrumbs::render('games') }}
-        <h1>Challenges list</h1>
+        <h1>{{__('games.list')}}</h1>
         @if ($message = Session::get('success'))
             <div class="alert alert-success">
                 <p>{!! html_entity_decode($message) !!}</p>
             </div>
         @endif
 
-        <h2>Best scores</h2>
-        <p>10 best scores of students.</p>
+        <h2>{{__('common.best-scores')}}</h2>
+        <p>{{__('common.best-scores-of', ['number' => 10, 'type' => trans('common.students')])}}</p>
         <div class="table">
             <div class="table-container is-visible">
                 <table>
-                    <caption class="sr-only">Best scores</caption>
+                    <caption class="sr-only">{{__('common.best-scores')}}</caption>
                     <thead>
                         <tr>
-                            <th>Position</th>
-                            <th>Étudiant</th>
-                            <th>Score</th>
+                            <th>{{__('common.position')}}</th>
+                            <th>{{__('common.student')}}</th>
+                            <th>{{__('common.score')}}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -44,35 +44,35 @@
             </div>
         </div>
 
-        <h2>Scores</h2>
-        <p>Your own scores.</p>
+        <h2>{{__('common.scores')}}</h2>
+        <p>{{__('common.own-scores')}}</p>
         <div class="table" id="games">
             <div class="table--filters">
                 <div class="field-container">
-                    <label for="search">Search</label>
+                    <label for="search">{{__('common.search')}}</label>
                     <input type="text" id="search" name="search" class="search">
                 </div>
             </div>
             <div class="table-container is-visible">
                 <table>
-                    <caption class="sr-only">Challenges list</caption>
+                    <caption class="sr-only">{{__('games.list')}}</caption>
                     <thead>
                     <tr>
                         <th>
                             <button class="sort" data-sort="date">
-                                Date <i class="fas fa-arrows-alt-v"></i>
+                                {{__('common.date')}} <i class="fas fa-arrows-alt-v"></i>
                             </button>
                         </th>
                         @can('dashboard-students-see')
                             <th>
                                 <button class="sort" data-sort="student">
-                                    Étudiant <i class="fas fa-arrows-alt-v"></i>
+                                    {{__('common.student')}} <i class="fas fa-arrows-alt-v"></i>
                                 </button>
                             </th>
                         @endcan
                         <th>
                             <button class="sort" data-sort="score">
-                                Score <i class="fas fa-arrows-alt-v"></i>
+                                {{__('common.score')}} <i class="fas fa-arrows-alt-v"></i>
                             </button>
                         </th>
                     </tr>
@@ -103,23 +103,9 @@
         </div>
 
         <div class="container-empty-search" id="js-empty-search" aria-hidden="true">
-            <p class="emphasis">Aucun résultat.</p>
+            <p class="emphasis">{{__('common.no-result')}}</p>
         </div>
 
-        <a href="{{ route('games.play') }}" class="btn">Commencer un challenge</a>
-
-        <!-- Statistiques -->
-        @if($datas['axisX'] != "")
-        <div class="part-container">
-            <div class="charts">
-                <canvas class="chart" id="challenges"></canvas>
-            </div>
-        </div>
-        @endif
+        <a href="{{ route('games.play') }}" class="btn">{{__('games.play')}}</a>
     </div>
-
-    <script>
-        var chart_axisX = "{{ $datas['axisX'] }}";
-        var chart_axisY = "{{ $datas['axisY'] }}";
-    </script>
 @endsection

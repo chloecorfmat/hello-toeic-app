@@ -5,7 +5,7 @@
         <div class="main-content--header">
             {{ Breadcrumbs::render('student.exercises.index') }}
             <h1>
-                Liste des exercises
+                {{__('exercises.list')}}
             </h1>
         </div>
         @if ($message = Session::get('success'))
@@ -19,7 +19,7 @@
         @endif
 
         <div class="table" id="tests">
-            <h2>Tous les exercices</h2>
+            <h2>{{__('exercises.all')}}</h2>
             <div class="table--filters">
                 <div class="field-container">
                     <label for="search">Search</label>
@@ -29,20 +29,20 @@
 
             <div class="table-container is-visible">
                 <table>
-                    <caption class="sr-only">Liste des exercices</caption>
+                    <caption class="sr-only">{{__('exercises.list')}}</caption>
                     <thead>
                     <tr>
                         <th scope="col">
                             <button class="sort" data-sort="name">
-                                Name <i class="fas fa-arrows-alt-v"></i>
+                                {{__('common.name')}} <i class="fas fa-arrows-alt-v"></i>
                             </button>
                         </th>
                         <th scope="col">
                             <button class="sort" data-sort="part">
-                                Part <i class="fas fa-arrows-alt-v"></i>
+                                {{__('common.part')}} <i class="fas fa-arrows-alt-v"></i>
                             </button>
                         </th>
-                        <th scope="col">Actions</th>
+                        <th scope="col">{{__('common.actions')}}</th>
                     </tr>
                     </thead>
                     <tbody class="list">
@@ -71,7 +71,7 @@
         </div>
 
         <div class="container-empty-search" id="js-empty-search" aria-hidden="true">
-            <p class="emphasis">Aucun résultat.</p>
+            <p class="emphasis">{{__('common.no-result')}}</p>
         </div>
     </div>
 @endsection
