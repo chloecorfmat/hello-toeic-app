@@ -487,9 +487,7 @@ class LanguageLinesTableSeeder extends Seeder
             'group' => 'games',
             'key' => 'results',
             'text' => ['en' => 'Résultats des challenges', 'fr' => 'Résultats des challenges'],
-        ]);**/
-
-        // @TODO :  HERE !
+        ]);
 
         LanguageLine::create([
             'group' => 'common',
@@ -597,6 +595,8 @@ class LanguageLinesTableSeeder extends Seeder
             'group' => 'common',
             'key' => 'details',
             'text' => ['en' => 'Details', 'fr' => 'Détails'],
-        ]);
+        ]);**/
+
+        // @TODO :  HERE !
     }
 }
