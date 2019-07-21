@@ -598,5 +598,28 @@ class LanguageLinesTableSeeder extends Seeder
         ]);**/
 
         // @TODO :  HERE !
+        LanguageLine::create([
+            'group' => 'permissions',
+            'key' => 'manage',
+            'text' => ['en' => 'Manage permissions', 'fr' => 'Gérer les permissions'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'save',
+            'text' => ['en' => 'Save', 'fr' => 'Sauvegarder'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'feature-flipping',
+            'key' => 'explanation',
+            'text' => ['en' => 'Features to enable or disable.', 'fr' => 'Features to enable or disable.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'config',
+            'key' => 'explanation',
+            'text' => ['en' => 'Params to configure.', 'fr' => 'Params to configure.'],
+        ]);
     }
 }

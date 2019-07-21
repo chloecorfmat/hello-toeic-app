@@ -6,7 +6,7 @@
 
         {{ Breadcrumbs::render('permissions.index') }}
 
-        <h1>Manage permissions</h1>
+        <h1>{{ __('permissions.manage') }}</h1>
 
         @if ($message = Session::get('success'))
             <div class="alert alert-success">
@@ -43,7 +43,7 @@
             </div>
             <div>
                 <button type="submit" class="btn btn-primary">
-                    {{ __('Save') }}
+                    {{ __('common.save') }}
                 </button>
             </div>
         </form>

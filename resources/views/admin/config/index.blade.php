@@ -6,7 +6,7 @@
             <div class="main-content--header">
                 {{ Breadcrumbs::render('config.index') }}
                 <h1>
-                    Configuration
+                    {{ __('app.configuration') }}
                 </h1>
             </div>
             @if ($message = Session::get('success'))
@@ -19,7 +19,7 @@
                 </div>
             @endif
 
-            <p>Params to configure.</p>
+            <p>{{ __('config.explanation') }}</p>
             <form method="POST" action="{{ route('config.store') }}">
                     @csrf
                     @foreach ($configs as $key => $config)
@@ -38,7 +38,7 @@
                     @endforeach
                     <div>
                         <button type="submit" class="btn btn-primary">
-                            {{ __('Save') }}
+                            {{ __('common.save') }}
                         </button>
                     </div>
                 </form>

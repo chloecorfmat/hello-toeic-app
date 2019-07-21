@@ -8,7 +8,7 @@
                 {{ Breadcrumbs::render('feature-flipping.index') }}
 
                 <h1>
-                    Feature flipping
+                    {{ __('app.feature-flipping') }}
                 </h1>
             </div>
             @if ($message = Session::get('success'))
@@ -21,7 +21,7 @@
                 </div>
             @endif
 
-            <p>Features to enable or disable.</p>
+            <p>{{ __('feature-flipping.explanation') }}</p>
             <form method="POST" action="{{ route('feature-flipping.store') }}">
                     @csrf
                     @foreach ($features as $key => $feature)
@@ -42,7 +42,7 @@
                     @endforeach
                     <div>
                         <button type="submit" class="btn btn-primary">
-                            {{ __('Save') }}
+                            {{ __('common.save') }}
                         </button>
                     </div>
                 </form>
