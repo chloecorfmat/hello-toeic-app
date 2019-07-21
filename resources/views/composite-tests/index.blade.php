@@ -5,7 +5,7 @@
         <div class="main-content--header">
             {{ Breadcrumbs::render('student.composite-tests.index') }}
             <h1>
-                Liste des tests composés
+                {{__('composite-tests.list')}}
             </h1>
         </div>
         @if ($message = Session::get('success'))
@@ -19,34 +19,34 @@
         @endif
 
         <div class="table" id="composite-tests">
-            <h2>Tous les tests composés</h2>
+            <h2>{{__('composite-tests.all')}}</h2>
             <div class="table--filters">
                 <div class="field-container">
-                    <label for="search">Search</label>
+                    <label for="search">{{ __('common.search') }}</label>
                     <input type="text" id="search" name="search" class="search">
                 </div>
             </div>
             <div class="table-container is-visible">
                 <table>
-                    <caption class="sr-only">Liste des tests composés</caption>
+                    <caption class="sr-only">{{__('composite-tests.list')}}</caption>
                     <thead>
                     <tr>
                         <th scope="col">
                             <button class="sort" data-sort="name">
-                                Name <i class="fas fa-arrows-alt-v"></i>
+                                {{ __('common.name') }} <i class="fas fa-arrows-alt-v"></i>
                             </button>
                         </th>
                         <th scope="col">
                             <button class="sort" data-sort="version">
-                                Version <i class="fas fa-arrows-alt-v"></i>
+                                {{ __('common.version') }} <i class="fas fa-arrows-alt-v"></i>
                             </button>
                         </th>
                         <th scope="col">
                             <button class="sort" data-sort="exercises">
-                                Exercises <i class="fas fa-arrows-alt-v"></i>
+                                {{ __('app.exercises') }} <i class="fas fa-arrows-alt-v"></i>
                             </button>
                         </th>
-                        <th scope="col">Actions</th>
+                        <th scope="col">{{ __('common.actions') }}</th>
                     </tr>
                     </thead>
                     <tbody class="list">
@@ -87,7 +87,7 @@
         </div>
 
         <div class="container-empty-search" id="js-empty-search" aria-hidden="true">
-            <p class="emphasis">Aucun résultat.</p>
+            <p class="emphasis">{{ __('common.no-result') }}</p>
         </div>
     </div>
 @endsection

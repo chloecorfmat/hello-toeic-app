@@ -204,7 +204,7 @@ class LanguageLinesTableSeeder extends Seeder
             'text' => ['en' => 'Composite tests', 'fr' => 'Tests composés'],
         ]);**/
 
-        LanguageLine::create([
+        /**LanguageLine::create([
             'group' => 'groups',
             'key' => 'assign.title',
             'text' => ['en' => 'Assign students in groups', 'fr' => 'Assign students in groups'],
@@ -214,6 +214,44 @@ class LanguageLinesTableSeeder extends Seeder
             'group' => 'groups',
             'key' => 'import.title',
             'text' => ['en' => 'Import groups', 'fr' => 'Import groups'],
+        ]);**/
+
+        LanguageLine::create([
+            'group' => 'composite-tests',
+            'key' => 'all',
+            'text' => ['en' => 'All composite tests', 'fr' => 'Tous les tests composés'],
         ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'search',
+            'text' => ['en' => 'Search', 'fr' => 'Rechercher'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'name',
+            'text' => ['en' => 'Name', 'fr' => 'Nom'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'version',
+            'text' => ['en' => 'Version', 'fr' => 'Version'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'actions',
+            'text' => ['en' => 'Actions', 'fr' => 'Actions'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'no-result',
+            'text' => ['en' => 'No result.', 'fr' => 'Aucun résultats.'],
+        ]);
+
+
     }
 }
