@@ -43,7 +43,7 @@
                 @guest
                     <li class="header--actions-list-item">
                         <a href="{{ route('login') }}">
-                            <span>{{__('app.login')}}</span>
+                            <span>{{__('common.login')}}</span>
                         </a>
                     </li>
                 @else
