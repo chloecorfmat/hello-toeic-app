@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
     <!-- Include Choices CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.min.css">
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -237,6 +238,12 @@
                         </div>
                         @endrole
 
+
+                        <div class="laterale-bar--part laterale-bar--languages">
+                            <a href="locale/en" title="English"><i class="flag-icon flag-icon-gb"></i></a>
+                            <a href="locale/fr" title="Français"><i class="flag-icon flag-icon-fr"></i></a>
+                        </div>
+
                         @if(isset($datasources) && !empty($datasources))
                             <div class="player" id="player">
                                 <audio src="{{ $source }}" type="audio" data-sources="{{ $datasources }}"></audio>
@@ -248,6 +255,7 @@
                                 <p id="timer">0</p>
                             </div>
                         @endif
+
                     </div>
                 @endauth
                 @yield('content')

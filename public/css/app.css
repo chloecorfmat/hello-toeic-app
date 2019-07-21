@@ -884,6 +884,18 @@ tr:nth-child(2n) {
   text-align: left;
 }
 
+.laterale-bar--languages {
+  margin-top: 3rem !important;
+}
+
+.laterale-bar--languages a:nth-child(n+1) {
+  margin-left: 0.5rem;
+}
+
+.laterale-bar--languages i {
+  font-size: 1.2rem;
+}
+
 .laterale-bar--menu-list {
   margin-top: 1rem;
   text-align: left;

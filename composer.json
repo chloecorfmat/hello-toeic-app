@@ -13,6 +13,7 @@
         "laravel/telescope": "^2.0",
         "laravel/tinker": "^1.0",
         "spatie/laravel-permission": "^2.23",
+        "spatie/laravel-translation-loader": "^2.3",
         "wapmorgan/mp3info": "^0.0.4",
         "webpatser/laravel-sanitize": "^1.0"
     },
