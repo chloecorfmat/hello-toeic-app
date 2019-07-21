@@ -34,7 +34,7 @@
                 @endif
             </p>
 
-            <h2>{{ __('profile.password.update') }}</h2>
+            <h2>{{ __('profile.password_update') }}</h2>
 
             @if ($message = Session::get('success'))
                 <div class="alert alert-success">
@@ -50,7 +50,7 @@
                 </div>
             @endif
 
-            <p class="emphasis">{{ __('profile.password.limitation') }}</p>
+            <p class="emphasis">{{ __('profile.password_limitation') }}</p>
             <form method="POST" action="{{ route('student.users.update', ['id' => $user->id]) }}">
                 @csrf
                 {{ method_field('PUT')}}
@@ -61,7 +61,7 @@
                 </div>
 
                 <div class="field-container">
-                    <label for="password_repeat">{{ __('profile.password.repeat') }} <span class="required">*</span></label>
+                    <label for="password_repeat">{{ __('profile.password_repeat') }} <span class="required">*</span></label>
                     <input type="password" id="password_repeat" name="password_repeat" required>
                 </div>
 

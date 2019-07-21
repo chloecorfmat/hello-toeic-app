@@ -136,12 +136,12 @@ Breadcrumbs::for('groups.show', function ($trail, $group) {
 
 Breadcrumbs::for('groups.assign', function ($trail) {
     $trail->parent('groups.index');
-    $trail->push(trans('groups.assign.title'), route('groups.assign'));
+    $trail->push(trans('groups.assign_title'), route('groups.assign'));
 });
 
 Breadcrumbs::for('groups.import', function ($trail) {
     $trail->parent('groups.index');
-    $trail->push(trans('groups.import.title'), route('groups.import'));
+    $trail->push(trans('groups.import_title'), route('groups.import'));
 });
 
 Breadcrumbs::for('documents.index', function ($trail) {

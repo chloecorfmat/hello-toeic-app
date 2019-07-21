@@ -42,7 +42,7 @@
 
                     <div class="table-container is-visible">
                         <table>
-                            <caption class="sr-only">{{ __('lessons.in-progress.list') }}</caption>
+                            <caption class="sr-only">{{ __('lessons.in-progress_list') }}</caption>
                             <thead>
                             <tr>
                                 <th scope="col">
@@ -52,12 +52,12 @@
                                 </th>
                                 <th scope="col">
                                     <button class="sort" data-sort="start">
-                                        {{ __('common.datetime.start') }} <i class="fas fa-arrows-alt-v"></i>
+                                        {{ __('common.datetime_start') }} <i class="fas fa-arrows-alt-v"></i>
                                     </button>
                                 </th>
                                 <th scope="col">
                                     <button class="sort" data-sort="end">
-                                        {{ __('common.datetime.end') }}  <i class="fas fa-arrows-alt-v"></i>
+                                        {{ __('common.datetime_end') }}  <i class="fas fa-arrows-alt-v"></i>
                                     </button>
                                 </th>
                                 <th scope="col">
@@ -110,7 +110,7 @@
             @endif
         </div>
         <div class="part-container">
-            <h2>{{ __('exercises.results.last') }}</h2>
+            <h2>{{ __('exercises.results_last') }}</h2>
             @if (!Auth::user()->hasRole('teacher'))
                 <p class="emphasis">{{ __('correction.limitation') }}</p>
             @endif
@@ -124,7 +124,7 @@
 
                 <div class="table-container is-visible">
                     <table>
-                        <caption class="sr-only">{{ __('exercises.results.last') }}</caption>
+                        <caption class="sr-only">{{ __('exercises.results_last') }}</caption>
                         <thead>
                         <tr>
                             <th scope="col">
@@ -210,7 +210,7 @@
         </div>
 
         <div class="part-container">
-            <h2>{{ __('composite-tests.results.last') }}</h2>
+            <h2>{{ __('composite-tests.results_last') }}</h2>
             @if (!Auth::user()->hasRole('teacher'))
                 <p class="emphasis">{{ __('correction.limitation') }}</p>
             @endif
@@ -224,7 +224,7 @@
 
                 <div class="table-container is-visible">
                     <table>
-                        <caption class="sr-only">{{ __('composite-tests.results.last') }}</caption>
+                        <caption class="sr-only">{{ __('composite-tests.results_last') }}</caption>
                         <thead>
                         <tr>
                             <th scope="col">

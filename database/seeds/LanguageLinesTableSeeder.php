@@ -206,13 +206,13 @@ class LanguageLinesTableSeeder extends Seeder
 
         /**LanguageLine::create([
             'group' => 'groups',
-            'key' => 'assign.title',
+            'key' => 'assign_title',
             'text' => ['en' => 'Assign students in groups', 'fr' => 'Assign students in groups'],
         ]);
 
         LanguageLine::create([
             'group' => 'groups',
-            'key' => 'import.title',
+            'key' => 'import_title',
             'text' => ['en' => 'Import groups', 'fr' => 'Import groups'],
         ]);**/
 
@@ -356,7 +356,7 @@ class LanguageLinesTableSeeder extends Seeder
 
         LanguageLine::create([
             'group' => 'lessons',
-            'key' => 'in-progress.list',
+            'key' => 'in-progress_list',
             'text' => ['en' => 'Lessons in progress list', 'fr' => 'Liste des leçons en cours'],
         ]);
 
@@ -386,7 +386,7 @@ class LanguageLinesTableSeeder extends Seeder
 
         LanguageLine::create([
             'group' => 'exercises',
-            'key' => 'results.last',
+            'key' => 'results_last',
             'text' => ['en' => 'Résultats des derniers exercices', 'fr' => 'Résultats des derniers exercices'],
         ]);
 
@@ -410,7 +410,7 @@ class LanguageLinesTableSeeder extends Seeder
 
         LanguageLine::create([
             'group' => 'composite-tests',
-            'key' => 'results.last',
+            'key' => 'results_last',
             'text' => ['en' => 'Résultats des derniers tests composés', 'fr' => 'Résultats des derniers tests composés'],
         ]);
 
@@ -440,13 +440,13 @@ class LanguageLinesTableSeeder extends Seeder
 
         LanguageLine::create([
             'group' => 'profile',
-            'key' => 'password.update',
+            'key' => 'password_update',
             'text' => ['en' => 'Update password', 'fr' => 'Mettre à jour le mot de passe'],
         ]);
 
         LanguageLine::create([
             'group' => 'profile',
-            'key' => 'password.limitation',
+            'key' => 'password_limitation',
             'text' => [
                 'en' => 'Password should contain at least 1 lowercase, 1 uppercase, 1 number, 1 special char and contain between 6 and 16 characters.',
                 'fr' => 'Password should contain at least 1 lowercase, 1 uppercase, 1 number, 1 special char and contain between 6 and 16 characters'
@@ -467,7 +467,7 @@ class LanguageLinesTableSeeder extends Seeder
 
         LanguageLine::create([
             'group' => 'profile',
-            'key' => 'password.repeat',
+            'key' => 'password_repeat',
             'text' => ['en' => 'Repeat password', 'fr' => 'Répéter le mot de passe'],
         ]);
 
