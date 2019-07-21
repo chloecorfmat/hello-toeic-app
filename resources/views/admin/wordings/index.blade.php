@@ -30,8 +30,8 @@
                                 <div class="fields">
                                     @foreach ($wording->text as $lang => $value)
                                         <div class="field">
-                                            <label class="form-label-text" for="{{ $wording->key }}">
-                                                <span>{{ $lang }}</span>
+                                            <label class="form-label-text" for="{{ $wording->group }}.{{ $wording->key }}.{{ $lang }}">
+                                                {{ $lang }} <span class="required">*</span>
                                             </label>
                                             <input
                                                     type="text"
