@@ -12,7 +12,7 @@ class LanguageLinesTableSeeder extends Seeder
      */
     public function run()
     {
-        LanguageLine::create([
+        /**LanguageLine::create([
             'group' => 'wordings',
             'key' => 'explanation',
             'text' => ['en' => 'Wordings to display in interface.', 'fr' => 'Wordings to display in interface.'],
@@ -202,6 +202,18 @@ class LanguageLinesTableSeeder extends Seeder
             'group' => 'app',
             'key' => 'composite-tests',
             'text' => ['en' => 'Composite tests', 'fr' => 'Tests composés'],
+        ]);**/
+
+        LanguageLine::create([
+            'group' => 'groups',
+            'key' => 'assign.title',
+            'text' => ['en' => 'Assign students in groups', 'fr' => 'Assign students in groups'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'groups',
+            'key' => 'import.title',
+            'text' => ['en' => 'Import groups', 'fr' => 'Import groups'],
         ]);
     }
 }

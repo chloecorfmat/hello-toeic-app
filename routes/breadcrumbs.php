@@ -1,38 +1,38 @@
 <?php
 
 Breadcrumbs::for('dashboard', function ($trail) {
-    $trail->push((new \App\Services\RenderService())->t('wording.app.dashboard'), route('profile'));
+    $trail->push(trans('app.dashboard'), route('profile'));
 });
 
 /** ADMIN PAGES for admin users */
 Breadcrumbs::for('permissions.index', function ($trail) {
     $trail->parent('dashboard');
-    $trail->push((new \App\Services\RenderService())->t('wording.app.permissions'), route('permissions.index'));
+    $trail->push(trans('app.permissions'), route('permissions.index'));
 });
 
 Breadcrumbs::for('feature-flipping.index', function ($trail) {
     $trail->parent('dashboard');
-    $trail->push((new \App\Services\RenderService())->t('wording.app.feature-flipping'), route('feature-flipping.index'));
+    $trail->push(trans('app.feature-flipping'), route('feature-flipping.index'));
 });
 
 Breadcrumbs::for('config.index', function ($trail) {
     $trail->parent('dashboard');
-    $trail->push((new \App\Services\RenderService())->t('wording.app.configuration'), route('config.index'));
+    $trail->push(trans('app.configuration'), route('config.index'));
 });
 
 Breadcrumbs::for('wordings.index', function ($trail) {
     $trail->parent('dashboard');
-    $trail->push((new \App\Services\RenderService())->t('wording.wordings.index.title'), route('wordings.index'));
+    $trail->push(trans('wordings.title'), route('wordings.index'));
 });
 
 Breadcrumbs::for('users.index', function ($trail) {
     $trail->parent('dashboard');
-    $trail->push((new \App\Services\RenderService())->t('wording.app.users-list'), route('users.index'));
+    $trail->push(trans('users.list'), route('users.index'));
 });
 
 Breadcrumbs::for('users.create', function ($trail) {
     $trail->parent('users.index');
-    $trail->push((new \App\Services\RenderService())->t('wording.default.create'), route('users.create'));
+    $trail->push(trans('common.create'), route('users.create'));
 });
 
 Breadcrumbs::for('users.show', function ($trail, $user) {
@@ -42,39 +42,39 @@ Breadcrumbs::for('users.show', function ($trail, $user) {
 
 Breadcrumbs::for('users.edit', function ($trail, $user) {
     $trail->parent('users.show', $user);
-    $trail->push((new \App\Services\RenderService())->t('wording.default.edit'), route('users.edit', $user->id));
+    $trail->push(trans('common.edit'), route('users.edit', $user->id));
 });
 
 Breadcrumbs::for('users.delete', function ($trail, $user) {
     $trail->parent('dashboard');
-    $trail->push((new \App\Services\RenderService())->t('wording.default.delete'), route('users.delete'));
+    $trail->push(trans('common.delete'), route('users.delete'));
 });
 
 
 /** ADMIN PAGES for teacher users */
 Breadcrumbs::for('exercises.index', function ($trail) {
     $trail->parent('dashboard');
-    $trail->push((new \App\Services\RenderService())->t('wording.app.exercises'), route('exercises.index'));
+    $trail->push(trans('exercises.list'), route('exercises.index'));
 });
 
 Breadcrumbs::for('exercises.delete', function ($trail, $exercise) {
     $trail->parent('exercises.index');
-    $trail->push((new \App\Services\RenderService())->t('wording.default.delete'), route('exercises.delete'));
+    $trail->push(trans('common.delete'), route('exercises.delete'));
 });
 
 Breadcrumbs::for('exercises.edit', function ($trail, $exercise) {
     $trail->parent('exercises.index');
-    $trail->push((new \App\Services\RenderService())->t('wording.default.edit'), route('exercises.edit', $exercise->id));
+    $trail->push(trans('common.edit'), route('exercises.edit', $exercise->id));
 });
 
 Breadcrumbs::for('questions.index', function ($trail) {
     $trail->parent('dashboard');
-    $trail->push((new \App\Services\RenderService())->t('wording.app.questions-list'), route('questions.index'));
+    $trail->push(trans('questions.list'), route('questions.index'));
 });
 
 Breadcrumbs::for('questions.create', function ($trail) {
     $trail->parent('questions.index');
-    $trail->push((new \App\Services\RenderService())->t('wording.default.create'), route('questions.create'));
+    $trail->push(trans('common.create'), route('questions.create'));
 });
 
 Breadcrumbs::for('questions.show', function ($trail, $question) {
@@ -91,22 +91,22 @@ Breadcrumbs::for('questions.show', function ($trail, $question) {
 
 Breadcrumbs::for('questions.edit', function ($trail, $question) {
     $trail->parent('questions.show', $question);
-    $trail->push((new \App\Services\RenderService())->t('wording.default.edit'), route('questions.edit', $question->id));
+    $trail->push(trans('common.edit'), route('questions.edit', $question->id));
 });
 
 Breadcrumbs::for('questions.delete', function ($trail, $question) {
     $trail->parent('questions.index');
-    $trail->push((new \App\Services\RenderService())->t('wording.default.delete'), route('questions.delete'));
+    $trail->push(trans('common.delete'), route('questions.delete'));
 });
 
 Breadcrumbs::for('exercises.import', function ($trail, $part) {
     $trail->parent('parts.show', $part);
-    $trail->push((new \App\Services\RenderService())->t('wording.default.create'), route('exercises.import'));
+    $trail->push(trans('common.create'), route('exercises.import'));
 });
 
 Breadcrumbs::for('students.index', function ($trail) {
     $trail->parent('dashboard');
-    $trail->push((new \App\Services\RenderService())->t('wording.app.students-list'), route('students.index'));
+    $trail->push(trans('students.list'), route('students.index'));
 });
 
 Breadcrumbs::for('students.show', function ($trail, $student) {
@@ -121,12 +121,12 @@ Breadcrumbs::for('users.import', function ($trail) {
 
 Breadcrumbs::for('groups.index', function ($trail) {
     $trail->parent('dashboard');
-    $trail->push((new \App\Services\RenderService())->t('wording.app.groups-list'), route('groups.index'));
+    $trail->push(trans('groups.list'), route('groups.index'));
 });
 
 Breadcrumbs::for('groups.create', function ($trail) {
     $trail->parent('groups.index');
-    $trail->push((new \App\Services\RenderService())->t('wording.default.create'), route('groups.create'));
+    $trail->push(trans('common.create'), route('groups.create'));
 });
 
 Breadcrumbs::for('groups.show', function ($trail, $group) {
@@ -136,22 +136,22 @@ Breadcrumbs::for('groups.show', function ($trail, $group) {
 
 Breadcrumbs::for('groups.assign', function ($trail) {
     $trail->parent('groups.index');
-    $trail->push('Assign students in groups', route('groups.assign'));
+    $trail->push(trans('groups.assign.title'), route('groups.assign'));
 });
 
 Breadcrumbs::for('groups.import', function ($trail) {
     $trail->parent('groups.index');
-    $trail->push('Import groups', route('groups.import'));
+    $trail->push(trans('groups.import.title'), route('groups.import'));
 });
 
 Breadcrumbs::for('documents.index', function ($trail) {
     $trail->parent('dashboard');
-    $trail->push((new \App\Services\RenderService())->t('wording.app.documents-list'), route('documents.index'));
+    $trail->push(trans('documents.list'), route('documents.index'));
 });
 
 Breadcrumbs::for('documents.create', function ($trail) {
     $trail->parent('documents.index');
-    $trail->push((new \App\Services\RenderService())->t('wording.default.create'), route('documents.create'));
+    $trail->push(trans('common.create'), route('documents.create'));
 });
 
 Breadcrumbs::for('documents.show', function ($trail, $document) {
@@ -162,32 +162,32 @@ Breadcrumbs::for('documents.show', function ($trail, $document) {
 
 Breadcrumbs::for('documents.edit', function ($trail, $document) {
     $trail->parent('documents.show', $document);
-    $trail->push((new \App\Services\RenderService())->t('wording.default.edit'), route('documents.edit', $document->id));
+    $trail->push(trans('common.edit'), route('documents.edit', $document->id));
 });
 
 Breadcrumbs::for('composite-tests.index', function ($trail) {
     $trail->parent('dashboard');
-    $trail->push((new \App\Services\RenderService())->t('wording.app.composite-tests'), route('composite-tests.index'));
+    $trail->push(trans('composite-tests.list'), route('composite-tests.index'));
 });
 
 Breadcrumbs::for('composite-tests.create', function ($trail) {
     $trail->parent('composite-tests.index');
-    $trail->push((new \App\Services\RenderService())->t('wording.default.create'), route('composite-tests.create'));
+    $trail->push(trans('common.create'), route('composite-tests.create'));
 });
 
 Breadcrumbs::for('composite-tests.edit', function ($trail, $composite_test) {
     $trail->parent('composite-tests.index');
-    $trail->push((new \App\Services\RenderService())->t('wording.default.edit'), route('composite-tests.edit', $composite_test->id));
+    $trail->push(trans('common.edit'), route('composite-tests.edit', $composite_test->id));
 });
 
 Breadcrumbs::for('parts.index', function ($trail) {
     $trail->parent('dashboard');
-    $trail->push((new \App\Services\RenderService())->t('wording.app.parts-list'), route('parts.index'));
+    $trail->push(trans('parts.list'), route('parts.index'));
 });
 
 Breadcrumbs::for('parts.create', function ($trail) {
     $trail->parent('parts.index');
-    $trail->push((new \App\Services\RenderService())->t('wording.default.create'), route('parts.create'));
+    $trail->push(trans('common.create'), route('parts.create'));
 });
 
 Breadcrumbs::for('parts.show', function ($trail, $part) {
@@ -197,22 +197,22 @@ Breadcrumbs::for('parts.show', function ($trail, $part) {
 
 Breadcrumbs::for('parts.edit', function ($trail, $part) {
     $trail->parent('parts.show', $part);
-    $trail->push((new \App\Services\RenderService())->t('wording.default.edit'), route('parts.edit', $part->id));
+    $trail->push(trans('common.edit'), route('parts.edit', $part->id));
 });
 
 Breadcrumbs::for('parts.delete', function ($trail, $part) {
     $trail->parent('parts.index');
-    $trail->push((new \App\Services\RenderService())->t('wording.default.delete'), route('parts.delete'));
+    $trail->push(trans('common.delete'), route('parts.delete'));
 });
 
 Breadcrumbs::for('explanations.index', function ($trail) {
     $trail->parent('dashboard');
-    $trail->push((new \App\Services\RenderService())->t('wording.app.explanations-list'), route('explanations.index'));
+    $trail->push(trans('explanations.list'), route('explanations.index'));
 });
 
 Breadcrumbs::for('explanations.create', function ($trail) {
     $trail->parent('explanations.index');
-    $trail->push((new \App\Services\RenderService())->t('wording.default.create'), route('explanations.create'));
+    $trail->push(trans('common.create'), route('explanations.create'));
 });
 
 Breadcrumbs::for('explanations.show', function ($trail, $explanation) {
@@ -222,22 +222,22 @@ Breadcrumbs::for('explanations.show', function ($trail, $explanation) {
 
 Breadcrumbs::for('explanations.edit', function ($trail, $explanation) {
     $trail->parent('explanations.show', $explanation);
-    $trail->push((new \App\Services\RenderService())->t('wording.default.edit'), route('explanations.edit', $explanation->id));
+    $trail->push(trans('common.edit'), route('explanations.edit', $explanation->id));
 });
 
 Breadcrumbs::for('explanations.delete', function ($trail, $explanation) {
     $trail->parent('explanations.index');
-    $trail->push((new \App\Services\RenderService())->t('wording.default.delete'), route('explanations.delete'));
+    $trail->push(trans('common.delete'), route('explanations.delete'));
 });
 
 Breadcrumbs::for('lessons.index', function ($trail) {
     $trail->parent('dashboard');
-    $trail->push((new \App\Services\RenderService())->t('wording.app.lessons-list'), route('lessons.index'));
+    $trail->push(trans('lessons.list'), route('lessons.index'));
 });
 
 Breadcrumbs::for('lessons.create', function ($trail) {
     $trail->parent('lessons.index');
-    $trail->push((new \App\Services\RenderService())->t('wording.default.create'), route('lessons.create'));
+    $trail->push(trans('common.create'), route('lessons.create'));
 });
 
 Breadcrumbs::for('lessons.show', function ($trail, $lesson) {
@@ -247,39 +247,39 @@ Breadcrumbs::for('lessons.show', function ($trail, $lesson) {
 
 Breadcrumbs::for('lessons.edit', function ($trail, $lesson) {
     $trail->parent('lessons.show', $lesson);
-    $trail->push((new \App\Services\RenderService())->t('wording.default.edit'), route('lessons.edit', $lesson->id));
+    $trail->push(trans('common.edit'), route('lessons.edit', $lesson->id));
 });
 
 Breadcrumbs::for('lessons.delete', function ($trail, $lesson) {
     $trail->parent('lessons.index');
-    $trail->push((new \App\Services\RenderService())->t('wording.default.delete'), route('lessons.delete'));
+    $trail->push(trans('common.delete'), route('lessons.delete'));
 });
 
 Breadcrumbs::for('results.index', function ($trail) {
     $trail->parent('dashboard');
-    $trail->push((new \App\Services\RenderService())->t('wording.app.results'), route('results.index'));
+    $trail->push(trans('app.results'), route('results.index'));
 });
 
 Breadcrumbs::for('results.composite-tests', function ($trail) {
     $trail->parent('results.index');
-    $trail->push((new \App\Services\RenderService())->t('wording.app.composite-tests'), route('results.composite-tests'));
+    $trail->push(trans('app.composite-tests'), route('results.composite-tests'));
 });
 
 Breadcrumbs::for('results.exercises', function ($trail) {
     $trail->parent('results.index');
-    $trail->push((new \App\Services\RenderService())->t('wording.app.exercises'), route('results.exercises'));
+    $trail->push(trans('app.exercises'), route('results.exercises'));
 });
 
 Breadcrumbs::for('results.games', function ($trail) {
     $trail->parent('results.index');
-    $trail->push((new \App\Services\RenderService())->t('wording.app.challenges'), route('results.games'));
+    $trail->push(trans('app.games'), route('results.games'));
 });
 
 
 /** PAGES for all users */
 Breadcrumbs::for('student.exercises.index', function ($trail) {
     $trail->parent('dashboard');
-    $trail->push((new \App\Services\RenderService())->t('wording.app.exercises'), route('student.exercises.index'));
+    $trail->push(trans('exercises.list'), route('student.exercises.index'));
 });
 
 Breadcrumbs::for('student.exercises.show', function ($trail, $exercise) {
@@ -289,7 +289,7 @@ Breadcrumbs::for('student.exercises.show', function ($trail, $exercise) {
 
 Breadcrumbs::for('student.composite-tests.index', function ($trail) {
     $trail->parent('dashboard');
-    $trail->push((new \App\Services\RenderService())->t('wording.app.composite-tests'), route('student.composite-tests.index'));
+    $trail->push(trans('composite-tests.list'), route('student.composite-tests.index'));
 });
 
 Breadcrumbs::for('student.composite-tests.show', function ($trail, $compositeTest) {
@@ -299,10 +299,10 @@ Breadcrumbs::for('student.composite-tests.show', function ($trail, $compositeTes
 
 Breadcrumbs::for('games', function ($trail) {
     $trail->parent('dashboard');
-    $trail->push((new \App\Services\RenderService())->t('wording.app.challenges'), route('games'));
+    $trail->push(trans('app.games'), route('games'));
 });
 
 Breadcrumbs::for('games.continue', function ($trail) {
     $trail->parent('games');
-    $trail->push((new \App\Services\RenderService())->t('wording.default.play'), route('games.continue'));
+    $trail->push(trans('games.play'), route('games.continue'));
 });
