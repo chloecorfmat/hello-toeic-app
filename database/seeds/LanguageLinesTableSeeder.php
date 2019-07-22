@@ -622,6 +622,23 @@ class LanguageLinesTableSeeder extends Seeder
         ]);**/
 
         // @TODO :  HERE !
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'correction',
+            'text' => ['en' => 'Correction', 'fr' => 'Correction'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'users',
+            'key' => 'import_email_suffix_explanation',
+            'text' => ['en' => 'It will be used to generate e-mail addresses.', 'fr' => 'It will be used to generate e-mail addresses.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'no-validate',
+            'text' => ['en' => 'Not validate', 'fr' => 'Non validé'],
+        ]);
 
     }
 }

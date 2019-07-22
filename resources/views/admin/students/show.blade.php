@@ -4,7 +4,7 @@
     <div class="main-content">
         <div class="main-content--header">
             {{ Breadcrumbs::render('students.show', $student) }}
-            <h1>Détails : {{ $student->name }}</h1>
+            <h1>{{ __('common.details') }} : {{ $student->name }}</h1>
         </div>
 
         @if ($message = Session::get('success'))
@@ -14,19 +14,19 @@
         @endif
 
         <div class="part-container student-profile">
-            <p><strong class="important">Name: </strong>{{ $student->name }}</p>
-            <p><strong class="important">Matricule: </strong>{{ $student->matricule }}</p>
+            <p><strong class="important">{{ __('common.name') }}: </strong>{{ $student->name }}</p>
+            <p><strong class="important">{{ __('common.matricule') }}: </strong>{{ $student->matricule }}</p>
             <p>
-                <strong class="important">Passed: </strong>
+                <strong class="important">{{ __('common.toeic') }}: </strong>
                 @if (!is_null($student->passed))
                     {{ date('d/m/Y', strtotime($student->passed)) }}
                 @else
-                    (Not validate)
+                    ({{ __('common.no-validate') }}))
                 @endif
             </p>
             <div>
                 <p>
-                    <strong class="important">Groups :</strong>
+                    <strong class="important">{{ __('app.groups') }} :</strong>
                 </p>
                 <ul>
                     @foreach ($student->groups()->get() as $group)
@@ -39,36 +39,36 @@
         </div>
 
         <div class="part-container">
-            <h2>Derniers exercices</h2>
+            <h2>{{ __('exercises.results_last') }}</h2>
             <div class="table" id="profile-tests">
                 <div class="table--filters">
                     <div class="field-container">
-                        <label for="search">Search</label>
+                        <label for="search">{{ __('common.search') }}</label>
                         <input type="text" id="search" name="search" class="search">
                     </div>
                 </div>
 
                 <div class="table-container is-visible">
                     <table>
-                        <caption class="sr-only">Liste des tests passés</caption>
+                        <caption class="sr-only">{{ __('exercises.results_last') }}</caption>
                         <thead>
                         <tr>
                             <th scope="col">
                                 <button class="sort" data-sort="date">
-                                    Date <i class="fas fa-arrows-alt-v"></i>
+                                    {{ __('common.date') }} <i class="fas fa-arrows-alt-v"></i>
                                 </button>
                             </th>
                             <th scope="col">
                                 <button class="sort" data-sort="test">
-                                    Nom du test <i class="fas fa-arrows-alt-v"></i>
+                                    {{ __('common.name') }}t <i class="fas fa-arrows-alt-v"></i>
                                 </button>
                             </th>
                             <th scope="col">
                                 <button class="sort" data-sort="score">
-                                    Score <i class="fas fa-arrows-alt-v"></i>
+                                    {{ __('common.score') }} <i class="fas fa-arrows-alt-v"></i>
                                 </button>
                             </th>
-                            <th scope="col">Actions</th>
+                            <th scope="col">{{ __('common.actions') }}</th>
                         </tr>
                         </thead>
                         <tbody class="list">
@@ -84,11 +84,11 @@
                                 <td>
                                     <ul>
                                         <li>
-                                            <a href="{{ route('student.trials.show', ['id' => $trial->id]) }}">Correction</a>
+                                            <a href="{{ route('student.trials.show', ['id' => $trial->id]) }}">{{ __('common.correction') }}</a>
                                         </li>
                                         @role('student')
                                         <li>
-                                            <a href="{{ action('TestController@show', ['id' => $trial->test->id]) }}">Execute</a>
+                                            <a href="{{ action('TestController@show', ['id' => $trial->test->id]) }}">{{ __('exercises.execute') }}</a>
                                         </li>
                                         @endrole
                                     </ul>
@@ -111,42 +111,42 @@
             </div>
 
             <div class="container-empty-search" id="js-empty-search" aria-hidden="true">
-                <p class="emphasis">Aucun résultat.</p>
+                <p class="emphasis">{{ __('common.no-result') }}</p>
             </div>
         </div>
 
         <div class="part-container">
-            <h2>Derniers tests composés</h2>
+            <h2>{{ __('composite-tests.results_last') }}</h2>
             <div class="table">
                 <div class="table--filters">
                     <div class="field-container">
-                        <label for="search">Search</label>
+                        <label for="search">{{ __('common.search') }}</label>
                         <input type="text" id="search" name="search" class="search">
                     </div>
                 </div>
 
                 <div class="table-container is-visible">
                     <table>
-                        <caption class="sr-only">Liste des exercices passés</caption>
+                        <caption class="sr-only">{{ __('composite-tests.results_last') }}</caption>
                         <thead>
                         <tr>
                             <th scope="col">
                                 <button class="sort" data-sort="date">
-                                    Date <i class="fas fa-arrows-alt-v"></i>
+                                    {{ __('common.date') }} <i class="fas fa-arrows-alt-v"></i>
                                 </button>
                             </th>
                             <th scope="col">
                                 <button class="sort" data-sort="test">
-                                    Nom du test <i class="fas fa-arrows-alt-v"></i>
+                                    {{ __('common.name') }} <i class="fas fa-arrows-alt-v"></i>
                                 </button>
                             </th>
                             <th scope="col">
                                 <button class="sort" data-sort="score">
-                                    Score <i class="fas fa-arrows-alt-v"></i>
+                                    {{ __('common.score') }} <i class="fas fa-arrows-alt-v"></i>
                                 </button>
                             </th>
                             @role('student')
-                            <th scope="col">Actions</th>
+                            <th scope="col">{{ __('common.actions') }}</th>
                             @endrole
                         </tr>
                         </thead>
@@ -161,7 +161,7 @@
                                     <ul>
 
                                         <li>
-                                            <a href="{{ action('CompositeTestController@show', ['id' => $trial->composite_test_id]) }}">Execute</a>
+                                            <a href="{{ action('CompositeTestController@show', ['id' => $trial->composite_test_id]) }}">{{ __('composite-tests.execute') }}</a>
                                         </li>
 
                                     </ul>
@@ -184,7 +184,7 @@
                 </div>
             </div>
             <div class="container-empty-search" id="js-empty-search" aria-hidden="true">
-                <p class="emphasis">Aucun résultat.</p>
+                <p class="emphasis">{{ __('common.no-result') }}</p>
             </div>
         </div>
 
@@ -193,7 +193,7 @@
             <div class="table" id="games">
                 <div class="table--filters">
                     <div class="field-container">
-                        <label for="search">Search</label>
+                        <label for="search">{{ __('common.search') }}</label>
                         <input type="text" id="search" name="search" class="search">
                     </div>
                 </div>
@@ -204,12 +204,12 @@
                         <tr>
                             <th>
                                 <button class="sort" data-sort="date">
-                                    Date <i class="fas fa-arrows-alt-v"></i>
+                                    {{ __('common.date') }} <i class="fas fa-arrows-alt-v"></i>
                                 </button>
                             </th>
                             <th>
                                 <button class="sort" data-sort="score">
-                                    Score <i class="fas fa-arrows-alt-v"></i>
+                                    {{ __('common.score') }} <i class="fas fa-arrows-alt-v"></i>
                                 </button>
                             </th>
                         </tr>
@@ -237,7 +237,7 @@
             </div>
 
             <div class="container-empty-search" id="js-empty-search" aria-hidden="true">
-                <p class="emphasis">Aucun résultat.</p>
+                <p class="emphasis">{{ __('common.no-result') }}</p>
             </div>
         </div>
     </div>

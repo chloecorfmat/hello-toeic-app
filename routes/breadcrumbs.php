@@ -116,7 +116,7 @@ Breadcrumbs::for('students.show', function ($trail, $student) {
 
 Breadcrumbs::for('users.import', function ($trail) {
     $trail->parent('students.index');
-    $trail->push('Import users', route('users.import'));
+    $trail->push(trans('users.import_title'), route('users.import'));
 });
 
 Breadcrumbs::for('groups.index', function ($trail) {

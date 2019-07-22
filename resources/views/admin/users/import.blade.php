@@ -19,7 +19,7 @@
             <div class="field-container">
                 <label for="suffix_mail">{{ __('common.email_suffix') }} <span class="required">*</span></label>
                 <input type="text" id="suffix_mail" name="suffix_mail" placeholder="@enssat.fr" aria-describedby="suffix-description" required>
-                <p id="suffix-description">It will be used to generate email addresses.</p>
+                <p id="suffix-description">{{ __('users.import_email_suffix_explanation') }}</p>
             </div>
 
             @role('admin')

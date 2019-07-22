@@ -4,7 +4,7 @@
     <div class="main-content">
         <div class="main-content--header">
             {{ Breadcrumbs::render('students.index') }}
-            <h1>Liste des étudiants</h1>
+            <h1>{{ __('students.list') }}</h1>
             <a href="{{ route('users.import') }}" class="main-content--header-actions">
                 <i class="fas fa-upload"></i>
             </a>
@@ -27,36 +27,36 @@
         <div class="table" id="students">
             <div class="table--filters">
                 <div class="field-container">
-                    <label for="search">Search</label>
+                    <label for="search">{{ __('common.search') }}</label>
                     <input type="text" id="search" name="search" class="search">
                 </div>
             </div>
             <div class="table-container is-visible">
                 <table>
-                    <caption class="sr-only">Liste des étudiants</caption>
+                    <caption class="sr-only">{{ __('students.list') }}</caption>
                     <thead>
                     <tr>
                         <th scope="col">
                             <button class="sort" data-sort="matricule">
-                                Matricule <i class="fas fa-arrows-alt-v"></i>
+                                {{ __('common.matricule') }} <i class="fas fa-arrows-alt-v"></i>
                             </button>
                         </th>
                         <th scope="col">
                             <button class="sort" data-sort="student">
-                                Student <i class="fas fa-arrows-alt-v"></i>
+                                {{ __('common.student') }} <i class="fas fa-arrows-alt-v"></i>
                             </button>
                         </th>
                         <th scope="col">
                             <button class="sort" data-sort="course">
-                                Course <i class="fas fa-arrows-alt-v"></i>
+                                {{ __('common.course') }} <i class="fas fa-arrows-alt-v"></i>
                             </button>
                         </th>
                         <th scope="col">
                             <button class="sort" data-sort="passed">
-                                Passed <i class="fas fa-arrows-alt-v"></i>
+                                {{ __('common.toeic') }} <i class="fas fa-arrows-alt-v"></i>
                             </button>
                         </th>
-                        <th scope="col">Actions</th>
+                        <th scope="col">{{ __('common.actions') }}</th>
                     </tr>
                     </thead>
                     <tbody class="list">
@@ -98,7 +98,7 @@
             </div>
         </div>
         <div class="container-empty-search" id="js-empty-search" aria-hidden="true">
-            <p class="emphasis">Aucun résultat.</p>
+            <p class="emphasis">{{ __('common.no-result') }}</p>
         </div>
     </div>
 @endsection
