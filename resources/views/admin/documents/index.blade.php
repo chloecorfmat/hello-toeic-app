@@ -4,7 +4,7 @@
     <div class="main-content">
         <div class="main-content--header">
             {{ Breadcrumbs::render('documents.index') }}
-            <h1>Liste des documents</h1>
+            <h1>{{ __('documents.list') }}</h1>
             <a href="{{ route('documents.create') }}" class="main-content--header-actions">
                 <i class="fas fa-plus-circle"></i>
             </a>
@@ -26,7 +26,7 @@
                         @endif
                         <div class="list-documents--item-content">
                             <p class="important">{{ $document->name }}</p>
-                            <p><span>{{ count($document->questions) }}</span> questions</p>
+                            <p><span>{{ count($document->questions) }}</span> {{ __('common.questions') }}</p>
                         </div>
                     </a>
                 </li>

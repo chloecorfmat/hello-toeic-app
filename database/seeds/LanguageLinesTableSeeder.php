@@ -685,9 +685,8 @@ class LanguageLinesTableSeeder extends Seeder
             'group' => 'groups',
             'key' => 'assign_explanation',
             'text' => ['en' => 'You can assign users in groups by file import.', 'fr' => 'You can assign users in groups by file import.'],
-        ]);**/
+        ]);
 
-        // @TODO :  HERE !
         LanguageLine::create([
             'group' => 'common',
             'key' => 'datetime',
@@ -734,7 +733,94 @@ class LanguageLinesTableSeeder extends Seeder
             'group' => 'lessons',
             'key' => 'add',
             'text' => ['en' => 'Lesson add', 'fr' => 'Créer une leçon'],
+        ]);**/
+
+        // @TODO :  HERE !
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'content',
+            'text' => ['en' => 'Content', 'fr' => 'Contenu'],
         ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'number',
+            'text' => ['en' => 'number', 'fr' => 'Numéro'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'question',
+            'text' => ['en' => 'Question', 'fr' => 'Question'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'proposal',
+            'text' => ['en' => 'Proposal', 'fr' => 'Proposition'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'questions',
+            'text' => ['en' => 'questions', 'fr' => 'questions'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'documents',
+            'key' => 'add',
+            'text' => ['en' => 'Document add', 'fr' => 'Créer un document'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'type',
+            'text' => ['en' => 'Type', 'fr' => 'Type'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'audio',
+            'text' => ['en' => 'Audio', 'fr' => 'Audio'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'image',
+            'text' => ['en' => 'Image', 'fr' => 'Image'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'graphic',
+            'text' => ['en' => 'Graphic', 'fr' => 'Graphique / Visuel'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'text',
+            'text' => ['en' => 'Text', 'fr' => 'Text'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'documents',
+            'key' => 'edit',
+            'text' => ['en' => 'Document edit', 'fr' => 'Modifier le document'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'form',
+            'key' => 'no-edit',
+            'text' => ['en' => 'Ce champ ne peut pas être modifié.', 'fr' => 'Ce champ ne peut pas être modifié.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'documents',
+            'key' => 'text_warning',
+            'text' => ['en' => 'Attention à la structure du texte dans le cas d\'un affichage inline (avec liste déroulante).', 'fr' => 'Attention à la structure du texte dans le cas d\'un affichage inline (avec liste déroulante).'],
+        ]);
+
+        
 
     }
 }

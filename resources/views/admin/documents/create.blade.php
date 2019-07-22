@@ -3,7 +3,7 @@
 @section('content')
     <div class="main-content">
         {{ Breadcrumbs::render('documents.create') }}
-        <h1>Ajouter un document</h1>
+        <h1>{{ __('documents.add') }}</h1>
         @if ($errors->any())
             <div>
                 <ul class="alert alert-error">
@@ -17,27 +17,27 @@
             @csrf
 
             <div class="field-container">
-                <label for="name">Nom <span class="required">*</span></label>
+                <label for="name">{{ __('common.name') }} <span class="required">*</span></label>
                 <input type="text" id="name" name="name" required>
             </div>
 
             <div class="field-container">
-                <label for="type">Type <span class="required">*</span></label>
+                <label for="type">{{ __('common.type') }} <span class="required">*</span></label>
                 <select name="type" id="type" required>
-                    <option value="audio">Audio</option>
-                    <option value="image">Image</option>
-                    <option value="graphic">Graphic</option>
+                    <option value="audio">{{ __('common.audio') }}</option>
+                    <option value="image">{{ __('common.image') }}</option>
+                    <option value="graphic">{{ __('common.graphic') }}</option>
                 </select>
             </div>
 
             <div class="field-container">
-                <label for="file">Fichier <span class="required">*</span></label>
+                <label for="file">{{ __('common.file') }} <span class="required">*</span></label>
                 <input type="file" id="file" name="file" required>
             </div>
 
 
             <button type="submit" class="btn btn-primary">
-                {{ __('Validate') }}
+                {{ __('common.validate') }}
             </button>
         </form>
     </div>
