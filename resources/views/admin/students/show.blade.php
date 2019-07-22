@@ -86,11 +86,6 @@
                                         <li>
                                             <a href="{{ route('student.trials.show', ['id' => $trial->id]) }}">{{ __('common.correction') }}</a>
                                         </li>
-                                        @role('student')
-                                        <li>
-                                            <a href="{{ action('TestController@show', ['id' => $trial->test->id]) }}">{{ __('exercises.execute') }}</a>
-                                        </li>
-                                        @endrole
                                     </ul>
                                 </td>
                             </tr>
