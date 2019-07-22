@@ -619,9 +619,8 @@ class LanguageLinesTableSeeder extends Seeder
             'group' => 'config',
             'key' => 'explanation',
             'text' => ['en' => 'Params to configure.', 'fr' => 'Params to configure.'],
-        ]);**/
+        ]);
 
-        // @TODO :  HERE !
         LanguageLine::create([
             'group' => 'common',
             'key' => 'correction',
@@ -638,7 +637,9 @@ class LanguageLinesTableSeeder extends Seeder
             'group' => 'common',
             'key' => 'no-validate',
             'text' => ['en' => 'Not validate', 'fr' => 'Non validé'],
-        ]);
+        ]);**/
+
+        // @TODO :  HERE !
 
     }
 }
