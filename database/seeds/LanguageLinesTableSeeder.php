@@ -817,9 +817,8 @@ class LanguageLinesTableSeeder extends Seeder
             'group' => 'documents',
             'key' => 'text_warning',
             'text' => ['en' => 'Attention à la structure du texte dans le cas d\'un affichage inline (avec liste déroulante).', 'fr' => 'Attention à la structure du texte dans le cas d\'un affichage inline (avec liste déroulante).'],
-        ]);**/
+        ]);
 
-        // @TODO :  HERE !
         LanguageLine::create([
             'group' => 'questions',
             'key' => 'delete_sure',
@@ -908,6 +907,129 @@ class LanguageLinesTableSeeder extends Seeder
             'group' => 'statistics',
             'key' => 'number-passages',
             'text' => ['en' => 'Number of passages', 'fr' => 'Nombre de passages total'],
+        ]);**/
+
+        // @TODO :  HERE !
+
+        LanguageLine::create([
+            'group' => 'parts',
+            'key' => 'show',
+            'text' => ['en' => 'Part show', 'fr' => 'Voir le type d\'exercice'],
         ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'visibility',
+            'text' => ['en' => 'Visibility', 'fr' => 'Visibilité'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'exercises',
+            'key' => 'edit',
+            'text' => ['en' => 'Exercise edit', 'fr' => 'Modifier l\'exercice'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'exercises',
+            'key' => 'show',
+            'text' => ['en' => 'Exercise show', 'fr' => 'Voir l\'exercice'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'exercises',
+            'key' => 'delete',
+            'text' => ['en' => 'Exercise delete', 'fr' => 'Supprimer l\'exercice'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'visibility_explanation',
+            'text' => ['en' => '1 for public, 0 for private.', 'fr' => '1 for public, 0 for private.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'complete-deletion',
+            'text' => ['en' => 'Suppression complète', 'fr' => 'Suppression complète'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'complete-deletion_explanation',
+            'text' => ['en' => 'La suppression complète d\'un exercice signifie que les questions / documents rattachés ne sont plus disponibles, y compris dans les modes challenges.', 'fr' => 'La suppression complète d\'un exercice signifie que les questions / documents rattachés ne sont plus disponibles, y compris dans les modes challenges.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'warning',
+            'text' => ['en' => 'Warning', 'fr' => 'Attention'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'exercises',
+            'key' => 'import_title',
+            'text' => ['en' => 'Import an exercise', 'fr' => 'Importer un exercice'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'audios',
+            'text' => ['en' => 'Audios', 'fr' => 'Audios'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'answers',
+            'text' => ['en' => 'Answers', 'fr' => 'Answers'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'form',
+            'key' => 'txt-format_required',
+            'text' => ['en' => 'Veuillez ajouter un fichier .txt.', 'fr' => 'Veuillez ajouter un fichier .txt.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'form',
+            'key' => 'audios-file-format',
+            'text' => ['en' => 'Veuillez ajouter un zip s\'il y a plusieurs fichiers audios. Sinon, vous pouvez ajouter un fichier MP3.', 'fr' => 'Veuillez ajouter un zip s\'il y a plusieurs fichiers audios. Sinon, vous pouvez ajouter un fichier MP3.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'composite-tests',
+            'key' => 'edit',
+            'text' => ['en' => 'Composite test edit', 'fr' => 'Modifier le test composé'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'reading-duration',
+            'text' => ['en' => 'Reading duration', 'fr' => 'Durée de lecture'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'reading-duration_explanation',
+            'text' => ['en' => 'Duration of reading exercises (in seconds)', 'fr' => 'Duration of reading exercises (in seconds)'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'composite-tests',
+            'key' => 'composition',
+            'text' => ['en' => 'Composition du composite test', 'fr' => 'Composition du test composé'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'composite-tests',
+            'key' => 'composition_explanation',
+            'text' => ['en' => 'Il faut contribuer les exercices de la partie "listening" avant ceux de la partie "reading". Le timer démarre avec les fichiers audios lorsqu\'un test est effectué par un étudiant.', 'fr' => 'Il faut contribuer les exercices de la partie "listening" avant ceux de la partie "reading". Le timer démarre avec les fichiers audios lorsqu\'un test est effectué par un étudiant.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'composite-tests',
+            'key' => 'add',
+            'text' => ['en' => 'Composite test add', 'fr' => 'Créer un test composé'],
+        ]);
+
     }
 }

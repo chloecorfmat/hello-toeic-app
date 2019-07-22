@@ -3,7 +3,7 @@
 @section('content')
     <div class="main-content">
         {{ Breadcrumbs::render('exercises.import', $part) }}
-        <h1>Import an exercise: {{ $part->name }} ({{ $part->version }})</h1>
+        <h1>{{ __('exercises.import_title') }}: {{ $part->name }} ({{ $part->version }})</h1>
         @if ($errors->any())
             <div>
                 <ul class="alert alert-error">
@@ -17,13 +17,13 @@
             @csrf
 
             <div class="field-container">
-                <label for="name">Name <span class="required">*</span></label>
+                <label for="name">{{ __('common.name') }} <span class="required">*</span></label>
                 <input type="text" id="name" name="name" required>
             </div>
 
             @if ($part->questions or $part->texts)
                 <div class="field-container">
-                    <label for="questions">Questions <span class="required">*</span></label>
+                    <label for="questions">{{ __('common.questions') }} <span class="required">*</span></label>
                     <input type="file" id="questions" name="questions" required>
                     <p>Veuillez ajouter un fichier .txt.</p>
                 </div>
@@ -31,7 +31,7 @@
 
             @if ($part->files)
             <div class="field-container">
-                <label for="documents">Documents <span class="required">*</span></label>
+                <label for="documents">{{ __('common.documents') }} <span class="required">*</span></label>
                 <input type="file" id="documents" name="documents" required>
                 <p>Veuillez ajouter un zip comprenant tous les fichiers.</p>
             </div>
@@ -39,22 +39,22 @@
 
             @if ($part->type === 'listening')
             <div class="field-container">
-                <label for="audios">Audios <span class="required">*</span></label>
+                <label for="audios">{{ __('common.audios') }} <span class="required">*</span></label>
                 <input type="file" id="audios" name="audios" required>
-                <p>Veuillez ajouter un zip s'il y a plusieurs fichiers audios. Sinon, vous pouvez ajouter un fichier MP3.</p>
+                <p>{{ __('form.audios-file-format') }}</p>
             </div>
             @endif
 
             <div class="field-container">
-                <label for="answers">Answers <span class="required">*</span></label>
+                <label for="answers">{{ __('common.answers') }} <span class="required">*</span></label>
                 <input type="file" id="answers" name="answers" required>
-                <p>Veuillez ajouter un fichier .txt.</p>
+                <p>{{ __('form.txt-format_required') }}</p>
             </div>
 
             <input type="hidden" id="part" name="part" value="{{ $part->id }}">
 
             <button type="submit" class="btn btn-primary">
-                {{ __('Validate') }}
+                {{ __('common.validate') }}
             </button>
         </form>
     </div>

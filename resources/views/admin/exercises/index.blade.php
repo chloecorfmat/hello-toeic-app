@@ -5,7 +5,7 @@
         <div class="main-content--header">
             {{ Breadcrumbs::render('exercises.index') }}
             <h1>
-                Liste des exercises
+                {{ __('exercises.list') }}
             </h1>
         </div>
         @if ($message = Session::get('success'))
@@ -19,34 +19,34 @@
         @endif
 
         <div class="table" id="exercises">
-            <h2>Tous les exercices</h2>
+            <h2>{{ __('exercises.list') }}</h2>
             <div class="table--filters">
                 <div class="field-container">
-                    <label for="search">Search</label>
+                    <label for="search">{{ __('common.search') }}</label>
                     <input type="text" id="search" name="search" class="search">
                 </div>
             </div>
             <div class="table-container is-visible">
                 <table>
-                    <caption class="sr-only">Liste des tests</caption>
+                    <caption class="sr-only">{{ __('exercises.list') }}</caption>
                     <thead>
                     <tr>
                         <th scope="col">
                             <button class="sort" data-sort="name">
-                                Name <i class="fas fa-arrows-alt-v"></i>
+                                {{ __('common.name') }} <i class="fas fa-arrows-alt-v"></i>
                             </button>
                         </th>
                         <th scope="col">
                             <button class="sort" data-sort="part">
-                                Part <i class="fas fa-arrows-alt-v"></i>
+                                {{ __('common.part') }} <i class="fas fa-arrows-alt-v"></i>
                             </button>
                         </th>
                         <th scope="col">
                             <button class="sort" data-sort="visibility">
-                                Visibility <i class="fas fa-arrows-alt-v"></i>
+                                {{ __('common.visibility') }} <i class="fas fa-arrows-alt-v"></i>
                             </button>
                         </th>
-                        <th scope="col">Actions</th>
+                        <th scope="col">{{ __('common.actions') }}</th>
                     </tr>
                     </thead>
                     <tbody class="list">
@@ -56,10 +56,10 @@
                             <td class="part">{{ $exercise->part->name }}</td>
                             <td class="visibility">{{ $exercise->visible }}</td>
                             <td>
-                                <a href="{{ route('exercises.show', ['id' => $exercise->id]) }}" title="Show exercise"><i class="fas fa-eye"></i></a>
-                                <a href="{{ route('exercises.edit', $exercise->id) }}" title="Edit exercise"><i class="fas fa-pencil-alt"></i></a>
-                                <a href="{{ action('ExerciseController@show', ['id' => $exercise->id]) }}" title="Execute exercise"><i class="fas fa-play"></i></a>
-                                <a href="{{ route('exercises.delete', $exercise->id) }}" title="Delete exercise"><i class="fas fa-trash"></i></a>
+                                <a href="{{ route('exercises.show', ['id' => $exercise->id]) }}" title="{{ __('exercises.show') }}"><i class="fas fa-eye"></i></a>
+                                <a href="{{ route('exercises.edit', $exercise->id) }}" title="{{ __('exercises.edit') }}"><i class="fas fa-pencil-alt"></i></a>
+                                <a href="{{ action('ExerciseController@show', ['id' => $exercise->id]) }}" title="{{ __('exercises.execute') }}"><i class="fas fa-play"></i></a>
+                                <a href="{{ route('exercises.delete', $exercise->id) }}" title="{{ __('exercises.delete') }}"><i class="fas fa-trash"></i></a>
                             </td>
                         </tr>
                     @endforeach
@@ -79,7 +79,7 @@
         </div>
 
         <div class="container-empty-search" id="js-empty-search" aria-hidden="true">
-            <p class="emphasis">Aucun résultat.</p>
+            <p class="emphasis">{{ __('common.no-result') }}</p>
         </div>
     </div>
 @endsection

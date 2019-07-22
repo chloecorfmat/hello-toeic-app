@@ -3,7 +3,7 @@
 @section('content')
     <div class="main-content">
         {{ Breadcrumbs::render('exercises.delete', $exercise) }}
-        <h1>Delete the exercise: {{ $exercise->name }}</h1>
+        <h1>{{ __('common.delete') }}: {{ $exercise->name }}</h1>
         @if ($errors->any())
             <div>
                 <ul class="alert alert-error">
@@ -28,13 +28,13 @@
                             aria-describedby="status-description"
                     >
                     <span class="form-label-text">
-                        Suppression complète
+                        {{ __('common.complete-deletion') }}
                     </span>
                 </label>
-                <p id="status-description"><span class="important">Attention !</span> La suppression complète d'un exercice signifie que les questions / documents rattachés ne sont plus disponibles, y compris dans les modes challenges.</p>
+                <p id="status-description"><span class="important">{{ __('common.warning') }} !</span> {{ __('common.complete-deletion_explanation') }}</p>
             </div>
 
-            <button type="submit" class="btn btn-primary">Delete</button>
+            <button type="submit" class="btn btn-primary">{{ __('common.delete') }}</button>
         </form>
     </div>
 @endsection

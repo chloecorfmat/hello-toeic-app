@@ -4,7 +4,7 @@
     <div class="main-content">
         <div class="main-content--header">
             {{ Breadcrumbs::render('composite-tests.edit', $test) }}
-            <h1>Modifier</h1>
+            <h1>{{ __('common.edit') }}</h1>
         </div>
         @if ($errors->any())
             <div>
@@ -27,17 +27,17 @@
             {{ method_field('PUT')}}
 
             <div class="field-container">
-                <label for="name">Nom <span class="required">*</span></label>
+                <label for="name">{{ __('common.name') }} <span class="required">*</span></label>
                 <input type="text" id="name" name="name" value="{{ $test->name }}" required>
             </div>
 
             <div class="field-container">
-                <label for="version">Version <span class="required">*</span></label>
+                <label for="version">{{ __('common.version') }} <span class="required">*</span></label>
                 <input type="number" id="version" name="version" value="{{ $test->version }}" required>
             </div>
 
             <div class="field-container">
-                <label for="visible">Visibility <span class="required">*</span></label>
+                <label for="visible">{{ __('common.visibility') }} <span class="required">*</span></label>
                 <input
                         type="number"
                         id="visible"
@@ -49,11 +49,11 @@
                         value="{{ $test->visible }}"
                         required
                 >
-                <p id="visible-description">1 for public, 0 for private.</p>
+                <p id="visible-description">{{ __('common.visibility_explanation') }}</p>
             </div>
 
             <div class="field-container">
-                <label for="reading-duration">Reading duration</label>
+                <label for="reading-duration">{{ __('common.reading-duration') }}</label>
                 <input
                         type="number"
                         id="reading-duration"
@@ -63,11 +63,11 @@
                         aria-describedby="reading-duration-description"
                         value="{{ $test->reading_duration }}"
                 >
-                <p id="reading-timer-description">Duration of reading exercises (in seconds)</p>
+                <p id="reading-timer-description">{{ __('common.reading-duration_explanation') }}</p>
             </div>
             <fieldset>
-                <legend>Composition du test</legend>
-                <p>Il faut contribuer les exercices de la partie "listening" avant ceux de la partie "reading". Le timer démarre avec les fichiers audios lorsqu'un test est effectué par un étudiant.</p>
+                <legend>{{ __('composite-tests.composition') }}</legend>
+                <p>{{ __('composite-tests.composition_explanation') }}</p>
 
                 @for ($i = 1; $i < 8; $i++)
                     <div class="field-container">
@@ -93,7 +93,7 @@
             </fieldset>
 
             <button type="submit" class="btn btn-primary">
-                {{ __('Validate') }}
+                {{ __('common.validate') }}
             </button>
         </form>
     </div>
