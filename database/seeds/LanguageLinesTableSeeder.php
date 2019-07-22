@@ -733,9 +733,8 @@ class LanguageLinesTableSeeder extends Seeder
             'group' => 'lessons',
             'key' => 'add',
             'text' => ['en' => 'Lesson add', 'fr' => 'Créer une leçon'],
-        ]);**/
+        ]);
 
-        // @TODO :  HERE !
         LanguageLine::create([
             'group' => 'common',
             'key' => 'content',
@@ -818,9 +817,97 @@ class LanguageLinesTableSeeder extends Seeder
             'group' => 'documents',
             'key' => 'text_warning',
             'text' => ['en' => 'Attention à la structure du texte dans le cas d\'un affichage inline (avec liste déroulante).', 'fr' => 'Attention à la structure du texte dans le cas d\'un affichage inline (avec liste déroulante).'],
+        ]);**/
+
+        // @TODO :  HERE !
+        LanguageLine::create([
+            'group' => 'questions',
+            'key' => 'delete_sure',
+            'text' => ['en' => 'Are you sure ?', 'fr' => 'Êtes-vous sûr de vouloir supprimer cette question ?'],
         ]);
 
-        
+        LanguageLine::create([
+            'group' => 'questions',
+            'key' => 'add',
+            'text' => ['en' => 'Question add', 'fr' => 'Créer une question'],
+        ]);
 
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'parts',
+            'text' => ['en' => 'Parts', 'fr' => 'Types d\'exercice'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'answer',
+            'text' => ['en' => 'Answer', 'fr' => 'Réponse'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'documents',
+            'text' => ['en' => 'Documents', 'fr' => 'Documents'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'questions',
+            'key' => 'edit',
+            'text' => ['en' => 'Question edit', 'fr' => 'Modifier la question'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'questions',
+            'key' => 'none-explanation',
+            'text' => ['en' => 'Entrez \'#none\' pour avoir une question vide.', 'fr' => 'Entrez \'#none\' pour avoir une question vide.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'explanation',
+            'text' => ['en' => 'Explanation', 'fr' => 'Explication'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'questions',
+            'key' => 'edit',
+            'text' => ['en' => 'Question edit', 'fr' => 'Modifier la question'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'questions',
+            'key' => 'show',
+            'text' => ['en' => 'Question show', 'fr' => 'Voir la question'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'questions',
+            'key' => 'delete',
+            'text' => ['en' => 'Question delete', 'fr' => 'Supprimer la question'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'statistics',
+            'text' => ['en' => 'Statistics', 'fr' => 'Statistiques'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'statistics',
+            'key' => 'user-choice',
+            'text' => ['en' => 'User choice', 'fr' => ' Valeur entrée'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'statistics',
+            'key' => 'success-rate',
+            'text' => ['en' => 'Success rate', 'fr' => ' Taux de réussite'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'statistics',
+            'key' => 'number-passages',
+            'text' => ['en' => 'Number of passages', 'fr' => 'Nombre de passages total'],
+        ]);
     }
 }

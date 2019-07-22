@@ -4,7 +4,7 @@
     <div class="main-content">
         <div class="main-content--header">
             {{ Breadcrumbs::render('questions.show', $question) }}
-            <h1>Détails de la question</h1>
+            <h1>{{ __('common.details') }}</h1>
             <a href="{{ route('questions.edit', ['id' => $question->id]) }}" class="main-content--header-actions" title="Modifier la question">
                 <i class="fas fa-pencil-alt"></i>
             </a>
@@ -12,7 +12,7 @@
 
         @if (count($question->documents()->get()))
         <div>
-            <h2>Documents liés</h2>
+            <h2>{{ __('common.documents') }}</h2>
             <ul>
                 @foreach ($question->documents()->get() as $document)
                     <li>
@@ -31,7 +31,7 @@
 
         @if ($explanation != null)
             <div>
-                <h2>Explanation</h2>
+                <h2>{{ __('common.explanation') }}</h2>
                 <p class="important">{{ $explanation->title }}</p>
                 <p>{{ $explanation->explanation }}</p>
             </div>
@@ -39,15 +39,15 @@
 
         @isset($statistics['total'])
         <div>
-            <h2>Statistiques</h2>
+            <h2>{{ __('common.statistics') }}</h2>
             @isset ($statistics['percent'])
-                <p>Taux de réussite : {{ $statistics['percent'] }}%</p>
+                <p>{{ __('statistics.success-rate') }}: {{ $statistics['percent'] }}%</p>
             @endisset
 
-            <p>Nombre de passages total : {{ $statistics['total'] }}</p>
+            <p>{{ __('statistics.number-passages') }}: {{ $statistics['total'] }}</p>
 
             @isset($statistics['answers'])
-                <p>Valeurs entrées :</p>
+                <p>{{ __('statistics.user-choice') }} :</p>
                 <ul>
                     @foreach ($statistics['answers'] as $answer)
                         @if ($answer->proposal_id != null)

@@ -4,7 +4,7 @@
     <div class="main-content">
         <div class="main-content--header">
             {{ Breadcrumbs::render('questions.index') }}
-            <h1>Liste des questions</h1>
+            <h1>{{ __('questions.list') }}</h1>
             <a href="{{ route('questions.create') }}" class="main-content--header-actions">
                 <i class="fas fa-plus-circle"></i>
             </a>
@@ -28,17 +28,17 @@
 
         <div class="table-container is-visible">
             <table>
-                <caption class="sr-only">Liste des questions</caption>
+                <caption class="sr-only">{{ __('questions.list') }}</caption>
                 <thead>
                 <tr>
-                    <th scope="col">Number</th>
-                    <th scope="col">Question</th>
-                    <th scope="col">Proposal A</th>
-                    <th scope="col">Proposal B</th>
-                    <th scope="col">Proposal C</th>
-                    <th scope="col">Proposal D</th>
-                    <th scope="col">Explanation</th>
-                    <th scope="col">Actions</th>
+                    <th scope="col">{{ __('common.number') }}</th>
+                    <th scope="col">{{ __('common.question') }}</th>
+                    <th scope="col">{{ __('common.proposal') }} A</th>
+                    <th scope="col">{{ __('common.proposal') }} B</th>
+                    <th scope="col">{{ __('common.proposal') }} C</th>
+                    <th scope="col">{{ __('common.proposal') }} D</th>
+                    <th scope="col">{{ __('common.explanation') }}</th>
+                    <th scope="col">{{ __('common.actions') }}</th>
                 </tr>
                 </thead>
                 <tbody class="list">
@@ -67,13 +67,13 @@
                         @endfor
                         <td>@if ($question->explanation_id) <i class="fas fa-chalkboard-teacher"></i> @else <i class="fas fa-times"></i> @endif</td>
                         <td>
-                            <a href="{{ route('questions.show', ['id' => $question->id]) }}" title="Show question">
+                            <a href="{{ route('questions.show', ['id' => $question->id]) }}" title="{{ __('questions.show') }}">
                                 <i class="fas fa-eye"></i>
                             </a>
-                            <a href="{{ route('questions.edit', ['id' => $question->id]) }}" title="Edit question">
+                            <a href="{{ route('questions.edit', ['id' => $question->id]) }}" title="{{ __('questions.edit') }}">
                                 <i class="fas fa-pencil-alt"></i>
                             </a>
-                            <a href="{{ route('questions.delete', $question->id) }}" title="Delete question">
+                            <a href="{{ route('questions.delete', $question->id) }}" title="{{ __('questions.delete') }}">
                                 <i class="fas fa-trash"></i>
                             </a>
                         </td>
@@ -86,7 +86,7 @@
         {{ $questions->links() }}
 
         <div class="container-empty-search" id="js-empty-search" aria-hidden="true">
-            <p class="emphasis">Aucun résultat.</p>
+            <p class="emphasis">{{ __('common.no-result') }}</p>
         </div>
     </div>
 @endsection

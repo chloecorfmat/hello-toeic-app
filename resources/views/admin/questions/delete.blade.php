@@ -4,9 +4,9 @@
     <div class="main-content">
         {{ Breadcrumbs::render('questions.delete', $question) }}
         @if (!empty($question->question))
-            <h1>Delete the question: {{ $question->question }}</h1>
+            <h1>{{ __('common.delete') }}: {{ $question->question }}</h1>
         @else
-            <h1>Delete the question: #none ({{ $question->id }})</h1>
+            <h1>{{ __('common.delete') }}: #none ({{ $question->id }})</h1>
         @endif
 
         @if ($errors->any())
@@ -22,9 +22,9 @@
         <form action="{{ route('questions.destroy', $question->id) }}" method="POST">
             @method('DELETE')
             @csrf
-            <p class="important">Êtes-vous sûr de vouloir supprimer cette question ? <span class="emphasis">Cette action est irréversible.</span></p>
+            <p class="important">{{ __('questions.delete_sure') }} <span class="emphasis">{{ __('common.action_irreversible') }}</span></p>
 
-            <button type="submit" class="btn btn-primary">Delete</button>
+            <button type="submit" class="btn btn-primary">{{ __('common.delete') }}</button>
         </form>
     </div>
 @endsection

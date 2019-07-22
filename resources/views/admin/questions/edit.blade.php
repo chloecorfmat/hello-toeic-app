@@ -4,7 +4,7 @@
     @php ($index = ['A', 'B', 'C', 'D'])
     <div class="main-content">
         {{ Breadcrumbs::render('questions.edit', $datas['question']) }}
-        <h1>Modifier la question</h1>
+        <h1>{{ __('questions.edit') }}</h1>
         @if ($errors->any())
             <div>
                 <ul class="alert alert-error">
@@ -19,16 +19,16 @@
             {{ method_field('PUT')}}
 
             <div class="field-container">
-                <label for="question">Question <span class="required">*</span></label>
+                <label for="question">{{ __('common.question') }} <span class="required">*</span></label>
                 @php ($question_value = $datas['question']->question == '' ? '#none' : $datas['question']->question)
                 <input type="text" id="question" name="question" value="{{ $question_value }}" aria-describedby="question-description" required>
-                <p id="question-description">Entrez '#none' pour avoir une question vide.</p>
+                <p id="question-description">{{ __('questions.none-explanation') }}</p>
             </div>
 
             <div>
                 @for ($i = 0; $i < 4; $i++)
                     <div class="field-container">
-                        <label for="proposal{{ $index[$i] }}">Proposal {{ $index[$i] }}</label>
+                        <label for="proposal{{ $index[$i] }}">{{ __('common.proposal') }} {{ $index[$i] }}</label>
                         @isset($datas['question']->proposals[$i])
                             @if ($datas['question']->proposals[$i]->id === $datas['question']->answer->id)
                                 @php ($selected = $index[$i])
@@ -44,7 +44,7 @@
             </div>
 
             <div class="field-container">
-                <label for="answer">Answer <span class="required">*</span></label>
+                <label for="answer">{{ __('common.answer') }} <span class="required">*</span></label>
                 <select
                     name="answer"
                     id="answer"
@@ -60,14 +60,14 @@
                                 @endif
                             @endisset
                         >
-                            Proposal {{ $index[$i] }}
+                            {{ __('common.proposal') }} {{ $index[$i] }}
                         </option>
                     @endfor
                 </select>
             </div>
 
             <div class="field-container">
-                <label for="choices-explanation">Explanation</label>
+                <label for="choices-explanation">{{ __('common.explanation') }}</label>
                 <select id="choices-explanation" name="explanation" id="explanation">
                     <option></option>
                     @foreach ($explanations as $explanation)
@@ -84,7 +84,7 @@
             </div>
 
             <button type="submit" class="btn btn-primary">
-                {{ __('Validate') }}
+                {{ __('common.validate') }}
             </button>
         </form>
     </div>
