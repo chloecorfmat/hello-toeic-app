@@ -362,13 +362,13 @@ class LanguageLinesTableSeeder extends Seeder
 
         LanguageLine::create([
             'group' => 'common',
-            'key' => 'datetime.start',
+            'key' => 'datetime_start',
             'text' => ['en' => 'Start datetime', 'fr' => 'Date et heure de début'],
         ]);
 
         LanguageLine::create([
             'group' => 'common',
-            'key' => 'datetime.end',
+            'key' => 'datetime_end',
             'text' => ['en' => 'End datetime', 'fr' => 'Date et heure de fin'],
         ]);
 
@@ -640,6 +640,52 @@ class LanguageLinesTableSeeder extends Seeder
         ]);**/
 
         // @TODO :  HERE !
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'machine-name',
+            'text' => ['en' => 'Machine name', 'fr' => 'Nom machine'],
+        ]);
 
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'dates',
+            'text' => ['en' => 'Dates', 'fr' => 'Dates'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'date_start',
+            'text' => ['en' => 'Start date', 'fr' => 'Date de début'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'date_end',
+            'text' => ['en' => 'End date', 'fr' => 'Date de fin'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'groups',
+            'key' => 'show',
+            'text' => ['en' => 'Show group', 'fr' => 'Voir le groupe'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'groups',
+            'key' => 'import_explanation',
+            'text' => ['en' => 'You can create many groups by file import.', 'fr' => 'You can create many groups by file import.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'groups',
+            'key' => 'add',
+            'text' => ['en' => 'Group add', 'fr' => 'Créer un groupe'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'groups',
+            'key' => 'assign_explanation',
+            'text' => ['en' => 'You can assign users in groups by file import.', 'fr' => 'You can assign users in groups by file import.'],
+        ]);
     }
 }

@@ -3,7 +3,7 @@
 @section('content')
     <div class="main-content">
         {{ Breadcrumbs::render('groups.create') }}
-        <h1>Créer un groupe</h1>
+        <h1>{{ __('groups.add') }}</h1>
         @if ($errors->any())
             <div>
                 <ul class="alert alert-error">
@@ -17,12 +17,12 @@
             @csrf
 
             <div class="field-container">
-                <label for="name">Name <span class="required">*</span></label>
+                <label for="name">{{ __('common.name') }} <span class="required">*</span></label>
                 <input type="text" id="name" name="name" required>
             </div>
 
             <div class="field-container">
-                <label for="teacher">Teacher <span class="required">*</span></label>
+                <label for="teacher">{{ __('common.teacher') }} <span class="required">*</span></label>
                 <select name="teacher" id="teacher" required>
                     @foreach($teachers as $teacher)
                         <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
@@ -31,17 +31,17 @@
             </div>
 
             <div class="field-container">
-                <label for="start">Start date <span class="required">*</span></label>
+                <label for="start">{{ __('common.date_start') }} <span class="required">*</span></label>
                 <input type="date" id="start" name="start" required>
             </div>
 
             <div class="field-container">
-                <label for="end">End date <span class="required">*</span></label>
+                <label for="end">{{ __('common.date_end') }} <span class="required">*</span></label>
                 <input type="date" id="end" name="end" required>
             </div>
 
             <div class="field-container">
-                <label for="students">Students</label>
+                <label for="students">{{ __('common.students') }}</label>
                 <select name="students[]" id="students" multiple>
                     @foreach($students as $student)
                         <option value="{{ $student->id }}">{{ $student->name }}</option>
@@ -50,7 +50,7 @@
             </div>
 
             <button type="submit" class="btn btn-primary">
-                {{ __('Validate') }}
+                {{ __('common.validate') }}
             </button>
         </form>
     </div>

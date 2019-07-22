@@ -4,7 +4,7 @@
     <div class="main-content">
         <div class="main-content--header">
             {{ Breadcrumbs::render('groups.index') }}
-            <h1>Liste des groupes</h1>
+            <h1>{{ __('groups.list') }}</h1>
             <a href="{{ route('groups.create') }}" class="main-content--header-actions">
                 <i class="fas fa-plus-circle"></i>
             </a>
@@ -33,39 +33,39 @@
         @endif
 
         <div class="table" id="groups">
-            <h2>Tous les groupes</h2>
+            <h2>{{ __('groups.list') }}</h2>
             <div class="table--filters">
                 <div class="field-container">
-                    <label for="search">Search</label>
+                    <label for="search">{{ __('common.search') }}</label>
                     <input type="text" id="search" name="search" class="search">
                 </div>
             </div>
             <div class="table-container is-visible">
                 <table>
-                    <caption class="sr-only">Liste des groupes</caption>
+                    <caption class="sr-only">{{ __('groups.list') }}</caption>
                     <thead>
                     <tr>
                         <th scope="col">
                             <button class="sort" data-sort="name">
-                                Name <i class="fas fa-arrows-alt-v"></i>
+                                {{ __('common.name') }} <i class="fas fa-arrows-alt-v"></i>
                             </button>
                         </th>
                         <th scope="col">
                             <button class="sort" data-sort="teacher">
-                                Teacher <i class="fas fa-arrows-alt-v"></i>
+                                {{ __('common.teacher') }} <i class="fas fa-arrows-alt-v"></i>
                             </button>
                         </th>
                         <th scope="col">
                             <button class="sort" data-sort="start">
-                                Start date <i class="fas fa-arrows-alt-v"></i>
+                                {{ __('common.date_start') }} <i class="fas fa-arrows-alt-v"></i>
                             </button>
                         </th>
                         <th scope="col">
                             <button class="sort" data-sort="end">
-                                End date <i class="fas fa-arrows-alt-v"></i>
+                                {{ __('common.date_end') }} <i class="fas fa-arrows-alt-v"></i>
                             </button>
                         </th>
-                        <th scope="col">Actions</th>
+                        <th scope="col">{{ __('common.actions') }}</th>
                     </tr>
                     </thead>
                     <tbody class="list">
@@ -79,7 +79,7 @@
                             <td class="start">{{ date('d/m/Y', strtotime($group->start_date)) }}</td>
                             <td class="end">{{ date('d/m/Y', strtotime($group->end_date)) }}</td>
                             <td>
-                                <a href="{{ route('groups.show', ['id' => $group->id]) }}" title="Show group"><i class="fas fa-eye"></i></a>
+                                <a href="{{ route('groups.show', ['id' => $group->id]) }}" title="{{ __('groups.show') }}"><i class="fas fa-eye"></i></a>
                                 {{-- <a href="{{ route('groups.edit', ['id' => $group->id]) }}" title="Edit group"><i class="fas fa-pencil-alt"></i></a> --}}
                             </td>
                         </tr>
@@ -100,7 +100,7 @@
         </div>
 
         <div class="container-empty-search" id="js-empty-search" aria-hidden="true">
-            <p class="emphasis">Aucun résultat.</p>
+            <p class="emphasis">{{ __('common.no-result') }}</p>
         </div>
     </div>
 @endsection
