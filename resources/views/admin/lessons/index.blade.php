@@ -5,7 +5,7 @@
         <div class="main-content--header">
             {{ Breadcrumbs::render('lessons.index') }}
             <h1>
-                Liste des leçons
+                {{ __('lessons.list') }}
             </h1>
             <a href="{{ route('lessons.create') }}" class="main-content--header-actions">
                 <i class="fas fa-plus-circle"></i>
@@ -22,44 +22,44 @@
         @endif
 
         <div class="table" id="tests">
-            <h2>Toutes les leçons</h2>
+            <h2>{{ __('lessons.list') }}</h2>
             <div class="table--filters">
                 <div class="field-container">
-                    <label for="search">Search</label>
+                    <label for="search">{{ __('common.search') }}</label>
                     <input type="text" id="search" name="search" class="search">
                 </div>
             </div>
             <div class="table-container is-visible">
                 <table>
-                    <caption class="sr-only">Liste des leçons</caption>
+                    <caption class="sr-only">{{ __('lessons.list') }}</caption>
                     <thead>
                     <tr>
                         <th scope="col">
                             <button class="sort" data-sort="name">
-                                Name <i class="fas fa-arrows-alt-v"></i>
+                                {{ __('common.name') }} <i class="fas fa-arrows-alt-v"></i>
                             </button>
                         </th>
                         <th scope="col">
                             <button class="sort" data-sort="start">
-                                Start <i class="fas fa-arrows-alt-v"></i>
+                                {{ __('common.datetime_start') }} <i class="fas fa-arrows-alt-v"></i>
                             </button>
                         </th>
                         <th scope="col">
                             <button class="sort" data-sort="end">
-                                End <i class="fas fa-arrows-alt-v"></i>
+                                {{ __('common.datetime_end') }} <i class="fas fa-arrows-alt-v"></i>
                             </button>
                         </th>
                         <th scope="col">
                             <button class="sort" data-sort="group">
-                                Group <i class="fas fa-arrows-alt-v"></i>
+                                {{ __('common.group') }} <i class="fas fa-arrows-alt-v"></i>
                             </button>
                         </th>
                         <th scope="col">
                             <button class="sort" data-sort="test">
-                                Test <i class="fas fa-arrows-alt-v"></i>
+                                {{ __('app.composite-test') }} <i class="fas fa-arrows-alt-v"></i>
                             </button>
                         </th>
-                        <th scope="col">Actions</th>
+                        <th scope="col">{{ __('common.actions') }}</th>
                     </tr>
                     </thead>
                     <tbody class="list">
@@ -71,9 +71,9 @@
                             <td class="group">{{ $lesson->group()->first()->name }}</td>
                             <td class="test">{{ $lesson->composite_test()->first()->name }}</td>
                             <td>
-                                <a href="{{ route('lessons.show', ['id' => $lesson->id]) }}" title="Show lesson"><i class="fas fa-eye"></i></a>
-                                <a href="{{ route('lessons.edit', ['id' => $lesson->id]) }}" title="Edit lesson"><i class="fas fa-pencil-alt"></i></a>
-                                <a href="{{ route('lessons.delete', $lesson->id) }}" title="Delete lesson"><i class="fas fa-trash"></i></a>
+                                <a href="{{ route('lessons.show', ['id' => $lesson->id]) }}" title="{{ __('lessons.show') }}"><i class="fas fa-eye"></i></a>
+                                <a href="{{ route('lessons.edit', ['id' => $lesson->id]) }}" title="{{ __('lessons.edit') }}"><i class="fas fa-pencil-alt"></i></a>
+                                <a href="{{ route('lessons.delete', $lesson->id) }}" title="{{ __('lessons.delete') }}"><i class="fas fa-trash"></i></a>
                             </td>
                         </tr>
                     @endforeach
@@ -93,7 +93,7 @@
         </div>
 
         <div class="container-empty-search" id="js-empty-search" aria-hidden="true">
-            <p class="emphasis">Aucun résultat.</p>
+            <p class="emphasis">{{ __('common.no-result') }}</p>
         </div>
     </div>
 @endsection

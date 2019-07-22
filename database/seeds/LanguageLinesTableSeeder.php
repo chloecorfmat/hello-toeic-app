@@ -637,9 +637,8 @@ class LanguageLinesTableSeeder extends Seeder
             'group' => 'common',
             'key' => 'no-validate',
             'text' => ['en' => 'Not validate', 'fr' => 'Non validé'],
-        ]);**/
+        ]);
 
-        // @TODO :  HERE !
         LanguageLine::create([
             'group' => 'common',
             'key' => 'machine-name',
@@ -686,6 +685,56 @@ class LanguageLinesTableSeeder extends Seeder
             'group' => 'groups',
             'key' => 'assign_explanation',
             'text' => ['en' => 'You can assign users in groups by file import.', 'fr' => 'You can assign users in groups by file import.'],
+        ]);**/
+
+        // @TODO :  HERE !
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'datetime',
+            'text' => ['en' => 'Datetime', 'fr' => 'Date et heure'],
         ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'group',
+            'text' => ['en' => 'Group', 'fr' => 'Groupe'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'lessons',
+            'key' => 'edit',
+            'text' => ['en' => 'Lesson edit', 'fr' => 'Modifier la leçon'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'lessons',
+            'key' => 'show',
+            'text' => ['en' => 'Lesson show', 'fr' => 'Voir la leçon'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'lessons',
+            'key' => 'delete',
+            'text' => ['en' => 'Lesson delete', 'fr' => 'Supprimer la leçon'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'form',
+            'key' => 'datetime-local_format',
+            'text' => ['en' => 'Format : YYYY-MM-DDTHH:MM (2018-06-07T00:00)', 'fr' => 'Format : YYYY-MM-DDTHH:MM (2018-06-07T00:00)'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'lessons',
+            'key' => 'delete_sure',
+            'text' => ['en' => 'Are you sure ?', 'fr' => 'Êtes-vous sûr de vouloir supprimer cette leçon ?'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'lessons',
+            'key' => 'add',
+            'text' => ['en' => 'Lesson add', 'fr' => 'Créer une leçon'],
+        ]);
+
     }
 }
