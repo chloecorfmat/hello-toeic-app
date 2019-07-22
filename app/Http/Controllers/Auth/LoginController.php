@@ -33,7 +33,10 @@ class LoginController extends Controller
     {
         $user = Auth::user();
 
-        Log::info('User ' . $user->name . ' (' . $user->email . ') has been logged.');
+        Log::info(trans('log.user-login', [
+            'name' => $user->name,
+            'email' => $user->email,
+        ]));
         return '/profile';
     }
 

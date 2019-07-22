@@ -67,7 +67,7 @@ class DocumentController extends Controller
             'url' => $path,
         ]);
 
-        return redirect()->route('documents.index')->with('success', 'Document has been created.');
+        return redirect()->route('documents.index')->with('success', trans('documents.added'));
     }
 
     /**
@@ -118,7 +118,7 @@ class DocumentController extends Controller
 
         $document->save();
 
-        return redirect()->route('documents.show', ['id' => $id])->with('success', 'Document has been updated.');
+        return redirect()->route('documents.show', ['id' => $id])->with('success', trans('documents.updated'));
     }
 
     /**

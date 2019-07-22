@@ -1147,9 +1147,7 @@ class LanguageLinesTableSeeder extends Seeder
             'group' => 'explanations',
             'key' => 'delete',
             'text' => ['en' => 'Explanation delete', 'fr' => 'Supprimer l\'explication'],
-        ]);**/
-
-        // @TODO :  HERE !
+        ]);
 
         LanguageLine::create([
             'group' => 'form',
@@ -1240,6 +1238,379 @@ class LanguageLinesTableSeeder extends Seeder
             'group' => 'common',
             'key' => 'back',
             'text' => ['en' => 'Back', 'fr' => 'Retour'],
+        ]);**/
+
+        // @TODO :  HERE !
+        LanguageLine::create([
+            'group' => 'messages',
+            'key' => 'get-x-points',
+            'text' => ['en' => 'You get :number points.', 'fr' => 'Vous avez eu :number points.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'games',
+            'key' => 'messages_complete-all-questions',
+            'text' => ['en' => 'You complete all available questions', 'fr' => 'You complete all available questions'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'no-answer-submitted',
+            'text' => ['en' => 'No answer submitted', 'fr' => 'No answer submitted'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'last-question',
+            'text' => ['en' => 'Last question', 'fr' => 'Dernière question'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'your-false-answer',
+            'text' => ['en' => 'Your (false) answer', 'fr' => 'Votre (fausse) réponse'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'other-answers',
+            'text' => ['en' => 'Other answers', 'fr' => 'Autres propositions'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'composite-tests',
+            'key' => 'exercises-order',
+            'text' => ['en' => 'Les exercices de type "listening" doivent être avant les exercices de type "reading".', 'fr' => 'Les exercices de type "listening" doivent être avant les exercices de type "reading".'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'messages',
+            'key' => 'password-updated',
+            'text' => ['en' => 'Password has been updated.', 'fr' => 'Password has been updated.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'form',
+            'key' => 'password-constraints',
+            'text' => ['en' => 'Passwords have to be equals and respect format.', 'fr' => 'Passwords have to be equals and respect format.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'log',
+            'key' => 'user-login',
+            'text' => ['en' => 'User :name (:email) has been logged.', 'fr' => 'User :name (:email) has been logged.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'composite-tests',
+            'key' => 'added',
+            'text' => ['en' => 'L\'exercice composé a été créé.', 'fr' => 'L\'exercice composé a été créé.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'composite-tests',
+            'key' => 'updated',
+            'text' => ['en' => 'L\'exercice composé a bien été mis à jour.', 'fr' => 'L\'exercice composé a bien été mis à jour.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'config',
+            'key' => 'updated',
+            'text' => ['en' => 'Config has been saved.', 'fr' => 'Config has been saved.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'messages',
+            'key' => 'error_config-update',
+            'text' => ['en' => 'An error occured on :config update.', 'fr' => 'An error occured on :config update.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'documents',
+            'key' => 'added',
+            'text' => ['en' => 'Le document a été créé.', 'fr' => 'Le document a été créé.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'documents',
+            'key' => 'updated',
+            'text' => ['en' => 'Le document a été mis à jour.', 'fr' => 'Le document a été mis à jour.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'exercises',
+            'key' => 'added',
+            'text' => ['en' => 'L\'exercice a été créé.', 'fr' => 'L\'exercice a été créé.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'exercises',
+            'key' => 'updated',
+            'text' => ['en' => 'L\'exercice a été mis à jour.', 'fr' => 'L\'exercice a été mis à jour.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'exercises',
+            'key' => 'deleted',
+            'text' => ['en' => 'L\'exercice a été supprimé.', 'fr' => 'L\'exercice a été supprimé.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'messages',
+            'key' => 'error-occured',
+            'text' => ['en' => 'An error occured.', 'fr' => 'An error occured.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'exercises',
+            'key' => 'imported',
+            'text' => ['en' => 'L\'exercice a été importé.', 'fr' => 'L\'exercice a été importé.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'exercises',
+            'key' => 'import-part_constraint',
+            'text' => ['en' => 'You need to link an exercise to a part.', 'fr' => 'You need to link an exercise to a part.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'explanations',
+            'key' => 'added',
+            'text' => ['en' => 'L\'explication a été créée.', 'fr' => 'L\'explication a été créée.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'explanations',
+            'key' => 'updated',
+            'text' => ['en' => 'L\'explication a été mise à jour.', 'fr' => 'L\'explication a été mise à jour.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'explanations',
+            'key' => 'deleted',
+            'text' => ['en' => 'L\'explication a été supprimée.', 'fr' => 'L\'explication a été supprimée.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'explanations',
+            'key' => 'questions_constraint',
+            'text' => ['en' => 'Aucune question ne doit être rattachée à cette explication.', 'fr' => 'Aucune question ne doit être rattachée à cette explication.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'feature-flipping',
+            'key' => 'updated',
+            'text' => ['en' => 'Feature flipping has been saved.', 'fr' => 'Feature flipping has been saved.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'groups',
+            'key' => 'added',
+            'text' => ['en' => 'Le groupe a été créé.', 'fr' => 'Le groupe a été créé.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'groups',
+            'key' => 'updated',
+            'text' => ['en' => 'Le groupe a été mis à jour.', 'fr' => 'Le groupe a été mis à jour.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'groups',
+            'key' => 'deleted',
+            'text' => ['en' => 'Le groupe a été supprimé.', 'fr' => 'Le groupe a été supprimé.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'groups',
+            'key' => 'unique_constraint',
+            'text' => ['en' => 'A group with this name already exists.', 'fr' => 'A group with this name already exists.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'form',
+            'key' => 'start-end-date_constraint',
+            'text' => ['en' => 'Start date is after end date.', 'fr' => 'Start date is after end date.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'messages',
+            'key' => 'these-groups-not-exist',
+            'text' => ['en' => 'Following groups do not exist: ', 'fr' => 'Following groups do not exist : '],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'messages',
+            'key' => 'these-students-not-exist',
+            'text' => ['en' => 'Following students do not exist: ', 'fr' => 'Following students do not exist : '],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'groups',
+            'key' => 'imported',
+            'text' => ['en' => 'Le groupe a été importé.', 'fr' => 'Le groupe a été importé.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'messages',
+            'key' => 'student-deleted-from-groups',
+            'text' => ['en' => ':student has been deleted from group ":group".', 'fr' => ':student has been deleted from group ":group".'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'messages',
+            'key' => 'line-number',
+            'text' => ['en' => '(l. :number)', 'fr' => '(l. :number)'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'messages',
+            'key' => 'user-not-teacher',
+            'text' => ['en' => ':name is not a teacher.', 'fr' => ':name n\'est pas enseignant.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'groups',
+            'key' => 'imported-in-this-file',
+            'text' => ['en' => 'Group ":group" should be already imported in this file.', 'fr' => 'Group ":group" should be already imported in this file.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'lessons',
+            'key' => 'added',
+            'text' => ['en' => 'La leçon a été créée.', 'fr' => 'La leçon a été créée.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'lessons',
+            'key' => 'updated',
+            'text' => ['en' => 'La leçon a été mise à jour.', 'fr' => 'La leçon a été mise à jour.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'lessons',
+            'key' => 'deleted',
+            'text' => ['en' => 'La leçon a été supprimée.', 'fr' => 'La leçon a été supprimée.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'parts',
+            'key' => 'added',
+            'text' => ['en' => 'Le type d\'exercice a été créé.', 'fr' => 'Le type d\'exercice a été créé.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'parts',
+            'key' => 'updated',
+            'text' => ['en' => 'Le type d\'exercice a été mis à jour.', 'fr' => 'Le type d\'exercice a été mis à jour.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'parts',
+            'key' => 'deleted',
+            'text' => ['en' => 'Le type d\'exercice a été supprimé.', 'fr' => 'Le type d\'exercice a été supprimé.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'parts',
+            'key' => 'delete_constraint',
+            'text' => ['en' => 'Aucun exercice de ce type ne doit exister.', 'fr' => 'Aucun exercice de ce type ne doit exister.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'inline_constraint',
+            'text' => ['en' => 'Inline exercise must have texts and reading type.', 'fr' => 'Inline exercise must have texts and reading type.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'permissions',
+            'key' => 'updated',
+            'text' => ['en' => 'Permissions are saved.', 'fr' => 'Les permissions ont été mises à jour.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'questions',
+            'key' => 'added',
+            'text' => ['en' => 'La question a été créée.', 'fr' => 'La question a été créée.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'questions',
+            'key' => 'updated',
+            'text' => ['en' => 'La question a été mise à jour.', 'fr' => 'La question a été mise à jour.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'questions',
+            'key' => 'deleted',
+            'text' => ['en' => 'La question a été supprimée.', 'fr' => 'La question a été supprimée.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'questions',
+            'key' => 'delete_games-constraint',
+            'text' => ['en' => 'Il existe des challenges avec cette erreur.', 'fr' => 'Il existe des challenges avec cette erreur.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'questions',
+            'key' => 'delete_trials-constraint',
+            'text' => ['en' => 'Il existe des soumissions d\'exercice avec cette question.', 'fr' => 'Il existe des soumissions d\'exercice avec cette question.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'messages',
+            'key' => 'error_config-update',
+            'text' => ['en' => 'An error occured on :config update.', 'fr' => 'An error occured on :config update.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'users',
+            'key' => 'added',
+            'text' => ['en' => 'L\'utilisateur a été créé.', 'fr' => 'L\'utilisateur a été créé.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'users',
+            'key' => 'updated',
+            'text' => ['en' => 'L\'utilisateur a été mis à jour.', 'fr' => 'L\'utilisateur a été mis à jour.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'users',
+            'key' => 'deleted',
+            'text' => ['en' => 'L\'utilisateur a été supprimé.', 'fr' => 'L\'utilisateur a été supprimé.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'students',
+            'key' => 'deleted',
+            'text' => ['en' => 'L\'étudiant a été supprimé.', 'fr' => 'L\'étudiant a été supprimé.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'users',
+            'key' => 'unique_constraint',
+            'text' => ['en' => 'Cet utilisateur existe déjà.', 'fr' => 'Cet utilisateur existe déjà.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'users',
+            'key' => 'unique_constraints',
+            'text' => ['en' => 'Un utilisateur avec ce matricule ou cette adresse e-mail existe déjà.', 'fr' => 'Un utilisateur avec ce matricule ou cette adresse e-mail existe déjà.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'users',
+            'key' => 'imported',
+            'text' => ['en' => 'Les utilisateurs ont été créés.', 'fr' => 'Les utilisateurs ont été créés.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'already-exists',
+            'text' => ['en' => 'already exists', 'fr' => 'existe déjà'],
         ]);
     }
 }

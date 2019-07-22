@@ -99,7 +99,8 @@ class GameController extends Controller
         Cookie::queue(Cookie::forget('game_score'));
         Cookie::queue(Cookie::forget('game_questions'));
 
-        return redirect()->route('games')->with('success', 'You get ' . $score . ' points and you complete all available questions.');
+        return redirect()->route('games')
+            ->with('success', trans('messages.get-x-points', ['number' => $score]) . ' ' . trans('games.messages_complete-all-questions'));
     }
 
     public function continue(Request $request) {
@@ -123,7 +124,7 @@ class GameController extends Controller
             'error_id' => $request->get('question_id'),
         ]);
 
-        $user_answer = '(No answer submitted)';
+        $user_answer = '(' . trans('common.no-answer-submitted') . ')';
 
         if (!empty($request->get('question_answer'))) {
             $answers = Proposal::where('question_id', $question->id)->get();
@@ -143,12 +144,12 @@ class GameController extends Controller
         Cookie::queue(Cookie::forget('game_score'));
         Cookie::queue(Cookie::forget('game_questions'));
         return redirect()->route('games')->with('success',
-            '<p>You get ' . $score . ' points.</p><br />' .
+            '<p>' . trans('messages.get-x-points', ['number' => $score]) . '</p><br />' .
             '<div class="alert-answer">' .
-                '<p class="important">Last question: </p>' .
+                '<p class="important">' . trans('common.last-question') . ': </p>' .
                 '<p>' . $question->question . '</p>' .
-                '<p><span class="introducing">Your (false) answer:</span> ' . $user_answer . '</p>' .
-                '<p><span class="introducing">Other answers:</span></p>' .
+                '<p><span class="introducing">' . trans('common.your-false-answer') . ':</span> ' . $user_answer . '</p>' .
+                '<p><span class="introducing">' . trans('common.other-answers') .':</span></p>' .
                 '<ul>' . $other_answers .'</ul>' .
             '</div>'
         );

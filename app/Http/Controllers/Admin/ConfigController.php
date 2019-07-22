@@ -40,10 +40,10 @@ class ConfigController extends Controller
                 $config->value = $datas[str_replace('.', '_', $config->key)];
                 $config->save();
             } else {
-                return redirect()->route('config.index')->with('error', 'An error occured on "' . $config->name .'" update.');
+                return redirect()->route('config.index')->with('error', trans('messages.error_config-update', ['config' => $config->name]));
             }
         }
 
-        return redirect()->route('config.index')->with('success', 'Config has been saved.');
+        return redirect()->route('config.index')->with('success', trans('config.updated'));
     }
 }

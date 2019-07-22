@@ -56,9 +56,9 @@ class LessonController extends Controller
                 'composite_test_id' => $request->get('test'),
             ]);
 
-            return redirect()->route('lessons.index')->with('success', 'Lesson has been created.');
+            return redirect()->route('lessons.index')->with('success', trans('lessons.added'));
         } else {
-            return redirect()->route('lessons.create')->withErrors(['End datetime have to be after start datetime']);
+            return redirect()->route('lessons.create')->withErrors([trans('form.start-end-date_constraint')]);
         }
     }
 
@@ -140,9 +140,9 @@ class LessonController extends Controller
 
             $lesson->save();
 
-            return redirect()->route('lessons.index')->with('success', 'Lesson has been updated.');
+            return redirect()->route('lessons.index')->with('success', trans('lessons.updated'));
         } else {
-            return redirect()->route('lessons.edit', ['id' => $id])->withErrors(['End datetime have to be after start datetime']);
+            return redirect()->route('lessons.edit', ['id' => $id])->withErrors([trans('form.start-end-date_constraint')]);
         }
     }
 
@@ -167,6 +167,6 @@ class LessonController extends Controller
     {
         $lesson = Lesson::find($id);
         $lesson->delete();
-        return redirect()->route('lessons.index')->with('success', 'Lesson has been deleted.');
+        return redirect()->route('lessons.index')->with('success', trans('lessons.deleted'));
     }
 }

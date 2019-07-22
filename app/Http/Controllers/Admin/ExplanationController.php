@@ -47,7 +47,7 @@ class ExplanationController extends Controller
             'explanation' => $request->get('explanation'),
         ]);
 
-        return redirect()->route('explanations.index')->with('success', 'Explanation has been created.');
+        return redirect()->route('explanations.index')->with('success', trans('explanations.added'));
     }
 
     /**
@@ -90,7 +90,7 @@ class ExplanationController extends Controller
 
         $explanation->save();
 
-        return redirect()->route('explanations.index')->with('success', 'Explanation has been updated.');
+        return redirect()->route('explanations.index')->with('success', trans('explanations.updated'));
     }
 
     /**
@@ -117,9 +117,9 @@ class ExplanationController extends Controller
 
         if ($count == 0) {
             $explanation->delete();
-            return redirect()->route('explanations.index')->with('success', 'Explanation has been deleted.');
+            return redirect()->route('explanations.index')->with('success', trans('explanations.deleted'));
         }
 
-        return redirect()->route('explanations.index')->with('error', 'Aucune question ne doit être rattachée à cette explication.');
+        return redirect()->route('explanations.index')->with('error', trans('explanations.questions_constraint'));
     }
 }

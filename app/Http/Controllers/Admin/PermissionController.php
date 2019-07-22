@@ -77,7 +77,7 @@ class PermissionController extends Controller
             }
         }
 
-        return redirect()->route('permissions.index')->with('success', 'Permissions are saved.');
+        return redirect()->route('permissions.index')->with('success', trans('permissions.updated'));
     }
 
     /**

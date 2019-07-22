@@ -92,7 +92,7 @@ class ExerciseController extends Controller
 
         $exercise->save();
 
-        return redirect()->route('exercises.index')->with('success', 'Exercise has been updated.');
+        return redirect()->route('exercises.index')->with('success', trans('exercises.updated'));
     }
 
     /**
@@ -117,10 +117,10 @@ class ExerciseController extends Controller
         $success = (new ExerciseService())->delete($id, $request->get('status') ? true : false);
 
         if ($success) {
-            return redirect()->route('exercises.index')->with('success', 'Exercise has been deleted.');
+            return redirect()->route('exercises.index')->with('success', trans('exercises.deleted'));
         }
 
-        return redirect()->route('exercises.index')->with('error', 'An error occurred.');
+        return redirect()->route('exercises.index')->with('error', trans('messages.error-occured'));
     }
 
     /**
@@ -132,7 +132,7 @@ class ExerciseController extends Controller
     public function import($id = null)
     {
         if (is_null($id)) {
-            return redirect()->route('parts.index')->with('warning', 'You need to link an exercise to a part.');
+            return redirect()->route('parts.index')->with('warning', trans('exercises.import-part_constraint'));
         } else {
             $part = Part::find($id);
             return view('admin.exercises.import', compact('part'));
@@ -151,7 +151,7 @@ class ExerciseController extends Controller
         $success = (new ExerciseService())->import($request);
 
         if ($success === TRUE) {
-            return redirect()->route('exercises.index')->with('success', 'Exercise has been imported.');
+            return redirect()->route('exercises.index')->with('success', trans('exercises.imported'));
         }
 
         return redirect()->route('exercises.import', ['id' => $request->get('part')])->withErrors([$success]);

@@ -62,7 +62,7 @@ class GroupController extends Controller
             $exist = count(Group::where('machine_name', Sanitize::string($data['name']))->get());
 
             if ($exist > 0) {
-                return redirect()->route('groups.create')->withErrors(['A group with this name already exists.']);
+                return redirect()->route('groups.create')->withErrors([trans('groups.unique_constraint')]);
             }
 
             $group = Group::create([
@@ -77,9 +77,9 @@ class GroupController extends Controller
                 $group->users()->attach($data['students']);
             }
 
-            return redirect()->route('groups.index')->with('success', 'Group has been created.');
+            return redirect()->route('groups.index')->with('success', trans('groups.added'));
         } else {
-            return redirect()->route('groups.index')->with('error', 'Start date is after end date.');
+            return redirect()->route('groups.index')->with('error', trans('form.start-end-date_constraint'));
         }
     }
 
@@ -138,8 +138,8 @@ class GroupController extends Controller
     }
 
     public function storeAssign(Request $request) {
-        $group_warning = "Following groups do not exist : ";
-        $student_warning = "Following students do not exist : ";
+        $group_warning = trans('messages.these-groups-not-exist');
+        $student_warning = trans('messages.these-students-not-exist');
 
         $group_message = "";
         $student_message = "";
@@ -215,7 +215,7 @@ class GroupController extends Controller
         }
 
         return redirect()->route('groups.index')
-            ->with('success', 'Groups have been imported.')
+            ->with('success', trans('groups.imported'))
             ->with('warning', $message);
     }
 
@@ -232,14 +232,17 @@ class GroupController extends Controller
 
                     return redirect()
                         ->route('groups.show', ['id' => $group])
-                        ->with('success', $s_model->name . ' has been deleted from group "' . $g_model->name . '".');
+                        ->with('success', trans('messages.student-deleted-from-groups', [
+                            'student' => $s_model->name,
+                            'group' => $g_model->name,
+                        ]));
                 }
             }
         }
 
         return redirect()
             ->route('groups.show', ['id' => $group])
-            ->with('error', 'An error occurred.');
+            ->with('error', trans('messages.error-occured'));
     }
 
     public function import() {
@@ -279,7 +282,7 @@ class GroupController extends Controller
                         $diff = $start_date->diff($end_date);
 
                         if ($diff->invert) {
-                            $errors[] = '(l.' . $line_nb . ') : For group "' . $data[0] . '" start date must be before end date.';
+                            $errors[] = trans('messages.line-number', ['number' => $line_nb]) . ' : ' . trans('form.start-end-date_constraint');
                         } else {
 
                             $imported = FALSE;
@@ -299,13 +302,13 @@ class GroupController extends Controller
                                     'machine_name' => $machine_name,
                                 ];
                             } else {
-                                $errors[] = '(l.' . $line_nb . ') : Group "' . $data[0] . '" should be already imported in this file.';
+                                $errors[] = trans('messages.line-number', ['number' => $line_nb]) . ' : ' . trans('groups.imported-in-this-file', ['group' => $data[0]]);
                             }
                         }
 
                     }
                 } else {
-                    $errors[] = '(l.' . $line_nb . ') : ' . addslashes($data[1]) . " is not a teacher.";
+                    $errors[] = trans('messages.line-number', ['number' => $line_nb]) . ' : ' . trans('messages.user-not-teacher', ['user' => addslashes($data[1])]);
                 }
             }
             $i++;
@@ -322,7 +325,7 @@ class GroupController extends Controller
                 ]);
             }
 
-            return redirect()->route('groups.index')->with('success', 'Groups have been created');
+            return redirect()->route('groups.index')->with('success', trans('groups.added'));
         } else {
             return redirect()->route('groups.import')->withErrors($errors);
         }

@@ -55,7 +55,7 @@ class WordingController extends Controller
                 ];
                 $wording->save();
             } else {
-                return redirect()->route('wordings.index')->with('error', 'An error occured on "' . $wording->group . '_' . $wording->key .'" update.');
+                return redirect()->route('wordings.index')->with('error', trans('messages.error_config-update', ['config' => $wording->group . '_' . $wording->key]));
             }
         }
 

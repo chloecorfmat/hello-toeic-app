@@ -162,7 +162,7 @@ class ExerciseController extends Controller
 
         $trial_entity->setAttribute('score', $score)->save();
 
-        return redirect('/profile')->with('success', 'You get ' . $score . ' points.');
+        return redirect('/profile')->with('success', trans('messages.get-x-points', ['number' => $score]));
     }
 
     /**

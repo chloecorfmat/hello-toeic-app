@@ -99,7 +99,7 @@ class QuestionController extends Controller
             }
         }
 
-        return redirect()->route('questions.index')->with('success', 'Question has been created.');
+        return redirect()->route('questions.index')->with('success', trans('questions.added'));
     }
 
     /**
@@ -196,7 +196,7 @@ class QuestionController extends Controller
 
         $question->save();
 
-        return redirect()->route('questions.index')->with('success', 'Question has been saved.');
+        return redirect()->route('questions.index')->with('success', trans('questions.updated'));
     }
 
     /**
@@ -226,14 +226,14 @@ class QuestionController extends Controller
         $count_games = Game::where('error_id', $id)->count();
 
         if ($count_games > 0) {
-            $errors[] = "Il existe des challenges avec cette erreur.";
+            $errors[] = trans('games.delete_games-constraint');
             $delete = false;
         }
 
         $count_corrections = Correction::where('question_id', $id)->count();
 
         if ($count_corrections > 0) {
-            $errors[] = "Il existe des soumissions d'exercice avec cette question.";
+            $errors[] = trans('games.delete_trials-constraint');
             $delete = false;
         }
 
@@ -250,7 +250,7 @@ class QuestionController extends Controller
             }
 
             $question->delete();
-            return redirect()->route('questions.index')->with('success', 'Question has been deleted.');
+            return redirect()->route('questions.index')->with('success', trans('questions.deleted'));
         }
 
         return redirect()->route('questions.index')->withErrors($errors);

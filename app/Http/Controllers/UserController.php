@@ -89,10 +89,10 @@ class UserController extends Controller
                 $user->password = bcrypt($passwords['password']);
                 $user->save();
 
-                return redirect()->route('student.users.show', ['id' => $id])->with('success', 'Password has been updated.');
+                return redirect()->route('student.users.show', ['id' => $id])->with('success', trans('messages.password-updated'));
             }
 
-            return redirect()->route('student.users.show', ['id' => $id])->with('error', 'Passwords have to be equals and respect format.');
+            return redirect()->route('student.users.show', ['id' => $id])->with('error', trans('form.password-constraints'));
         }
 
         abort(403);

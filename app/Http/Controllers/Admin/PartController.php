@@ -50,7 +50,7 @@ class PartController extends Controller
         if ($inline &&
             (!$texts || $request->get('type') !== "reading"))
         {
-            return redirect()->route('parts.create')->withErrors(['Inline exercise must have texts and reading type.']);
+            return redirect()->route('parts.create')->withErrors([trans('common.inline_constraint')]);
         }
 
         Part::create([
@@ -66,7 +66,7 @@ class PartController extends Controller
             'inline' => $inline,
         ]);
 
-        return redirect()->route('parts.index')->with('success', 'Part has been created.');
+        return redirect()->route('parts.index')->with('success', trans('parts.added'));
     }
 
     /**
@@ -107,7 +107,7 @@ class PartController extends Controller
         if ($request->get('inline') === 'true' &&
             ($request->get('texts') !== 'true') || $request->get('type') !== "reading")
         {
-            return redirect()->route('parts.edit', ['id' => $id])->withErrors(['Inline exercise must have texts and reading type.']);
+            return redirect()->route('parts.edit', ['id' => $id])->withErrors([trans('common.inline_constraint')]);
         }
 
         $part->name = $request->get('name');
@@ -123,7 +123,7 @@ class PartController extends Controller
 
         $part->save();
 
-        return redirect()->route('parts.index')->with('success', 'Parts has been updated.');
+        return redirect()->route('parts.index')->with('success', trans('parts.updated'));
     }
 
 
@@ -151,9 +151,9 @@ class PartController extends Controller
 
         if ($count == 0) {
             $part->delete();
-            return redirect()->route('parts.index')->with('success', 'Part has been deleted.');
+            return redirect()->route('parts.index')->with('success', trans('parts.deleted'));
         }
 
-        return redirect()->route('parts.index')->with('error', 'Aucun exercice de ce type ne doit exister.');
+        return redirect()->route('parts.index')->with('error', trans('parts.delete_constraint'));
     }
 }

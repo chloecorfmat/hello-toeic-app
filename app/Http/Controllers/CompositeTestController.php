@@ -262,7 +262,7 @@ class CompositeTestController extends Controller
         }
 
         $composite_trial->setAttribute('score', $composite_score)->save();
-        return redirect('/profile')->with('success', 'You get ' . $composite_score . ' points.');
+        return redirect('/profile')->with('success', trans('messages.get-x-points', ['number' => $composite_score]));
     }
 
     /**

@@ -80,7 +80,7 @@ class CompositeTestController extends Controller
 
             if (!is_null($exercise)) {
                 if ($last_ex_type == 'reading' && $exercise->part->type == 'listening') {
-                    return redirect()->route('composite-tests.create')->withErrors(['Les exercices de type "listening" doivent être avant les exercices de type "reading".']);
+                    return redirect()->route('composite-tests.create')->withErrors([trans('composite-tests.exercises-order')]);
                 }
                 $last_ex_type = $exercise->part->type;
 
@@ -92,7 +92,7 @@ class CompositeTestController extends Controller
 
         CompositeTest::create($compositeTest);
 
-        return redirect()->route('composite-tests.index')->with('success', 'L\'exercice composé a été créé.');
+        return redirect()->route('composite-tests.index')->with('success', trans('composite-tests.added'));
     }
 
     /**
@@ -148,7 +148,7 @@ class CompositeTestController extends Controller
 
             if (!is_null($exercise)) {
                 if ($last_ex_type == 'reading' && $exercise->part->type == 'listening') {
-                    return redirect()->route('composite-tests.edit', ['id' => $id])->withErrors(['Les exercices de type "listening" doivent être avant les exercices de type "reading".']);
+                    return redirect()->route('composite-tests.edit', ['id' => $id])->withErrors([trans('composite-tests.exercises-order')]);
                 }
                 $last_ex_type = $exercise->part->type;
                 $composite_test->$var = $exercise->id;
@@ -159,7 +159,7 @@ class CompositeTestController extends Controller
 
         $composite_test->save();
 
-        return redirect()->route('composite-tests.index')->with('success', 'L\'exercice composé a bien été mis à jour.');
+        return redirect()->route('composite-tests.index')->with('success', trans('composite-tests.updated'));
     }
 
     /**

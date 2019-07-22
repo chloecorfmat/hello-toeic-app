@@ -75,10 +75,10 @@ class UserController extends Controller
                 //Mail::to($user)->send(new UserAccountCreated($user));
             }
 
-            return redirect()->route('users.index')->with('success', 'User has been created.');
+            return redirect()->route('users.index')->with('success', trans('users.added'));
         }
 
-        return redirect()->route('users.create')->withErrors(['Cet utilisateur existe déjà.']);
+        return redirect()->route('users.create')->withErrors([trans('users.unique_constraint')]);
 
     }
 
@@ -158,10 +158,10 @@ class UserController extends Controller
 
             $user->save();
 
-            return redirect()->route('users.edit', [$id])->with('success', 'User has been update.');
+            return redirect()->route('users.edit', [$id])->with('success', trans('users.updaded'));
         }
 
-        return redirect()->route('users.edit', [$id])->withErrors(['Un utilisateur avec ce matricule ou cette adresse e-mail existe déjà.']);
+        return redirect()->route('users.edit', [$id])->withErrors([trans('users.unique_constraints')]);
     }
 
     /**
@@ -195,10 +195,10 @@ class UserController extends Controller
         $user->delete();
 
         if (auth()->user()->hasRole('admin')) {
-            return redirect()->route('users.index')->with('success', 'User has been deleted.');
+            return redirect()->route('users.index')->with('success', trans('users.deleted'));
         }
 
-        return redirect()->route('students.index')->with('success', 'Student has been deleted.');
+        return redirect()->route('students.index')->with('success', trans('students.deleted'));
     }
 
     /**
@@ -250,13 +250,13 @@ class UserController extends Controller
                     }
 
                 } else {
-                    $warnings[] = '<strong class="important">' . $data[0] . '</strong> already exists (' . $email . ').';
+                    $warnings[] = '<strong class="important">' . $data[0] . '</strong> ' . trans('common.already-exists') . ' (' . $email . ').';
                 }
             }
         }
 
         if (empty($warnings)) {
-            return redirect()->route('students.index')->with('success', 'Users have been created.');
+            return redirect()->route('students.index')->with('success', trans('users.imported'));
         } else {
             $temp = '';
 
