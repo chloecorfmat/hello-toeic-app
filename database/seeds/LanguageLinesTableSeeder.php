@@ -851,12 +851,6 @@ class LanguageLinesTableSeeder extends Seeder
 
         LanguageLine::create([
             'group' => 'questions',
-            'key' => 'edit',
-            'text' => ['en' => 'Question edit', 'fr' => 'Modifier la question'],
-        ]);
-
-        LanguageLine::create([
-            'group' => 'questions',
             'key' => 'none-explanation',
             'text' => ['en' => 'Entrez \'#none\' pour avoir une question vide.', 'fr' => 'Entrez \'#none\' pour avoir une question vide.'],
         ]);
@@ -1238,9 +1232,8 @@ class LanguageLinesTableSeeder extends Seeder
             'group' => 'common',
             'key' => 'back',
             'text' => ['en' => 'Back', 'fr' => 'Retour'],
-        ]);**/
+        ]);
 
-        // @TODO :  HERE !
         LanguageLine::create([
             'group' => 'messages',
             'key' => 'get-x-points',
@@ -1560,12 +1553,6 @@ class LanguageLinesTableSeeder extends Seeder
         ]);
 
         LanguageLine::create([
-            'group' => 'messages',
-            'key' => 'error_config-update',
-            'text' => ['en' => 'An error occured on :config update.', 'fr' => 'An error occured on :config update.'],
-        ]);
-
-        LanguageLine::create([
             'group' => 'users',
             'key' => 'added',
             'text' => ['en' => 'L\'utilisateur a été créé.', 'fr' => 'L\'utilisateur a été créé.'],
@@ -1612,5 +1599,9 @@ class LanguageLinesTableSeeder extends Seeder
             'key' => 'already-exists',
             'text' => ['en' => 'already exists', 'fr' => 'existe déjà'],
         ]);
+
+         **/
+
+        // @TODO :  HERE !
     }
 }
