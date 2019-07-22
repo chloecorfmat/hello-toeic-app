@@ -9,13 +9,13 @@
         <div class="part-container">
             <div class="student-profile">
                 <p><span>{{ $datas['trial']->user->name }}</span>, le <span>{{ date('d/m/Y à H:i', strtotime($datas['trial']->datetime)) }}</span></p>
-                <p>Score : <span>{{ $datas['trial']->score }}</span>/{{ $datas['max_score'] }}</p>
+                <p>{{ __('common.score') }} : <span>{{ $datas['trial']->score }}</span>/{{ $datas['max_score'] }}</p>
             </div>
         </div>
 
         <div class="part-container">
             @if (!Auth::user()->hasRole('teacher'))
-                <p class="emphasis">La correction des questions liées aux parties de compréhension orale n'est pas affichée.</p>
+                <p class="emphasis">{{ __('correction.limitation') }}</p>
             @endif
             <ol>
                 @foreach ($datas['trial']->corrections as $key => $correction)
@@ -57,6 +57,6 @@
             </ol>
         </div>
 
-        <a href="{{ route('profile') }}" class="btn">Retour</a>
+        <a href="{{ route('profile') }}" class="btn">{{ __('common.back') }}</a>
     </div>
 @endsection

@@ -64,7 +64,7 @@
                                 {{ $question->proposals[$i]->value }}
 
                                 @if ($question->proposals[$i]->id === $question->answer->id)
-                                    --> answer
+                                    --> {{ __('common.answer') }}
                                 @endif
                             @endisset
 

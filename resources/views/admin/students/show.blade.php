@@ -189,7 +189,7 @@
         </div>
 
         <div class="part-container">
-            <h2>Derniers challenges</h2>
+            <h2>{{ __('games.results_last') }}</h2>
             <div class="table" id="games">
                 <div class="table--filters">
                     <div class="field-container">
@@ -199,7 +199,7 @@
                 </div>
                 <div class="table-container is-visible">
                     <table>
-                        <caption class="sr-only">Challenges list</caption>
+                        <caption class="sr-only">{{ __('games.results_last') }}</caption>
                         <thead>
                         <tr>
                             <th>

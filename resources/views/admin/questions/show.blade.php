@@ -20,7 +20,7 @@
                             @if (!empty($document->name))
                                 {{ $document->name }} <span class="emphasis">({{ $document->type }})</span>
                             @else
-                                <span class="emphasis">Unamed document ({{ $document->type }})</span>
+                                <span class="emphasis">{{ __('documents.unamed') }} ({{ $document->type }})</span>
                             @endif
                         </a>
                     </li>

@@ -56,10 +56,10 @@
                             <td class="name">{{ $part->name }}</td>
                             <td class="version">{{ $part->version }}</td>
                             <td>
-                                <a href="{{ route('parts.show', ['id' => $part->id]) }}" title="Show exercise"><i class="fas fa-eye"></i></a>
-                                <a href="{{ route('parts.edit', ['id' => $part->id]) }}" title="Edit exercise"><i class="fas fa-pencil-alt"></i></a>
-                                <a href="{{ route('exercises.import', ['id' => $part->id]) }}" title="Add an exercise"><i class="fas fa-upload"></i></a>
-                                <a href="{{ route('parts.delete', $part->id) }}" title="Delete part"><i class="fas fa-trash"></i></a>
+                                <a href="{{ route('parts.show', ['id' => $part->id]) }}" title="{{ __('exercises.show') }}"><i class="fas fa-eye"></i></a>
+                                <a href="{{ route('parts.edit', ['id' => $part->id]) }}" title="{{ __('exercises.edit') }}"><i class="fas fa-pencil-alt"></i></a>
+                                <a href="{{ route('exercises.import', ['id' => $part->id]) }}" title="{{ __('exercises.add') }}"><i class="fas fa-upload"></i></a>
+                                <a href="{{ route('parts.delete', $part->id) }}" title="{{ __('parts.delete') }}"><i class="fas fa-trash"></i></a>
                             </td>
                         </tr>
                     @endforeach

@@ -24,13 +24,13 @@
             <div class="field-container">
                 <label for="name">{{ __('common.name') }} <span class="required">*</span></label>
                 <input type="text" id="name" name="name" aria-describedby="name-description" required>
-                <p class="name-description">Format : LASTNAME Firstname</p>
+                <p class="name-description">{{ __('form.name_format') }}</p>
             </div>
 
             <div class="field-container">
                 <label for="matricule">{{ __('common.matricule') }} <span class="required">*</span></label>
                 <input type="number" id="matricule" name="matricule" aria-describedby="matricule-description" min="0" max="99999999999" step="1" required>
-                <p class="matricule-description">11 numbers maximum</p>
+                <p class="matricule-description">{{ __('form.max-number-numbers_format', ['number' => 11]) }}</p>
             </div>
 
             <div class="field-container">
@@ -41,13 +41,13 @@
             <div class="field-container">
                 <label for="course">{{ __('common.course') }}</label>
                 <input type="text" id="course" name="course" aria-describedby="course-description">
-                <p class="course-description">Example: IMR2019</p>
+                <p class="course-description">{{ __('users.course-attribute-example') }}</p>
             </div>
 
             <div class="field-container">
                 <label for="passed">{{ __('common.toeic') }}</label>
                 <input type="date" id="passed" name="passed" aria-describedby="passed-description">
-                <p class="passed-description">Date of CLES or TOEIC success</p>
+                <p class="passed-description">{{ __('users.toeic-attribute-explanation') }}</p>
             </div>
 
             @if($is_admin)

@@ -25,7 +25,7 @@
                 <div class="field-container">
                     <label for="questions">{{ __('common.questions') }} <span class="required">*</span></label>
                     <input type="file" id="questions" name="questions" required>
-                    <p>Veuillez ajouter un fichier .txt.</p>
+                    <p>{{ __('form.txt-format_required') }}</p>
                 </div>
             @endif
 
@@ -33,7 +33,7 @@
             <div class="field-container">
                 <label for="documents">{{ __('common.documents') }} <span class="required">*</span></label>
                 <input type="file" id="documents" name="documents" required>
-                <p>Veuillez ajouter un zip comprenant tous les fichiers.</p>
+                <p>{{ __('form.zip-format_required') }}</p>
             </div>
             @endif
 

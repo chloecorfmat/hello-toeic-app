@@ -11,7 +11,7 @@
 
 @section('content')
     <div class="main-content">
-        <h1>Résultats des tests composés passés</h1>
+        <h1>{{ __('composite-tests.results_last') }}</h1>
         <!-- Results -->
         <div class="part-container">
             @if ($message = Session::get('success'))
@@ -20,7 +20,7 @@
                 </div>
             @endif
             @if (!Auth::user()->hasRole('teacher'))
-                <p class="emphasis">La correction des questions liées aux parties de compréhension orale n'est pas affichée.</p>
+                <p class="emphasis">{{ __('correction.limitation') }}</p>
             @endif
             <div class="table" id="profile-tests">
                 <div class="table--filters">
@@ -32,26 +32,26 @@
 
                 <div class="table-container is-visible">
                     <table>
-                        <caption class="sr-only">Liste des exercices passés</caption>
+                        <caption class="sr-only">{{ __('composite-tests.results_last') }}</caption>
                         <thead>
                         <tr>
                             <th scope="col">
                                 <button class="sort" data-sort="date">
-                                    Date <i class="fas fa-arrows-alt-v"></i>
+                                    {{ __('common.date') }} <i class="fas fa-arrows-alt-v"></i>
                                 </button>
                             </th>
                             <th scope="col">
                                 <button class="sort" data-sort="test">
-                                    Nom du test <i class="fas fa-arrows-alt-v"></i>
+                                    {{ __('common.name') }} <i class="fas fa-arrows-alt-v"></i>
                                 </button>
                             </th>
                             <th scope="col">
                                 <button class="sort" data-sort="score">
-                                    Score <i class="fas fa-arrows-alt-v"></i>
+                                    {{ __('common.score') }} <i class="fas fa-arrows-alt-v"></i>
                                 </button>
                             </th>
                             @role('student')
-                                <th scope="col">Actions</th>
+                                <th scope="col">{{ __('common.actions') }}</th>
                             @endrole
                         </tr>
                         </thead>
@@ -66,7 +66,7 @@
                                         <ul>
 
                                             <li>
-                                                <a href="{{ action('CompositeTestController@show', ['id' => $trial->composite_test_id]) }}">Execute</a>
+                                                <a href="{{ action('CompositeTestController@show', ['id' => $trial->composite_test_id]) }}">{{ __('composite-tests.execute') }}</a>
                                             </li>
 
                                         </ul>
@@ -89,7 +89,7 @@
                 </div>
             </div>
             <div class="container-empty-search" id="js-empty-search" aria-hidden="true">
-                <p class="emphasis">Aucun résultat.</p>
+                <p class="emphasis">{{ __('common.no-result') }}</p>
             </div>
         </div>
     </div>

@@ -58,14 +58,14 @@
                     @if ($current_part !== $question->parts[0]->id)
                         @if ($current_part == null)
                             <li class="part" id="part_{{ $question->parts[0]->id }}">
-                                <button class="js-part-close btn-close" type="button" title="Close">
+                                <button class="js-part-close btn-close" type="button" title="{{ __('common.close') }}">
                                     <i class="fas fa-times fa-2x"></i>
                                 </button>
                         @else
                                 </ul>
                             </li>
                             <li class="part part-hide" id="part_{{ $question->parts[0]->id }}">
-                                <button class="js-part-close btn-close" type="button" title="Close">
+                                <button class="js-part-close btn-close" type="button" title="{{ __('common.close') }}">
                                     <i class="fas fa-chevron-down fa-2x"></i>
                                 </button>
                                 @endif
@@ -118,7 +118,7 @@
                                                 @if ($document->type === 'image')
                                                     <div class="document">
                                                         <div class="img-preview">
-                                                            <img src="{{ url('storage/' . $document->url) }}" alt="Image necessary for this question." id="{{ $question->number }}_{{ $key }}" />
+                                                            <img src="{{ url('storage/' . $document->url) }}" alt="{{ __('questions.necessary-image') }}" id="{{ $question->number }}_{{ $key }}" />
                                                         </div>
                                                     </div>
                                                 @endif
@@ -128,7 +128,7 @@
                                                 @if ($document->type === 'image')
                                                     <ol>
                                                         <li>
-                                                            <a href="{{ url('storage/' . $document->url) }}" target="_blank" title="View image - Open new window">
+                                                            <a href="{{ url('storage/' . $document->url) }}" target="_blank" title="{{ __('common.show-image') }} - {{ __('common.new-window') }}">
                                                                 <i class="fas fa-external-link-alt"></i>
                                                             </a>
                                                         </li>
@@ -143,7 +143,7 @@
             </ol>
             @endif
             <button type="submit" class="btn">
-                {{ __('Validate') }}
+                {{ __('common.validate') }}
             </button>
             {{--
             <button type="reset" class="btn">

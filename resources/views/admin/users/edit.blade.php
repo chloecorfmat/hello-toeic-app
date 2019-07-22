@@ -42,7 +42,7 @@
                         value="{{ $user->name }}"
                         required
                 >
-                <p class="name-description">Format : LASTNAME Firstname</p>
+                <p class="name-description">{{ __('form.name_format') }}</p>
             </div>
 
             <div class="field-container">
@@ -58,7 +58,7 @@
                         value="{{ $user->matricule }}"
                         required
                 >
-                <p class="matricule-description">11 numbers maximum</p>
+                <p class="matricule-description">{{ __('form.max-number-numbers_format', ['number' => 11]) }}</p>
             </div>
 
             <div class="field-container">
@@ -81,7 +81,7 @@
                        aria-describedby="course-description"
                        value="{{ $user->course }}"
                 >
-                <p class="course-description">Example: IMR2019</p>
+                <p class="course-description">{{ __('users.course-attribute-example') }}</p>
             </div>
 
             <div class="field-container">
@@ -93,7 +93,7 @@
                         aria-describedby="passed-description"
                         value="{{ $user->passed }}"
                 >
-                <p class="passed-description">Date of CLES or TOEIC success</p>
+                <p class="passed-description">{{ __('users.toeic-attribute-explanation') }}</p>
             </div>
 
             @if ($is_student)

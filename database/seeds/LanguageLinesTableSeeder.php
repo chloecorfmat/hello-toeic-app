@@ -1027,9 +1027,7 @@ class LanguageLinesTableSeeder extends Seeder
             'group' => 'composite-tests',
             'key' => 'add',
             'text' => ['en' => 'Composite test add', 'fr' => 'Créer un test composé'],
-        ]);**/
-
-        // @TODO :  HERE !
+        ]);
 
         LanguageLine::create([
             'group' => 'common',
@@ -1149,6 +1147,99 @@ class LanguageLinesTableSeeder extends Seeder
             'group' => 'explanations',
             'key' => 'delete',
             'text' => ['en' => 'Explanation delete', 'fr' => 'Supprimer l\'explication'],
+        ]);**/
+
+        // @TODO :  HERE !
+
+        LanguageLine::create([
+            'group' => 'form',
+            'key' => 'zip-format_required',
+            'text' => ['en' => 'Veuillez ajouter un zip comprenant tous les fichiers.', 'fr' => 'Veuillez ajouter un zip comprenant tous les fichiers.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'parts',
+            'key' => 'delete',
+            'text' => ['en' => 'Part delete', 'fr' => 'Supprimer le type d\'exercice'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'games',
+            'key' => 'results_last',
+            'text' => ['en' => 'Résultats des derniers challenges', 'fr' => 'Résultats des derniers challenges'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'students',
+            'key' => 'edit',
+            'text' => ['en' => 'Student edit', 'fr' => 'Modifier l\'étudiant'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'students',
+            'key' => 'show',
+            'text' => ['en' => 'Student show', 'fr' => 'Voir l\'étudiant'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'students',
+            'key' => 'delete',
+            'text' => ['en' => 'Student delete', 'fr' => 'Supprimer l\'étudiant'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'users',
+            'key' => 'toeic-attribute-explanation',
+            'text' => ['en' => 'Date of CLES or TOEIC success', 'fr' => 'Date of CLES or TOEIC success'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'users',
+            'key' => 'course-attribute-example',
+            'text' => ['en' => 'Example: IMR2019', 'fr' => 'Example: IMR2019'],
+        ]);
+
+
+        LanguageLine::create([
+            'group' => 'form',
+            'key' => 'name_format',
+            'text' => ['en' => 'Format : LASTNAME Firstname', 'fr' => 'Format : LASTNAME Firstname'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'form',
+            'key' => 'max-number-numbers_format',
+            'text' => ['en' => 'Format : :number numbers maximum', 'fr' => 'Format : :number nombres maximum'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'close',
+            'text' => ['en' => 'Close', 'fr' => 'Fermer'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'questions',
+            'key' => 'necessary-image',
+            'text' => ['en' => 'Image necessary for this question', 'fr' => 'Image necessary for this question'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'show-image',
+            'text' => ['en' => 'Image show', 'fr' => 'Voir l\'image'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'new-window',
+            'text' => ['en' => 'Open in new window', 'fr' => 'Ouvrir dans une nouvelle fenêtre'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'back',
+            'text' => ['en' => 'Back', 'fr' => 'Retour'],
         ]);
     }
 }

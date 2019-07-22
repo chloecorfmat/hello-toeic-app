@@ -23,7 +23,7 @@
 
             <input type="hidden" name="question_id" value="{{ $datas['question']->id }}">
             <button type="submit" class="btn btn-primary">
-                {{ __('Submit') }}
+                {{ __('common.validate') }}
             </button>
         </form>
     </div>

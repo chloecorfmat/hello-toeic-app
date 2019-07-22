@@ -18,7 +18,7 @@
         @endif
 
         <div class="part-container">
-            <h2>Résultats des derniers tests composés</h2>
+            <h2>{{ __('composite-tests.results') }}</h2>
             @if (!Auth::user()->hasRole('teacher'))
                 <p class="emphasis">{{ __('correction.limitation') }}</p>
             @endif
