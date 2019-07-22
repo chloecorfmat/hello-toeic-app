@@ -4,26 +4,26 @@
     <div class="main-content">
         <div class="main-content--header">
             {{ Breadcrumbs::render('explanations.show', $explanation) }}
-            <h1>Détails de l'explication</h1>
+            <h1>{{ __('common.details') }}: {{ $explanation->title }}</h1>
         </div>
 
-        <p>Title : <span>{{ $explanation->title }}</span></p>
-        <p>Details : <span>{{ $explanation->explanation }}</span></p>
+        <p>{{ __('common.title') }} : <span>{{ $explanation->title }}</span></p>
+        <p>{{ __('common.details') }} : <span>{{ $explanation->explanation }}</span></p>
 
         <div class="part-container">
-            <h2>Relative questions</h2>
+            <h2>{{ __('questions.list') }}</h2>
             <div class="table-container is-visible">
                 <table>
-                    <caption class="sr-only">Liste des questions</caption>
+                    <caption class="sr-only">{{ __('questions.list') }}</caption>
                     <thead>
                     <tr>
-                        <th scope="col">Number</th>
-                        <th scope="col">Question</th>
-                        <th scope="col">Proposal A</th>
-                        <th scope="col">Proposal B</th>
-                        <th scope="col">Proposal C</th>
-                        <th scope="col">Proposal D</th>
-                        <th scope="col">Actions</th>
+                        <th scope="col">{{ __('common.number') }}</th>
+                        <th scope="col">{{ __('common.question') }}</th>
+                        <th scope="col">{{ __('common.proposal') }} A</th>
+                        <th scope="col">{{ __('common.proposal') }} B</th>
+                        <th scope="col">{{ __('common.proposal') }} C</th>
+                        <th scope="col">{{ __('common.proposal') }} D</th>
+                        <th scope="col">{{ __('common.actions') }}</th>
                     </tr>
                     </thead>
                     <tbody class="list">
@@ -51,7 +51,7 @@
                                 @endif
                             @endfor
                             <td>
-                                <a href="{{ route('questions.show', ['id' => $question->id]) }}" title="Show question">
+                                <a href="{{ route('questions.show', ['id' => $question->id]) }}" title="{{ __('questions.show') }}">
                                     <i class="fas fa-eye"></i>
                                 </a>
                             </td>
@@ -63,7 +63,7 @@
 
 
             <div class="container-empty-search" id="js-empty-search" aria-hidden="true">
-                <p class="emphasis">Aucun résultat.</p>
+                <p class="emphasis">{{ __('common.no-result') }}</p>
             </div>
         </div>
     </div>

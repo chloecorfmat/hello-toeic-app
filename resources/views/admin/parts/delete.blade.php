@@ -3,7 +3,7 @@
 @section('content')
     <div class="main-content">
         {{ Breadcrumbs::render('parts.delete', $part) }}
-        <h1>Delete the part: {{ $part->name }}</h1>
+        <h1>{{ __('common.delete') }}: {{ $part->name }}</h1>
         @if ($errors->any())
             <div>
                 <ul class="alert alert-error">
@@ -17,9 +17,9 @@
         <form action="{{ route('parts.destroy', $part->id) }}" method="POST">
             @method('DELETE')
             @csrf
-            <p class="important">Êtes-vous sûr de vouloir supprimer ce type d'exercices ? <span class="emphasis">Cette action est irréversible.</span></p>
+            <p class="important">{{ __('parts.delete_sure') }} <span class="emphasis">{{ __('common.action_irreversible') }}</span></p>
 
-            <button type="submit" class="btn btn-primary">Delete</button>
+            <button type="submit" class="btn btn-primary">{{ __('common.delete') }}</button>
         </form>
     </div>
 @endsection

@@ -4,17 +4,17 @@
     <div class="main-content">
         <div class="main-content--header">
             {{ Breadcrumbs::render('parts.show', $part) }}
-            <h1>Détails du type d'exercice</h1>
+            <h1>{{ __('common.details') }}: {{ $part->name }}</h1>
         </div>
 
-        <p>Nom : <span>{{ $part->name }}</span></p>
-        <p>Version : <span>{{ $part->version }}</span></p>
-        <p>Type : <span>{{ $part->type }}</span></p>
-        <p>Description : <span>{{ $part->description }}</span></p>
-        <p>Nombre de questions : <span>{{ $part->nb_questions }}</span></p>
-        <p>Nombre de réponses : <span>{{ $part->nb_answers }}</span></p>
-        <p>Questions or texts ? : <span>{{ $part->texts }}</span></p>
-        <p>Files ? : <span>{{ $part->files }}</span></p>
+        <p>{{ __('common.name') }} : <span>{{ $part->name }}</span></p>
+        <p>{{ __('common.version') }} : <span>{{ $part->version }}</span></p>
+        <p>{{ __('common.type') }} : <span>{{ $part->type }}</span></p>
+        <p>{{ __('common.description') }} : <span>{{ $part->description }}</span></p>
+        <p>{{ __('common.number-of-questions') }} : <span>{{ $part->nb_questions }}</span></p>
+        <p>{{ __('common.number-of-proposals') }} : <span>{{ $part->nb_answers }}</span></p>
+        <p>{{ __('common.questions-or-texts) }} ? : <span>{{ $part->texts }}</span></p>
+        <p>{{ __('common.files') }} ? : <span>{{ $part->files }}</span></p>
 
     </div>
 @endsection

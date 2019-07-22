@@ -187,13 +187,6 @@
                                         {{__('explanations.list')}}
                                     </a>
                                 </li>
-
-                                <li class="laterale-bar--menu-item">
-                                    <a href="{{ route('games') }}">
-                                        <i class="menu-ico fas fa-trophy"></i>
-                                        {{__('games.list')}}
-                                    </a>
-                                </li>
                             </ul>
                         </div>
                         @endrole

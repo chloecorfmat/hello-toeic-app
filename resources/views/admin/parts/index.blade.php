@@ -4,7 +4,7 @@
     <div class="main-content">
         <div class="main-content--header">
             {{ Breadcrumbs::render('parts.index') }}
-            <h1>Liste des types d'exercices</h1>
+            <h1>{{ __('parts.list') }}</h1>
             <a href="{{ route('parts.create') }}" class="main-content--header-actions">
                 <i class="fas fa-plus-circle"></i>
             </a>
@@ -25,29 +25,29 @@
         @endif
 
         <div class="table" id="parts">
-            <h2>Tous les types d'exercice</h2>
+            <h2>{{ __('parts.list') }}</h2>
             <div class="table--filters">
                 <div class="field-container">
-                    <label for="search">Search</label>
+                    <label for="search">{{ __('common.search') }}</label>
                     <input type="text" id="search" name="search" class="search">
                 </div>
             </div>
             <div class="table-container is-visible">
                 <table>
-                    <caption class="sr-only">Liste des types d'exercices</caption>
+                    <caption class="sr-only">{{ __('parts.list') }}</caption>
                     <thead>
                     <tr>
                         <th scope="col">
                             <button class="sort" data-sort="name">
-                                Name <i class="fas fa-arrows-alt-v"></i>
+                                {{ __('common.name') }} <i class="fas fa-arrows-alt-v"></i>
                             </button>
                         </th>
                         <th scope="col">
                             <button class="sort" data-sort="version">
-                                Version <i class="fas fa-arrows-alt-v"></i>
+                                {{ __('common.version') }} <i class="fas fa-arrows-alt-v"></i>
                             </button>
                         </th>
-                        <th scope="col">Actions</th>
+                        <th scope="col">{{ __('common.actions') }}</th>
                     </tr>
                     </thead>
                     <tbody class="list">
@@ -79,7 +79,7 @@
         </div>
 
         <div class="container-empty-search" id="js-empty-search" aria-hidden="true">
-            <p class="emphasis">Aucun résultat.</p>
+            <p class="emphasis">{{ __('common.no-result') }}</p>
         </div>
     </div>
 @endsection

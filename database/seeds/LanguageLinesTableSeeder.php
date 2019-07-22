@@ -907,9 +907,7 @@ class LanguageLinesTableSeeder extends Seeder
             'group' => 'statistics',
             'key' => 'number-passages',
             'text' => ['en' => 'Number of passages', 'fr' => 'Nombre de passages total'],
-        ]);**/
-
-        // @TODO :  HERE !
+        ]);
 
         LanguageLine::create([
             'group' => 'parts',
@@ -1029,7 +1027,128 @@ class LanguageLinesTableSeeder extends Seeder
             'group' => 'composite-tests',
             'key' => 'add',
             'text' => ['en' => 'Composite test add', 'fr' => 'Créer un test composé'],
+        ]);**/
+
+        // @TODO :  HERE !
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'description',
+            'text' => ['en' => 'Description', 'fr' => 'Description'],
         ]);
 
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'number-of-questions',
+            'text' => ['en' => 'Nombre de questions', 'fr' => 'Nombre de questions'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'number-of-proposals',
+            'text' => ['en' => 'Nombre de propositions', 'fr' => 'Nombre de propositions'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'questions-or-texts',
+            'text' => ['en' => 'Questions or texts', 'fr' => 'Questions ou textes'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'files',
+            'text' => ['en' => 'Files', 'fr' => 'Fichiers'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'listening',
+            'text' => ['en' => 'Listening', 'fr' => 'Listening'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'reading',
+            'text' => ['en' => 'Reading', 'fr' => 'Reading'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'texts',
+            'text' => ['en' => 'Texts', 'fr' => 'Textes'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'inline',
+            'text' => ['en' => 'Inline', 'fr' => 'Inline'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'inline_explanation',
+            'text' => ['en' => 'Has an impact only for exercises which has texts.', 'fr' => 'Has an impact only for exercises which has texts.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'yes',
+            'text' => ['en' => 'Yes', 'fr' => 'Oui'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'no',
+            'text' => ['en' => 'No', 'fr' => 'Non'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'parts',
+            'key' => 'delete_sure',
+            'text' => ['en' => 'Are you sure ?', 'fr' => 'Êtes-vous sûr de vouloir supprimer ce type d\'exercices ?'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'parts',
+            'key' => 'add',
+            'text' => ['en' => 'Part add', 'fr' => 'Créer un type d\'exercice'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'explanations',
+            'key' => 'add',
+            'text' => ['en' => 'Explanation add', 'fr' => 'Créer une explication'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'title',
+            'text' => ['en' => 'Title', 'fr' => 'Titre'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'explanations',
+            'key' => 'delete_sure',
+            'text' => ['en' => 'Are you sure ?', 'fr' => 'Êtes-vous sûr de vouloir supprimer cette explication ?'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'explanations',
+            'key' => 'edit',
+            'text' => ['en' => 'Explanation edit', 'fr' => 'Modifier l\'explication'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'explanations',
+            'key' => 'show',
+            'text' => ['en' => 'Explanation show', 'fr' => 'Voir l\'explication'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'explanations',
+            'key' => 'delete',
+            'text' => ['en' => 'Explanation delete', 'fr' => 'Supprimer l\'explication'],
+        ]);
     }
 }
