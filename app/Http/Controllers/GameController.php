@@ -64,7 +64,7 @@ class GameController extends Controller
         }
 
         $question = Question::whereHas('parts', function($q) {
-            $q->where('parts.name', 'like', '%5');
+            $q->where('parts.name', 'like', '%Part 5%');
         });
 
         if (!empty(unserialize(Cookie::get('game_questions')))) {
