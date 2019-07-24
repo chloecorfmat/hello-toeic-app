@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+    @php ($max_possible = $lesson->composite_test()->first()->max_score())
+
     <div class="main-content">
         <div class="main-content--header">
             {{ Breadcrumbs::render('lessons.show', $lesson) }}
@@ -10,23 +12,35 @@
         <p><span class="important">{{ __('common.name') }} : </span>{{ $lesson->name }}</p>
         <p><span class="important">{{ __('common.date') }} : </span>{{ $lesson->start_datetime }} to {{ $lesson->end_datetime }}</p>
         <p><span class="important">{{ __('common.group') }} : </span>{{ $lesson->group()->first()->name }}</p>
-        <p><span class="important">{{ __('app.composite-test') }} : </span>{{ $lesson->composite_test()->first()->name }}</p>
+        <p>
+            <span class="important">{{ __('app.composite-test') }} : </span>
+            <a href="{{ action('Admin\CompositeTestController@edit', ['id' => $lesson->composite_test()->first()->id ]) }}" title="{{ __('composite-tests.execute') }}">
+                {{ $lesson->composite_test()->first()->name }}
+            </a>
+        </p>
 
-        <div class="card-container">
+        <div class="card-container cards-five">
             <div class="card">
-                <p class="card-text"><span class="card-number">{{ $statistics['min'] }} </span>score minimal</p>
+                <p class="card-text"><span class="card-number">{{ $statistics['min'] }} </span>{{ __('statistics.min-score') }}</p>
             </div>
 
             <div class="card">
-                <p class="card-text"><span class="card-number">{{ $statistics['max'] }} </span>score maximal</p>
+                <p class="card-text"><span class="card-number">{{ $statistics['max'] }} </span>{{ __('statistics.max-score') }}</p>
             </div>
 
             <div class="card">
-                <p class="card-text"><span class="card-number">{{ $statistics['average'] }} </span>moyenne</p>
+                <p class="card-text"><span class="card-number">{{ $statistics['average'] }} </span>{{ __('statistics.average') }}</p>
+            </div>
+
+            <div class="card">
+                <p class="card-text"><span class="card-number">{{ $statistics['standard_deviation'] }} </span>{{ __('statistics.standard-deviation') }}</p>
+            </div>
+
+            <div class="card">
+                <p class="card-text"><span class="card-number">{{ $statistics['median'] }} </span>{{ __('statistics.median') }}</p>
             </div>
         </div>
 
-        <!-- TODO : Add the list of students with scores -->
         <div class="part-container">
             <h2>{{ __('students.list') }} ({{ $statistics['students_passed'] }}/{{ $statistics['students_number'] }})</h2>
             <div class="table" id="students-lesson">
@@ -66,15 +80,19 @@
                             <tr>
                                 <td class="student">{{ $result['name'] }}</td>
                                 <td class="datetime">{{ $result['datetime'] }}</td>
-                                <td class="score">
-                                    @if ($result['score'] === $statistics['min'])
-                                        <span class="min">
-                                @elseif ($result['score'] === $statistics['max'])
-                                                <span class="max">
-                                @endif
-                                                    {{ $result['score'] }}
-                                                    @if (($result['score'] === $statistics['min']) or ($result['score'] === $statistics['max']))
-                                    </span>
+
+
+                                @php ($score = $result['score'])
+                                @php ($class_score = $score === $statistics['max'] ? 'score--high' : ($score === $statistics['min'] ? 'score--low' : ''))
+
+
+
+                                <td class="score {{ $class_score }}">
+                                    @if (is_string($score))
+                                        {{ $score }}
+                                    @else
+                                        @php ($percent = round(100*intval($score)/$max_possible, 1))
+                                        <span class="important">{{ $score }}/{{ $max_possible }}</span> ({{ $percent }}%)
                                     @endif
                                 </td>
                             </tr>

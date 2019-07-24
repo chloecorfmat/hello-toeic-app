@@ -443,6 +443,13 @@ button {
   }
 }
 
+@media screen and (min-width: 920px) {
+  .cards-five .card {
+    margin: initial;
+    width: 15%;
+  }
+}
+
 .card {
   background-color: rgba(82, 63, 105, 0.05);
   box-shadow: 0px 0px 13px 0px rgba(82, 63, 105, 0.05);
@@ -937,16 +944,6 @@ tr:nth-child(2n) {
 
 .user-ico {
   color: #c5cbd3;
-}
-
-.students-table .min {
-  color: #db504a;
-  font-weight: bold;
-}
-
-.students-table .max {
-  color: #6fa939;
-  font-weight: bold;
 }
 
 .list-documents {

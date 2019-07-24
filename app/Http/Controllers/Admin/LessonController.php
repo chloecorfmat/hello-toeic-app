@@ -6,6 +6,7 @@ use App\CompositeTest;
 use App\CompositeTrial;
 use App\Group;
 use App\Lesson;
+use App\Services\StatsService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -83,9 +84,8 @@ class LessonController extends Controller
         // Statistics.
         $min = 0;
         $max = 0;
-        $average = 0;
-        $total = 0;
         $s_number = 0;
+        $scores = [];
 
         foreach ($students as $student) {
             $composite_trial = CompositeTrial::where('user_id', $student->id)
@@ -96,6 +96,7 @@ class LessonController extends Controller
 
             if (!is_null($composite_trial)) {
                 $score = $composite_trial->score;
+                $scores[] = $score;
 
                 $results[] = [
                     'name' => $student->name,
@@ -111,7 +112,6 @@ class LessonController extends Controller
                     $max = $score;
                 }
 
-                $total += $score;
                 $s_number++;
 
             } else {
@@ -123,12 +123,12 @@ class LessonController extends Controller
             }
         }
 
-        $average = $total / $s_number;
-
         $statistics = [
             'min' => $min,
             'max' => $max,
-            'average' => $average,
+            'average' => (new StatsService())->average($scores),
+            'median' => (new StatsService())->median($scores),
+            'standard_deviation' => (new StatsService())->standard_deviation($scores),
             'students_number' => count($students),
             'students_passed' => $s_number,
         ];

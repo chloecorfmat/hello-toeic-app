@@ -1600,13 +1600,41 @@ class LanguageLinesTableSeeder extends Seeder
             'text' => ['en' => 'already exists', 'fr' => 'existe déjà'],
         ]);
 
-         **/
-
-        // @TODO :  HERE !
         LanguageLine::create([
             'group' => 'common',
             'key' => 'not-passed',
             'text' => ['en' => 'Not passed', 'fr' => 'Non réalisé'],
+        ]);**/
+
+        // @TODO :  HERE !
+        LanguageLine::create([
+            'group' => 'statistics',
+            'key' => 'min-score',
+            'text' => ['en' => 'min score', 'fr' => 'score minimal'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'statistics',
+            'key' => 'max-score',
+            'text' => ['en' => 'max score', 'fr' => 'score maximal'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'statistics',
+            'key' => 'average',
+            'text' => ['en' => 'average', 'fr' => 'moyenne'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'statistics',
+            'key' => 'standard-deviation',
+            'text' => ['en' => 'standard deviation', 'fr' => 'écart-type'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'statistics',
+            'key' => 'median',
+            'text' => ['en' => 'median', 'fr' => 'médiane'],
         ]);
     }
 }

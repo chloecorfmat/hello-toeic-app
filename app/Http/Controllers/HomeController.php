@@ -67,6 +67,10 @@ class HomeController extends Controller
             ->where('end_datetime', '>=', $datetime)
             ->get();
 
+        foreach ($lessons as $lesson) {
+            // @TODO : check if user already take this lesson.
+        }
+
         $stats['composite-trials'] = CompositeTrial::where('user_id', $user->id)->count();
         $stats['trials'] = Trial::where('user_id', $user->id)->where('composite_trial_id', NULL)->count();
         $stats['games'] = Game::where('user_id', $user->id)->count();
