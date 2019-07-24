@@ -262,7 +262,7 @@
                                     <ul>
                                         <li class="table--action">
                                             <a
-                                                    href="{{ action('ExerciseController@show', ['id' => $trial->test->id]) }}"
+                                                    href="{{ action('ExerciseController@show', ['id' => $trial->composite_test->id]) }}"
                                                     title="{{ __('composite-tests.execute') }}"
                                             >
                                                 <i class="fas fa-play fa-lg"></i>
