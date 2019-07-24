@@ -105,7 +105,7 @@
                 </div>
 
                 <div class="container-empty-search" id="js-empty-search" aria-hidden="true">
-                    <p class="emphasis">{{ __('common.no-results') }}</p>
+                    <p class="emphasis">{{ __('common.no-result') }}</p>
                 </div>
             @endif
         </div>
@@ -205,7 +205,7 @@
             </div>
 
             <div class="container-empty-search" id="js-empty-search" aria-hidden="true">
-                <p class="emphasis">{{ __('common.no-results') }}</p>
+                <p class="emphasis">{{ __('common.no-result') }}</p>
             </div>
         </div>
 

@@ -80,6 +80,13 @@ class LessonController extends Controller
 
         $results = [];
 
+        // Statistics.
+        $min = 0;
+        $max = 0;
+        $average = 0;
+        $total = 0;
+        $s_number = 0;
+
         foreach ($students as $student) {
             $composite_trial = CompositeTrial::where('user_id', $student->id)
                 ->where('datetime', '>', $lesson->start_datetime)
@@ -88,11 +95,25 @@ class LessonController extends Controller
                 ->first();
 
             if (!is_null($composite_trial)) {
+                $score = $composite_trial->score;
+
                 $results[] = [
                     'name' => $student->name,
                     'datetime' => $composite_trial->datetime,
                     'score' => $composite_trial->score,
                 ];
+
+                if ($score < $min) {
+                    $min = $score;
+                }
+
+                if ($score > $max) {
+                    $max = $score;
+                }
+
+                $total += $score;
+                $s_number++;
+
             } else {
                 $results[] = [
                     'name' => $student->name,
@@ -102,7 +123,17 @@ class LessonController extends Controller
             }
         }
 
-        return view('admin.lessons.show', compact('lesson', 'results'));
+        $average = $total / $s_number;
+
+        $statistics = [
+            'min' => $min,
+            'max' => $max,
+            'average' => $average,
+            'students_number' => count($students),
+            'students_passed' => $s_number,
+        ];
+
+        return view('admin.lessons.show', compact('lesson', 'results', 'statistics'));
     }
 
     /**

@@ -939,6 +939,16 @@ tr:nth-child(2n) {
   color: #c5cbd3;
 }
 
+.students-table .min {
+  color: #db504a;
+  font-weight: bold;
+}
+
+.students-table .max {
+  color: #6fa939;
+  font-weight: bold;
+}
+
 .list-documents {
   display: flex;
   flex-wrap: wrap;

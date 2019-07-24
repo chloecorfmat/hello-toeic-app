@@ -180,4 +180,19 @@ function lists(e) {
         var list = new List('results-exercises', options);
         listOverride(list);
     }
+
+    if (document.getElementById('students-lesson') !== null) {
+        var options = {
+            valueNames: ['student', 'datetime', 'score'],
+            page: 30,
+            pagination: {
+                paginationClass: "pagination",
+                outerWindow: 0,
+                innerWindow: 2
+            }
+        };
+
+        var list = new List('students-lesson', options);
+        listOverride(list);
+    }
 }

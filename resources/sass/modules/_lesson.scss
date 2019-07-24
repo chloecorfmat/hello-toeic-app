@@ -1,0 +1,11 @@
+.students-table {
+  .min {
+    color: $danger-color;
+    font-weight: bold;
+  }
+
+  .max {
+    color: $success-color;
+    font-weight: bold;
+  }
+}
