@@ -1603,5 +1603,10 @@ class LanguageLinesTableSeeder extends Seeder
          **/
 
         // @TODO :  HERE !
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'not-passed',
+            'text' => ['en' => 'Not passed', 'fr' => 'Non réalisé'],
+        ]);
     }
 }

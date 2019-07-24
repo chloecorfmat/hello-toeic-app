@@ -97,7 +97,7 @@ class LessonController extends Controller
                 $results[] = [
                     'name' => $student->name,
                     'datetime' => '-',
-                    'score' => 'Not passed',
+                    'score' => trans('common.not-passed'),
                 ];
             }
         }
