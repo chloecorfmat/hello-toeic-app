@@ -23,21 +23,15 @@ class GameController extends Controller
             ->orderBy('datetime', 'DESC')
             ->get();
 
-        if ($user->hasPermissionTo('dashboard-students-see')) {
-            // Get all tests passed.
-            $games_data = Game::orderBy('datetime', 'DESC')
-                ->get();
-        } else {
-            $games_data = $games;
-        }
+        $games_data = $games;
 
         $i = 1;
         $axisX = [];
         $axisY = [];
-        foreach(array_reverse($games->all()) as $game) {
+        /**foreach(array_reverse($games->all()) as $game) {
             $axisX[] = $i++;
             $axisY[] = $game->score;
-        }
+        }**/
 
         // Best scores.
         $best_scores = Game::orderBy('score', 'DESC')
