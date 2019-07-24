@@ -11,6 +11,11 @@ use App\Http\Controllers\Controller;
 
 class LessonController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['role:teacher']);
+    }
+
     /**
      * Display a listing of the resource.
      *
