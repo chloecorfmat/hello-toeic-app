@@ -82,7 +82,7 @@ class LessonController extends Controller
         $results = [];
 
         // Statistics.
-        $min = 0;
+        $min = -1;
         $max = 0;
         $s_number = 0;
         $scores = [];
@@ -104,7 +104,7 @@ class LessonController extends Controller
                     'score' => $composite_trial->score,
                 ];
 
-                if ($score < $min) {
+                if ($min < 0 || $score < $min) {
                     $min = $score;
                 }
 
