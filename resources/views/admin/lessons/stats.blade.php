@@ -17,7 +17,7 @@
         @endif
 
         <div class="part-container">
-            <div class="table" id="tests">
+            <div class="table">
                 <h2>{{ __('exercises.list') }}</h2>
                 <div class="table-container is-visible">
                     <table>
@@ -56,34 +56,60 @@
                     <div class="stats-exercise">
                     <h3>{{ $ex['name'] }}</h3>
 
-                    <div class="table">
-                    <div class="table-container is-visible">
-                        <table>
-                            <caption class="sr-only">{{ __('questions.list') }}</caption>
-                            <thead>
-                            <tr>
-                                <th scope="col">{{ __('common.question') }}</th>
-                                <th scope="col">{{ __('common.score') }}</th>
-                                <th scope="col">{{ __('common.actions') }}</th>
-                            </tr>
-                            </thead>
-                            <tbody class="list">
-                            @foreach ($ex['questions'] as $key => $question)
-                                <tr>
-                                    <td>{{ $question->number }}</td>
-                                    @php ($percent = $question->score*100/$exercise->users_nb)
-                                    @php ($class_score = $percent >= $levels['intermediate'] ? 'score--high' : ($percent >= $levels['low'] ? 'score--medium' : 'score--low'))
-                                    <td class="score {{ $class_score }}"><span class="important">{{ $question->score }}/{{ $exercise->users_nb }}</span> ({{ $percent }}%)</td>
-                                    <td>
-                                        <a href="{{ route('questions.show', ['id' => $question->question]) }}" title="{{ __('questions.show') }}"><i class="fas fa-eye"></i></a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
+                        <div class="table lessons-stats" id="lessons-stats-{{ $i }}">
+                            <div class="table--filters">
+                                <div class="field-container">
+                                    <label for="search">{{ __('common.search') }}</label>
+                                    <input type="text" id="search" name="search" class="search">
+                                </div>
+                            </div>
+
+                            <div class="table-container is-visible">
+                                <table>
+                                    <caption class="sr-only">{{ __('questions.list') }}</caption>
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">{{ __('common.question') }}</th>
+                                        <th scope="col">
+                                            <button class="sort" data-sort="score">
+                                                {{ __('common.score') }} <i class="fas fa-arrows-alt-v"></i>
+                                            </button>
+                                        </th>
+
+                                        <th scope="col">{{ __('common.actions') }}</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="list">
+                                    @foreach ($ex['questions'] as $key => $question)
+                                        <tr>
+                                            <td>{{ $question->number }}</td>
+                                            @php ($percent = $question->score*100/$exercise->users_nb)
+                                            @php ($class_score = $percent >= $levels['intermediate'] ? 'score--high' : ($percent >= $levels['low'] ? 'score--medium' : 'score--low'))
+                                            <td class="score {{ $class_score }}"><span class="important">{{ $question->score }}/{{ $exercise->users_nb }}</span> ({{ $percent }}%)</td>
+                                            <td>
+                                                <a href="{{ route('questions.show', ['id' => $question->question]) }}" title="{{ __('questions.show') }}"><i class="fas fa-eye"></i></a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="container-pagination">
+                                <button class="btn-pagination" id="js-pagination-prev">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <ul class="pagination"></ul>
+                                <button class="btn-pagination" id="js-pagination-next">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="container-empty-search" id="js-empty-search" aria-hidden="true">
+                            <p class="emphasis">{{ __('common.no-result') }}</p>
+                        </div>
                     </div>
-                </div>
-                </div>
                 @endif
             @endfor
         </div>

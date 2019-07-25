@@ -468,6 +468,24 @@ function lists(e) {
     var list = new List('students-lesson', options);
     listOverride(list);
   }
+
+  if (document.querySelectorAll('.lessons-stats').length > 0) {
+    var tables = document.querySelectorAll('.lessons-stats');
+    tables.forEach(function (table) {
+      console.log(table.id);
+      var options = {
+        valueNames: ['score'],
+        page: 15,
+        pagination: {
+          paginationClass: "pagination",
+          outerWindow: 0,
+          innerWindow: 2
+        }
+      };
+      var list = new List(table.id, options);
+      listOverride(list);
+    });
+  }
 }
 
 function listOverride(list) {
