@@ -1634,13 +1634,14 @@ class LanguageLinesTableSeeder extends Seeder
             'group' => 'statistics',
             'key' => 'median',
             'text' => ['en' => 'median', 'fr' => 'médiane'],
-        ]);**/
+        ]);
 
-        // @TODO :  HERE !
         LanguageLine::create([
             'group' => 'statistics',
             'key' => 'title',
             'text' => ['en' => 'Statistics', 'fr' => 'Statistiques'],
-        ]);
+        ]); **/
+
+        // @TODO : Here
     }
 }
