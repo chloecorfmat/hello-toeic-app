@@ -50,8 +50,10 @@
             @for($i = 1; $i < 8; $i++)
                 @php ($part = "exercise_part" . $i)
 
-                @php ($ex = $exercises[$composite_test->$part])
-                <div class="stats-exercise">
+                @php ($ex = $exercises[$composite_test->$part] ?? null )
+
+                @if (!is_null($ex))
+                    <div class="stats-exercise">
                     <h3>{{ $ex['name'] }}</h3>
 
                     <div class="table">
@@ -82,6 +84,7 @@
                     </div>
                 </div>
                 </div>
+                @endif
             @endfor
         </div>
     </div>
