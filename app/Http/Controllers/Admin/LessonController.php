@@ -310,7 +310,7 @@ class LessonController extends Controller
                 ->where('exercise_question.exercise_id', '=', $exercise->exercise_id)
                 ->where('trials.exercise_id', '=', $exercise->exercise_id)
 
-                ->groupBy('questions.id', 'exercises.id')
+                ->groupBy('questions.id', 'exercises.id', 'questions.number')
                 ->orderBy('number')
 
                 ->select(DB::raw('SUM(corrections.state) as score'), 'questions.id as question', 'exercises.id as exercise', 'questions.number as number')
