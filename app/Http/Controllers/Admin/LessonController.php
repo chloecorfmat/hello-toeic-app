@@ -264,7 +264,7 @@ class LessonController extends Controller
             ->where('composite_trials.datetime', '>', $lesson->start_datetime)
             ->where('composite_trials.datetime', '<', $lesson->end_datetime)
 
-            ->groupBy('trials.exercise_id', 'parts.nb_questions')
+            ->groupBy('trials.exercise_id', 'parts.nb_questions', 'exercises.name')
 
             ->select(DB::raw('SUM(trials.score) as score'), 'trials.exercise_id', DB::raw('parts.nb_questions*5 as max_score'), DB::raw('COUNT(users.id) as users_nb'), 'exercises.name')
             ->get();
