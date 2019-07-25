@@ -41,6 +41,10 @@
         </div>
 
         <div class="part-container">
+            <p><span class="important">{{ __('common.number-trials') }} : </span> {{ $statistics['nb_trials'] }}</p>
+        </div>
+
+        <div class="part-container">
             <h2>{{ __('questions.list') }}</h2>
             <div class="table-container is-visible">
                 <table>

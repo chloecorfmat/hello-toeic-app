@@ -92,6 +92,7 @@ class ExerciseController extends Controller
             'average' => round($stats_service->average($scores), 2),
             'median' => round($stats_service->median($scores), 2),
             'standard_deviation' => round($stats_service->standard_deviation($scores), 2),
+            'nb_trials' => count($scores),
         ];
 
         return view('admin.exercises.show', compact('exercise', 'questions', 'part', 'statistics'));
