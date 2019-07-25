@@ -1646,13 +1646,14 @@ class LanguageLinesTableSeeder extends Seeder
             'group' => 'common',
             'key' => 'already-done',
             'text' => ['en' => 'Already done', 'fr' => 'Déjà réalisé'],
-        ]);**/
+        ]);
 
-        // @TODO : Here
         LanguageLine::create([
             'group' => 'common',
             'key' => 'number-trials',
             'text' => ['en' => 'Number of trials', 'fr' => 'Nombre de passages'],
-        ]);
+        ]);**/
+
+        // @TODO : Here
     }
 }
