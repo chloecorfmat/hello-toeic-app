@@ -1640,13 +1640,14 @@ class LanguageLinesTableSeeder extends Seeder
             'group' => 'statistics',
             'key' => 'title',
             'text' => ['en' => 'Statistics', 'fr' => 'Statistiques'],
-        ]); **/
+        ]);
 
-        // @TODO : Here
         LanguageLine::create([
             'group' => 'common',
             'key' => 'already-done',
             'text' => ['en' => 'Already done', 'fr' => 'Déjà réalisé'],
-        ]);
+        ]);**/
+
+        // @TODO : Here
     }
 }
