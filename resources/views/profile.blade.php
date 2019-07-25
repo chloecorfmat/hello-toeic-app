@@ -78,12 +78,17 @@
                                     <td>
                                         <ul>
                                             <li class="table--action">
-                                                <a
-                                                        href="{{ action('CompositeTestController@show', ['id' => $lesson->composite_test()->first()->id]) }}"
-                                                        title="{{ __('composite-tests.execute') }}"
-                                                >
-                                                    <i class="fas fa-play fa-lg"></i>
-                                                </a>
+                                                @if ($lessons_access[$lesson->id])
+                                                    <a
+                                                            href="{{ action('CompositeTestController@show', ['id' => $lesson->composite_test()->first()->id]) }}"
+                                                            title="{{ __('composite-tests.execute') }}"
+                                                    >
+                                                        <i class="fas fa-play fa-lg"></i>
+                                                    </a>
+                                                @else
+                                                    {{ __('common.already-done') }}
+                                                @endif
+
                                             </li>
                                         </ul>
                                     </td>

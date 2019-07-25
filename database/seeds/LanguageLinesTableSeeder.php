@@ -1643,5 +1643,10 @@ class LanguageLinesTableSeeder extends Seeder
         ]); **/
 
         // @TODO : Here
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'already-done',
+            'text' => ['en' => 'Already done', 'fr' => 'Déjà réalisé'],
+        ]);
     }
 }

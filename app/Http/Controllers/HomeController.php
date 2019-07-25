@@ -67,8 +67,15 @@ class HomeController extends Controller
             ->where('end_datetime', '>=', $datetime)
             ->get();
 
+        $lessons_access = [];
+
         foreach ($lessons as $lesson) {
             // @TODO : check if user already take this lesson.
+            $lessons_access[$lesson->id] = CompositeTrial::where('composite_test_id', $lesson->composite_test_id)
+                ->where('user_id', $user->id)
+                ->where('datetime', '>', $lesson->start_datetime)
+                ->where('datetime', '<', $lesson->end_datetime)
+                ->count() > 0 ? 0 : 1;
         }
 
         $stats['composite-trials'] = CompositeTrial::where('user_id', $user->id)->count();
@@ -81,6 +88,6 @@ class HomeController extends Controller
             'stats' => $stats,
         ];
 
-        return view('profile', compact('datas', 'stats', 'scores', 'lessons', 'composite_trials'));
+        return view('profile', compact('datas', 'stats', 'scores', 'lessons', 'composite_trials', 'lessons_access'));
     }
 }
