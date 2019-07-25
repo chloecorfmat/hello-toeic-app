@@ -126,9 +126,9 @@ class LessonController extends Controller
         $statistics = [
             'min' => $min,
             'max' => $max,
-            'average' => (new StatsService())->average($scores),
-            'median' => (new StatsService())->median($scores),
-            'standard_deviation' => (new StatsService())->standard_deviation($scores),
+            'average' => round((new StatsService())->average($scores), 2),
+            'median' => round((new StatsService())->median($scores), 2),
+            'standard_deviation' => round((new StatsService())->standard_deviation($scores), 2),
             'students_number' => count($students),
             'students_passed' => $s_number,
         ];
