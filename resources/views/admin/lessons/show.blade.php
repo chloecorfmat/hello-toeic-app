@@ -19,6 +19,10 @@
             </a>
         </p>
 
+        <a href="{{ route('lessons.stats', ['id' => $lesson->id]) }}" class="btn btn--action">{{__('statistics.title')}}</a>
+
+
+
         <div class="card-container cards-five">
             <div class="card">
                 <p class="card-text"><span class="card-number">{{ $statistics['min'] }} </span>{{ __('statistics.min-score') }}</p>

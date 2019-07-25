@@ -4,11 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\CompositeTest;
 use App\CompositeTrial;
+use App\Exercise;
 use App\Group;
 use App\Lesson;
 use App\Services\StatsService;
+use App\Setting;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class LessonController extends Controller
 {
@@ -204,5 +207,123 @@ class LessonController extends Controller
         $lesson = Lesson::find($id);
         $lesson->delete();
         return redirect()->route('lessons.index')->with('success', trans('lessons.deleted'));
+    }
+
+    /**
+     * Display statistics for the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function stats($id) {
+        $levels = [
+            'low' => Setting::where('key', 'config.score.low')->first()->value,
+            'intermediate' => Setting::where('key', 'config.score.intermediate')->first()->value
+        ];
+
+        $lesson = Lesson::find($id);
+        $composite_test = $lesson->composite_test()->first();
+
+        $exercises = [];
+
+        /**
+        SELECT SUM(trials.score) AS score, trials.exercise_id, parts.nb_questions*5 as max_score  FROM trials
+        INNER JOIN exercises
+        INNER JOIN parts
+        INNER JOIN composite_trials
+        INNER JOIN users
+        INNER JOIN user_group
+         *
+        WHERE trials.composite_trial_id = composite_trials.id --> OK
+        AND composite_trials.user_id = users.id --> OK
+         *
+        AND composite_trials.datetime > "2018-06-07 00:00:00"
+        AND composite_trials.datetime < "2019-11-11 00:00:00"
+         *
+        AND users.id = user_group.user_id --> OK
+         *
+        AND user_group.group_id = 1 --> OK
+        AND composite_trials.composite_test_id = 5 --> OK
+         *
+        AND trials.exercise_id = exercises.id --> OK
+        AND exercises.part_id = parts.id --> OK
+         *
+        GROUP BY trials.exercise_id
+         */
+
+        $score_by_exercises = DB::table('trials')
+            ->join('exercises', 'exercises.id', '=', 'trials.exercise_id')
+            ->join('parts', 'parts.id', '=', 'exercises.part_id')
+            ->join('composite_trials', 'composite_trials.id', '=', 'trials.composite_trial_id')
+            ->join('users', 'users.id', '=', 'composite_trials.user_id')
+            ->join('user_group', 'user_group.user_id', '=', 'users.id')
+
+            ->where('user_group.group_id', '=', $lesson->group_id)
+            ->where('composite_trials.composite_test_id', '=', $lesson->composite_test_id)
+            ->where('composite_trials.datetime', '>', $lesson->start_datetime)
+            ->where('composite_trials.datetime', '<', $lesson->end_datetime)
+
+            ->groupBy('trials.exercise_id')
+
+            ->select(DB::raw('SUM(trials.score) as score'), 'trials.exercise_id', DB::raw('parts.nb_questions*5 as max_score'), DB::raw('COUNT(users.id) as users_nb'), 'exercises.name')
+            ->get();
+
+        foreach ($score_by_exercises as $exercise) {
+
+            /**
+            SELECT SUM(corrections.state) as score, questions.id as question, exercises.id as exercise
+            FROM corrections
+            INNER JOIN trials on trials.id = corrections.trial_id
+            INNER JOIN questions on questions.id = corrections.question_id
+            INNER JOIN exercise_question on questions.id = exercise_question.question_id
+            INNER JOIN exercises
+            INNER JOIN composite_trials
+            INNER JOIN users
+            INNER JOIN user_group
+            WHERE trials.composite_trial_id = composite_trials.id
+            AND composite_trials.user_id = users.id
+            AND composite_trials.datetime > "2018-06-07 00:00:00"
+            AND composite_trials.datetime < "2019-11-11 00:00:00"
+            AND users.id = user_group.user_id
+            AND user_group.group_id = 1
+            AND composite_trials.composite_test_id = 5
+            AND trials.exercise_id = exercises.id
+            AND exercise_question.exercise_id = 48
+
+            GROUP BY questions.id, exercises.id
+             */
+
+            $questions = DB::table('corrections')
+                ->join('trials', 'trials.id', '=', 'corrections.trial_id')
+                ->join('questions', 'questions.id', '=', 'corrections.question_id')
+                ->join('exercise_question', 'exercise_question.question_id', '=', 'questions.id')
+                ->join('exercises', 'exercises.id', '=', 'exercise_question.exercise_id')
+                ->join('composite_trials', 'composite_trials.id', '=', 'trials.composite_trial_id')
+                ->join('users', 'users.id', '=', 'composite_trials.user_id')
+                ->join('user_group', 'user_group.user_id', '=', 'users.id')
+
+                ->where('composite_trials.datetime', '>', "2018-06-07 00:00:00")
+                ->where('composite_trials.datetime', '<', "2019-11-11 00:00:00")
+                ->where('user_group.group_id', '=', $lesson->group_id)
+                ->where('composite_trials.composite_test_id', '=', $lesson->composite_test_id)
+                ->where('exercise_question.exercise_id', '=', $exercise->exercise_id)
+                ->where('trials.exercise_id', '=', $exercise->exercise_id)
+
+                ->groupBy('questions.id', 'exercises.id')
+                ->orderBy('number')
+
+                ->select(DB::raw('SUM(corrections.state) as score'), 'questions.id as question', 'exercises.id as exercise', 'questions.number as number')
+                ->get();
+
+            $e = [
+                'name' => $exercise->name,
+                'id' => $exercise->exercise_id,
+                'questions' => $questions,
+            ];
+
+            $exercises[$exercise->exercise_id] = $e;
+        }
+
+        return view('admin.lessons.stats', compact('score_by_exercises', 'exercises', 'composite_test', 'lesson', 'levels'));
     }
 }

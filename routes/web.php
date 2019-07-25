@@ -73,6 +73,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('admin/lessons/delete/{id?}', 'LessonController@delete')
         ->name('lessons.delete');
+    Route::get('admin/lessons/{id?}/stats', 'LessonController@stats')
+        ->name('lessons.stats');
     Route::resource('admin/lessons', 'LessonController');
 
     Route::get('admin/exercises/import/{id?}', 'ExerciseController@import')

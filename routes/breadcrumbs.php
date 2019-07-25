@@ -245,6 +245,11 @@ Breadcrumbs::for('lessons.show', function ($trail, $lesson) {
     $trail->push($lesson->name, route('lessons.show', $lesson->id));
 });
 
+Breadcrumbs::for('lessons.stats', function ($trail, $lesson) {
+    $trail->parent('lessons.show', $lesson);
+    $trail->push(trans('statistics.title'), route('lessons.stats', $lesson->id));
+});
+
 Breadcrumbs::for('lessons.edit', function ($trail, $lesson) {
     $trail->parent('lessons.show', $lesson);
     $trail->push(trans('common.edit'), route('lessons.edit', $lesson->id));
