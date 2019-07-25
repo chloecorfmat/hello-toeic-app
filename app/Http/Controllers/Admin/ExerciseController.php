@@ -8,6 +8,8 @@ use App\Exercise;
 use App\Question;
 use App\Document;
 use App\Services\ExerciseService;
+use App\Services\StatsService;
+use App\Trial;
 use Illuminate\Http\Request;
 
 class ExerciseController extends Controller
@@ -60,7 +62,39 @@ class ExerciseController extends Controller
         $exercise = Exercise::find($id);
         $questions = $exercise->questions;
         $part = $exercise->part;
-        return view('admin.exercises.show', compact('exercise', 'questions', 'part'));
+        $stats_service = new StatsService();
+
+        // Statistics.
+        $min = -1;
+        $max = 0;
+        $scores = [];
+
+        $trials = Trial::where('exercise_id', $id)->get();
+
+        foreach ($trials as $trial){
+            $score = $trial->score;
+
+            if ($score < $min || $min === -1) {
+                $min = $score;
+            }
+
+            if ($score > $max) {
+                $max = $score;
+            }
+
+            $scores[] = $score;
+        }
+
+        $min = -1 ? 0 : $min;
+        $statistics = [
+            'min' => $min,
+            'max' => $max,
+            'average' => round($stats_service->average($scores), 2),
+            'median' => round($stats_service->median($scores), 2),
+            'standard_deviation' => round($stats_service->standard_deviation($scores), 2),
+        ];
+
+        return view('admin.exercises.show', compact('exercise', 'questions', 'part', 'statistics'));
     }
 
     /**

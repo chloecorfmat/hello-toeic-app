@@ -70,7 +70,6 @@ class HomeController extends Controller
         $lessons_access = [];
 
         foreach ($lessons as $lesson) {
-            // @TODO : check if user already take this lesson.
             $lessons_access[$lesson->id] = CompositeTrial::where('composite_test_id', $lesson->composite_test_id)
                 ->where('user_id', $user->id)
                 ->where('datetime', '>', $lesson->start_datetime)

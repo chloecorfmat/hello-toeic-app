@@ -18,6 +18,28 @@
             </div>
         </div>
 
+        <div class="card-container cards-five">
+            <div class="card">
+                <p class="card-text"><span class="card-number">{{ $statistics['min'] }} </span>{{ __('statistics.min-score') }}</p>
+            </div>
+
+            <div class="card">
+                <p class="card-text"><span class="card-number">{{ $statistics['max'] }} </span>{{ __('statistics.max-score') }}</p>
+            </div>
+
+            <div class="card">
+                <p class="card-text"><span class="card-number">{{ $statistics['average'] }} </span>{{ __('statistics.average') }}</p>
+            </div>
+
+            <div class="card">
+                <p class="card-text"><span class="card-number">{{ $statistics['standard_deviation'] }} </span>{{ __('statistics.standard-deviation') }}</p>
+            </div>
+
+            <div class="card">
+                <p class="card-text"><span class="card-number">{{ $statistics['median'] }} </span>{{ __('statistics.median') }}</p>
+            </div>
+        </div>
+
         <div class="part-container">
             <h2>{{ __('questions.list') }}</h2>
             <div class="table-container is-visible">
