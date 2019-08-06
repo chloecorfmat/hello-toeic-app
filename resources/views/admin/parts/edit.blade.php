@@ -139,6 +139,20 @@
                 </div>
             </fieldset>
 
+            <div class="field-container">
+                <label for="duration">{{ __('common.duration') }}</label>
+                <input
+                        type="number"
+                        id="duration"
+                        name="duration"
+                        min="0"
+                        step="1"
+                        aria-describedby="duration-description"
+                        value="{{ $part->duration }}"
+                >
+                <p id="duration-description">{{ __('common.duration_explanation') }}</p>
+            </div>
+
             <button type="submit" class="btn btn-primary">
                 {{ __('common.validate') }}
             </button>

@@ -64,6 +64,7 @@ class PartController extends Controller
             'questions' => $questions,
             'nb_answers' => $request->get('nb-answers'),
             'inline' => $inline,
+            'duration' => $request->get('duration'),
         ]);
 
         return redirect()->route('parts.index')->with('success', trans('parts.added'));
@@ -120,6 +121,7 @@ class PartController extends Controller
         $part->files = $request->get('files') === 'true' ? 1 : 0;
         $part->questions = $request->get('questions') === 'true' ? 1 : 0;
         $part->nb_answers = $request->get('nb-answers');
+        $part->duration = $request->get('duration');
 
         $part->save();
 

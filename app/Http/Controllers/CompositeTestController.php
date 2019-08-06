@@ -155,8 +155,8 @@ class CompositeTestController extends Controller
                     }
                     $datasources = implode(', ', $datasources_ar);
                 } else {
-                    if (!is_null($reading_duration) && !is_null($ex->duration)) {
-                        $reading_duration += $ex->duration;
+                    if (!is_null($reading_duration) && !is_null($ex->part->duration)) {
+                        $reading_duration += $ex->part->duration;
                     } else {
                         $reading_duration = null;
                     }

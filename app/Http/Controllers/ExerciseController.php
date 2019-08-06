@@ -103,7 +103,7 @@ class ExerciseController extends Controller
             }
         }
 
-        $reading_duration = $exercise->duration;
+        $reading_duration = $exercise->part->duration;
 
         $datasources = implode(', ', $datasources_ar);
 
