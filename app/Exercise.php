@@ -12,6 +12,7 @@ class Exercise extends Model
         'status',
         'visible',
         'updated_at',
+        'duration'
     ];
 
     public $timestamps = false;

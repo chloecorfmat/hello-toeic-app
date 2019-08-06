@@ -124,6 +124,7 @@ class ExerciseController extends Controller
         $exercise->name = $request->get('name');
         $exercise->visible = $request->get('visible');
         $exercise->updated_at = (new \DateTime());
+        $exercise->duration = $request->get('duration');
 
         $exercise->save();
 

@@ -103,10 +103,23 @@ class ExerciseController extends Controller
             }
         }
 
+        $reading_duration = $exercise->duration;
+
         $datasources = implode(', ', $datasources_ar);
 
         $part = $exercise->part; // Finally, an exercise has only one part.
-        return view('exercises.show', compact('exercise', 'questions', 'datasources', 'source', 'listening_duration', 'part'));
+        return view(
+            'exercises.show',
+            compact(
+                'exercise',
+                'questions',
+                'datasources',
+                'source',
+                'listening_duration',
+                'reading_duration',
+                'part'
+            )
+        );
     }
 
     /**

@@ -1655,5 +1655,16 @@ class LanguageLinesTableSeeder extends Seeder
         ]);**/
 
         // @TODO : Here
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'duration',
+            'text' => ['en' => 'Duration', 'fr' => 'Durée'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'duration_explanation',
+            'text' => ['en' => 'Duration of exercise (in seconds, used for reading type only)', 'fr' => 'Durée de l\'exercice en seconds (utile pour les exercices de type reading uniquement)'],
+        ]);
     }
 }

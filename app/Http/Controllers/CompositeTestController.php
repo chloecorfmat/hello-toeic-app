@@ -88,6 +88,7 @@ class CompositeTestController extends Controller
         $source = '';
         $datasources_ar = [];
         $listening_duration = 0;
+        $reading_duration = 0;
 
         $test = CompositeTest::find($id);
 
@@ -126,33 +127,40 @@ class CompositeTestController extends Controller
             }
         }
 
-
         foreach ($exercises as $exercise) {
             $ex = Exercise::find($test->$exercise);
 
             if (!is_null($ex)) {
                 $qs = $ex->questions()->orderBy('number')->get();
 
-                foreach ($qs as $question) {
-                    $documents = $question->documents;
-                    foreach ($documents as $document) {
-                        if ($document->type === 'audio') {
-                            if (file_exists('storage/' . $document->url)) {
-                                if (empty($source)) {
-                                    $source = url('storage/' . $document->url);
-                                }
-                                if (!in_array(url('storage/' . $document->url), $datasources_ar)) {
-                                    $filename = url('storage/' . $document->url);
-                                    $datasources_ar[] = $filename;
+                if ($ex->part->type === 'listening') {
+                    foreach ($qs as $question) {
+                        $documents = $question->documents;
+                        foreach ($documents as $document) {
+                            if ($document->type === 'audio') {
+                                if (file_exists('storage/' . $document->url)) {
+                                    if (empty($source)) {
+                                        $source = url('storage/' . $document->url);
+                                    }
+                                    if (!in_array(url('storage/' . $document->url), $datasources_ar)) {
+                                        $filename = url('storage/' . $document->url);
+                                        $datasources_ar[] = $filename;
 
-                                    $audio = new Mp3Info('storage/' . $document->url);
-                                    $listening_duration += $audio->duration;
+                                        $audio = new Mp3Info('storage/' . $document->url);
+                                        $listening_duration += $audio->duration;
+                                    }
                                 }
                             }
                         }
                     }
+                    $datasources = implode(', ', $datasources_ar);
+                } else {
+                    if (!is_null($reading_duration) && !is_null($ex->duration)) {
+                        $reading_duration += $ex->duration;
+                    } else {
+                        $reading_duration = null;
+                    }
                 }
-                $datasources = implode(', ', $datasources_ar);
 
                 $questions[$exercise]['exercise'] = $ex;
                 $questions[$exercise]['part'] = $ex->part;
@@ -162,6 +170,8 @@ class CompositeTestController extends Controller
 
         if (!is_null($test->reading_duration)) {
             $reading_duration = $test->reading_duration;
+        } elseif (!is_null($reading_duration)) {
+            $reading_duration = $reading_duration;
         } else {
             $reading_duration = Setting::where('key', 'config.default.reading.duration')->first()->value;
         }
