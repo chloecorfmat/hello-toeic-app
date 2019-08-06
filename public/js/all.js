@@ -97,6 +97,7 @@ window.addEventListener('load', initialiser);
 var DURATION_UNIT = 'seconds';
 var SECOND = moment.duration(1, 'seconds');
 var listening_duration = moment.duration(DURATION_LISTENING, DURATION_UNIT);
+var reading_duration = moment.duration(DURATION_READING, DURATION_UNIT);
 
 function initialiser(e) {
   // Accordions in tests.
@@ -144,41 +145,46 @@ function initialiser(e) {
   var interval;
 
   if (document.getElementById('player') !== null) {
-    var audio = document.querySelector('#player audio');
-    var tracks = audio.dataset.sources.split(',');
-    var i = 1;
-    timer.innerText = listening_duration.format("hh:mm:ss", {
-      trim: false
-    });
-    document.getElementById('play').addEventListener('click', function (e) {
-      this.removeEventListener('click', arguments.callee);
-      document.querySelector('.btn-play').classList.add('btn-play--disabled');
-      audio.play();
-      interval = setInterval(listening, 1000);
-    });
-    audio.addEventListener('ended', function () {
-      if (i < tracks.length) {
-        this.src = tracks[i];
-        i++;
-        this.play();
-      } else {
-        clearInterval(interval);
-        timer.innerText = '00:00:00';
-        var audioQuestions = document.querySelectorAll('.fa-volume-up');
-        audioQuestions.forEach(function (question) {
-          var radios = question.parentNode.parentNode.querySelectorAll('input[type="radio"]');
-          radios.forEach(function (radio) {
-            if (radio.checked == false) {
-              radio.disabled = true;
-            }
+    if (DURATION_LISTENING !== 0) {
+      var audio = document.querySelector('#player audio');
+      var tracks = audio.dataset.sources.split(',');
+      var i = 1;
+      timer.innerText = listening_duration.format("hh:mm:ss", {
+        trim: false
+      });
+      document.getElementById('play').addEventListener('click', function (e) {
+        this.removeEventListener('click', arguments.callee);
+        document.querySelector('.btn-play').classList.add('btn-play--disabled');
+        audio.play();
+        interval = setInterval(listening, 1000);
+      });
+      audio.addEventListener('ended', function () {
+        if (i < tracks.length) {
+          this.src = tracks[i];
+          i++;
+          this.play();
+        } else {
+          clearInterval(interval);
+          timer.innerText = '00:00:00';
+          var audioQuestions = document.querySelectorAll('.fa-volume-up');
+          audioQuestions.forEach(function (question) {
+            var radios = question.parentNode.parentNode.querySelectorAll('input[type="radio"]');
+            radios.forEach(function (radio) {
+              if (radio.checked == false) {
+                radio.disabled = true;
+              }
+            });
           });
-        });
 
-        if (document.querySelector('.fa-glasses') != null) {
-          reading(interval);
+          if (document.querySelector('.fa-glasses') != null) {
+            reading(interval);
+          }
         }
-      }
-    });
+      });
+    } else {
+      reading(interval);
+    }
+
     document.addEventListener('scroll', stickyPlayer);
   }
 } // Get timer for listening exercises.
@@ -210,9 +216,8 @@ function stickyPlayer(e) {
 
 function reading(interval) {
   var timer = document.getElementById('timer');
-  var duration = moment.duration(DURATION_READING, DURATION_UNIT);
   interval = setInterval(function () {
-    duration = duration.subtract(SECOND);
+    duration = reading_duration.subtract(SECOND);
     timer.innerText = duration.format("hh:mm:ss", {
       trim: false
     });

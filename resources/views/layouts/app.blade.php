@@ -235,14 +235,16 @@
                             <a href="{{ route('app.setlang', ['lang' => 'fr']) }}" title="Français"><i class="flag-icon flag-icon-fr"></i></a>
                         </div>
 
-                        @if(isset($datasources) && !empty($datasources))
+                        @if((isset($datasources) && !empty($datasources)) || (isset($reading_duration) && !(empty($reading_duration))))
                             <div class="player" id="player">
+                                @if ((isset($datasources) && !empty($datasources)))
                                 <audio src="{{ $source }}" type="audio" data-sources="{{ $datasources }}"></audio>
                                 <div class="controls">
                                     <button class="btn-play" id="play">
                                         <i class="fas fa-play fa-2x"></i>
                                     </button>
                                 </div>
+                                @endif
                                 <p id="timer">0</p>
                             </div>
                         @endif

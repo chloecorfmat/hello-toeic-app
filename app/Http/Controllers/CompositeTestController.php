@@ -160,8 +160,8 @@ class CompositeTestController extends Controller
             }
         }
 
-        if (!is_null($test->reading_timer)) {
-            $reading_duration = $test->reading_timer;
+        if (!is_null($test->reading_duration)) {
+            $reading_duration = $test->reading_duration;
         } else {
             $reading_duration = Setting::where('key', 'config.default.reading.duration')->first()->value;
         }
