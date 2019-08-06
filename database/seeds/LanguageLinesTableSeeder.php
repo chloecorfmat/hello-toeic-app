@@ -1652,9 +1652,8 @@ class LanguageLinesTableSeeder extends Seeder
             'group' => 'common',
             'key' => 'number-trials',
             'text' => ['en' => 'Number of trials', 'fr' => 'Nombre de passages'],
-        ]);**/
+        ]);
 
-        // @TODO : Here
         LanguageLine::create([
             'group' => 'common',
             'key' => 'duration',
@@ -1665,6 +1664,8 @@ class LanguageLinesTableSeeder extends Seeder
             'group' => 'common',
             'key' => 'duration_explanation',
             'text' => ['en' => 'Duration of exercise (in seconds, used for reading type only)', 'fr' => 'Durée de l\'exercice en seconds (utile pour les exercices de type reading uniquement)'],
-        ]);
+        ]);**/
+
+        // @TODO : Here
     }
 }
