@@ -1671,13 +1671,13 @@ class LanguageLinesTableSeeder extends Seeder
             'key' => 'trials',
             'text' => ['en' => 'trials', 'fr' => 'essais'],
         ]);
-         **/
 
-        // @TODO : Here
         LanguageLine::create([
             'group' => 'common',
             'key' => 'empty_answer',
             'text' => ['en' => 'Empty answer', 'fr' => 'Réponse vide'],
-        ]);
+        ]);**/
+
+        // @TODO : Here
     }
 }
