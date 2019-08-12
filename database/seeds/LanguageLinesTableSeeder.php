@@ -1674,5 +1674,10 @@ class LanguageLinesTableSeeder extends Seeder
          **/
 
         // @TODO : Here
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'empty_answer',
+            'text' => ['en' => 'Empty answer', 'fr' => 'Réponse vide'],
+        ]);
     }
 }

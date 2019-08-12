@@ -47,12 +47,16 @@
             <p>{{ __('statistics.number-passages') }}: {{ $statistics['total'] }}</p>
 
             @isset($statistics['answers'])
-                <p>{{ __('statistics.user-choice') }} :</p>
+                <h3>{{ __('statistics.user-choice') }} :</h3>
                 <ul>
                     @foreach ($statistics['answers'] as $answer)
                         @if ($answer->proposal_id != null)
-                            <li>{{ $answer->proposal }} : {{ $answer->count }} ({{ ($answer->count/$statistics['total'])*100 }}%)</li>
+                            @php ($name = $answer->proposal)
+                        @else
+                            @php ($name = __('common.empty_answer'))
                         @endif
+
+                            <li>{{ $name }} : {{ $answer->count }} ({{ ($answer->count/$statistics['total'])*100 }}%)</li>
                     @endforeach
                 </ul>
             @endisset

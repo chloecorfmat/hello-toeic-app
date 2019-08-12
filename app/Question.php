@@ -58,28 +58,32 @@ class Question extends Model
             ->select(['proposal_id'])
             ->selectRaw('count(id) as count')
             ->where('question_id', $this->id)
-            ->groupBy(DB::raw('proposal_id WITH ROLLUP'))
+            ->groupBy(['proposal_id', 'question_id'])
             ->get();
 
         foreach ($datas as $key => $statistic) {
-
-            if (is_null($statistic->proposal_id)) {
-                $total = $statistic->count;
-                $statistics['total'] = $total;
-            } else {
+            if (!is_null($statistic->proposal_id)) {
                 $proposal = Proposal::find($statistic->proposal_id);
                 $statistic->proposal = $proposal->value;
 
                 if ($statistic->proposal_id === $question_answer) {
                     $answer = $statistic->count;
                 }
+            } else {
+                $statistic->proposal = 'NULL';
             }
         }
+
+        $statistics['total'] = DB::table('corrections')
+            ->selectRaw('count(id) as c')
+            ->where('question_id', $this->id)
+            ->first()
+            ->c;
 
         $statistics['answers'] = $datas;
         $statistics['success'] = $answer ?? null;
         if (!is_null($statistics['success'])) {
-            $statistics['percent'] = ($answer / $total) * 100;
+            $statistics['percent'] = ($answer / $statistics['total']) * 100;
         }
 
         return $statistics;
