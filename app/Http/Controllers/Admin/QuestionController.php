@@ -119,7 +119,13 @@ class QuestionController extends Controller
             // Get explanation
             $explanation = Explanation::find($question->explanation_id);
 
-            return view('admin.questions.show', compact('question', 'statistics', 'explanation'));
+            // Exercises.
+            $exercises = DB::table('exercises')
+                ->join('exercise_question', 'exercise_question.exercise_id', '=', 'exercises.id')
+                ->where('exercise_question.question_id', $id)
+                ->get();
+
+            return view('admin.questions.show', compact('question', 'statistics', 'explanation', 'exercises'));
         }
 
         abort(404);

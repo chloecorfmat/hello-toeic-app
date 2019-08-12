@@ -29,6 +29,22 @@
         </div>
         @endif
 
+        @if (count($exercises) > 0)
+            <div>
+                <h2>{{ __('app.exercises') }}</h2>
+                <ul>
+                    @foreach ($exercises as $exercise)
+                        <li>
+                            <a href="{{ route('exercises.show', ['id' => $exercise->id]) }}">
+                                {{ $exercise->name }}
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+
         @if ($explanation != null)
             <div>
                 <h2>{{ __('common.explanation') }}</h2>
