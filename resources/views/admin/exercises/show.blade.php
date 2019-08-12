@@ -103,5 +103,85 @@
             </div>
         </div>
 
+        <div class="part-container">
+            <h2>{{ __('common.trials') }}</h2>
+            @if (!Auth::user()->hasRole('teacher'))
+                <p class="emphasis">{{ __('correction.limitation') }}</p>
+            @endif
+            <div class="table" id="profile-tests">
+                <div class="table--filters">
+                    <div class="field-container">
+                        <label for="search">{{ __('common.search') }}</label>
+                        <input type="text" id="search" name="search" class="search">
+                    </div>
+                </div>
+
+                <div class="table-container is-visible">
+                    <table>
+                        <caption class="sr-only">{{ __('exercises.results_last') }}</caption>
+                        <thead>
+                        <tr>
+                            <th scope="col">
+                                <button class="sort" data-sort="date">
+                                    {{ __('common.date') }} <i class="fas fa-arrows-alt-v"></i>
+                                </button>
+                            </th>
+                            <th scope="col">
+                                <button class="sort" data-sort="test">
+                                    {{ __('common.name') }} <i class="fas fa-arrows-alt-v"></i>
+                                </button>
+                            </th>
+                            <th scope="col">
+                                <button class="sort" data-sort="score">
+                                    {{ __('common.score') }} <i class="fas fa-arrows-alt-v"></i>
+                                </button>
+                            </th>
+                            <th scope="col">{{ __('common.actions') }}</th>
+                        </tr>
+                        </thead>
+                        <tbody class="list">
+                        @foreach ($trials as $key => $trial)
+                            <tr>
+                                <td class="date">{{ date('d/m/Y H:i', strtotime($trial->datetime)) }}</td>
+                                <td class="test">{{ $trial->user->name }}</td>
+                                @php ($t_max = $trial->test->part->nb_questions*5)
+                                @php ($t_score = $trial->score)
+                                @php ($t_percent = round(100*$t_score/$t_max, 1))
+                                @php ($t_class_score = $t_percent >= $constant_scores['intermediate'] ? 'score--high' : ($t_percent >= $constant_scores['low'] ? 'score--medium' : 'score--low'))
+                                <td class="score {{ $t_class_score }}"><span class="important">{{ $t_score }}/{{ $t_max }}</span> ({{ $t_percent }}%)</td>
+                                <td>
+                                    <ul>
+                                        <li class="table--action">
+                                            <a
+                                                    href="{{ route('student.trials.show', ['id' => $trial->id]) }}"
+                                                    title="{{ __('correction.show') }}"
+                                            >
+                                                <i class="fas fa-eye fa-lg"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="container-pagination">
+                    <button class="btn-pagination" id="js-pagination-prev">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <ul class="pagination"></ul>
+                    <button class="btn-pagination" id="js-pagination-next">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="container-empty-search" id="js-empty-search" aria-hidden="true">
+                <p class="emphasis">{{ __('common.no-result') }}</p>
+            </div>
+        </div>
+
     </div>
 @endsection

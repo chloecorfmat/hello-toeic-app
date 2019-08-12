@@ -9,6 +9,7 @@ use App\Question;
 use App\Document;
 use App\Services\ExerciseService;
 use App\Services\StatsService;
+use App\Setting;
 use App\Trial;
 use Illuminate\Http\Request;
 
@@ -69,7 +70,15 @@ class ExerciseController extends Controller
         $max = 0;
         $scores = [];
 
-        $trials = Trial::where('exercise_id', $id)->get();
+        $constant_scores = [
+            'low' => Setting::where('key', 'config.score.low')->first()->value,
+            'intermediate' => Setting::where('key', 'config.score.intermediate')->first()->value
+        ];
+
+
+        $trials = Trial::where('exercise_id', $id)
+            ->orderBy('datetime', 'DESC')
+            ->get();
 
         foreach ($trials as $trial){
             $score = $trial->score;
@@ -95,7 +104,7 @@ class ExerciseController extends Controller
             'nb_trials' => count($scores),
         ];
 
-        return view('admin.exercises.show', compact('exercise', 'questions', 'part', 'statistics'));
+        return view('admin.exercises.show', compact('exercise', 'questions', 'part', 'statistics', 'trials', 'constant_scores'));
     }
 
     /**
