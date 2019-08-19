@@ -1679,5 +1679,10 @@ class LanguageLinesTableSeeder extends Seeder
         ]);**/
 
         // @TODO : Here
+        LanguageLine::create([
+            'group' => 'statistics',
+            'key' => 'difficulty_rate',
+            'text' => ['en' => 'Difficulty rate', 'fr' => 'Taux de difficulté'],
+        ]);
     }
 }

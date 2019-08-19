@@ -13,6 +13,8 @@ class Question extends Model
       'number',
       'answer_id',
       'explanation_id',
+      'difficulty_rate',
+      'trials_nb',
     ];
 
     public $timestamps = false;

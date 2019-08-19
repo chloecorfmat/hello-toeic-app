@@ -61,6 +61,7 @@
             @endisset
 
             <p>{{ __('statistics.number-passages') }}: {{ $statistics['total'] }}</p>
+            <p>{{ __('statistics.difficulty_rate') }} : {{ $question->difficulty_rate * 100 }}%</p>
 
             @isset($statistics['answers'])
                 <h3>{{ __('statistics.user-choice') }} :</h3>

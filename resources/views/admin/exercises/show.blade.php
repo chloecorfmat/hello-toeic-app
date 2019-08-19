@@ -57,6 +57,7 @@
                         <th scope="col">{{ __('common.proposal') }} B</th>
                         <th scope="col">{{ __('common.proposal') }} C</th>
                         <th scope="col">{{ __('common.proposal') }} D</th>
+                        <th scope="col">{{ __('statistics.difficulty_rate') }}</th>
                         <th scope="col">{{ __('common.explanation') }}</th>
                         <th scope="col">{{ __('common.actions') }}</th>
                     </tr>
@@ -87,6 +88,7 @@
                                     <td>/</td>
                                 @endif
                             @endfor
+                            <td><span class="important">{{ $question->difficulty_rate*100 }}%</span> ({{ $question->trials_nb }} {{ __('common.trials') }})</td>
                             <td>@if ($question->explanation_id) <i class="fas fa-chalkboard-teacher"></i> @else <i class="fas fa-times"></i> @endif</td>
                             <td>
                                 <a href="{{ route('questions.show', ['id' => $question->id]) }}" title="{{ __('questions.show') }}">
