@@ -21,20 +21,28 @@ class StatsService {
         return array_sum($arr) / $num_of_elements;
     }
 
-    public function median($arr) {
+    public function median($temp) {
+        $arr = [];
+        $i = 0;
+        asort($temp);
+
+        foreach ($temp as $value) {
+            $arr[$i++] = $value;
+        }
+
         $count = count($arr); //total numbers in array
 
         if ($count == 0) {
             return 0;
         }
 
-        $middleval = floor(($count - 1) / 2); // find the middle value, or the lowest middle value
-        if($count % 2) { // odd number, middle is the median
-            $median = $arr[$middleval];
+        if ($count%2 == 0) {
+            $second = $count/2;
+            $first = $second-1;
+
+            $median = ($arr[$first] + $arr[$second]) / 2;
         } else { // even number, calculate avg of 2 medians
-            $low = $arr[$middleval];
-            $high = $arr[$middleval + 1];
-            $median = (($low + $high) / 2);
+            $median = $arr[round($count/2, 0)-1];
         }
         return $median;
     }

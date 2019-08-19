@@ -94,7 +94,7 @@ class ExerciseController extends Controller
             $scores[] = $score;
         }
 
-        $min = -1 ? 0 : $min;
+        $min = ($min == -1) ? 0 : $min;
         $statistics = [
             'min' => $min,
             'max' => $max,
