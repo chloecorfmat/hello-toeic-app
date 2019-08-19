@@ -1676,13 +1676,14 @@ class LanguageLinesTableSeeder extends Seeder
             'group' => 'common',
             'key' => 'empty_answer',
             'text' => ['en' => 'Empty answer', 'fr' => 'Réponse vide'],
-        ]);**/
+        ]);
 
-        // @TODO : Here
         LanguageLine::create([
             'group' => 'statistics',
             'key' => 'difficulty_rate',
             'text' => ['en' => 'Difficulty rate', 'fr' => 'Taux de difficulté'],
-        ]);
+        ]);**/
+
+        // @TODO : Here
     }
 }
