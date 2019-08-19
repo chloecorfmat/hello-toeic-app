@@ -7,6 +7,12 @@ form {
             width: initial;
         }
     }
+
+    select {
+        color: $tertiary-color-1;
+        font-weight: bold;
+        font-size: .8rem;
+    }
 }
 
 legend {
@@ -78,6 +84,11 @@ legend {
         &:checked {
             + .radio-el {
                 background: $secondary-color-1;
+            }
+
+            ~ .label-text {
+                font-weight: bold;
+                color: $tertiary-color-1;
             }
         }
 

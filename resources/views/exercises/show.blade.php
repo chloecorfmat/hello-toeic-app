@@ -107,7 +107,7 @@
                                                         <input type="radio" id="{{ $key . '-' . $proposal->id }}"
                                                                name="{{ $key }}" value="{{ $proposal->id }}" />
                                                         <span class="radio-el"></span>
-                                                        {{ $index[$k] }}. {{ $proposal->value }}
+                                                        <span class="label-text">{{ $index[$k] }}. {{ $proposal->value }}</span>
                                                     </label>
                                                 </div>
                                             @endforeach

@@ -501,6 +501,12 @@ form .btn {
   }
 }
 
+form select {
+  color: #8d6a9f;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
 legend {
   font-weight: 700;
   font-size: 1.5rem;
@@ -586,6 +592,11 @@ legend {
 
 .form-radio-el input[type=radio]:checked + .radio-el {
   background: #4b3f72;
+}
+
+.form-radio-el input[type=radio]:checked ~ .label-text {
+  font-weight: bold;
+  color: #8d6a9f;
 }
 
 .form-radio-el label {

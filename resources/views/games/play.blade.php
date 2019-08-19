@@ -15,7 +15,7 @@
                             <input type="radio" id="{{ 'question-' . $proposal->id }}"
                                    name="question_answer" value="{{ $proposal->id }}" />
                             <span class="radio-el"></span>
-                            {{ $index[$k] }}. {{ $proposal->value }}
+                            <span class="label-text">{{ $index[$k] }}. {{ $proposal->value }}</span>
                         </label>
                     </div>
                 @endforeach
