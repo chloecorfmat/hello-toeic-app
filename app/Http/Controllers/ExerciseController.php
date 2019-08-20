@@ -171,6 +171,15 @@ class ExerciseController extends Controller
                 'trial_id' => $trial_entity->id,
                 'state' => $state,
             ]);
+
+            if ($state) {
+                $question->difficulty_rate = ((($question->difficulty_rate) * $question->trials_nb) + 1) / ($question->trials_nb+1);
+            } else {
+                $question->difficulty_rate = (($question->difficulty_rate) * $question->trials_nb) / ($question->trials_nb+1);
+            }
+
+            $question->trials_nb = $question->trials_nb + 1;
+            $question->save();
         }
 
         $trial_entity->setAttribute('score', $score)->save();
