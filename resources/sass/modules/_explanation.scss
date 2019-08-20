@@ -1,0 +1,33 @@
+.container-explanation {
+  position: relative;
+}
+
+.explanation {
+  display: none;
+
+  @media screen and (min-width: $breakpoint-medium) {
+    background: $secondary-color-1;
+    color: white;
+    position: absolute;
+    width: 20rem;
+    padding: .5rem;
+    border-radius: 5px;
+    right: 0;
+    z-index: 10;
+    margin-top: .3rem;
+  }
+}
+
+.container-explanation {
+  @media screen and (min-width: $breakpoint-medium) {
+    .fa-chalkboard-teacher {
+      cursor: pointer;
+
+      &:hover {
+        + .explanation {
+          display: block;
+        }
+      }
+    }
+  }
+}

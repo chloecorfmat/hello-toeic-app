@@ -893,6 +893,38 @@ tr:nth-child(2n) {
   display: block;
 }
 
+.container-explanation {
+  position: relative;
+}
+
+.explanation {
+  display: none;
+}
+
+@media screen and (min-width: 920px) {
+  .explanation {
+    background: #4b3f72;
+    color: white;
+    position: absolute;
+    width: 20rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    right: 0;
+    z-index: 10;
+    margin-top: 0.3rem;
+  }
+}
+
+@media screen and (min-width: 920px) {
+  .container-explanation .fa-chalkboard-teacher {
+    cursor: pointer;
+  }
+
+  .container-explanation .fa-chalkboard-teacher:hover + .explanation {
+    display: block;
+  }
+}
+
 .laterale-bar {
   background: #f4f4f44d;
   box-sizing: border-box;

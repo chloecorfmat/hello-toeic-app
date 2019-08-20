@@ -98,7 +98,14 @@
                                     @endif
                                 @endfor
                                 <td class="difficulty"><span class="important">{{ $question->difficulty_rate*100 }}%</span> ({{ $question->trials_nb }} {{ __('common.trials') }})</td>
-                                <td>@if ($question->explanation_id) <i class="fas fa-chalkboard-teacher"></i> @else <i class="fas fa-times"></i> @endif</td>
+                                <td class="container-explanation">
+                                    @if ($question->explanation_id)
+                                        <i class="fas fa-chalkboard-teacher"></i>
+                                        <span class="explanation">{{ $question->explanation->explanation }}</span>
+                                    @else
+                                        <i class="fas fa-times"></i>
+                                    @endif
+                                </td>
                                 <td>
                                     <a href="{{ route('questions.show', ['id' => $question->id]) }}" title="{{ __('questions.show') }}">
                                         <i class="fas fa-eye"></i>
