@@ -105,8 +105,8 @@ class PartController extends Controller
     {
         $part = Part::find($id);
 
-        if ($request->get('inline') === 'true' &&
-            ($request->get('texts') !== 'true') || $request->get('type') !== "reading")
+        if (($request->get('inline') === 'true') &&
+            (($request->get('texts') !== 'true') || $request->get('type') !== "reading"))
         {
             return redirect()->route('parts.edit', ['id' => $id])->withErrors([trans('common.inline_constraint')]);
         }
