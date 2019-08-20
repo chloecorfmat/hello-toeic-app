@@ -200,8 +200,6 @@ function lists(e) {
         var tables = document.querySelectorAll('.lessons-stats');
 
         tables.forEach(function(table) {
-            console.log(table.id);
-
             var options = {
                 valueNames: ['score'],
                 page: 15,
@@ -216,4 +214,13 @@ function lists(e) {
             listOverride(list);
         });
     }
+
+    if (document.getElementById('exercise-questions') !== null) {
+        var options = {
+            valueNames: ['number', 'difficulty'],
+        };
+
+        var list = new List('exercise-questions', options);
+    }
+
 }
