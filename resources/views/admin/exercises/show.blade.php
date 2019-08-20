@@ -102,7 +102,7 @@
                                     @if ($question->explanation_id)
                                         <div class="explanation-action">
                                             <i class="fas fa-chalkboard-teacher"></i>
-                                            <p>{{ $question->explanation->id }}</p>
+                                            <p>{{ $question->explanation->title }}</p>
                                         </div>
 
                                         <div class="explanation">
