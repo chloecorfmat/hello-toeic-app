@@ -18,6 +18,11 @@
   }
 }
 
+.explanation-title {
+  display: block;
+  margin-bottom: .3rem;
+}
+
 .container-explanation {
   @media screen and (min-width: $breakpoint-medium) {
     .fa-chalkboard-teacher {
