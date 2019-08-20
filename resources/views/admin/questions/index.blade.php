@@ -67,13 +67,17 @@
                         @endfor
                         <td class="container-explanation">
                             @if ($question->explanation_id)
-                                <i class="fas fa-chalkboard-teacher"></i>
-                                <span class="explanation">
-                                            <span class="important explanation-title">
+                                <div class="explanation-action">
+                                    <i class="fas fa-chalkboard-teacher"></i>
+                                    <p>{{ $question->explanation->id }}</p>
+                                </div>
+
+                                <div class="explanation">
+                                            <p class="important explanation-title">
                                                 {{ $question->explanation->title }}
-                                            </span>
-                                    {{ $question->explanation->explanation }}
-                                </span>
+                                            </p>
+                                    <p>{{ $question->explanation->explanation }}</p>
+                                </div>
                             @else
                                 <i class="fas fa-times"></i>
                             @endif

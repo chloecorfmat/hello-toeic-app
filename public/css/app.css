@@ -897,6 +897,10 @@ tr:nth-child(2n) {
   position: relative;
 }
 
+.container-explanation p {
+  margin: 0.5rem 0;
+}
+
 .explanation {
   display: none;
 }
@@ -904,14 +908,17 @@ tr:nth-child(2n) {
 @media screen and (min-width: 920px) {
   .explanation {
     background: #4b3f72;
-    color: white;
     position: absolute;
     width: 20rem;
     padding: 0.5rem;
     border-radius: 5px;
     right: 0;
     z-index: 10;
-    margin-top: 0.3rem;
+    margin-top: -0.3rem;
+  }
+
+  .explanation p {
+    color: #fff;
   }
 }
 
@@ -921,11 +928,11 @@ tr:nth-child(2n) {
 }
 
 @media screen and (min-width: 920px) {
-  .container-explanation .fa-chalkboard-teacher {
+  .container-explanation .explanation-action {
     cursor: pointer;
   }
 
-  .container-explanation .fa-chalkboard-teacher:hover + .explanation {
+  .container-explanation .explanation-action:hover + .explanation {
     display: block;
   }
 }
