@@ -68,7 +68,12 @@
                         <td class="container-explanation">
                             @if ($question->explanation_id)
                                 <i class="fas fa-chalkboard-teacher"></i>
-                                <span class="explanation">{{ $question->explanation->explanation }}</span>
+                                <span class="explanation">
+                                            <span class="important explanation-title">
+                                                {{ $question->explanation->title }}
+                                            </span>
+                                    {{ $question->explanation->explanation }}
+                                </span>
                             @else
                                 <i class="fas fa-times"></i>
                             @endif
