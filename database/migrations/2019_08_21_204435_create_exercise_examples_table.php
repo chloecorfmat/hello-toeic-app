@@ -14,7 +14,7 @@ class CreateExerciseExamplesTable extends Migration
     public function up()
     {
         Schema::enableForeignKeyConstraints();
-        
+
         Schema::create('examples', function (Blueprint $table) {
             $table->engine = 'InnoDB';
 
@@ -24,7 +24,7 @@ class CreateExerciseExamplesTable extends Migration
         });
 
         Schema::table('exercises', function (Blueprint $table) {
-            $table->bigInteger('example_id')->nullable();
+            $table->unsignedBigInteger('example_id')->nullable();
             $table->foreign('example_id')->references('id')->on('examples');
 
         });
