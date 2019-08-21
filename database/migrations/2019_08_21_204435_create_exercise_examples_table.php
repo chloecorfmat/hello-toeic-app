@@ -13,6 +13,8 @@ class CreateExerciseExamplesTable extends Migration
      */
     public function up()
     {
+        Schema::enableForeignKeyConstraints();
+        
         Schema::create('examples', function (Blueprint $table) {
             $table->engine = 'InnoDB';
 
