@@ -658,6 +658,15 @@ legend {
   width: 100%;
 }
 
+.example.documents {
+  max-width: 30%;
+  overflow: hidden;
+}
+
+.example.documents img {
+  width: 100%;
+}
+
 .table-container {
   border-radius: 5px;
   border: 1px solid #c5cbd3;

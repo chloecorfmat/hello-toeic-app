@@ -67,6 +67,16 @@ Breadcrumbs::for('exercises.edit', function ($trail, $exercise) {
     $trail->push(trans('common.edit'), route('exercises.edit', $exercise->id));
 });
 
+Breadcrumbs::for('exercises.examples.index', function ($trail) {
+    $trail->parent('exercises.index');
+    $trail->push(trans('examples.list'), route('examples.index'));
+});
+
+Breadcrumbs::for('exercises.examples.create', function ($trail) {
+    $trail->parent('exercises.examples.index');
+    $trail->push(trans('examples.add'), route('examples.create'));
+});
+
 Breadcrumbs::for('questions.index', function ($trail) {
     $trail->parent('dashboard');
     $trail->push(trans('questions.list'), route('questions.index'));

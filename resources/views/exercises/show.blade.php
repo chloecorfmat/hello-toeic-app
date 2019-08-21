@@ -27,6 +27,24 @@
                             {{ $part->name }}
                         </h2>
                         <p class="part-instructions">{{ $part->description }}</p>
+
+                        @if ($exercise->example)
+                        <div class="example documents">
+                            <div class="document">
+                                <div class="img-preview">
+                                    <img src="{{ url('storage/' . $exercise->example->image) }}" alt="{{ __('questions.necessary-image') }}" id={{ "example_" . $part->id }} />
+                                </div>
+                            </div>
+                            <ol>
+                                <li>
+                                    <a href="{{ url('storage/' . $exercise->example->image) }}" target="_blank" title="{{ __('common.show-image') }} - {{ __('common.new-window') }}">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                </li>
+                            </ol>
+                        </div>
+                        @endif
+
                         <ul class="questions">
                             @php ($d = null)
                             @php ($qs = [])
@@ -79,6 +97,24 @@
                                     {{ $question->parts[0]->name }}
                                 </h2>
                                 <p class="part-instructions">{{ $question->parts[0]->description }}</p>
+
+                                @if ($exercise->example)
+                                    <div class="example documents">
+                                        <div class="document">
+                                            <div class="img-preview">
+                                                <img src="{{ url('storage/' . $exercise->example->image) }}" alt="{{ __('questions.necessary-image') }}" id={{ "example_" . $question->parts[0]->id }} />
+                                            </div>
+                                        </div>
+                                        <ol>
+                                            <li>
+                                                <a href="{{ url('storage/' . $exercise->example->image) }}" target="_blank" title="{{ __('common.show-image') }} - {{ __('common.new-window') }}">
+                                                    <i class="fas fa-external-link-alt"></i>
+                                                </a>
+                                            </li>
+                                        </ol>
+                                    </div>
+                                @endif
+
                                 <ul class="questions">
                                     @endif
                                     @if ($question->parts[0]->texts)

@@ -165,6 +165,7 @@ class CompositeTestController extends Controller
                 $questions[$exercise]['exercise'] = $ex;
                 $questions[$exercise]['part'] = $ex->part;
                 $questions[$exercise]['questions'] = $qs;
+                $questions[$exercise]['example'] = $ex->example ?? NULL;
             }
         }
 

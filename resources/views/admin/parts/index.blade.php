@@ -8,6 +8,10 @@
             <a href="{{ route('parts.create') }}" class="main-content--header-actions">
                 <i class="fas fa-plus-circle"></i>
             </a>
+
+            <a href="{{ route('examples.index') }}" class="main-content--header-actions">
+                <i class="far fa-image"></i>
+            </a>
         </div>
 
         @if ($message = Session::get('success'))

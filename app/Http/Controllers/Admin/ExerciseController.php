@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\ExerciseExample;
 use App\Http\Controllers\Controller;
 use App\Part;
 use App\Exercise;
@@ -116,7 +117,8 @@ class ExerciseController extends Controller
     public function edit($id)
     {
         $exercise = Exercise::find($id);
-        return view('admin.exercises.edit', compact('exercise'));
+        $examples = ExerciseExample::all();
+        return view('admin.exercises.edit', compact('exercise', 'examples'));
     }
 
     /**
@@ -133,6 +135,7 @@ class ExerciseController extends Controller
         $exercise->name = $request->get('name');
         $exercise->visible = $request->get('visible');
         $exercise->updated_at = (new \DateTime());
+        $exercise->example_id = $request->get('example') ?? NULL;
 
         $exercise->save();
 
@@ -179,7 +182,8 @@ class ExerciseController extends Controller
             return redirect()->route('parts.index')->with('warning', trans('exercises.import-part_constraint'));
         } else {
             $part = Part::find($id);
-            return view('admin.exercises.import', compact('part'));
+            $examples = ExerciseExample::all();
+            return view('admin.exercises.import', compact('part', 'examples'));
         }
     }
 

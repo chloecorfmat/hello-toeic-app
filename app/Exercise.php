@@ -12,7 +12,8 @@ class Exercise extends Model
         'status',
         'visible',
         'updated_at',
-        'duration'
+        'duration',
+        'example_id',
     ];
 
     public $timestamps = false;
@@ -55,6 +56,10 @@ class Exercise extends Model
 
     public function testPart7() {
         return $this->hasMany('App\CompositeTest', 'exercise_part7', 'id');
+    }
+
+    public function example() {
+        return $this->belongsTo('App\ExerciseExample', 'example_id', 'id');
     }
 
 }

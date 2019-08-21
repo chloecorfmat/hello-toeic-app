@@ -157,3 +157,13 @@ legend {
     }
 }
 
+.example {
+    &.documents {
+        max-width: 30%;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+        }
+    }
+}

@@ -51,6 +51,20 @@
                 <p>{{ __('form.txt-format_required') }}</p>
             </div>
 
+            <div class="field-container">
+                <label for="example">{{ __('common.example') }}</label>
+                <select name="example" id="example">
+                    <option></option>
+                    @foreach ($examples as $example)
+                        <option
+                                value="{{ $example->id }}"
+                        >
+                            {{ $example->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
             <input type="hidden" id="part" name="part" value="{{ $part->id }}">
 
             <button type="submit" class="btn btn-primary">

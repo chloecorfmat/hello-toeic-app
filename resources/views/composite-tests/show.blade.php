@@ -28,6 +28,23 @@
 
                         <p class="part-instructions">{{ $exercise['part']->description }}</p>
 
+                        @if ($exercise['example'])
+                            <div class="example documents">
+                                <div class="document">
+                                    <div class="img-preview">
+                                        <img src="{{ url('storage/' . $exercise['example']->image) }}" alt="{{ __('questions.necessary-image') }}" id={{ "example_" . $exercise['part']->id }} />
+                                    </div>
+                                </div>
+                                <ol>
+                                    <li>
+                                        <a href="{{ url('storage/' . $exercise['example']->image) }}" target="_blank" title="{{ __('common.show-image') }} - {{ __('common.new-window') }}">
+                                            <i class="fas fa-external-link-alt"></i>
+                                        </a>
+                                    </li>
+                                </ol>
+                            </div>
+                        @endif
+
                         <ul class="questions">
                             @if($exercise['part']->inline)
                                 @inject('render', 'App\Services\RenderService')

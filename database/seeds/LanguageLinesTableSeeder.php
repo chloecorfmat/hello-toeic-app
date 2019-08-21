@@ -1685,5 +1685,34 @@ class LanguageLinesTableSeeder extends Seeder
         ]);**/
 
         // @TODO : Here
+        LanguageLine::create([
+            'group' => 'examples',
+            'key' => 'list',
+            'text' => ['en' => 'Examples list', 'fr' => 'Liste des exemples'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'examples',
+            'key' => 'add',
+            'text' => ['en' => 'Example add', 'fr' => 'Créer un example \'exercice'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'examples',
+            'key' => 'added',
+            'text' => ['en' => 'Example added.', 'fr' => 'L\'example a été créé.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'form',
+            'key' => 'image-constraints',
+            'text' => ['en' => 'Images need one of the following extensions : jpg, jpeg, png.', 'fr' => 'Images need one of the following extensions : jpg, jpeg, png.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'example',
+            'text' => ['en' => 'Example', 'fr' => 'Exemple'],
+        ]);
     }
 }

@@ -37,6 +37,24 @@
                 <p id="visible-description">{{ __('common.visibility_explanation') }}</p>
             </div>
 
+            <div class="field-container">
+                <label for="example">{{ __('common.example') }}</label>
+                <select name="example" id="example">
+                    <option></option>
+                    @foreach ($examples as $example)
+                        <option
+                                value="{{ $example->id }}"
+
+                                @if ($exercise->example_id == $example->id)
+                                    selected
+                                @endif
+                        >
+                            {{ $example->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
             <button type="submit" class="btn btn-primary">
                 {{ __('common.validate') }}
             </button>
