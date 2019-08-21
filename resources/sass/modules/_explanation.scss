@@ -6,30 +6,6 @@
   }
 }
 
-.explanation {
-  display: none;
-
-  @media screen and (min-width: $breakpoint-medium) {
-    background: $secondary-color-1;
-    position: absolute;
-    width: 20rem;
-    padding: .5rem;
-    border-radius: 5px;
-    right: 0;
-    z-index: 10;
-    margin-top: -.3rem;
-
-    p {
-      color: $white;
-    }
-  }
-}
-
-.explanation-title {
-  display: block;
-  margin-bottom: .3rem;
-}
-
 .container-explanation {
   @media screen and (min-width: $breakpoint-medium) {
     .explanation-action {
@@ -41,5 +17,29 @@
         }
       }
     }
+  }
+
+  .explanation {
+    display: none;
+
+    @media screen and (min-width: $breakpoint-medium) {
+      background: $secondary-color-1;
+      position: absolute;
+      width: 20rem;
+      padding: .5rem;
+      border-radius: 5px;
+      right: 0;
+      z-index: 10;
+      margin-top: -.3rem;
+
+      p {
+        color: $white;
+      }
+    }
+  }
+
+  .explanation-title {
+    display: block;
+    margin-bottom: .3rem;
   }
 }

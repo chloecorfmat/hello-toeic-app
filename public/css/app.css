@@ -901,12 +901,22 @@ tr:nth-child(2n) {
   margin: 0.5rem 0;
 }
 
-.explanation {
+@media screen and (min-width: 920px) {
+  .container-explanation .explanation-action {
+    cursor: pointer;
+  }
+
+  .container-explanation .explanation-action:hover + .explanation {
+    display: block;
+  }
+}
+
+.container-explanation .explanation {
   display: none;
 }
 
 @media screen and (min-width: 920px) {
-  .explanation {
+  .container-explanation .explanation {
     background: #4b3f72;
     position: absolute;
     width: 20rem;
@@ -917,24 +927,14 @@ tr:nth-child(2n) {
     margin-top: -0.3rem;
   }
 
-  .explanation p {
+  .container-explanation .explanation p {
     color: #fff;
   }
 }
 
-.explanation-title {
+.container-explanation .explanation-title {
   display: block;
   margin-bottom: 0.3rem;
-}
-
-@media screen and (min-width: 920px) {
-  .container-explanation .explanation-action {
-    cursor: pointer;
-  }
-
-  .container-explanation .explanation-action:hover + .explanation {
-    display: block;
-  }
 }
 
 .laterale-bar {
