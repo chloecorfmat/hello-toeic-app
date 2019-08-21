@@ -1682,9 +1682,8 @@ class LanguageLinesTableSeeder extends Seeder
             'group' => 'statistics',
             'key' => 'difficulty_rate',
             'text' => ['en' => 'Difficulty rate', 'fr' => 'Taux de difficulté'],
-        ]);**/
+        ]);
 
-        // @TODO : Here
         LanguageLine::create([
             'group' => 'examples',
             'key' => 'list',
@@ -1714,5 +1713,8 @@ class LanguageLinesTableSeeder extends Seeder
             'key' => 'example',
             'text' => ['en' => 'Example', 'fr' => 'Exemple'],
         ]);
+         **/
+
+        // @TODO : Here
     }
 }
