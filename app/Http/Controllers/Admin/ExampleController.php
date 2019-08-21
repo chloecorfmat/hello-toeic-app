@@ -55,11 +55,11 @@ class ExampleController extends Controller
                 . '.'
                 . $request->file('image')->extension();
 
-            rename($request->file('image'), './storage/documents/examples/' . $new_file);
+            rename($request->file('image'), './storage/examples/' . $new_file);
 
             Example::create([
                 'name' => $request->get('name'),
-                'image' => './documents/examples/' . $new_file,
+                'image' => './examples/' . $new_file,
             ]);
 
             return redirect()->route('examples.index')->with('success', trans('examples.added'));
