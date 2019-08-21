@@ -14,8 +14,9 @@ class AddForeignkeyToExercisesTable extends Migration
     public function up()
     {
         Schema::table('exercises', function (Blueprint $table) {
-            $table->foreign('example_id')
-                ->references('example_id')->on('examples');
+            $table->integer('example')->unsigned();
+
+            $table->foreign('example')->references('id')->on('examples');
         });
     }
 
