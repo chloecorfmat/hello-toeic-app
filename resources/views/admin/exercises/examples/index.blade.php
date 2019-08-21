@@ -26,7 +26,7 @@
                 @foreach ($examples as $example)
                     <li>
                         <h2>{{ $example->name }}</h2>
-                        <img src="{{ url('storage/'.$example->image) }}"/>
+                        <img src="{{ url('storage/'. $example->image) }}"/>
                         <p>{{ $example->image }}</p>
                     </li>
                 @endforeach
