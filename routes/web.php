@@ -77,7 +77,7 @@ Route::group(['middleware' => ['auth']], function () {
         ->name('lessons.stats');
     Route::resource('admin/lessons', 'LessonController');
 
-    Route::resource('admin/exercises/examples', 'ExerciseExampleController');
+    Route::resource('admin/exercises/examples', 'ExampleController');
 
     Route::get('admin/exercises/import/{id?}', 'ExerciseController@import')
         ->name('exercises.import');

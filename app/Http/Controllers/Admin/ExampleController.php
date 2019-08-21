@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\ExerciseExample;
+use App\Example;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Webpatser\Sanitize\Sanitize;
 
-class ExerciseExampleController extends Controller
+class ExampleController extends Controller
 {
     public function __construct()
     {
@@ -21,7 +21,7 @@ class ExerciseExampleController extends Controller
      */
     public function index()
     {
-        $examples = ExerciseExample::all();
+        $examples = Example::all();
         return view('admin.exercises.examples.index', compact('examples'));
     }
 
@@ -43,7 +43,10 @@ class ExerciseExampleController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->file('image')->getClientMimeType() === 'image/png') {
+        if (
+            $request->file('image')->getClientMimeType() === 'image/png' ||
+            $request->file('image')->getClientMimeType() === 'image/jpeg'
+        ) {
             $uid = uniqid();
 
             $new_file = $uid
@@ -54,7 +57,7 @@ class ExerciseExampleController extends Controller
 
             rename($request->file('image'), './storage/examples/' . $new_file);
 
-            ExerciseExample::create([
+            Example::create([
                 'name' => $request->get('name'),
                 'image' => './examples/' . $new_file,
             ]);
@@ -69,10 +72,10 @@ class ExerciseExampleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\ExerciseExample  $exerciseExample
+     * @param  \App\Example  $exerciseExample
      * @return \Illuminate\Http\Response
      */
-    public function show(ExerciseExample $exerciseExample)
+    public function show(Example $exerciseExample)
     {
         return redirect()->route('examples.index');
     }
@@ -80,10 +83,10 @@ class ExerciseExampleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\ExerciseExample  $exerciseExample
+     * @param  \App\Example  $exerciseExample
      * @return \Illuminate\Http\Response
      */
-    public function edit(ExerciseExample $exerciseExample)
+    public function edit(Example $exerciseExample)
     {
         //
     }
@@ -92,10 +95,10 @@ class ExerciseExampleController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ExerciseExample  $exerciseExample
+     * @param  \App\Example  $exerciseExample
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ExerciseExample $exerciseExample)
+    public function update(Request $request, Example $exerciseExample)
     {
         //
     }
@@ -103,10 +106,10 @@ class ExerciseExampleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ExerciseExample  $exerciseExample
+     * @param  \App\Example  $exerciseExample
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ExerciseExample $exerciseExample)
+    public function destroy(Example $exerciseExample)
     {
         //
     }

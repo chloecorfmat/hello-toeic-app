@@ -59,7 +59,7 @@ class Exercise extends Model
     }
 
     public function example() {
-        return $this->belongsTo('App\ExerciseExample', 'example_id', 'id');
+        return $this->belongsTo('App\Example', 'example_id', 'id');
     }
 
 }
