@@ -22,6 +22,8 @@ class CreateExerciseExamplesTable extends Migration
         Schema::table('exercises', function (Blueprint $table) {
             $table->unsignedInteger('example_id')->nullable();
 
+            $table->unsignedInteger('example_id')->change();
+
             $table->foreign('example_id', 'fk_exercises_examples_exampleid')
                 ->references('id')->on('exercise_examples');
         });
