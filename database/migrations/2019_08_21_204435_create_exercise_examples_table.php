@@ -22,7 +22,8 @@ class CreateExerciseExamplesTable extends Migration
         });
 
         Schema::table('exercises', function (Blueprint $table) {
-            $table->unsignedBigInteger('example_id');
+            $table->bigInteger('example_id');
+            $table->foreign('example_id')->references('id')->on('examples');
 
         });
     }
