@@ -15,8 +15,7 @@ class AddForeignkeyToExercisesTable extends Migration
     {
         Schema::table('exercises', function (Blueprint $table) {
             $table->unsignedInteger('example_id')->change();
-
-            $table->foreign('example_id', 'fk_exercises_examples_exampleid')
+            $table->foreign('example_id')
                 ->references('id')->on('exercise_examples');
         });
     }
