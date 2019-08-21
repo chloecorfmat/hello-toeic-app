@@ -13,16 +13,17 @@ class CreateExerciseExamplesTable extends Migration
      */
     public function up()
     {
-        Schema::create('exercise_examples', function (Blueprint $table) {
+        Schema::create('examples', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            
+
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('image');
         });
 
         Schema::table('exercises', function (Blueprint $table) {
-            $table->integer('example_id')->unsigned();
+            $table->unsignedBigInteger('example_id');
+
         });
     }
 

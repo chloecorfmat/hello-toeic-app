@@ -13,8 +13,6 @@ class AddForeignkeyToExercisesTable extends Migration
      */
     public function up()
     {
-        Schema::rename('exercise_examples', 'examples');
-
         Schema::table('exercises', function (Blueprint $table) {
             $table->foreign('example_id')
                 ->references('example_id')->on('examples');
