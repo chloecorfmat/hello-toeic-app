@@ -422,6 +422,8 @@ class ExerciseService {
                             $new_file .= $data_file['extension'];
 
                             rename('./storage/documents/' . $repository_name . '/' . $current_file, './storage/documents/' . $uid . '_'. $repository_name . '/' . $new_file);
+                            chmod('./storage/documents/' . $uid . '_'. $repository_name . '/' . $new_file, '0644');
+
 
                             if (!in_array('./documents/' . $repository_name . '/' . $new_file, $already)) {
                                 $document = Document::create([
@@ -477,6 +479,7 @@ class ExerciseService {
                 ]);
 
                 rename($request->file($field), './storage/documents/' . $new_file);
+                chmod('./storage/documents/' . $new_file, '0644');
 
                 if (empty(intval($data_file['number_end']))) {
                     $data_file['number_end'] = $data_file['number_start'];
