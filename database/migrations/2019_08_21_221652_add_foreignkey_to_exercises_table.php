@@ -16,8 +16,6 @@ class AddForeignkeyToExercisesTable extends Migration
         Schema::rename('exercise_examples', 'examples');
 
         Schema::table('exercises', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            
             $table->foreign('example_id')
                 ->references('example_id')->on('examples');
         });
