@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateExerciseExamplesTable extends Migration
+class AddForeignkeyToExercisesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreateExerciseExamplesTable extends Migration
      */
     public function up()
     {
-        Schema::create('exercise_examples', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->string('image');
-        });
-
         Schema::table('exercises', function (Blueprint $table) {
-            $table->unsignedInteger('example_id')->nullable();
+            $table->unsignedInteger('example_id')->change();
+
+            $table->foreign('example_id', 'fk_exercises_examples_exampleid')
+                ->references('id')->on('exercise_examples');
         });
     }
 
@@ -31,6 +28,8 @@ class CreateExerciseExamplesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('exercise_examples');
+        Schema::table('exercises', function (Blueprint $table) {
+            //
+        });
     }
 }
