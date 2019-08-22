@@ -398,6 +398,7 @@ class ExerciseService {
                 $repository_name = str_replace('.zip', '', $file->getClientOriginalName());
 
                 mkdir('./storage/documents/' . $uid . '_'. $repository_name);
+                chmod('./storage/documents/' . $uid . '_'. $repository_name, '0755');
 
                 if ($repository = opendir('./storage/documents/' . $repository_name)) {
                     while (false !== ($current_file = readdir($repository))) {
