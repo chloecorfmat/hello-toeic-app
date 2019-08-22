@@ -56,7 +56,7 @@ class ExampleController extends Controller
                 . $request->file('image')->extension();
 
             rename($request->file('image'), './storage/examples/' . $new_file);
-            chmod('./storage/examples/' . $new_file, '0644');
+            chmod('./storage/examples/' . $new_file, 0644);
 
             Example::create([
                 'name' => $request->get('name'),
