@@ -51,4 +51,14 @@ class User extends Authenticatable
     public function taughtGroups() {
         return $this->hasMany('App\Group', 'teacher', 'id');
     }
+
+    // Badges
+    public function badges() {
+        return $this->belongsToMany('App\Badge', 'user_badge')->withPivot(['datetime']);
+    }
+
+    public function badge_types() {
+        return $this->belongsToMany('App\BadgeType', 'user_badge_type_progression')
+            ->withPivot(['nb_repetitions']);
+    }
 }

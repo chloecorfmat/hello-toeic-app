@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Game;
+use App\Observers\GameObserver;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -16,6 +18,8 @@ class AppServiceProvider extends ServiceProvider
     {
         date_default_timezone_set('Europe/Paris');
         Schema::defaultStringLength(191);
+
+        Game::observe(GameObserver::class);
     }
 
     /**
