@@ -87,6 +87,8 @@ class HomeController extends Controller
             'stats' => $stats,
         ];
 
-        return view('profile', compact('datas', 'stats', 'scores', 'lessons', 'composite_trials', 'lessons_access'));
+        $badges = $user->badges;
+
+        return view('profile', compact('datas', 'stats', 'scores', 'lessons', 'composite_trials', 'lessons_access', 'badges'));
     }
 }

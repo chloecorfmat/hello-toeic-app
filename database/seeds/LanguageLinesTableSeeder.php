@@ -1715,5 +1715,10 @@ class LanguageLinesTableSeeder extends Seeder
         ]);**/
 
         // @TODO : Here
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'rewards',
+            'text' => ['en' => 'Rewards', 'fr' => 'Récompenses'],
+        ]);
     }
 }

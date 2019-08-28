@@ -1190,6 +1190,21 @@ tr:nth-child(2n) {
   top: 3rem;
 }
 
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+}
+
+.badges .badge {
+  text-align: left;
+  width: 20%;
+}
+
+.badges .badge img {
+  width: 25%;
+}
+
 .stats-exercise {
   margin-top: 3rem;
 }

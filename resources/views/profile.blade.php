@@ -297,6 +297,22 @@
                 <p class="emphasis">{{ __('common.no-result') }}</p>
             </div>
         </div>
+
+        <div class="part-container">
+            <h2>{{ __('common.rewards') }}</h2>
+            @if (sizeof($badges) > 1)
+                <div class="badges">
+                    @foreach ($badges as $badge)
+                        <div class="badge">
+                            <img src="{{ url('storage/' . $badge->image) }}" alt="" title="{{ $badge->badgeType->name }}">
+                            <p><span class="important">Level:</span> {{ $badge->level->level }}</p>
+                        </div>
+                    @endforeach
+                </div>
+            @else
+                <p class="emphasis">{{ __('common.no-result') }}</p>
+            @endif
+        </div>
     </div>
 
 @endsection

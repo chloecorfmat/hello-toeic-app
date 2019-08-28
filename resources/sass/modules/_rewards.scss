@@ -1,0 +1,14 @@
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+
+  .badge {
+    text-align: left;
+    width: 20%;
+
+    img {
+      width: 25%;
+    }
+  }
+}
