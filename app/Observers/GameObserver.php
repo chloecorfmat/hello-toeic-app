@@ -22,26 +22,24 @@ class GameObserver
         ];
 
         $update = TRUE;
-
         $user = $game->user;
 
-
-        $user_badge_types = $user->badge_types()->get();
-
-        foreach ($user_badge_types as $badge_type) {
-            if (in_array($badge_type->method, array_keys($data))) {
-                $tmp_pivot = $badge_type->pivot->nb_repetitions;
+        foreach ($data as $key => $value) {
+            $badge_type = BadgeType::where('method', $key)->get()->first();
+            $user_badge_type = $user->badge_types()->where('method', $key)->get()->first();
+            if ($user_badge_type->count() > 0) {
+                $tmp_pivot = $user_badge_type->pivot->nb_repetitions;
                 $pivot = $tmp_pivot;
-                if ($tmp_pivot < $data[$badge_type->method]) {
-                    $user->badge_types()->updateExistingPivot($badge_type, ['nb_repetitions' => $data[$badge_type->method]]);
-                    $pivot = $badge_type->method;
+                if ($tmp_pivot < $value) {
+                    $user->badge_types()->updateExistingPivot($badge_type, ['nb_repetitions' => $value]);
+                    $pivot = $value;
                 } else {
                     $update = FALSE;
                 }
 
             } else {
-                $user->badge_types()->attach($badge_type, ['nb_repetitions' => $data[$badge_type->method]]);
-                $pivot = $data[$badge_type->method];
+                $user->badge_types()->attach($badge_type, ['nb_repetitions' => $value]);
+                $pivot = $value;
             }
 
             if ($update) {
@@ -65,7 +63,6 @@ class GameObserver
                     $user->badges()->attach($badge, ['datetime' => (new \DateTime())]);
                 }
 
-                $user->save();
             }
         }
     }

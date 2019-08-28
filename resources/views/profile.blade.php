@@ -300,7 +300,7 @@
 
         <div class="part-container">
             <h2>{{ __('common.rewards') }}</h2>
-            @if (sizeof($badges) > 1)
+            @if ($badges->count() > 0)
                 <div class="badges">
                     @foreach ($badges as $badge)
                         <div class="badge">
