@@ -1712,13 +1712,14 @@ class LanguageLinesTableSeeder extends Seeder
             'group' => 'common',
             'key' => 'example',
             'text' => ['en' => 'Example', 'fr' => 'Exemple'],
-        ]);**/
+        ]);
 
-        // @TODO : Here
         LanguageLine::create([
             'group' => 'common',
             'key' => 'rewards',
             'text' => ['en' => 'Rewards', 'fr' => 'Récompenses'],
-        ]);
+        ]);**/
+
+        // @TODO : Here
     }
 }
