@@ -132,6 +132,14 @@ class GameController extends Controller
                     $other_answers .= $temp;
                 }
             }
+        } else {
+            $answers = Proposal::where('question_id', $question->id)->get();
+            $other_answers = "";
+
+            foreach ($answers as $answer) {
+                $temp = '<li class="list-item">' . $answer->value . '</li>';
+                $other_answers .= $temp;
+            }
         }
 
 
