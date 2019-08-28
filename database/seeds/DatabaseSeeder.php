@@ -21,7 +21,8 @@ class DatabaseSeeder extends Seeder
         //$this->call('SettingTableSeeder');
         $this->call('LanguageLinesTableSeeder');
         //$this->call('LevelTableSeeder');
-
+        $this->call('BadgeTypeSeeder');
+        $this->call('BadgeSeeder');
 
         // DONT TRY TO RUN BEFORE db:seed : composer dump-autoload.
     }
