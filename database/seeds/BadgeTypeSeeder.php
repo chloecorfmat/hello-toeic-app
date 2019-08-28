@@ -12,7 +12,7 @@ class BadgeTypeSeeder extends Seeder
      */
     public function run()
     {
-        BadgeType::create([
+        /**BadgeType::create([
             'name' => 'Faire un challenge par jour, X jours d\'affilé',
             'description' => 'X dépend du niveau',
             'method' => 'aChallengePerDayXTimes'
@@ -22,6 +22,6 @@ class BadgeTypeSeeder extends Seeder
             'name' => 'Obtenir un score de X dans un challenge',
             'description' => 'X dépend du niveau',
             'method' => 'getXPointsOnChallengeMode'
-        ]);
+        ]);**/
     }
 }

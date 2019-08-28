@@ -13,7 +13,7 @@ class BadgeSeeder extends Seeder
      */
     public function run()
     {
-        $badge_type_id = BadgeType::where('method', 'aChallengePerDayXTimes')->first()->id;
+        /**$badge_type_id = BadgeType::where('method', 'aChallengePerDayXTimes')->first()->id;
         Badge::create([
             'badge_type_id' => $badge_type_id,
             'level_id' => 1,
@@ -83,7 +83,7 @@ class BadgeSeeder extends Seeder
             'level_id' => 5,
             'image' => './badges/mountain-peak-5.svg',
             'nb_repetitions' => 300
-        ]);
+        ]);**/
 
     }
 }
