@@ -27,7 +27,7 @@ class GameObserver
         foreach ($data as $key => $value) {
             $badge_type = BadgeType::where('method', $key)->get()->first();
             $user_badge_type = $user->badge_types()->where('method', $key)->get()->first();
-            if ($user_badge_type->count() > 0) {
+            if (!is_null($user_badge_type) && ($user_badge_type->count() > 0)) {
                 $tmp_pivot = $user_badge_type->pivot->nb_repetitions;
                 $pivot = $tmp_pivot;
                 if ($tmp_pivot < $value) {
