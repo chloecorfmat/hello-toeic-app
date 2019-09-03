@@ -36,8 +36,6 @@ class BadgesTask {
             if (!is_null($user_badge_type)) {
                 $pivot = $user_badge_type->pivot->nb_repetitions + 1;
                 $user->badge_types()->updateExistingPivot($badge_type, ['nb_repetitions' => $pivot]);
-
-
             } else {
                 // Init badge_type.
                 $pivot = 1;

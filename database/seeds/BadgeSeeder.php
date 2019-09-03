@@ -83,7 +83,7 @@ class BadgeSeeder extends Seeder
             'level_id' => 5,
             'image' => './badges/mountain-peak-5.svg',
             'nb_repetitions' => 300
-        ]);**/
+        ]);
 
         $badge_type_id = BadgeType::where('method', 'stayXDaysInChallengeTop')->first()->id;
         Badge::create([
@@ -119,7 +119,42 @@ class BadgeSeeder extends Seeder
             'level_id' => 5,
             'image' => './badges/medal-5.svg',
             'nb_repetitions' => 100
+        ]);**/
+
+        $badge_type_id = BadgeType::where('method', 'getATotalOfXPointsInChallenge')->first()->id;
+        Badge::create([
+            'badge_type_id' => $badge_type_id,
+            'level_id' => 1,
+            'image' => './badges/scoreboard-1.svg',
+            'nb_repetitions' => 25
         ]);
 
+        Badge::create([
+            'badge_type_id' => $badge_type_id,
+            'level_id' => 2,
+            'image' => './badges/scoreboard-2.svg',
+            'nb_repetitions' => 50
+        ]);
+
+        Badge::create([
+            'badge_type_id' => $badge_type_id,
+            'level_id' => 3,
+            'image' => './badges/scoreboard-3.svg',
+            'nb_repetitions' => 200
+        ]);
+
+        Badge::create([
+            'badge_type_id' => $badge_type_id,
+            'level_id' => 4,
+            'image' => './badges/scoreboard-4.svg',
+            'nb_repetitions' => 500
+        ]);
+
+        Badge::create([
+            'badge_type_id' => $badge_type_id,
+            'level_id' => 5,
+            'image' => './badges/scoreboard-5.svg',
+            'nb_repetitions' => 1000
+        ]);
     }
 }
