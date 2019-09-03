@@ -119,7 +119,7 @@ class BadgeSeeder extends Seeder
             'level_id' => 5,
             'image' => './badges/medal-5.svg',
             'nb_repetitions' => 100
-        ]);**/
+        ]);
 
         $badge_type_id = BadgeType::where('method', 'getATotalOfXPointsInChallenge')->first()->id;
         Badge::create([
@@ -155,6 +155,6 @@ class BadgeSeeder extends Seeder
             'level_id' => 5,
             'image' => './badges/scoreboard-5.svg',
             'nb_repetitions' => 1000
-        ]);
+        ]);**/
     }
 }
