@@ -60,16 +60,20 @@ class BadgesTask {
                 }
             }
 
-            foreach ($badges as $badge) {
-                $user->badges()->attach($badge, ['datetime' => (new \DateTime())]);
+            if (!empty($badges)) {
+                foreach ($badges as $badge) {
+                    $user->badges()->attach($badge, ['datetime' => (new \DateTime())]);
+                }
             }
         }
 
         $users_badge_type = $badge_type->users()->get();
 
-        foreach ($users_badge_type as $user) {
-            if (!in_array($user->id, $users_id)) {
-                $user->badge_types()->updateExistingPivot($badge_type, ['nb_repetitions' => 0]);
+        if (!empty($users_badge_type)) {
+            foreach ($users_badge_type as $user) {
+                if (!in_array($user->id, $users_id)) {
+                    $user->badge_types()->updateExistingPivot($badge_type, ['nb_repetitions' => 0]);
+                }
             }
         }
 
