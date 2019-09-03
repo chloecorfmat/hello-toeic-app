@@ -23,5 +23,11 @@ class BadgeTypeSeeder extends Seeder
             'description' => 'X dépend du niveau',
             'method' => 'getXPointsOnChallengeMode'
         ]);**/
+
+        BadgeType::create([
+            'name' => 'Rester dans le top 10 des challenges X jours',
+            'description' => 'X dépend du niveau',
+            'method' => 'stayXDaysInChallengeTop'
+        ]);
     }
 }

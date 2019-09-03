@@ -304,7 +304,7 @@
                 <div class="badges">
                     @foreach ($badges as $badge)
                         <div class="badge">
-                            <img src="{{ url('storage/' . $badge->image) }}" alt="" title="{{ $badge->badgeType->name }}">
+                            <img src="{{ url('storage/' . $badge->image) }}" alt="" title="{{ $badge->badgeType->name }} ({{ $badge->nb_repetitions }})">
                             <p><span class="important">Level:</span> {{ $badge->level->level }}</p>
                         </div>
                     @endforeach

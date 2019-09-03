@@ -85,5 +85,41 @@ class BadgeSeeder extends Seeder
             'nb_repetitions' => 300
         ]);**/
 
+        $badge_type_id = BadgeType::where('method', 'stayXDaysInChallengeTop')->first()->id;
+        Badge::create([
+            'badge_type_id' => $badge_type_id,
+            'level_id' => 1,
+            'image' => './badges/medal-1.svg',
+            'nb_repetitions' => 1
+        ]);
+
+        Badge::create([
+            'badge_type_id' => $badge_type_id,
+            'level_id' => 2,
+            'image' => './badges/medal-2.svg',
+            'nb_repetitions' => 10
+        ]);
+
+        Badge::create([
+            'badge_type_id' => $badge_type_id,
+            'level_id' => 3,
+            'image' => './badges/medal-3.svg',
+            'nb_repetitions' => 25
+        ]);
+
+        Badge::create([
+            'badge_type_id' => $badge_type_id,
+            'level_id' => 4,
+            'image' => './badges/medal-4.svg',
+            'nb_repetitions' => 50
+        ]);
+
+        Badge::create([
+            'badge_type_id' => $badge_type_id,
+            'level_id' => 5,
+            'image' => './badges/medal-5.svg',
+            'nb_repetitions' => 100
+        ]);
+
     }
 }
