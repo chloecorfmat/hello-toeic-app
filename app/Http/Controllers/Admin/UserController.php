@@ -158,7 +158,7 @@ class UserController extends Controller
 
             $user->save();
 
-            return redirect()->route('users.edit', [$id])->with('success', trans('users.updaded'));
+            return redirect()->route('users.edit', [$id])->with('success', trans('users.updated'));
         }
 
         return redirect()->route('users.edit', [$id])->withErrors([trans('users.unique_constraints')]);

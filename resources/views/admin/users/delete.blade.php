@@ -17,7 +17,7 @@
         <form action="{{ route('users.destroy', $user->id) }}" method="POST">
             @method('DELETE')
             @csrf
-            <p class="important">{{ __('common.delete_sure') }} <span class="emphasis">{{ __('common.action_irreversible') }}</span></p>
+            <p class="important">{{ __('users.delete_sure') }} <span class="emphasis">{{ __('common.action_irreversible') }}</span></p>
 
             <button type="submit" class="btn btn-primary">{{ __('common.delete') }}</button>
         </form>
