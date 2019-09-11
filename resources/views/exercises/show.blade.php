@@ -53,7 +53,7 @@
                                     @php ($qs[] = $question)
                                 @else
                                     @if (!empty($qs))
-                                        <li class="block-question">
+                                        <li class="block-question part-inline">
                                             {!! $render->inline($d->content, $qs, -1) !!}
                                         </li>
                                     @endif
@@ -63,7 +63,7 @@
                                 @endif
                             @endforeach
                             @if (!empty($qs))
-                                <li class="block-question">
+                                <li class="block-question part-inline">
                                     {!! $render->inline($d->content, $qs, -1) !!}
                                 </li>
                             @endif

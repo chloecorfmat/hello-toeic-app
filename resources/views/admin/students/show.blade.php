@@ -21,7 +21,7 @@
                 @if (!is_null($student->passed))
                     {{ date('d/m/Y', strtotime($student->passed)) }}
                 @else
-                    ({{ __('common.no-validate') }}))
+                    ({{ __('common.no-validate') }})
                 @endif
             </p>
             <div>

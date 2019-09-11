@@ -133,6 +133,10 @@ legend {
     &:last-child {
         margin-bottom: 1rem;
     }
+
+    &.part-inline {
+        line-height: 2;
+    }
 }
 
 .form-wordings {

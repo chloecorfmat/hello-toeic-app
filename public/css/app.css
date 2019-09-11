@@ -636,6 +636,10 @@ legend {
   margin-bottom: 1rem;
 }
 
+.block-question.part-inline {
+  line-height: 2;
+}
+
 .form-wordings {
   width: 100%;
 }

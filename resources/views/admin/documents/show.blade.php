@@ -25,7 +25,7 @@
             </span>
         </p>
 
-        @if (!empty($datas['document']->url)))
+        @if (!empty($datas['document']->url))
         <div class="file--preview">
             <img src="{{ url('storage/' . $datas['document']->url) }}"/>
             <p>{{ $datas['document']->url }}</p>
