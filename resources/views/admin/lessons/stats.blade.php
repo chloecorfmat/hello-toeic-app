@@ -85,7 +85,7 @@
                                             <td>{{ $question->number }}</td>
                                             @php ($percent = $question->score*100/$exercise->users_nb)
                                             @php ($class_score = $percent >= $levels['intermediate'] ? 'score--high' : ($percent >= $levels['low'] ? 'score--medium' : 'score--low'))
-                                            <td class="score {{ $class_score }}"><span class="important">{{ $question->score }}/{{ $exercise->users_nb }}</span> ({{ $percent }}%)</td>
+                                            <td class="score {{ $class_score }}"><span class="important">{{ $question->score }}/{{ $exercise->users_nb }}</span> ({{ round($percent, 2) }}%)</td>
                                             <td>
                                                 <a href="{{ route('questions.show', ['id' => $question->question]) }}" title="{{ __('questions.show') }}"><i class="fas fa-eye"></i></a>
                                             </td>
