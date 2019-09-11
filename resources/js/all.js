@@ -95,6 +95,13 @@ function initialiser(e) {
 
         document.addEventListener('scroll', stickyPlayer);
     }
+
+    // To avoid double submissions on exercises or tests.
+    document.querySelectorAll('.test').forEach(function(form) {
+       form.addEventListener('submit', function() {
+           form.querySelector('button[type="submit"]').setAttribute("disabled", "disabled");
+       })
+    })
 }
 
 // Get timer for listening exercises.
