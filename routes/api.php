@@ -18,6 +18,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('users/{page?}', function ($page = 1) {
+Route::get('currentuser', function () {
+    return (new ApiController())->currentUser();
+});
+
+Route::middleware('auth:api')->get('users/{page?}', function ($page = 1) {
     return (new ApiController())->users($page);
 });

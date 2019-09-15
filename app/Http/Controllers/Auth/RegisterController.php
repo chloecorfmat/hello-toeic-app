@@ -69,6 +69,7 @@ class RegisterController extends Controller
             'matricule' => $data['matricule'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'api_token' => Str::random(60),
         ]);
 
         $user->assignRole('student');

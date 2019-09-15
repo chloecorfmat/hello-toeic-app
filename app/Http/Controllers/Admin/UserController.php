@@ -66,6 +66,7 @@ class UserController extends Controller
                 'email' => $request->get('email'),
                 'course' => $request->get('course'),
                 'password' => Hash::make($request->get('matricule')),
+                'api_token' => Str::random(60),
                 'passed' => $request->get('passed'),
             ]);
 
@@ -241,6 +242,7 @@ class UserController extends Controller
                         'email' => $email,
                         'course' => $data[3] . $data[2],
                         'password' => Hash::make(str_replace("\n", "", $data[5])),
+                        'api_token' => Str::random(60),
                     ]);
 
                     $user->assignRole($role);
@@ -275,6 +277,7 @@ class UserController extends Controller
     public function v2()
     {
         $is_admin = auth()->user()->hasRole('admin');
-        return view('admin.users.v2', compact( 'is_admin'));
+        $current_user = json_encode(\Auth::user());
+        return view('admin.users.v2', compact( 'is_admin', 'current_user'));
     }
 }

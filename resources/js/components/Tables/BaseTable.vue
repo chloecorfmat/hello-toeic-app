@@ -29,6 +29,7 @@
     import BasePagination from "../Paginations/BasePagination";
     export default {
         components: {BasePagination},
+        props: ['currentUserData'],
         data: function() {
             return {
                 users: [],
@@ -41,6 +42,9 @@
             pagesNumber: function () {
                 return Math.ceil(this.usersNb.length/30);
             },
+            currentUser: function () {
+                return JSON.parse(this.currentUserData);
+            }
         },
         beforeMount: function() {
             this.list();
@@ -48,8 +52,11 @@
         methods: {
             list: function () {
                 axios
-                    .get('/api/users/' + this.currentPage)
-                    .then(response => (this.users = response.data.users, this.usersNb = response.data));
+                    .get('/api/users/' + this.currentPage + '?api_token=' + this.currentUser.api_token)
+                    .then(response => (
+                        this.users = response.data.users,
+                        this.usersNb = response.data.users_nb
+                    ));
             },
             toutou: function (value) {
                 this.currentPage = this.currentPage + 1;

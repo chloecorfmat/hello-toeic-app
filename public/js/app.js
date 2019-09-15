@@ -1917,6 +1917,7 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     BasePagination: _Paginations_BasePagination__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
+  props: ['currentUserData'],
   data: function data() {
     return {
       users: [],
@@ -1928,6 +1929,9 @@ __webpack_require__.r(__webpack_exports__);
     // un accesseur (getter) calculé
     pagesNumber: function pagesNumber() {
       return Math.ceil(this.usersNb.length / 30);
+    },
+    currentUser: function currentUser() {
+      return JSON.parse(this.currentUserData);
     }
   },
   beforeMount: function beforeMount() {
@@ -1937,8 +1941,8 @@ __webpack_require__.r(__webpack_exports__);
     list: function list() {
       var _this = this;
 
-      axios.get('/api/users/' + this.currentPage).then(function (response) {
-        return _this.users = response.data.users, _this.usersNb = response.data;
+      axios.get('/api/users/' + this.currentPage + '?api_token=' + this.currentUser.api_token).then(function (response) {
+        return _this.users = response.data.users, _this.usersNb = response.data.users_nb;
       });
     },
     toutou: function toutou(value) {

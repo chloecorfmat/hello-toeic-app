@@ -24,6 +24,6 @@
             </div>
         @endif
 
-        <base-table></base-table>
+        <base-table current-user-data="{{ $current_user }}"></base-table>
     </div>
 @endsection
