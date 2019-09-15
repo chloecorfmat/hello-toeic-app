@@ -27,23 +27,25 @@
 
 <script>
     import BasePagination from "../Paginations/BasePagination";
+    import axios from "axios";
+
     export default {
         components: {BasePagination},
         props: ['currentUserData'],
         data: function() {
             return {
                 users: [],
-                usersNb: [],
+                usersNb: 0,
                 currentPage: 1,
+                pagesNumber: 1,
             };
         },
         computed: {
-            // un accesseur (getter) calculé
-            pagesNumber: function () {
-                return Math.ceil(this.usersNb.length/30);
-            },
             currentUser: function () {
                 return JSON.parse(this.currentUserData);
+            },
+            questions () {
+                return this.$store.state.questions;
             }
         },
         beforeMount: function() {
@@ -55,7 +57,8 @@
                     .get('/api/users/' + this.currentPage + '?api_token=' + this.currentUser.api_token)
                     .then(response => (
                         this.users = response.data.users,
-                        this.usersNb = response.data.users_nb
+                        this.usersNb = response.data.users_nb,
+                        this.pagesNumber = Math.ceil(response.data.users_nb/30)
                     ));
             },
             toutou: function (value) {

@@ -4,9 +4,11 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+import Vue from 'vue';
+import 'es6-promise/auto';
+import store from './store/store';
 
-window.Vue = require('vue');
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -28,4 +30,5 @@ Vue.component('base-table', require('./components/Tables/BaseTable.vue').default
 
 const app = new Vue({
     el: '#app',
+    store
 });
