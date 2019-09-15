@@ -98,9 +98,9 @@ function initialiser(e) {
 
     // To avoid double submissions on exercises or tests.
     document.querySelectorAll('.test').forEach(function(form) {
-       form.addEventListener('submit', function() {
-           form.querySelector('button[type="submit"]').setAttribute("disabled", "disabled");
-       })
+        form.addEventListener('submit', function() {
+            form.querySelector('button[type="submit"]').setAttribute("disabled", "disabled");
+        })
     })
 }
 

@@ -270,6 +270,11 @@ class UserController extends Controller
 
             return redirect()->route('students.index')->with('warning', $message);
         }
+    }
 
+    public function v2()
+    {
+        $is_admin = auth()->user()->hasRole('admin');
+        return view('admin.users.v2', compact( 'is_admin'));
     }
 }

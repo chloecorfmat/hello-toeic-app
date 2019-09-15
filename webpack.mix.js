@@ -11,14 +11,17 @@ const mix = require('laravel-mix');
  |
  */
 
+/**mix.scripts([
+    'resources/js/appo.js',
+    'resources/js/charts.js',
+    'resources/js/lists.js',
+    'resources/js/listOverride.js',
+    'resources/js/imageZoom.js'
+], 'resources/js/all.js');**/
 
-mix.scripts([
-        'resources/js/app.js',
-        'resources/js/charts.js',
-        'resources/js/lists.js',
-        'resources/js/listOverride.js',
-        'resources/js/imageZoom.js'
-    ], 'resources/js/all.js');
-mix
-   .js('resources/js/all.js', 'public/js')
+
+mix.js('resources/js/app.js', 'public/js')
+   //.js('resources/js/all.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css');
+
+
