@@ -1957,7 +1957,8 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     list: function list() {
       this.reloadUsers();
-      var url = window.location.href;
+      var url = window.location.href.replace(/\/$/, "");
+      ;
       var lastParam = url.substring(url.lastIndexOf("/") + 1, url.length);
 
       if (parseInt(lastParam) !== this.currentPage) {
@@ -1966,7 +1967,8 @@ __webpack_require__.r(__webpack_exports__);
     },
     changePage: function changePage(page) {
       if (this.currentPage !== page) {
-        var url = window.location.href;
+        var url = window.location.href.replace(/\/$/, "");
+        ;
         var base_url = url.substring(0, url.lastIndexOf("/"));
         window.history.pushState("", "", base_url + '/' + page);
         this.currentPage = page;

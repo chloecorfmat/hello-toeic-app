@@ -59,7 +59,7 @@
         methods: {
             list: function () {
                 this.reloadUsers();
-                let url = window.location.href;
+                let url = window.location.href.replace(/\/$/, "");;
                 let lastParam = url.substring(url.lastIndexOf("/") + 1, url.length);
                 if (parseInt(lastParam) !== this.currentPage) {
                     window.history.pushState("", "", url + '/' + this.currentPage);
@@ -67,7 +67,7 @@
             },
             changePage: function (page) {
                 if (this.currentPage !== page) {
-                    let url = window.location.href;
+                    let url = window.location.href.replace(/\/$/, "");;
                     let base_url = url.substring(0, url.lastIndexOf("/"));
                     window.history.pushState("", "", base_url + '/' + page);
                     this.currentPage = page;
