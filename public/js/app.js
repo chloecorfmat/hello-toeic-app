@@ -1867,9 +1867,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['currentPageData', 'pagesNumber'],
   data: function data() {
-    return {};
+    return {
+      currentPage: 1
+    };
+  },
+  beforeMount: function beforeMount() {
+    this.currentPage = parseInt(this.currentPageData);
   }
 });
 
@@ -1914,42 +1923,62 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     BasePagination: _Paginations_BasePagination__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  props: ['currentUserData'],
+  props: ['currentUserData', 'currentPageData'],
   data: function data() {
     return {
       users: [],
       usersNb: 0,
-      currentPage: 1,
-      pagesNumber: 1
+      pagesNumber: 1,
+      currentPage: 1
     };
   },
   computed: {
     currentUser: function currentUser() {
       return JSON.parse(this.currentUserData);
-    },
-    questions: function questions() {
-      return this.$store.state.questions;
     }
   },
   beforeMount: function beforeMount() {
+    this.currentPage = parseInt(this.currentPageData);
     this.list();
   },
   methods: {
     list: function list() {
+      this.reloadUsers();
+      var url = window.location.href;
+      var lastParam = url.substring(url.lastIndexOf("/") + 1, url.length);
+
+      if (parseInt(lastParam) !== this.currentPage) {
+        window.history.pushState("", "", url + '/' + this.currentPage);
+      }
+    },
+    changePage: function changePage(page) {
+      if (this.currentPage !== page) {
+        var url = window.location.href;
+        var base_url = url.substring(0, url.lastIndexOf("/"));
+        window.history.pushState("", "", base_url + '/' + page);
+        this.currentPage = page;
+        this.reloadUsers();
+      }
+    },
+    reloadUsers: function reloadUsers() {
       var _this = this;
 
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/users/' + this.currentPage + '?api_token=' + this.currentUser.api_token).then(function (response) {
         return _this.users = response.data.users, _this.usersNb = response.data.users_nb, _this.pagesNumber = Math.ceil(response.data.users_nb / 30);
       });
-    },
-    toutou: function toutou(value) {
-      this.currentPage = this.currentPage + 1;
     }
   }
 });
@@ -3641,18 +3670,24 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "pagination" }, [
-    _c("h1", [_vm._v("Pagination")]),
-    _vm._v(" "),
     _c(
-      "button",
-      {
-        on: {
-          click: function($event) {
-            return _vm.$emit("test", 0.1)
-          }
-        }
-      },
-      [_vm._v("Toto")]
+      "ol",
+      _vm._l(this.pagesNumber, function(n) {
+        return _c("li", [
+          _c(
+            "button",
+            {
+              on: {
+                click: function($event) {
+                  return _vm.$emit("changePage", n)
+                }
+              }
+            },
+            [_vm._v(_vm._s(n))]
+          )
+        ])
+      }),
+      0
     )
   ])
 }
@@ -3690,7 +3725,15 @@ var render = function() {
         _c(
           "tbody",
           _vm._l(_vm.users, function(user) {
-            return _c("tr", [_c("td", [_vm._v(_vm._s(user.name))])])
+            return _c("tr", [
+              _c("td", [_vm._v(_vm._s(user.matricule))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(user.name))]),
+              _vm._v(" "),
+              _c("td", [_vm._v("Role")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("Actions")])
+            ])
           }),
           0
         )
@@ -3700,7 +3743,15 @@ var render = function() {
     _c(
       "div",
       { staticClass: "pagination-container" },
-      [_c("base-pagination", { on: { test: _vm.toutou } })],
+      [
+        _c("base-pagination", {
+          attrs: {
+            "current-page-data": this.currentPage,
+            "pages-number": this.pagesNumber
+          },
+          on: { changePage: _vm.changePage }
+        })
+      ],
       1
     )
   ])

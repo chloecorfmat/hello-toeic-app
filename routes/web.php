@@ -34,7 +34,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('admin/permissions', 'PermissionController');
 
 
-    Route::get('admin/users/v2', 'UserController@v2')
+    Route::get('admin/v2/users/{page?}', 'UserController@v2')
         ->name('users.import');
     Route::get('admin/users/import', 'UserController@import')
         ->name('users.import');

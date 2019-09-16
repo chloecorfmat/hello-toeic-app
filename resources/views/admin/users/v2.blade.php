@@ -24,6 +24,6 @@
             </div>
         @endif
 
-        <base-table current-user-data="{{ $current_user }}"></base-table>
+        <base-table current-user-data="{{ $current_user }}" current-page-data="{{ $current_page }}"></base-table>
     </div>
 @endsection
