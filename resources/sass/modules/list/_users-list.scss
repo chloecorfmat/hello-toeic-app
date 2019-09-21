@@ -20,13 +20,12 @@
     border: none;
   }
 
-  tr {
+  /**tr {
     &:hover {
       background: $tertiary-color-2;
+      transition: all .01s linear;
     }
-  }
-
-
+  }**/
 
   .role {
     display: inline-block;

@@ -1405,6 +1405,15 @@ tr:nth-child(2n) {
 
 /** LISTS **/
 
+.tablev2 {
+  /**tr {
+    &:hover {
+      background: $tertiary-color-2;
+      transition: all .01s linear;
+    }
+  }**/
+}
+
 .tablev2 .numeric-column {
   text-align: right;
 }
@@ -1424,10 +1433,6 @@ tr:nth-child(2n) {
 
 .tablev2 td {
   border: none;
-}
-
-.tablev2 tr:hover {
-  background: #c5cbd3;
 }
 
 .tablev2 .role {
