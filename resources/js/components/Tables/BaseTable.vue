@@ -6,8 +6,8 @@
                 <input v-on:keyup="searchUsers" v-model="search" type="text" id="search" name="search" class="search">
             </div>
         </div>
-        
-        <div v-if="usersNb !== 0">
+
+        <div v-if="users.length !== 0">
             <div class="table-container is-visible">
                 <table>
                     <caption class="sr-only">Users list</caption>
@@ -51,17 +51,18 @@
                     </tbody>
                 </table>
             </div>
-            <div class="pagination-container">
-                <base-pagination
-                        v-on:changePage="changePage"
-                        :current-page="this.currentPage"
-                        :pages-number="this.pagesNumber"
-                ></base-pagination>
-            </div>
         </div>
 
         <div v-else>
             <p>Aucun résultat.</p>
+        </div>
+
+        <div class="pagination-container">
+            <base-pagination
+                    v-on:changePage="changePage"
+                    :current-page="this.currentPage"
+                    :pages-number="this.pagesNumber"
+            ></base-pagination>
         </div>
     </div>
 </template>
@@ -93,6 +94,11 @@
         },
         methods: {
             list: function () {
+                let GETParams = this.getGETParameters();
+                if (GETParams.search !== 'undefined') {
+                    this.search = GETParams.search;
+                }
+
                 this.reloadUsers();
                 let url = window.location.href.replace(/\/$/, "");;
                 let lastParam = url.substring(url.lastIndexOf("/") + 1, url.length);
@@ -102,23 +108,19 @@
             },
             changePage: function (page) {
                 if (this.currentPage !== page) {
-                    let url = window.location.href.replace(/\/$/, "");;
+                    let url = window.location.href.replace(/\/$/, "");
                     let base_url = url.substring(0, url.lastIndexOf("/"));
-                    window.history.pushState("", "", base_url + '/' + page);
+                    if (search !== '') {
+                        window.history.pushState("", "", base_url + '/' + this.currentPage + "?search=" + this.search);
+                    } else {
+                        window.history.pushState("", "", base_url + '/' + page);
+                    }
+
                     this.currentPage = page;
                     this.reloadUsers();
                 }
             },
             reloadUsers: function () {
-                axios
-                    .get('/api/users/' + this.currentPage + '?api_token=' + this.currentUser.api_token)
-                    .then(response => (
-                        this.users = response.data.users,
-                            this.usersNb = response.data.users_nb,
-                            this.pagesNumber = Math.ceil(response.data.users_nb/30)
-                    ));
-            },
-            searchUsers: function () {
                 axios
                     .get('/api/users/' + this.currentPage + '?api_token=' + this.currentUser.api_token + '&search=' + this.search)
                     .then(response => (
@@ -126,6 +128,30 @@
                             this.usersNb = response.data.users_nb,
                             this.pagesNumber = Math.ceil(response.data.users_nb/30)
                     ));
+            },
+            searchUsers: function () {
+                let url = window.location.href.replace(/\/$/, "");
+                let base_url = url.substring(0, url.lastIndexOf("/"));
+                if (search !== '') {
+                    window.history.pushState("", "", base_url + '/' + this.currentPage + "?search=" + this.search);
+                } else {
+                    window.history.pushState("", "", base_url + '/' + page);
+                }
+
+                this.reloadUsers();
+            },
+            getGETParameters: function () {
+                var prmstr = window.location.search.substr(1);
+                return prmstr != null && prmstr != "" ? this.transformToAssocArray(prmstr) : {};
+            },
+            transformToAssocArray: function (prmstr) {
+                var params = {};
+                var prmarr = prmstr.split("&");
+                for ( var i = 0; i < prmarr.length; i++) {
+                    var tmparr = prmarr[i].split("=");
+                    params[tmparr[0]] = tmparr[1];
+                }
+                return params;
             }
         }
     }

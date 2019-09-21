@@ -12,15 +12,16 @@ class ApiController extends Controller
         $current_user = \Auth::user();
         $query = null;
 
-        if (!empty($request->get('search'))) {
+        if (!empty($request->get('search') && $request->get('search') !== "undefined")) {
             $search = $request->get('search');
             $query = User::where('name', 'LIKE', '%' . $search . '%');
         }
 
         $skip = ($page-1)*30;
         if (!is_null($query)) {
-            $users = $query->skip($skip)->take(30)->get();
             $users_nb = $query->count();
+            $users = $query->skip($skip)->take(30)->get();
+
         } else {
             $users = User::skip($skip)->take(30)->get();
             $users_nb = User::all()->count();

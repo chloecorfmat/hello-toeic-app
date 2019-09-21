@@ -1949,6 +1949,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['currentPage', 'pagesNumber'],
   computed: {
@@ -2081,6 +2082,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2108,6 +2110,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     list: function list() {
+      var GETParams = this.getGETParameters();
+
+      if (GETParams.search !== 'undefined') {
+        this.search = GETParams.search;
+      }
+
       this.reloadUsers();
       var url = window.location.href.replace(/\/$/, "");
       ;
@@ -2120,9 +2128,14 @@ __webpack_require__.r(__webpack_exports__);
     changePage: function changePage(page) {
       if (this.currentPage !== page) {
         var url = window.location.href.replace(/\/$/, "");
-        ;
         var base_url = url.substring(0, url.lastIndexOf("/"));
-        window.history.pushState("", "", base_url + '/' + page);
+
+        if (search !== '') {
+          window.history.pushState("", "", base_url + '/' + this.currentPage + "?search=" + this.search);
+        } else {
+          window.history.pushState("", "", base_url + '/' + page);
+        }
+
         this.currentPage = page;
         this.reloadUsers();
       }
@@ -2130,16 +2143,36 @@ __webpack_require__.r(__webpack_exports__);
     reloadUsers: function reloadUsers() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/users/' + this.currentPage + '?api_token=' + this.currentUser.api_token).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/users/' + this.currentPage + '?api_token=' + this.currentUser.api_token + '&search=' + this.search).then(function (response) {
         return _this.users = response.data.users, _this.usersNb = response.data.users_nb, _this.pagesNumber = Math.ceil(response.data.users_nb / 30);
       });
     },
     searchUsers: function searchUsers() {
-      var _this2 = this;
+      var url = window.location.href.replace(/\/$/, "");
+      var base_url = url.substring(0, url.lastIndexOf("/"));
 
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/users/' + this.currentPage + '?api_token=' + this.currentUser.api_token + '&search=' + this.search).then(function (response) {
-        return _this2.users = response.data.users, _this2.usersNb = response.data.users_nb, _this2.pagesNumber = Math.ceil(response.data.users_nb / 30);
-      });
+      if (search !== '') {
+        window.history.pushState("", "", base_url + '/' + this.currentPage + "?search=" + this.search);
+      } else {
+        window.history.pushState("", "", base_url + '/' + page);
+      }
+
+      this.reloadUsers();
+    },
+    getGETParameters: function getGETParameters() {
+      var prmstr = window.location.search.substr(1);
+      return prmstr != null && prmstr != "" ? this.transformToAssocArray(prmstr) : {};
+    },
+    transformToAssocArray: function transformToAssocArray(prmstr) {
+      var params = {};
+      var prmarr = prmstr.split("&");
+
+      for (var i = 0; i < prmarr.length; i++) {
+        var tmparr = prmarr[i].split("=");
+        params[tmparr[0]] = tmparr[1];
+      }
+
+      return params;
     }
   }
 });
@@ -3836,17 +3869,19 @@ var render = function() {
           "ol",
           _vm._l(this.pagesNumber, function(n) {
             return _c("li", [
-              _c(
-                "button",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.$emit("changePage", n)
-                    }
-                  }
-                },
-                [_vm._v(_vm._s(n))]
-              )
+              _vm.pagination.current !== n
+                ? _c(
+                    "button",
+                    {
+                      on: {
+                        click: function($event) {
+                          return _vm.$emit("changePage", n)
+                        }
+                      }
+                    },
+                    [_vm._v(_vm._s(n))]
+                  )
+                : _c("span", [_vm._v(_vm._s(n))])
             ])
           }),
           0
@@ -4226,7 +4261,7 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm.usersNb !== 0
+    _vm.users.length !== 0
       ? _c("div", [
           _c("div", { staticClass: "table-container is-visible" }, [
             _c("table", [
@@ -4278,24 +4313,24 @@ var render = function() {
                 0
               )
             ])
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "pagination-container" },
-            [
-              _c("base-pagination", {
-                attrs: {
-                  "current-page": this.currentPage,
-                  "pages-number": this.pagesNumber
-                },
-                on: { changePage: _vm.changePage }
-              })
-            ],
-            1
-          )
+          ])
         ])
-      : _c("div", [_c("p", [_vm._v("Aucun résultat.")])])
+      : _c("div", [_c("p", [_vm._v("Aucun résultat.")])]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "pagination-container" },
+      [
+        _c("base-pagination", {
+          attrs: {
+            "current-page": this.currentPage,
+            "pages-number": this.pagesNumber
+          },
+          on: { changePage: _vm.changePage }
+        })
+      ],
+      1
+    )
   ])
 }
 var staticRenderFns = [

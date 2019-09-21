@@ -4,7 +4,8 @@
         <!-- Full pagination -->
         <ol v-if="pagination.type === 'full'">
             <li v-for="n in this.pagesNumber">
-                <button v-on:click="$emit('changePage', n)">{{ n }}</button>
+                <button v-if="pagination.current !== n" v-on:click="$emit('changePage', n)">{{ n }}</button>
+                <span v-else>{{ n }}</span>
             </li>
         </ol>
 
