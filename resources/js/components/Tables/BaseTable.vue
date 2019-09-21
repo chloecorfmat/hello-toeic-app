@@ -1,5 +1,5 @@
 <template>
-    <div class="table">
+    <div class="table tablev2">
         <div class="table--filters">
 
         </div>
@@ -7,17 +7,41 @@
             <table>
                 <caption class="sr-only">Users list</caption>
                 <thead>
-                    <th>Matricule</th>
-                    <th>Name</th>
+                <th class="numeric-column">
+                    <button class="sort">
+                        ID <i class="fas fa-arrows-alt-v"></i>
+                    </button>
+                </th>
+                    <th>
+                        <button class="sort">
+                            Name <i class="fas fa-arrows-alt-v"></i>
+                        </button>
+                    </th>
+                    <th>E-mail</th>
+                    <th class="numeric-column">Matricule</th>
                     <th>Role</th>
-                    <th>Actions</th>
+                    <th class="actions-column">Actions</th>
                 </thead>
                 <tbody>
                     <tr v-for="user in users">
-                        <td>{{ user.matricule }}</td>
-                        <td>{{ user.name }}</td>
-                        <td>Role</td>
-                        <td>Actions</td>
+                        <td class="numeric-column">{{ user.id }}</td>
+                        <td class="important">{{ user.name }}</td>
+                        <td>
+                            <a v-bind:href="'mailto:' + user.email">{{ user.email }}</a>
+                        </td>
+                        <td class="numeric-column">{{ user.matricule }}</td>
+                        <td>
+                            <ul>
+                                <li v-for="role in user.roles">
+                                    <span v-bind:class="'role role-' + role.name"></span>{{ role.name }}
+                                </li>
+                            </ul>
+                        </td>
+                        <td class="actions-column">
+                            <button>
+                                <i class="actions-ico fas fa-ellipsis-h fa-lg"></i>
+                            </button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -25,7 +49,7 @@
         <div class="pagination-container">
             <base-pagination
                     v-on:changePage="changePage"
-                    :current-page-data="this.currentPage"
+                    :current-page="this.currentPage"
                     :pages-number="this.pagesNumber"
             ></base-pagination>
         </div>

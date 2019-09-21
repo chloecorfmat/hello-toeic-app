@@ -1,0 +1,63 @@
+.tablev2 {
+  .numeric-column {
+    text-align: right;
+  }
+
+  .actions-column {
+    text-align: center;
+
+    button {
+      border: none;
+      background: none;
+    }
+
+    .actions-ico {
+      color: $tertiary-color-1;
+    }
+  }
+
+  .role {
+    display: inline-block;
+    width: .8rem;
+    height: .8rem;
+    margin-right: .5rem;
+    border-radius: 50%;
+
+    &.role-student {
+      background: $tertiary-color-1;
+    }
+
+    &.role-teacher {
+      background: $secondary-color-2;
+    }
+
+    &.role-admin {
+      background: $danger-color;
+    }
+  }
+}
+
+.paginationv2 {
+  display: block;
+  margin: auto;
+  text-align: center;
+
+  button {
+    border: none;
+    background: none;
+    color: $tertiary-color-1;
+    font-size: .9rem;
+    cursor: pointer;
+  }
+
+  li {
+    span {
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    i {
+      font-size: .9rem;
+    }
+  }
+}

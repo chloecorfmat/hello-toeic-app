@@ -13,6 +13,11 @@ class ApiController extends Controller
 
         $skip = ($page-1)*30;
         $users = User::skip($skip)->take(30)->get();
+
+        foreach ($users as $user) {
+            $user->getRoleNames();
+        }
+
         $users_nb = User::all()->count();
         return response()->json([
             'current_user' => $current_user,

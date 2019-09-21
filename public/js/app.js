@@ -1870,15 +1870,132 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['currentPageData', 'pagesNumber'],
-  data: function data() {
-    return {
-      currentPage: 1
-    };
-  },
-  beforeMount: function beforeMount() {
-    this.currentPage = parseInt(this.currentPageData);
+  props: ['currentPage', 'pagesNumber'],
+  computed: {
+    pagination: function pagination() {
+      var paginationObject = {};
+      paginationObject.first = 1;
+      paginationObject.last = this.pagesNumber;
+      paginationObject.current = this.currentPage;
+
+      if (this.pagesNumber < 6) {
+        paginationObject.type = 'full';
+        paginationObject.second = false;
+        paginationObject.beforeLast = false;
+        paginationObject.hiddenFirst = false;
+        paginationObject.hiddenSecond = false;
+        paginationObject.hiddenCentered = false;
+        paginationObject.middle = false;
+      } else if (this.currentPage < 3 || this.currentPage > this.pagesNumber - 2) {
+        paginationObject.type = 'partial';
+        paginationObject.second = true;
+        paginationObject.beforeLast = true;
+        paginationObject.hiddenFirst = false;
+        paginationObject.hiddenSecond = false;
+        paginationObject.hiddenCentered = true;
+        paginationObject.middle = false;
+      } else {
+        paginationObject.type = 'partial';
+        paginationObject.hiddenFirst = true;
+        paginationObject.hiddenSecond = true;
+
+        if (this.currentPage == 3) {
+          // 3 = 1 + 2
+          paginationObject.hiddenFirst = false;
+        }
+
+        if (this.currentPage == this.pagesNumber - 2) {
+          paginationObject.hiddenSecond = false;
+        }
+
+        paginationObject.second = false;
+        paginationObject.beforeLast = false;
+        paginationObject.hiddenCentered = false;
+        paginationObject.middle = true;
+      }
+
+      return paginationObject;
+    }
   }
 });
 
@@ -1896,6 +2013,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Paginations_BasePagination__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Paginations/BasePagination */ "./resources/js/components/Paginations/BasePagination.vue");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3671,26 +3812,348 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "pagination" }, [
-    _c(
-      "ol",
-      _vm._l(this.pagesNumber, function(n) {
-        return _c("li", [
+  return _c("div", { staticClass: "pagination paginationv2" }, [
+    _vm.pagination.type === "full"
+      ? _c(
+          "ol",
+          _vm._l(this.pagesNumber, function(n) {
+            return _c("li", [
+              _c(
+                "button",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.$emit("changePage", n)
+                    }
+                  }
+                },
+                [_vm._v(_vm._s(n))]
+              )
+            ])
+          }),
+          0
+        )
+      : _c("ol", [
+          _vm.pagination.current !== 1
+            ? _c("li", [
+                _c(
+                  "button",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.$emit("changePage", 1)
+                      }
+                    }
+                  },
+                  [_c("i", { staticClass: "fas fa-step-backward" })]
+                )
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.pagination.current !== 1
+            ? _c("li", [
+                _c(
+                  "button",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.$emit(
+                          "changePage",
+                          _vm.pagination.current - 1
+                        )
+                      }
+                    }
+                  },
+                  [_c("i", { staticClass: "fas fa-chevron-left" })]
+                )
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _c("li", [
+            _vm.pagination.current !== 1
+              ? _c(
+                  "button",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.$emit("changePage", 1)
+                      }
+                    }
+                  },
+                  [_vm._v("1")]
+                )
+              : _c("span", [_vm._v("1")])
+          ]),
+          _vm._v(" "),
           _c(
-            "button",
+            "li",
             {
-              on: {
-                click: function($event) {
-                  return _vm.$emit("changePage", n)
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.pagination.second,
+                  expression: "pagination.second"
                 }
-              }
+              ]
             },
-            [_vm._v(_vm._s(n))]
-          )
-        ])
-      }),
-      0
-    )
+            [
+              _vm.pagination.current !== 2
+                ? _c(
+                    "button",
+                    {
+                      on: {
+                        click: function($event) {
+                          return _vm.$emit("changePage", 2)
+                        }
+                      }
+                    },
+                    [_vm._v("2")]
+                  )
+                : _c("span", [_vm._v("2")])
+            ]
+          ),
+          _vm._v(" "),
+          _vm.pagination.current == 2 && _vm.pagination.second
+            ? _c("li", [
+                _c(
+                  "button",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.$emit("changePage", 3)
+                      }
+                    }
+                  },
+                  [_vm._v("3")]
+                )
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.pagination.hiddenFirst,
+                  expression: "pagination.hiddenFirst"
+                }
+              ]
+            },
+            [_c("i", { staticClass: "fas fa-ellipsis-h" })]
+          ),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.pagination.hiddenCentered,
+                  expression: "pagination.hiddenCentered"
+                }
+              ]
+            },
+            [_c("i", { staticClass: "fas fa-ellipsis-h" })]
+          ),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.pagination.middle,
+                  expression: "pagination.middle"
+                }
+              ]
+            },
+            [
+              _c(
+                "button",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.$emit("changePage", _vm.pagination.current - 1)
+                    }
+                  }
+                },
+                [_vm._v(_vm._s(_vm.pagination.current - 1))]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.pagination.middle,
+                  expression: "pagination.middle"
+                }
+              ]
+            },
+            [_c("span", [_vm._v(_vm._s(_vm.pagination.current))])]
+          ),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.pagination.middle,
+                  expression: "pagination.middle"
+                }
+              ]
+            },
+            [
+              _c(
+                "button",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.$emit("changePage", _vm.pagination.current + 1)
+                    }
+                  }
+                },
+                [_vm._v(_vm._s(_vm.pagination.current + 1))]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.pagination.hiddenSecond,
+                  expression: "pagination.hiddenSecond"
+                }
+              ]
+            },
+            [_c("i", { staticClass: "fas fa-ellipsis-h" })]
+          ),
+          _vm._v(" "),
+          _vm.pagination.current == _vm.pagination.last - 1 &&
+          _vm.pagination.beforeLast
+            ? _c("li", [
+                _c(
+                  "button",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.$emit("changePage", _vm.pagination.last - 2)
+                      }
+                    }
+                  },
+                  [_vm._v(_vm._s(_vm.pagination.last - 2))]
+                )
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.pagination.beforeLast,
+                  expression: "pagination.beforeLast"
+                }
+              ]
+            },
+            [
+              _vm.pagination.current !== _vm.pagination.last - 1
+                ? _c(
+                    "button",
+                    {
+                      on: {
+                        click: function($event) {
+                          return _vm.$emit(
+                            "changePage",
+                            _vm.pagination.last - 1
+                          )
+                        }
+                      }
+                    },
+                    [_vm._v(_vm._s(_vm.pagination.last - 1))]
+                  )
+                : _c("span", [_vm._v(_vm._s(_vm.pagination.last - 1))])
+            ]
+          ),
+          _vm._v(" "),
+          _c("li", [
+            _vm.pagination.current !== _vm.pagination.last
+              ? _c(
+                  "button",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.$emit("changePage", _vm.pagination.last)
+                      }
+                    }
+                  },
+                  [_vm._v(_vm._s(_vm.pagination.last))]
+                )
+              : _c("span", [_vm._v(_vm._s(_vm.pagination.last))])
+          ]),
+          _vm._v(" "),
+          _vm.pagination.current !== _vm.pagination.last
+            ? _c("li", [
+                _c(
+                  "button",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.$emit(
+                          "changePage",
+                          _vm.pagination.current + 1
+                        )
+                      }
+                    }
+                  },
+                  [_c("i", { staticClass: "fas fa-chevron-right" })]
+                )
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.pagination.current !== _vm.pagination.last
+            ? _c("li", [
+                _c(
+                  "button",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.$emit("changePage", _vm.pagination.last)
+                      }
+                    }
+                  },
+                  [_c("i", { staticClass: "fas fa-step-forward" })]
+                )
+              ])
+            : _vm._e()
+        ]),
+    _vm._v(" "),
+    _c("div", [
+      _vm._v(
+        "\n        " +
+          _vm._s(_vm.currentPage) +
+          " of " +
+          _vm._s(_vm.pagesNumber) +
+          "\n    "
+      )
+    ])
   ])
 }
 var staticRenderFns = []
@@ -3715,7 +4178,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "table" }, [
+  return _c("div", { staticClass: "table tablev2" }, [
     _c("div", { staticClass: "table--filters" }),
     _vm._v(" "),
     _c("div", { staticClass: "table-container is-visible" }, [
@@ -3728,13 +4191,40 @@ var render = function() {
           "tbody",
           _vm._l(_vm.users, function(user) {
             return _c("tr", [
-              _c("td", [_vm._v(_vm._s(user.matricule))]),
+              _c("td", { staticClass: "numeric-column" }, [
+                _vm._v(_vm._s(user.id))
+              ]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(user.name))]),
+              _c("td", { staticClass: "important" }, [
+                _vm._v(_vm._s(user.name))
+              ]),
               _vm._v(" "),
-              _c("td", [_vm._v("Role")]),
+              _c("td", [
+                _c("a", { attrs: { href: "mailto:" + user.email } }, [
+                  _vm._v(_vm._s(user.email))
+                ])
+              ]),
               _vm._v(" "),
-              _c("td", [_vm._v("Actions")])
+              _c("td", { staticClass: "numeric-column" }, [
+                _vm._v(_vm._s(user.matricule))
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                _c(
+                  "ul",
+                  _vm._l(user.roles, function(role) {
+                    return _c("li", [
+                      _c("span", { class: "role role-" + role.name }),
+                      _vm._v(
+                        _vm._s(role.name) + "\n                            "
+                      )
+                    ])
+                  }),
+                  0
+                )
+              ]),
+              _vm._v(" "),
+              _vm._m(1, true)
             ])
           }),
           0
@@ -3748,7 +4238,7 @@ var render = function() {
       [
         _c("base-pagination", {
           attrs: {
-            "current-page-data": this.currentPage,
+            "current-page": this.currentPage,
             "pages-number": this.pagesNumber
           },
           on: { changePage: _vm.changePage }
@@ -3764,13 +4254,37 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("thead", [
-      _c("th", [_vm._v("Matricule")]),
+      _c("th", { staticClass: "numeric-column" }, [
+        _c("button", { staticClass: "sort" }, [
+          _vm._v("\n                    ID "),
+          _c("i", { staticClass: "fas fa-arrows-alt-v" })
+        ])
+      ]),
       _vm._v(" "),
-      _c("th", [_vm._v("Name")]),
+      _c("th", [
+        _c("button", { staticClass: "sort" }, [
+          _vm._v("\n                        Name "),
+          _c("i", { staticClass: "fas fa-arrows-alt-v" })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("th", [_vm._v("E-mail")]),
+      _vm._v(" "),
+      _c("th", { staticClass: "numeric-column" }, [_vm._v("Matricule")]),
       _vm._v(" "),
       _c("th", [_vm._v("Role")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Actions")])
+      _c("th", { staticClass: "actions-column" }, [_vm._v("Actions")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { staticClass: "actions-column" }, [
+      _c("button", [
+        _c("i", { staticClass: "actions-ico fas fa-ellipsis-h fa-lg" })
+      ])
     ])
   }
 ]
