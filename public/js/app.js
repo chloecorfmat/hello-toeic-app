@@ -2071,6 +2071,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2083,7 +2093,8 @@ __webpack_require__.r(__webpack_exports__);
       users: [],
       usersNb: 0,
       pagesNumber: 1,
-      currentPage: 1
+      currentPage: 1,
+      search: ""
     };
   },
   computed: {
@@ -2121,6 +2132,13 @@ __webpack_require__.r(__webpack_exports__);
 
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/users/' + this.currentPage + '?api_token=' + this.currentUser.api_token).then(function (response) {
         return _this.users = response.data.users, _this.usersNb = response.data.users_nb, _this.pagesNumber = Math.ceil(response.data.users_nb / 30);
+      });
+    },
+    searchUsers: function searchUsers() {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/users/' + this.currentPage + '?api_token=' + this.currentUser.api_token + '&search=' + this.search).then(function (response) {
+        return _this2.users = response.data.users, _this2.usersNb = response.data.users_nb, _this2.pagesNumber = Math.ceil(response.data.users_nb / 30);
       });
     }
   }
@@ -4179,73 +4197,105 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "table tablev2" }, [
-    _c("div", { staticClass: "table--filters" }),
-    _vm._v(" "),
-    _c("div", { staticClass: "table-container is-visible" }, [
-      _c("table", [
-        _c("caption", { staticClass: "sr-only" }, [_vm._v("Users list")]),
+    _c("div", { staticClass: "table--filters" }, [
+      _c("div", { staticClass: "field-container" }, [
+        _c("label", { attrs: { for: "search" } }, [_vm._v("Search")]),
         _vm._v(" "),
-        _vm._m(0),
-        _vm._v(" "),
-        _c(
-          "tbody",
-          _vm._l(_vm.users, function(user) {
-            return _c("tr", [
-              _c("td", { staticClass: "numeric-column" }, [
-                _vm._v(_vm._s(user.id))
-              ]),
-              _vm._v(" "),
-              _c("td", { staticClass: "important" }, [
-                _vm._v(_vm._s(user.name))
-              ]),
-              _vm._v(" "),
-              _c("td", [
-                _c("a", { attrs: { href: "mailto:" + user.email } }, [
-                  _vm._v(_vm._s(user.email))
-                ])
-              ]),
-              _vm._v(" "),
-              _c("td", { staticClass: "numeric-column" }, [
-                _vm._v(_vm._s(user.matricule))
-              ]),
-              _vm._v(" "),
-              _c("td", [
-                _c(
-                  "ul",
-                  _vm._l(user.roles, function(role) {
-                    return _c("li", [
-                      _c("span", { class: "role role-" + role.name }),
-                      _vm._v(
-                        _vm._s(role.name) + "\n                            "
-                      )
-                    ])
-                  }),
-                  0
-                )
-              ]),
-              _vm._v(" "),
-              _vm._m(1, true)
-            ])
-          }),
-          0
-        )
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.search,
+              expression: "search"
+            }
+          ],
+          staticClass: "search",
+          attrs: { type: "text", id: "search", name: "search" },
+          domProps: { value: _vm.search },
+          on: {
+            keyup: _vm.searchUsers,
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.search = $event.target.value
+            }
+          }
+        })
       ])
     ]),
     _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "pagination-container" },
-      [
-        _c("base-pagination", {
-          attrs: {
-            "current-page": this.currentPage,
-            "pages-number": this.pagesNumber
-          },
-          on: { changePage: _vm.changePage }
-        })
-      ],
-      1
-    )
+    _vm.usersNb !== 0
+      ? _c("div", [
+          _c("div", { staticClass: "table-container is-visible" }, [
+            _c("table", [
+              _c("caption", { staticClass: "sr-only" }, [_vm._v("Users list")]),
+              _vm._v(" "),
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.users, function(user) {
+                  return _c("tr", [
+                    _c("td", { staticClass: "numeric-column" }, [
+                      _vm._v(_vm._s(user.id))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "important" }, [
+                      _vm._v(_vm._s(user.name))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("a", { attrs: { href: "mailto:" + user.email } }, [
+                        _vm._v(_vm._s(user.email))
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "numeric-column" }, [
+                      _vm._v(_vm._s(user.matricule))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c(
+                        "ul",
+                        _vm._l(user.roles, function(role) {
+                          return _c("li", [
+                            _c("span", { class: "role role-" + role.name }),
+                            _vm._v(
+                              _vm._s(role.name) +
+                                "\n                            "
+                            )
+                          ])
+                        }),
+                        0
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(1, true)
+                  ])
+                }),
+                0
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "pagination-container" },
+            [
+              _c("base-pagination", {
+                attrs: {
+                  "current-page": this.currentPage,
+                  "pages-number": this.pagesNumber
+                },
+                on: { changePage: _vm.changePage }
+              })
+            ],
+            1
+          )
+        ])
+      : _c("div", [_c("p", [_vm._v("Aucun résultat.")])])
   ])
 }
 var staticRenderFns = [
@@ -4256,7 +4306,7 @@ var staticRenderFns = [
     return _c("thead", [
       _c("th", { staticClass: "numeric-column" }, [
         _c("button", { staticClass: "sort" }, [
-          _vm._v("\n                    ID "),
+          _vm._v("\n                        ID "),
           _c("i", { staticClass: "fas fa-arrows-alt-v" })
         ])
       ]),

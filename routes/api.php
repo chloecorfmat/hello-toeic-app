@@ -18,6 +18,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware('auth:api')->get('users/{page?}', function ($page = 1) {
+/**Route::middleware('auth:api')->get('users/{page?}', function (Request $request, $page = 1) {
     return (new ApiController())->users($page);
-});
+});**/
+
+Route::middleware('auth:api')->get('users/{page?}', 'ApiController@users');

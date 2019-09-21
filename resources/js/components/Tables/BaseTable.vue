@@ -1,17 +1,22 @@
 <template>
     <div class="table tablev2">
         <div class="table--filters">
-
+            <div class="field-container">
+                <label for="search">Search</label>
+                <input v-on:keyup="searchUsers" v-model="search" type="text" id="search" name="search" class="search">
+            </div>
         </div>
-        <div class="table-container is-visible">
-            <table>
-                <caption class="sr-only">Users list</caption>
-                <thead>
-                <th class="numeric-column">
-                    <button class="sort">
-                        ID <i class="fas fa-arrows-alt-v"></i>
-                    </button>
-                </th>
+        
+        <div v-if="usersNb !== 0">
+            <div class="table-container is-visible">
+                <table>
+                    <caption class="sr-only">Users list</caption>
+                    <thead>
+                    <th class="numeric-column">
+                        <button class="sort">
+                            ID <i class="fas fa-arrows-alt-v"></i>
+                        </button>
+                    </th>
                     <th>
                         <button class="sort">
                             Name <i class="fas fa-arrows-alt-v"></i>
@@ -21,8 +26,8 @@
                     <th class="numeric-column">Matricule</th>
                     <th>Role</th>
                     <th class="actions-column">Actions</th>
-                </thead>
-                <tbody>
+                    </thead>
+                    <tbody>
                     <tr v-for="user in users">
                         <td class="numeric-column">{{ user.id }}</td>
                         <td class="important">{{ user.name }}</td>
@@ -43,15 +48,20 @@
                             </button>
                         </td>
                     </tr>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination-container">
+                <base-pagination
+                        v-on:changePage="changePage"
+                        :current-page="this.currentPage"
+                        :pages-number="this.pagesNumber"
+                ></base-pagination>
+            </div>
         </div>
-        <div class="pagination-container">
-            <base-pagination
-                    v-on:changePage="changePage"
-                    :current-page="this.currentPage"
-                    :pages-number="this.pagesNumber"
-            ></base-pagination>
+
+        <div v-else>
+            <p>Aucun résultat.</p>
         </div>
     </div>
 </template>
@@ -69,6 +79,7 @@
                 usersNb: 0,
                 pagesNumber: 1,
                 currentPage: 1,
+                search: ""
             };
         },
         computed: {
@@ -101,6 +112,15 @@
             reloadUsers: function () {
                 axios
                     .get('/api/users/' + this.currentPage + '?api_token=' + this.currentUser.api_token)
+                    .then(response => (
+                        this.users = response.data.users,
+                            this.usersNb = response.data.users_nb,
+                            this.pagesNumber = Math.ceil(response.data.users_nb/30)
+                    ));
+            },
+            searchUsers: function () {
+                axios
+                    .get('/api/users/' + this.currentPage + '?api_token=' + this.currentUser.api_token + '&search=' + this.search)
                     .then(response => (
                         this.users = response.data.users,
                             this.usersNb = response.data.users_nb,
