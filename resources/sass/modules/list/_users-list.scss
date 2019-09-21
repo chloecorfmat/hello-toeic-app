@@ -16,6 +16,18 @@
     }
   }
 
+  td {
+    border: none;
+  }
+
+  tr {
+    &:hover {
+      background: $tertiary-color-2;
+    }
+  }
+
+
+
   .role {
     display: inline-block;
     width: .8rem;
