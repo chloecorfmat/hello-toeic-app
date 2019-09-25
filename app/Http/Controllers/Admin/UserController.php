@@ -276,9 +276,10 @@ class UserController extends Controller
 
     public function v2($page = 1)
     {
+        $use_vue = TRUE;
         $is_admin = auth()->user()->hasRole('admin');
         $current_user = json_encode(\Auth::user());
         $current_page = is_int(intval($page)) ? intval($page) : 1;
-        return view('admin.users.v2', compact( 'is_admin', 'current_user', 'current_page'));
+        return view('admin.users.v2', compact( 'use_vue', 'is_admin', 'current_user', 'current_page'));
     }
 }
