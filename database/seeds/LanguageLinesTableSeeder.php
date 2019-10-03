@@ -1721,5 +1721,46 @@ class LanguageLinesTableSeeder extends Seeder
         ]);**/
 
         // @TODO : Here
+        LanguageLine::create([
+            'group' => 'groups',
+            'key' => 'delete',
+            'text' => ['en' => 'Group delete', 'fr' => 'Supprimer le groupe'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'groups',
+            'key' => 'delete-this',
+            'text' => ['en' => 'Delete the groupe :name', 'fr' => 'Supprimer le groupe :name'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'groups',
+            'key' => 'delete_sure',
+            'text' => ['en' => 'Are you sure ?', 'fr' => 'Êtes-vous sûr de vouloir supprimer ce groupe ?'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'groups',
+            'key' => 'deleted',
+            'text' => ['en' => 'Le groupe a été supprimé.', 'fr' => 'Le groupe a été supprimé.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'groups',
+            'key' => 'updated',
+            'text' => ['en' => 'Le groupe a été mis à jour.', 'fr' => 'Le groupe a été mis à jour.'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'groups',
+            'key' => 'edit',
+            'text' => ['en' => 'Group edit', 'fr' => 'Modifier le groupe'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'groups',
+            'key' => 'edit-this',
+            'text' => ['en' => 'Edit the group :name', 'fr' => 'Modifier le groupe :name'],
+        ]);
     }
 }

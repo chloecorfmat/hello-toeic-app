@@ -144,6 +144,12 @@ Breadcrumbs::for('groups.show', function ($trail, $group) {
     $trail->push($group->name, route('groups.show', $group));
 });
 
+Breadcrumbs::for('groups.edit', function ($trail, $group) {
+    $trail->parent('groups.show', $group);
+    $trail->push(trans('common.edit'), route('groups.edit', $group->id));
+});
+
+
 Breadcrumbs::for('groups.assign', function ($trail) {
     $trail->parent('groups.index');
     $trail->push(trans('groups.assign_title'), route('groups.assign'));
@@ -152,6 +158,11 @@ Breadcrumbs::for('groups.assign', function ($trail) {
 Breadcrumbs::for('groups.import', function ($trail) {
     $trail->parent('groups.index');
     $trail->push(trans('groups.import_title'), route('groups.import'));
+});
+
+Breadcrumbs::for('groups.delete', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push(trans('common.delete'), route('groups.delete'));
 });
 
 Breadcrumbs::for('documents.index', function ($trail) {
