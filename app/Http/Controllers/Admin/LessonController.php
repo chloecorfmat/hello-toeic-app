@@ -131,7 +131,7 @@ class LessonController extends Controller
             }
         }
 
-        $min = -1 ? 0 : $min;
+        $min = ($min === -1) ? 0 : $min;
         $statistics = [
             'min' => $min,
             'max' => $max,
