@@ -66,6 +66,8 @@ Route::group(['middleware' => ['auth']], function () {
         ->name('groups.import');
     Route::post('admin/groups/storeImport', 'GroupController@storeImport')
         ->name('groups.storeImport');
+    Route::get('admin/groups/delete/{id?}', 'GroupController@delete')
+        ->name('groups.delete');
 
     Route::resource('admin/groups', 'GroupController');
 

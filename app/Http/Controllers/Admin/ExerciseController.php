@@ -62,6 +62,11 @@ class ExerciseController extends Controller
     public function show($id)
     {
         $exercise = Exercise::find($id);
+
+        if (is_null($exercise)) {
+            abort(404);
+        }
+
         $questions = $exercise->questions;
         $part = $exercise->part;
         $stats_service = new StatsService();

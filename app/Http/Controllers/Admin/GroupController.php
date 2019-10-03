@@ -97,6 +97,11 @@ class GroupController extends Controller
     public function show($id)
     {
         $group = Group::find($id);
+
+        if (is_null($group)) {
+            abort(404);
+        }
+
         $teacher = User::find($group->teacher);
 
         $students = $group->users()->get();
@@ -112,7 +117,14 @@ class GroupController extends Controller
      */
     public function edit($id)
     {
-        //
+        $group = Group::find($id);
+
+        if (is_null($group)) {
+            abort(404);
+        }
+
+        $teachers = User::whereHas("roles", function($q){ $q->where("name", "teacher"); })->get();
+        return view('admin.groups.edit', compact('group', 'teachers'));
     }
 
     /**
@@ -124,7 +136,24 @@ class GroupController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        $group = Group::find($id);
+
+        $start_date = new \DateTime($data['start']);
+        $end_date = new \DateTime($data['end']);
+        $diff = $start_date->diff($end_date);
+
+        if (!$diff->invert) {
+            $group->name = $data['name'];
+            $group->start_date = $data['start'];
+            $group->end_date = $data['end'];
+            $group->teacher = $data['teacher'];
+            $group->save();
+
+            return redirect()->route('groups.edit', [$id])->with('success', trans('groups.updated'));
+        } else {
+            return redirect()->route('groups.edit', [$id])->withErrors([trans('form.start-end-date_constraint')]);
+        }
     }
 
     /**
@@ -135,7 +164,35 @@ class GroupController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $group = Group::find($id);
+
+        if ($group->lessons()->count() > 0) {
+            $lessons = $group->lessons()->get();
+
+            foreach ($lessons as $lesson) {
+                $lesson->delete();
+            }
+        }
+
+        if ($group->users()->count() > 0) {
+            $users = $group->users()->get();
+            $group->users()->detach($users);
+            $group->save();
+        }
+
+        $group->delete();
+
+        return redirect()->route('groups.index')->with('success', trans('groups.deleted'));
+    }
+
+    /**
+     * Display a confirmation form before destroy model.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function delete($id) {
+        $group = Group::find($id);
+        return view('admin.groups.delete', compact('group'));
     }
 
     public function assign() {
@@ -148,7 +205,6 @@ class GroupController extends Controller
 
         $group_message = "";
         $student_message = "";
-
 
         $handle = file($request->file('data')->path());
         if (sizeof($handle) === 1) {

@@ -79,6 +79,11 @@ class DocumentController extends Controller
     public function show($id)
     {
         $datas['document'] = Document::find($id);
+
+        if (is_null($datas['document'])) {
+            abort(404);
+        }
+
         return view('admin.documents.show', compact('datas'));
     }
 

@@ -70,6 +70,10 @@ class StudentController extends Controller
     {
         $student = User::find($id);
 
+        if (is_null($student)) {
+            abort(404);
+        }
+
         // Get all tests passed.
         $trials = Trial::where('user_id', '=', $student->id)
             ->orderBy('datetime', 'DESC')

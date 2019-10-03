@@ -80,7 +80,8 @@
                             <td class="end">{{ date('d/m/Y', strtotime($group->end_date)) }}</td>
                             <td>
                                 <a href="{{ route('groups.show', ['id' => $group->id]) }}" title="{{ __('groups.show') }}"><i class="fas fa-eye"></i></a>
-                                {{-- <a href="{{ route('groups.edit', ['id' => $group->id]) }}" title="Edit group"><i class="fas fa-pencil-alt"></i></a> --}}
+                                <a href="{{ route('groups.edit', ['id' => $group->id]) }}" title="{{ __('groups.edit') }}"><i class="fas fa-pencil-alt"></i></a>
+                                <a href="{{ route('groups.delete', ['id' => $group->id]) }}" title="{{ __('groups.delete') }}"><i class="fas fa-trash"></i></a>
                             </td>
                         </tr>
                     @endforeach
