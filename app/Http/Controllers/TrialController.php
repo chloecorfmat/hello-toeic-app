@@ -24,7 +24,6 @@ class TrialController extends Controller
         $user = \Auth::user();
 
         $trials = Trial::where('user_id', '=', $user->id)
-            ->where('composite_trial_id', NULL)
             ->orderBy('datetime', 'DESC')
             ->get();
 
