@@ -80,6 +80,11 @@ class LessonController extends Controller
     public function show($id)
     {
         $lesson = Lesson::find($id);
+
+        if (is_null($lesson)) {
+            abort(404);
+        }
+
         $students = Group::find($lesson->group_id)->users()->get();
 
         $results = [];

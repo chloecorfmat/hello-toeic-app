@@ -60,7 +60,17 @@ class TrialController extends Controller
      */
     public function show($id)
     {
+        $user = \Auth::user();
         $trial = Trial::find($id);
+
+        if (is_null($trial)) {
+            abort(404);
+        }
+
+        if (!$user->hasRole('teacher') && $trial->user->id !== $user->id ) {
+            abort(403);
+        }
+
         $datas['trial'] = $trial;
 
         $datas['max_score'] = count($trial->test()->get()[0]->questions)*5;

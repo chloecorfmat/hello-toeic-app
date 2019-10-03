@@ -92,6 +92,10 @@ class UserController extends Controller
     {
         $user = User::find($id);
 
+        if (is_null($user)) {
+            abort(404);
+        }
+
         if ($user->hasRole('student')) {
             return redirect()->route('students.show', ['id' => $id]);
         }

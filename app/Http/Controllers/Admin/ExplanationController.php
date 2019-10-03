@@ -59,6 +59,11 @@ class ExplanationController extends Controller
     public function show($id)
     {
         $explanation = Explanation::find($id);
+
+        if (is_null($explanation)) {
+            abort(404);
+        }
+
         return view('admin.explanations.show', compact('explanation'));
     }
 

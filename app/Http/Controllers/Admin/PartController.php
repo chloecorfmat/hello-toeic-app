@@ -79,6 +79,11 @@ class PartController extends Controller
     public function show($id)
     {
         $part = Part::find($id);
+
+        if (is_null($part)) {
+            abort(404);
+        }
+
         return view('admin.parts.show', compact('part'));
     }
 

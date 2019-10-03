@@ -97,6 +97,11 @@ class GroupController extends Controller
     public function show($id)
     {
         $group = Group::find($id);
+
+        if (is_null($group)) {
+            abort(404);
+        }
+
         $teacher = User::find($group->teacher);
 
         $students = $group->users()->get();
