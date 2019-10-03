@@ -25,9 +25,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // @TODO : Change time for production.
         $schedule->call(new BadgesTask)->dailyAt('1:00');
-
     }
 
     /**
