@@ -18,7 +18,7 @@
                         </button>
                     </th>
                     <th>
-                        <button class="sort">
+                        <button class="sort" v-on:click="sortBy('name')">
                             Name <i class="fas fa-arrows-alt-v"></i>
                         </button>
                     </th>
@@ -80,7 +80,19 @@
                 usersNb: 0,
                 pagesNumber: 1,
                 currentPage: 1,
-                search: ""
+                search: "",
+                sorts: [
+                    {
+                        'name' : 'id',
+                        'active': false,
+                        'type': 'asc'
+                    },
+                    {
+                        'name': 'name',
+                        'active': false,
+                        'type': 'asc'
+                    }
+                ]
             };
         },
         computed: {
@@ -111,9 +123,10 @@
                     let url = window.location.href.replace(/\/$/, "");
                     let base_url = url.substring(0, url.lastIndexOf("/"));
                     if (search !== '') {
+                        console.log('search2');
                         window.history.pushState("", "", base_url + '/' + this.currentPage + "?search=" + this.search);
                     } else {
-                        window.history.pushState("", "", base_url + '/' + page);
+                        window.history.pushState("", "", base_url + '/' + this.currentPage);
                     }
 
                     this.currentPage = page;
@@ -132,13 +145,27 @@
             searchUsers: function () {
                 let url = window.location.href.replace(/\/$/, "");
                 let base_url = url.substring(0, url.lastIndexOf("/"));
-                if (search !== '') {
+                if (this.search !== '') {
+                    console.log('search');
                     window.history.pushState("", "", base_url + '/' + this.currentPage + "?search=" + this.search);
                 } else {
-                    window.history.pushState("", "", base_url + '/' + page);
+                    window.history.pushState("", "", base_url + '/' + this.currentPage);
                 }
 
                 this.reloadUsers();
+            },
+            sortBy: function (filter) {
+                this.sorts.forEach(function(el) {
+                    if (el.name === filter) {
+                        el.active = true;
+                    } else {
+                        el.active = false;
+                    }
+                });
+            },
+
+            buildUrl: function () {
+
             },
             getGETParameters: function () {
                 var prmstr = window.location.search.substr(1);

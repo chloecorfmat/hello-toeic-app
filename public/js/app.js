@@ -2096,7 +2096,16 @@ __webpack_require__.r(__webpack_exports__);
       usersNb: 0,
       pagesNumber: 1,
       currentPage: 1,
-      search: ""
+      search: "",
+      sorts: [{
+        'name': 'id',
+        'active': false,
+        'type': 'asc'
+      }, {
+        'name': 'name',
+        'active': false,
+        'type': 'asc'
+      }]
     };
   },
   computed: {
@@ -2131,9 +2140,10 @@ __webpack_require__.r(__webpack_exports__);
         var base_url = url.substring(0, url.lastIndexOf("/"));
 
         if (search !== '') {
+          console.log('search2');
           window.history.pushState("", "", base_url + '/' + this.currentPage + "?search=" + this.search);
         } else {
-          window.history.pushState("", "", base_url + '/' + page);
+          window.history.pushState("", "", base_url + '/' + this.currentPage);
         }
 
         this.currentPage = page;
@@ -2151,14 +2161,25 @@ __webpack_require__.r(__webpack_exports__);
       var url = window.location.href.replace(/\/$/, "");
       var base_url = url.substring(0, url.lastIndexOf("/"));
 
-      if (search !== '') {
+      if (this.search !== '') {
+        console.log('search');
         window.history.pushState("", "", base_url + '/' + this.currentPage + "?search=" + this.search);
       } else {
-        window.history.pushState("", "", base_url + '/' + page);
+        window.history.pushState("", "", base_url + '/' + this.currentPage);
       }
 
       this.reloadUsers();
     },
+    sortBy: function sortBy(filter) {
+      this.sorts.forEach(function (el) {
+        if (el.name === filter) {
+          el.active = true;
+        } else {
+          el.active = false;
+        }
+      });
+    },
+    buildUrl: function buildUrl() {},
     getGETParameters: function getGETParameters() {
       var prmstr = window.location.search.substr(1);
       return prmstr != null && prmstr != "" ? this.transformToAssocArray(prmstr) : {};
@@ -4267,7 +4288,37 @@ var render = function() {
             _c("table", [
               _c("caption", { staticClass: "sr-only" }, [_vm._v("Users list")]),
               _vm._v(" "),
-              _vm._m(0),
+              _c("thead", [
+                _vm._m(0),
+                _vm._v(" "),
+                _c("th", [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "sort",
+                      on: {
+                        click: function($event) {
+                          return _vm.sortBy("name")
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                        Name "),
+                      _c("i", { staticClass: "fas fa-arrows-alt-v" })
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("th", [_vm._v("E-mail")]),
+                _vm._v(" "),
+                _c("th", { staticClass: "numeric-column" }, [
+                  _vm._v("Matricule")
+                ]),
+                _vm._v(" "),
+                _c("th", [_vm._v("Role")]),
+                _vm._v(" "),
+                _c("th", { staticClass: "actions-column" }, [_vm._v("Actions")])
+              ]),
               _vm._v(" "),
               _c(
                 "tbody",
@@ -4338,28 +4389,11 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("th", { staticClass: "numeric-column" }, [
-        _c("button", { staticClass: "sort" }, [
-          _vm._v("\n                        ID "),
-          _c("i", { staticClass: "fas fa-arrows-alt-v" })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("th", [
-        _c("button", { staticClass: "sort" }, [
-          _vm._v("\n                        Name "),
-          _c("i", { staticClass: "fas fa-arrows-alt-v" })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("th", [_vm._v("E-mail")]),
-      _vm._v(" "),
-      _c("th", { staticClass: "numeric-column" }, [_vm._v("Matricule")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Role")]),
-      _vm._v(" "),
-      _c("th", { staticClass: "actions-column" }, [_vm._v("Actions")])
+    return _c("th", { staticClass: "numeric-column" }, [
+      _c("button", { staticClass: "sort" }, [
+        _vm._v("\n                        ID "),
+        _c("i", { staticClass: "fas fa-arrows-alt-v" })
+      ])
     ])
   },
   function() {
