@@ -154,6 +154,11 @@ class LessonController extends Controller
     public function edit($id)
     {
         $lesson = Lesson::find($id);
+
+        if (is_null($lesson)) {
+            abort(404);
+        }
+
         $groups = Group::orderBy('name')->get();
         $tests = CompositeTest::orderBy('name')->get();
         return view('admin.lessons.edit', compact('lesson', 'groups', 'tests'));
@@ -168,15 +173,18 @@ class LessonController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $start = new \DateTime($request->get('start'));
         $end = new \DateTime($request->get('end'));
 
         $interval = $start->diff($end);
 
         if (!$interval->invert) {
-
             $lesson = Lesson::find($id);
+
+            if (is_null($lesson)) {
+                abort(404);
+            }
+
             $lesson->name = $request->get('name');
             $lesson->start_datetime = $request->get('start');
             $lesson->end_datetime = $request->get('end');
@@ -199,6 +207,11 @@ class LessonController extends Controller
     public function delete($id)
     {
         $lesson = Lesson::find($id);
+
+        if (is_null($lesson)) {
+            abort(404);
+        }
+
         return view('admin.lessons.delete', compact('lesson'));
     }
 
@@ -211,6 +224,11 @@ class LessonController extends Controller
     public function destroy($id)
     {
         $lesson = Lesson::find($id);
+
+        if (is_null($lesson)) {
+            abort(404);
+        }
+
         $lesson->delete();
         return redirect()->route('lessons.index')->with('success', trans('lessons.deleted'));
     }
@@ -228,6 +246,11 @@ class LessonController extends Controller
         ];
 
         $lesson = Lesson::find($id);
+
+        if (is_null($lesson)) {
+            abort(404);
+        }
+
         $composite_test = $lesson->composite_test()->first();
 
         $exercises = [];

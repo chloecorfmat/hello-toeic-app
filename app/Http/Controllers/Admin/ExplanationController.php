@@ -76,6 +76,11 @@ class ExplanationController extends Controller
     public function edit($id)
     {
         $explanation = Explanation::find($id);
+
+        if (is_null($explanation)) {
+            abort(404);
+        }
+
         return view('admin.explanations.edit', compact('explanation'));
     }
 
@@ -89,6 +94,10 @@ class ExplanationController extends Controller
     public function update(Request $request, $id)
     {
         $explanation = Explanation::find($id);
+
+        if (is_null($explanation)) {
+            abort(404);
+        }
 
         $explanation->title = $request->get('title');
         $explanation->explanation = $request->get('explanation');
@@ -106,6 +115,11 @@ class ExplanationController extends Controller
     public function delete($id)
     {
         $explanation = Explanation::find($id);
+
+        if (is_null($explanation)) {
+            abort(404);
+        }
+
         return view('admin.explanations.delete', compact('explanation'));
     }
 
@@ -118,6 +132,11 @@ class ExplanationController extends Controller
     public function destroy($id)
     {
         $explanation = Explanation::find($id);
+
+        if (is_null($explanation)) {
+            abort(404);
+        }
+
         $count = $explanation->questions()->count();
 
         if ($count == 0) {

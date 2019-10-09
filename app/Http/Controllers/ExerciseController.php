@@ -143,7 +143,7 @@ class ExerciseController extends Controller
     public function update(Request $request, $id)
     {
         $score = 0;
-        $exercise = Exercise::find($id);
+        $exercise = Exercise::findOrFail($id);
         $questions = $exercise->questions()->orderBy('number')->get();
         $user_answers = $request->all();
 

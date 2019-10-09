@@ -61,11 +61,7 @@ class TrialController extends Controller
     public function show($id)
     {
         $user = \Auth::user();
-        $trial = Trial::find($id);
-
-        if (is_null($trial)) {
-            abort(404);
-        }
+        $trial = Trial::findOrFail($id);
 
         if (!$user->hasRole('teacher') && $trial->user->id !== $user->id ) {
             abort(403);

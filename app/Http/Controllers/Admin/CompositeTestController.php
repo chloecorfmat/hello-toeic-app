@@ -115,6 +115,11 @@ class CompositeTestController extends Controller
     public function edit($id)
     {
         $test = CompositeTest::find($id);
+
+        if (is_null($test)) {
+            abort(404);
+        }
+
         $exercises = Exercise::all();
         return view('admin.composite-tests.edit', compact('test', 'exercises'));
     }
@@ -129,6 +134,10 @@ class CompositeTestController extends Controller
     public function update(Request $request, $id)
     {
         $composite_test = CompositeTest::find($id);
+
+        if (is_null($composite_test)) {
+            abort(404);
+        }
 
         $composite_test->name = $request->get('name');
         $composite_test->version = $request->get('version');

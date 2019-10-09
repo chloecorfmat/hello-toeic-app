@@ -96,6 +96,11 @@ class DocumentController extends Controller
     public function edit($id)
     {
         $document = Document::find($id);
+
+        if (is_null($document)) {
+            abort(404);
+        }
+
         return view('admin.documents.edit', compact('document'));
     }
 
@@ -109,6 +114,10 @@ class DocumentController extends Controller
     public function update(Request $request, $id)
     {
         $document = Document::find($id);
+
+        if (is_null($document)) {
+            abort(404);
+        }
 
         $document->name = $request->get('name') ?? "";
 
