@@ -122,6 +122,11 @@ class ExerciseController extends Controller
     public function edit($id)
     {
         $exercise = Exercise::find($id);
+
+        if (is_null($exercise)) {
+            abort(404);
+        }
+
         $examples = Example::all();
         return view('admin.exercises.edit', compact('exercise', 'examples'));
     }
@@ -136,6 +141,10 @@ class ExerciseController extends Controller
     public function update(Request $request, $id)
     {
         $exercise = Exercise::find($id);
+
+        if (is_null($exercise)) {
+            abort(404);
+        }
 
         $exercise->name = $request->get('name');
         $exercise->visible = $request->get('visible');
@@ -155,6 +164,11 @@ class ExerciseController extends Controller
     public function delete($id)
     {
         $exercise = Exercise::find($id);
+
+        if (is_null($exercise)) {
+            abort(404);
+        }
+
         return view('admin.exercises.delete', compact('exercise'));
     }
 

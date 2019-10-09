@@ -140,6 +140,11 @@ class QuestionController extends Controller
     public function edit($id)
     {
         $datas['question'] = Question::find($id);
+
+        if (is_null($datas['question'])) {
+            abort(404);
+        }
+
         $explanations = Explanation::all();
         return view('admin.questions.edit', compact('datas', 'explanations'));
     }
@@ -163,6 +168,11 @@ class QuestionController extends Controller
         ]);
 
         $question = Question::find($id);
+
+        if (is_null($question)) {
+            abort(404);
+        }
+
         if ($request->get('question') == '#none') {
             $q = '';
         } else {
@@ -213,6 +223,11 @@ class QuestionController extends Controller
     public function delete($id)
     {
         $question = Question::find($id);
+
+        if (is_null($question)) {
+            abort(404);
+        }
+
         return view('admin.questions.delete', compact('question'));
     }
 
@@ -228,6 +243,10 @@ class QuestionController extends Controller
         $delete = true;
 
         $question = Question::find($id);
+
+        if (is_null($question)) {
+            abort(404);
+        }
 
         $count_games = Game::where('error_id', $id)->count();
 

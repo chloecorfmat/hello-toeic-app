@@ -166,6 +166,10 @@ class GroupController extends Controller
     {
         $group = Group::find($id);
 
+        if (is_null($group)) {
+            abort(404);
+        }
+
         if ($group->lessons()->count() > 0) {
             $lessons = $group->lessons()->get();
 
@@ -192,6 +196,11 @@ class GroupController extends Controller
      */
     public function delete($id) {
         $group = Group::find($id);
+
+        if (is_null($group)) {
+            abort(404);
+        }
+
         return view('admin.groups.delete', compact('group'));
     }
 
