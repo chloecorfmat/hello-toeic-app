@@ -113,6 +113,10 @@ class UserController extends Controller
         $current_is_admin = auth()->user()->hasRole('admin');
         $user = User::find($id);
 
+        if (is_null($user)) {
+            abort(404);
+        }
+
         if (!$current_is_admin && !$user->hasRole('student') ) {
             abort(403);
         }
@@ -142,6 +146,10 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::find($id);
+
+        if (is_null($user)) {
+            abort(404);
+        }
 
         $existEmail = User::where('email', $request->get('email'))
             ->where('id', '<>', $id)
@@ -177,6 +185,11 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
+
+        if (is_null($user)) {
+            abort(404);
+        }
+
         $composite_trials = $user->composite_trials()->get();
         $trials = $user->trials()->get();
         $games = $user->games()->get();
@@ -213,6 +226,11 @@ class UserController extends Controller
     public function delete($id)
     {
         $user = User::find($id);
+
+        if (is_null($user)) {
+            abort(404);
+        }
+
         return view('admin.users.delete', compact('user'));
     }
 

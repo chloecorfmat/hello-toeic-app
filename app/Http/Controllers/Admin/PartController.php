@@ -96,6 +96,11 @@ class PartController extends Controller
     public function edit($id)
     {
         $part = Part::find($id);
+
+        if (is_null($part)) {
+            abort(404);
+        }
+
         return view('admin.parts.edit', compact('part'));
     }
 
@@ -109,6 +114,10 @@ class PartController extends Controller
     public function update(Request $request, $id)
     {
         $part = Part::find($id);
+
+        if (is_null($part)) {
+            abort(404);
+        }
 
         if (($request->get('inline') === 'true') &&
             (($request->get('texts') !== 'true') || $request->get('type') !== "reading"))
@@ -142,6 +151,11 @@ class PartController extends Controller
     public function delete($id)
     {
         $part = Part::find($id);
+
+        if (is_null($part)) {
+            abort(404);
+        }
+
         return view('admin.parts.delete', compact('part'));
     }
 
@@ -154,6 +168,11 @@ class PartController extends Controller
     public function destroy($id)
     {
         $part = Part::find($id);
+
+        if (is_null($part)) {
+            abort(404);
+        }
+
         $count = $part->tests()->count();
 
         if ($count == 0) {
