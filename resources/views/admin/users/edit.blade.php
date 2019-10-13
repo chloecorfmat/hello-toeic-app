@@ -126,7 +126,7 @@
                                 @endif
                         >
                         <span class="form-label-text">
-                            <span>{{ _('common.disability') }}</span>
+                            <span>{{ __('common.disability') }}</span>
                         </span>
                     </label>
                 </div>
