@@ -113,6 +113,23 @@
                         @endforeach
                     </select>
                 </div>
+
+                <div class="field-container">
+                    <label for="disabilities">
+                        <input
+                                type="checkbox"
+                                name="disabilities"
+                                value="1"
+                                id="disabilities"
+                                @if($user->disabilities->count() > 0)
+                                checked
+                                @endif
+                        >
+                        <span class="form-label-text">
+                            <span>{{ _('common.disability') }}</span>
+                        </span>
+                    </label>
+                </div>
             @endif
 
             <button type="submit" class="btn btn-primary">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Disability;
 use App\Group;
 use App\Http\Controllers\Controller;
 use App\Mail\UserAccountCreated;
@@ -169,6 +170,27 @@ class UserController extends Controller
 
             $user->groups()->detach();
             $user->groups()->attach($request->get('groups'));
+
+            // Manage disability.
+            $t = null;
+
+            if ($request->get('disabilities')) {
+                if ($user->disabilities()->count() === 0) {
+                    $date = (new \DateTime())->format('y-m-d');
+                    Disability::create([
+                        'user_id' => $user->id,
+                        'start_date' => $date,
+                    ]);
+                }
+            } else {
+                if ($user->disabilities()->count() > 0) {
+                    $disabilities = $user->disabilities()->get();
+
+                    foreach ($disabilities as $disability) {
+                        $disability->delete();
+                    }
+                }
+            }
 
             $user->save();
 
