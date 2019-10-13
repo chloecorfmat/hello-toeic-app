@@ -1760,13 +1760,14 @@ class LanguageLinesTableSeeder extends Seeder
             'group' => 'groups',
             'key' => 'edit-this',
             'text' => ['en' => 'Edit the group :name', 'fr' => 'Modifier le groupe :name'],
-        ]);**/
+        ]);
 
-        // @TODO : Here
         LanguageLine::create([
             'group' => 'common',
             'key' => 'disability',
             'text' => ['en' => 'Tiers-temps', 'fr' => 'Tiers-temps'],
-        ]);
+        ]);**/
+
+        // @TODO : Here
     }
 }
