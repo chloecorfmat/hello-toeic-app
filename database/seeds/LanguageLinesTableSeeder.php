@@ -1766,7 +1766,7 @@ class LanguageLinesTableSeeder extends Seeder
         LanguageLine::create([
             'group' => 'common',
             'key' => 'disability',
-            'text' => ['en' => 'Tiers-temps', 'fr' => 'Tiers temps'],
+            'text' => ['en' => 'Tiers-temps', 'fr' => 'Tiers-temps'],
         ]);
     }
 }
