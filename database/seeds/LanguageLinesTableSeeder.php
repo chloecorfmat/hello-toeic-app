@@ -1718,9 +1718,8 @@ class LanguageLinesTableSeeder extends Seeder
             'group' => 'common',
             'key' => 'rewards',
             'text' => ['en' => 'Rewards', 'fr' => 'Récompenses'],
-        ]);**/
+        ]);
 
-        // @TODO : Here
         LanguageLine::create([
             'group' => 'groups',
             'key' => 'delete',
@@ -1761,6 +1760,13 @@ class LanguageLinesTableSeeder extends Seeder
             'group' => 'groups',
             'key' => 'edit-this',
             'text' => ['en' => 'Edit the group :name', 'fr' => 'Modifier le groupe :name'],
+        ]);**/
+
+        // @TODO : Here
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'disability',
+            'text' => ['en' => 'Tiers-temps', 'fr' => 'Tiers temps'],
         ]);
     }
 }

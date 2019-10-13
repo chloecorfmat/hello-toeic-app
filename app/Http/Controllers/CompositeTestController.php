@@ -177,6 +177,10 @@ class CompositeTestController extends Controller
             $reading_duration = Setting::where('key', 'config.default.reading.duration')->first()->value;
         }
 
+        if ($user->disabilities()->count() > 0) {
+            $reading_duration = $reading_duration*(4/3);
+        }
+
         $datas = [
             'test' => $test,
             'questions' => $questions,

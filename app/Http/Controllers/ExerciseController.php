@@ -105,6 +105,10 @@ class ExerciseController extends Controller
 
         $reading_duration = $exercise->part->duration;
 
+        if ($user->disabilities()->count() > 0) {
+            $reading_duration = $reading_duration*(4/3);
+        }
+
         $datasources = implode(', ', $datasources_ar);
 
         $part = $exercise->part; // Finally, an exercise has only one part.

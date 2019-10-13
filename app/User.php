@@ -61,4 +61,8 @@ class User extends Authenticatable
         return $this->belongsToMany('App\BadgeType', 'user_badge_type_progression')
             ->withPivot(['nb_repetitions']);
     }
+
+    public function disabilities() {
+        return $this->hasMany('App\Disability', 'user_id', 'id');
+    }
 }
