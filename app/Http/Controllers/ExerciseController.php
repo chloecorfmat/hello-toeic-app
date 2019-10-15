@@ -25,8 +25,12 @@ class ExerciseController extends Controller
      */
     public function index()
     {
-        $exercises = Exercise::where('visible', 1)->get();
-        return view('exercises.index', compact('exercises'));
+        $exercises = Exercise::where('visible', 1)->orderBy('created_at', 'desc')->get();
+
+        $before_last_login = Auth::user()->before_last_login_at;
+        $newExercises = Exercise::select('id')->where('created_at', '>', $before_last_login)->pluck('id')->toArray();
+
+        return view('exercises.index', compact('exercises', 'newExercises'));
     }
 
     /**

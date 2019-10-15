@@ -52,7 +52,7 @@
                     <tbody class="list">
                     @foreach ($exercises as $key => $exercise)
                         <tr>
-                            <td class="name">{{ $exercise->name }}</td>
+                            <td class="name">{{ $exercise->name }} @if (in_array($exercise->id, $newExercises))<img src="/images/gif-new.jpg" class="gif-new" alt="{{ __('common.new-exercise') }}"/>@endif</td>
                             <td class="part">{{ $exercise->part->name }}</td>
                             <td class="visibility">{{ $exercise->visible }}</td>
                             <td>

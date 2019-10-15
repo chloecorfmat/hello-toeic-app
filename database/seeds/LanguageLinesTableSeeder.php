@@ -1769,5 +1769,16 @@ class LanguageLinesTableSeeder extends Seeder
         ]);**/
 
         // @TODO : Here
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'new-test',
+            'text' => ['en' => 'New test', 'fr' => 'Nouveau test'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'new-exercise',
+            'text' => ['en' => 'New exercise', 'fr' => 'Nouvel exercice'],
+        ]);
     }
 }

@@ -14,6 +14,7 @@ class Exercise extends Model
         'updated_at',
         'duration',
         'example_id',
+        'created_at',
     ];
 
     public $timestamps = false;
