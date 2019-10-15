@@ -46,6 +46,8 @@ class LoginController extends Controller
     {
         if (!is_null($user->last_login_at)) {
             $user->before_last_login_at = $user->last_login_at;
+        } else {
+            $user->before_last_login_at = Carbon::now()->toDateTimeString();
         }
 
         $user->last_login_at = Carbon::now()->toDateTimeString();

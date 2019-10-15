@@ -1766,9 +1766,8 @@ class LanguageLinesTableSeeder extends Seeder
             'group' => 'common',
             'key' => 'disability',
             'text' => ['en' => 'Tiers-temps', 'fr' => 'Tiers-temps'],
-        ]);**/
+        ]);
 
-        // @TODO : Here
         LanguageLine::create([
             'group' => 'common',
             'key' => 'new-test',
@@ -1779,6 +1778,8 @@ class LanguageLinesTableSeeder extends Seeder
             'group' => 'common',
             'key' => 'new-exercise',
             'text' => ['en' => 'New exercise', 'fr' => 'Nouvel exercice'],
-        ]);
+        ]);**/
+
+        // @TODO : Here
     }
 }
