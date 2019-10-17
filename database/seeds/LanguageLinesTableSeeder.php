@@ -1778,13 +1778,14 @@ class LanguageLinesTableSeeder extends Seeder
             'group' => 'common',
             'key' => 'new-exercise',
             'text' => ['en' => 'New exercise', 'fr' => 'Nouvel exercice'],
-        ]);**/
+        ]);
 
-        // @TODO : Here
         LanguageLine::create([
             'group' => 'app',
             'key' => 'contact',
             'text' => ['en' => 'Contact', 'fr' => 'Contact'],
-        ]);
+        ]);**/
+
+        // @TODO : Here
     }
 }
