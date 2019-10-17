@@ -258,10 +258,15 @@ footer {
 
 footer a {
   color: #fff;
+  text-decoration: underline;
 }
 
 footer a:hover {
   color: #ffc857;
+}
+
+footer p {
+  color: #fff;
 }
 
 .header {

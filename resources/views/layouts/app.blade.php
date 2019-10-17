@@ -257,7 +257,7 @@
         </main>
 
         <footer>
-            <a href="{{ route('contact') }}">Contact</a>
+            <p><a href="{{ route('contact') }}">Contact</a> • 2019</p>
         </footer>
     </div>
 
