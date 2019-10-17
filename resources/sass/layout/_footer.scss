@@ -1,0 +1,14 @@
+footer {
+  padding: .4rem;
+  background: $secondary-color-1;
+  font-size: .9rem;
+  text-align: center;
+
+  a {
+    color: $white;
+
+    &:hover {
+      color: $secondary-color-2;
+    }
+  }
+}

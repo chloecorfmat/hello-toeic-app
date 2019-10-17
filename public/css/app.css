@@ -249,6 +249,21 @@ li {
   vertical-align: middle;
 }
 
+footer {
+  padding: 0.4rem;
+  background: #4b3f72;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+footer a {
+  color: #fff;
+}
+
+footer a:hover {
+  color: #ffc857;
+}
+
 .header {
   align-items: center;
   background-color: #fff;
@@ -1404,6 +1419,12 @@ tr:nth-child(2n) {
 }
 
 /** LISTS **/
+
+ul.default-style li {
+  margin-left: 1rem;
+  padding-left: 0.5rem;
+  list-style-type: disc;
+}
 
 .tablev2 {
   /**tr {

@@ -256,7 +256,9 @@
             </div>
         </main>
 
-        <div class="body-border"></div>
+        <footer>
+            <a href="{{ route('contact') }}">Contact</a>
+        </footer>
     </div>
 
     <!-- Scripts -->

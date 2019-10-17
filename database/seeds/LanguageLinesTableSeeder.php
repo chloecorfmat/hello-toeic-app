@@ -1781,5 +1781,10 @@ class LanguageLinesTableSeeder extends Seeder
         ]);**/
 
         // @TODO : Here
+        LanguageLine::create([
+            'group' => 'app',
+            'key' => 'contact',
+            'text' => ['en' => 'Contact', 'fr' => 'Contact'],
+        ]);
     }
 }
