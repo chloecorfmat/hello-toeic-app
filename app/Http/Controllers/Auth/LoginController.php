@@ -31,6 +31,11 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/profile';
 
+    public function logout(Request $request) {
+        Auth::logout();
+        return redirect('/login');
+    }
+
     protected function redirectTo()
     {
         $user = Auth::user();

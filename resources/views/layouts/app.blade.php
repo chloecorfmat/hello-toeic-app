@@ -50,24 +50,22 @@
                 @else
                     <li class="header--actions-list-item">
                         <a href="{{ route('student.users.show', ['id' => Auth::user()->id]) }}">
-                            <span class="name">{{ Auth::user()->name }}</span>
                             <i class="user-ico fas fa-user-circle fa-lg"></i>
+                            <span class="legend-ico">Profil</span>
                         </a>
                     </li>
                     <li class="header--actions-list-item">
                         <a href="{{ route('contact') }}">
-                            <i class="contact-ico fas fa-info-circle fa-lg"></i>
+                            <i class="fas fa-info-circle fa-lg"></i>
+                            <span class="legend-ico">Contact</span>
                         </a>
                     </li>
                     <li class="header--actions-list-item">
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                            @csrf
-                            <button class="header--logout-btn" type="submit" title="{{__('common.logout')}}">
-                                <i class="fas fa-power-off fa-lg"></i>
-                            </button>
-                        </form>
+                        <a href="{{ route('logout') }}">
+                            <i class="fas fa-power-off fa-lg"></i>
+                            <span class="legend-ico">{{__('common.logout')}}</span>
+                        </a>
                     </li>
-
                 @endguest
                 </ul>
             </div>

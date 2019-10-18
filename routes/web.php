@@ -29,6 +29,8 @@ Route::get('/profile', 'HomeController@index')->name('profile');
 Route::get('/train', 'HomeController@train')->name('train');
 Route::get('/contact', 'HomeController@contact')->name('contact');
 
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
 Route::group(['middleware' => ['auth']], function () {
     Route::setGroupNamespace('App\Http\Controllers\Admin');
     Route::resource('admin/permissions', 'PermissionController');
