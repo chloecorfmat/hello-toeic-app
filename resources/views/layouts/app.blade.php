@@ -55,6 +55,11 @@
                         </a>
                     </li>
                     <li class="header--actions-list-item">
+                        <a href="{{ route('contact') }}">
+                            <i class="contact-ico fas fa-info-circle fa-lg"></i>
+                        </a>
+                    </li>
+                    <li class="header--actions-list-item">
                         <form id="logout-form" action="{{ route('logout') }}" method="POST">
                             @csrf
                             <button class="header--logout-btn" type="submit" title="{{__('common.logout')}}">
@@ -62,6 +67,7 @@
                             </button>
                         </form>
                     </li>
+
                 @endguest
                 </ul>
             </div>
@@ -256,9 +262,7 @@
             </div>
         </main>
 
-        <footer>
-            <p><a href="{{ route('contact') }}">Contact</a> • 2019</p>
-        </footer>
+        <div class="body-border"></div>
     </div>
 
     <!-- Scripts -->
