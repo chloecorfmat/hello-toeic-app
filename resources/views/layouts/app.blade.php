@@ -51,13 +51,13 @@
                     <li class="header--actions-list-item">
                         <a href="{{ route('student.users.show', ['id' => Auth::user()->id]) }}">
                             <i class="user-ico fas fa-user-circle fa-lg"></i>
-                            <span class="legend-ico">Profil</span>
+                            <span class="legend-ico">{{ __('app.profile') }}</span>
                         </a>
                     </li>
                     <li class="header--actions-list-item">
                         <a href="{{ route('contact') }}">
                             <i class="fas fa-info-circle fa-lg"></i>
-                            <span class="legend-ico">Contact</span>
+                            <span class="legend-ico">{{ __('app.contact') }}</span>
                         </a>
                     </li>
                     <li class="header--actions-list-item">
