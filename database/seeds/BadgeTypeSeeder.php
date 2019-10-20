@@ -34,7 +34,7 @@ class BadgeTypeSeeder extends Seeder
             'name' => 'Donner X bonnes réponses dans les challenges (tous confondus)',
             'description' => 'X dépend du niveau',
             'method' => 'getATotalOfXPointsInChallenge'
-        ]);
+        ]);**/
 
         BadgeType::create([
             'name' => 'Valider X fois un test composé',
@@ -58,6 +58,9 @@ class BadgeTypeSeeder extends Seeder
             'name' => 'Donner X bonnes réponses dans les exercices et tests composés (tous confondus)',
             'description' => 'X dépend du niveau',
             'method' => 'getXPointsInExercises'
-        ]);**/
+        ]);
+
+
+
     }
 }

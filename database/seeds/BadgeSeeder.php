@@ -155,7 +155,7 @@ class BadgeSeeder extends Seeder
             'level_id' => 5,
             'image' => './badges/scoreboard-5.svg',
             'nb_repetitions' => 1000
-        ]);
+        ]);**/
 
         $badge_type_id = BadgeType::where('method', 'validateCompositeTestsXTimes')->first()->id;
         Badge::create([
@@ -299,6 +299,6 @@ class BadgeSeeder extends Seeder
             'level_id' => 5,
             'image' => './badges/scoreboard-5.svg',
             'nb_repetitions' => 10000
-        ]);**/
+        ]);
     }
 }
