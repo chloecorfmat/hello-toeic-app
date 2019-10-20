@@ -4,6 +4,12 @@ Breadcrumbs::for('dashboard', function ($trail) {
     $trail->push(trans('app.dashboard'), route('profile'));
 });
 
+
+Breadcrumbs::for('contact', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push(trans('app.contact'), route('contact'));
+});
+
 /** ADMIN PAGES for admin users */
 Breadcrumbs::for('permissions.index', function ($trail) {
     $trail->parent('dashboard');

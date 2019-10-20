@@ -22,7 +22,7 @@ class CompositeTestController extends Controller
      */
     public function index()
     {
-        $compositeTests = CompositeTest::where('visible', '1')->get();
+        $compositeTests = CompositeTest::where('visible', '1')->orderBy('created_at', 'desc')->get();
         $tests = [];
 
         foreach ($compositeTests as $test) {
@@ -40,7 +40,10 @@ class CompositeTestController extends Controller
             $tests[] = $t;
         }
 
-        return view('composite-tests.index', compact('tests'));
+        $before_last_login = Auth::user()->before_last_login_at;
+        $newTests = CompositeTest::select('id')->where('created_at', '>', $before_last_login)->pluck('id')->toArray();
+
+        return view('composite-tests.index', compact('tests', 'newTests'));
     }
 
     /**
@@ -185,7 +188,6 @@ class CompositeTestController extends Controller
             'test' => $test,
             'questions' => $questions,
         ];
-
 
         return view('composite-tests.show', compact('datas', 'datasources', 'source', 'listening_duration', 'reading_duration'));
     }

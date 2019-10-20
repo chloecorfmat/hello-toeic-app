@@ -13,6 +13,7 @@ use App\Services\StatsService;
 use App\Setting;
 use App\Trial;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ExerciseController extends Controller
 {
@@ -28,8 +29,12 @@ class ExerciseController extends Controller
      */
     public function index()
     {
-        $exercises = Exercise::all();
-        return view('admin.exercises.index', compact('exercises'));
+        $exercises = Exercise::orderBy('created_at', 'desc')->get();
+
+        $before_last_login = Auth::user()->before_last_login_at;
+        $newExercises = Exercise::select('id')->where('created_at', '>', $before_last_login)->pluck('id')->toArray();
+
+        return view('admin.exercises.index', compact('exercises', 'newExercises'));
     }
 
     /**

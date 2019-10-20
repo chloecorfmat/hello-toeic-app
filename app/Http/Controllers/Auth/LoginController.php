@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
@@ -29,6 +31,11 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/profile';
 
+    public function logout(Request $request) {
+        Auth::logout();
+        return redirect('/login');
+    }
+
     protected function redirectTo()
     {
         $user = Auth::user();
@@ -38,6 +45,18 @@ class LoginController extends Controller
             'email' => $user->email,
         ]));
         return '/profile';
+    }
+
+    function authenticated(Request $request, $user)
+    {
+        if (!is_null($user->last_login_at)) {
+            $user->before_last_login_at = $user->last_login_at;
+        } else {
+            $user->before_last_login_at = (new \DateTime());
+        }
+
+        $user->last_login_at = (new \DateTime());
+        $user->save();
     }
 
     /**

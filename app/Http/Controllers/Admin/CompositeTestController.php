@@ -6,6 +6,7 @@ use App\CompositeTest;
 use App\Exercise;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CompositeTestController extends Controller
 {
@@ -21,7 +22,7 @@ class CompositeTestController extends Controller
      */
     public function index()
     {
-        $compositeTests = CompositeTest::all();
+        $compositeTests = CompositeTest::orderBy('created_at', 'desc')->get();
         $tests = [];
 
         foreach ($compositeTests as $test) {
@@ -40,7 +41,10 @@ class CompositeTestController extends Controller
             $tests[] = $t;
         }
 
-        return view('admin.composite-tests.index', compact('tests'));
+        $before_last_login = Auth::user()->before_last_login_at;
+        $newTests = CompositeTest::select('id')->where('created_at', '>', $before_last_login)->pluck('id')->toArray();
+
+        return view('admin.composite-tests.index', compact('tests', 'newTests'));
     }
 
     /**
@@ -67,6 +71,7 @@ class CompositeTestController extends Controller
             'version' => addslashes($request->get('version')),
             'visible' => addslashes($request->get('visible')),
             'updated_at' => (new \DateTime()),
+            'created_at' => (new \DateTime()),
         ];
 
         if (!is_null($request->get('reading_duration'))) {
@@ -85,8 +90,6 @@ class CompositeTestController extends Controller
                 $last_ex_type = $exercise->part->type;
 
                 $compositeTest[$var] = $exercise->id;
-
-
             }
         }
 

@@ -1766,6 +1766,24 @@ class LanguageLinesTableSeeder extends Seeder
             'group' => 'common',
             'key' => 'disability',
             'text' => ['en' => 'Tiers-temps', 'fr' => 'Tiers-temps'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'new-test',
+            'text' => ['en' => 'New test', 'fr' => 'Nouveau test'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'new-exercise',
+            'text' => ['en' => 'New exercise', 'fr' => 'Nouvel exercice'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'app',
+            'key' => 'contact',
+            'text' => ['en' => 'Contact', 'fr' => 'Contact'],
         ]);**/
 
         // @TODO : Here

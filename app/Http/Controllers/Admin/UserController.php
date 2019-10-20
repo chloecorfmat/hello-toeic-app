@@ -11,6 +11,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
@@ -67,6 +68,7 @@ class UserController extends Controller
                 'email' => $request->get('email'),
                 'course' => $request->get('course'),
                 'password' => Hash::make($request->get('matricule')),
+                'api_token' => Str::random(60),
                 'passed' => $request->get('passed'),
             ]);
 
@@ -285,6 +287,7 @@ class UserController extends Controller
                         'email' => $email,
                         'course' => $data[3] . $data[2],
                         'password' => Hash::make(str_replace("\n", "", $data[5])),
+                        'api_token' => Str::random(60),
                     ]);
 
                     $user->assignRole($role);
@@ -314,6 +317,14 @@ class UserController extends Controller
 
             return redirect()->route('students.index')->with('warning', $message);
         }
+    }
 
+    public function v2($page = 1)
+    {
+        $use_vue = TRUE;
+        $is_admin = auth()->user()->hasRole('admin');
+        $current_user = json_encode(\Auth::user());
+        $current_page = is_int(intval($page)) ? intval($page) : 1;
+        return view('admin.users.v2', compact( 'use_vue', 'is_admin', 'current_user', 'current_page'));
     }
 }

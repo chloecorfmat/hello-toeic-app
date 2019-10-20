@@ -23,6 +23,7 @@
     <!-- Styles -->
     <!--<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
+
     <!-- Include Choices CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.min.css">
@@ -49,17 +50,21 @@
                 @else
                     <li class="header--actions-list-item">
                         <a href="{{ route('student.users.show', ['id' => Auth::user()->id]) }}">
-                            <span class="name">{{ Auth::user()->name }}</span>
                             <i class="user-ico fas fa-user-circle fa-lg"></i>
+                            <span class="legend-ico">{{ __('app.profile') }}</span>
                         </a>
                     </li>
                     <li class="header--actions-list-item">
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                            @csrf
-                            <button class="header--logout-btn" type="submit" title="{{__('common.logout')}}">
-                                <i class="fas fa-power-off fa-lg"></i>
-                            </button>
-                        </form>
+                        <a href="{{ route('contact') }}">
+                            <i class="fas fa-info-circle fa-lg"></i>
+                            <span class="legend-ico">{{ __('app.contact') }}</span>
+                        </a>
+                    </li>
+                    <li class="header--actions-list-item">
+                        <a href="{{ route('logout') }}">
+                            <i class="fas fa-power-off fa-lg"></i>
+                            <span class="legend-ico">{{__('common.logout')}}</span>
+                        </a>
                     </li>
                 @endguest
                 </ul>
@@ -282,5 +287,9 @@
 
     </script>
     <script src="{{ asset('js/all.js') }}" defer></script>
+
+    @if (isset($use_vue) && $use_vue)
+        <script src="{{ asset('js/app.js') }}" defer></script>
+    @endif
 </body>
 </html>

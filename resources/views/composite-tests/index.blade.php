@@ -52,7 +52,7 @@
                     <tbody class="list">
                     @foreach ($tests as $key => $test)
                         <tr>
-                            <td class="name">{{ $test['name'] }}</td>
+                            <td class="name">{{ $test['name'] }} @if (in_array($test['id'], $newTests))<img src="/images/gif-new.jpg" class="gif-new" alt="{{ __('common.new-test') }}"/>@endif</td>
                             <td class="version">{{ $test['version'] }}</td>
                             <td>
                                 <ul>

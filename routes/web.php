@@ -21,19 +21,23 @@ Route::macro('setGroupNamespace', function ($namespace) {
     return $this;
 });
 
-Route::get('/', 'HomeController@home');
-Route::get('/home', 'HomeController@home');
-
 Auth::routes(['register' => false]);
 
+Route::get('/', 'HomeController@home');
+Route::get('/home', 'HomeController@home');
 Route::get('/profile', 'HomeController@index')->name('profile');
 Route::get('/train', 'HomeController@train')->name('train');
+Route::get('/contact', 'HomeController@contact')->name('contact');
+
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::setGroupNamespace('App\Http\Controllers\Admin');
     Route::resource('admin/permissions', 'PermissionController');
 
 
+    Route::get('admin/v2/users/{page?}', 'UserController@v2')
+        ->name('users.import');
     Route::get('admin/users/import', 'UserController@import')
         ->name('users.import');
     Route::post('admin/users/storeImport', 'UserController@storeImport')

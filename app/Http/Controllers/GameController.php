@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Badge;
+use App\BadgeType;
 use App\Game;
 use App\Proposal;
 use App\Question;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 
 class GameController extends Controller
@@ -83,7 +86,7 @@ class GameController extends Controller
 
         $score = Cookie::get('game_score');
 
-        Game::create([
+        $game = Game::create([
             'score' => $score,
             'datetime' => now(),
             'user_id' => \Auth()->user()->id,
@@ -92,6 +95,8 @@ class GameController extends Controller
 
         Cookie::queue(Cookie::forget('game_score'));
         Cookie::queue(Cookie::forget('game_questions'));
+
+        $this->comeXTimesInChallengeTop($game->id);
 
         return redirect()->route('games')
             ->with('success', trans('messages.get-x-points', ['number' => $score]) . ' ' . trans('games.messages_complete-all-questions'));
@@ -111,7 +116,7 @@ class GameController extends Controller
             return redirect()->route('games.play');
         }
 
-        Game::create([
+        $game = Game::create([
             'score' => $score,
             'datetime' => now(),
             'user_id' => \Auth()->user()->id,
@@ -142,9 +147,13 @@ class GameController extends Controller
             }
         }
 
-
         Cookie::queue(Cookie::forget('game_score'));
         Cookie::queue(Cookie::forget('game_questions'));
+
+        $this->comeXTimesInChallengeTop($game->id);
+
+        //\App\Game::select('id')->orderBy('score', 'desc')->take(10)->get()->toArray()
+
         return redirect()->route('games')->with('success',
             '<p>' . trans('messages.get-x-points', ['number' => $score]) . '</p><br />' .
             '<div class="alert-answer">' .
@@ -155,5 +164,51 @@ class GameController extends Controller
                 '<ul>' . $other_answers .'</ul>' .
             '</div>'
         );
+    }
+
+    /**
+     * To allow users to acquire badge "comeXTimesInChallengeTop".
+     * @param int $id
+     */
+    private function comeXTimesInChallengeTop(int $id) {
+        $top = Game::orderBy('score', 'desc')->take(10)->pluck('id')->toArray();
+
+        if (in_array($id, $top)) {
+            $user = Auth::user();
+            $key = 'comeXTimesInChallengeTop';
+            $badge_type = BadgeType::where('method', $key)->get()->first();
+            $user_badge_type = $user->badge_types()->where('method', $key)->get()->first();
+
+            if (!is_null($user_badge_type)) {
+                $pivot = $user_badge_type->pivot->nb_repetitions + 1;
+                $user->badge_types()->updateExistingPivot($badge_type, ['nb_repetitions' => $pivot]);
+            } else {
+                // Init badge_type.
+                $pivot = 1;
+                $user->badge_types()->attach($badge_type, ['nb_repetitions' => $pivot]);
+            }
+
+            // Manage badges.
+            $badges = Badge::where('badge_type_id', $badge_type->id)
+                ->where('nb_repetitions', '<=', $pivot)
+                ->pluck('badges.id')
+                ->toArray();
+
+            if (!empty($badges)) {
+                $user_badges = $user->badges()->where('badge_type_id', $badge_type->id)->get();
+
+                foreach ($user_badges as $user_badge) {
+                    if (in_array($user_badge->id, $badges)) {
+                        unset($badges[array_search($user_badge->id, $badges)]);
+                    }
+                }
+            }
+
+            if (!empty($badges)) {
+                foreach ($badges as $badge) {
+                    $user->badges()->attach($badge, ['datetime' => (new \DateTime())]);
+                }
+            }
+        }
     }
 }

@@ -1,0 +1,19 @@
+footer {
+  padding: .4rem;
+  background: $secondary-color-1;
+  font-size: .9rem;
+  text-align: center;
+
+  a {
+    color: $white;
+    text-decoration: underline;
+
+    &:hover {
+      color: $secondary-color-2;
+    }
+  }
+
+  p {
+    color: $white;
+  }
+}

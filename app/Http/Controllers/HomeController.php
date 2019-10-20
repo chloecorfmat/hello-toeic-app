@@ -90,4 +90,11 @@ class HomeController extends Controller
 
         return view('profile', compact('datas', 'stats', 'scores', 'lessons', 'composite_trials', 'lessons_access', 'badges'));
     }
+
+    /**
+     * Contact page.
+     */
+    public function contact() {
+        return view('contact');
+    }
 }
