@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\DB;
 
 class BadgesTask {
     public function __invoke() {
-
         // stayXDaysInChallengeTop.
         $key = "stayXDaysInChallengeTop";
         $badge_type = BadgeType::where('method', $key)->get()->first();
@@ -74,7 +73,5 @@ class BadgesTask {
                 }
             }
         }
-
-
     }
 }
