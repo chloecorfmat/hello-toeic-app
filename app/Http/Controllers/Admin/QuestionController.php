@@ -164,7 +164,7 @@ class QuestionController extends Controller
             'proposals.1' => 'required',
             'proposals.2' => 'required',
             'proposals.3' => 'required_if:answer, ==, 3',
-            'answer' => 'required'
+            'answer' => 'required|numeric'
         ]);
 
         $question = Question::find($id);

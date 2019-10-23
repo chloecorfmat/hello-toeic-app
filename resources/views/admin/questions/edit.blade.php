@@ -30,7 +30,7 @@
                     <div class="field-container">
                         <label for="proposal{{ $index[$i] }}">{{ __('common.proposal') }} {{ $index[$i] }}</label>
                         @isset($datas['question']->proposals[$i])
-                            @if ($datas['question']->proposals[$i]->id === $datas['question']->answer->id)
+                            @if (isset($datas['question']->answer->id) && $datas['question']->proposals[$i]->id === $datas['question']->answer->id)
                                 @php ($selected = $index[$i])
                             @endif
                             <input type="text" name="proposals[]" id="proposal{{ $index[$i] }}" value="{{ $datas['question']->proposals[$i]->value }}">
@@ -50,6 +50,9 @@
                     id="answer"
                     required
                 >
+                    @empty($datas['question']->answer->id)
+                        <option selected>---</option>
+                    @endempty
                     @for ($i = 0; $i < 4; $i++)
 
                         <option
@@ -64,6 +67,10 @@
                         </option>
                     @endfor
                 </select>
+
+                @empty($datas['question']->answer->id)
+                    <p class="important danger">Vous devez sélectionner une bonne réponse.</p>
+                @endif
             </div>
 
             <div class="field-container">

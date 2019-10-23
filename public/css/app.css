@@ -204,6 +204,10 @@ h3 {
   font-style: italic;
 }
 
+.danger {
+  color: #db504a;
+}
+
 a,
 caption,
 h1,
