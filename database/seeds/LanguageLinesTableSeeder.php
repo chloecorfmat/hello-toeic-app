@@ -1787,5 +1787,10 @@ class LanguageLinesTableSeeder extends Seeder
         ]);**/
 
         // @TODO : Here
+        LanguageLine::create([
+            'group' => 'gdpr',
+            'key' => 'personal-data-export',
+            'text' => ['en' => 'Personal data export', 'fr' => 'Export des données personnelles'],
+        ]);
     }
 }
