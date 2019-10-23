@@ -27,4 +27,8 @@ class Trial extends Model
     public function test() {
         return $this->belongsTo('App\Exercise', 'exercise_id', 'id');
     }
+
+    public function compositeTrial() {
+        return $this->hasOne('App\CompositeTrial', 'id', 'composite_trial_id');
+    }
 }
