@@ -65,9 +65,11 @@
                     <input type="password" id="password_repeat" name="password_repeat" required>
                 </div>
 
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn">
                     {{ __('common.validate') }}
                 </button>
+
+                <a href="{{ route('personalData') }}" target="_blank" class="btn btn-inverted">Personal data export</a>
             </form>
         </div>
     </div>

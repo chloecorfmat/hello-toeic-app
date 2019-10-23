@@ -194,7 +194,9 @@ Route::group(['middleware' => ['auth']], function () {
     // Route qui permet de connaître la langue active
     Route::get('locale', 'LocalizationController@getLang')->name('app.getlang');
 
-// Route qui permet de modifier la langue
+    // Route qui permet de modifier la langue
     Route::get('locale/{lang}', 'LocalizationController@setLang')->name('app.setlang');
+
+    Route::get('personal-data', 'RGPDController@personalData')->name('personalData');
 });
 
