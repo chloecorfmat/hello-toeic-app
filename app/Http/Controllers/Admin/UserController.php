@@ -320,7 +320,9 @@ class UserController extends Controller
     }
 
     public function blocked() {
-        $users = User::where('status', 0)->get();
+        $users = User::where('status', 0)
+            ->where('consent_at' , NULL)
+            ->get();
         return view('admin.users.blocked', compact('users'));
     }
 
