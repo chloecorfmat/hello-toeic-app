@@ -7,6 +7,7 @@ use App\Game;
 use App\Trial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Date;
 
 class GDPRController extends Controller
 {
@@ -102,7 +103,9 @@ class GDPRController extends Controller
      * @param Request $request
      */
     public function validateConsent(Request $request) {
-        // @TODO : validate consent.
+        $user = Auth::user();
+        $user->consent_at = (new \DateTime());
+        $user->save();
 
         if ($request->session()->has('redirect')) {
             return redirect($request->session()->get('redirect'));
@@ -117,12 +120,10 @@ class GDPRController extends Controller
      * @param Request $request
      */
     public function refuseConsent(Request $request) {
-        // @TODO : refuse consent.
+        $user = Auth::user();
+        $user->status = 0;
+        $user->save();
 
-        // 1. Send message to admin.
-        // 2. Redirect on same page.
-        // 3. Display message to prevent user that his request has been send.
-
-        return view('gdpr.collect-consent');
+        return redirect()->route('blockedAccount');
     }
 }

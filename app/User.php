@@ -24,6 +24,8 @@ class User extends Authenticatable
         'api_token',
         'last_login_at',
         'before_last_login_at',
+        'consent_at',
+        'status',
     ];
     /**
      * The attributes that should be hidden for arrays.

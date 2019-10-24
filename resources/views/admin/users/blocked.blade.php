@@ -3,14 +3,8 @@
 @section('content')
     <div class="main-content">
         <div class="main-content--header">
-            {{ Breadcrumbs::render('users.index') }}
-            <h1>{{ __('users.list') }}</h1>
-            <a href="{{ route('users.create') }}" class="main-content--header-actions">
-                <i class="fas fa-plus-circle"></i>
-            </a>
-            <a href="{{ route('users.blocked') }}" class="main-content--header-actions">
-                <i class="fas fa-ban"></i>
-            </a>
+            {{ Breadcrumbs::render('users.blocked') }}
+            <h1>{{ __('users.blocked') }}</h1>
         </div>
 
         @if ($message = Session::get('success'))
@@ -85,19 +79,6 @@
                     </tbody>
                 </table>
             </div>
-
-            <div class="container-pagination">
-                <button class="btn-pagination" id="js-pagination-prev">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <ul class="pagination"></ul>
-                <button class="btn-pagination" id="js-pagination-next">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
-        </div>
-        <div class="container-empty-search" id="js-empty-search" aria-hidden="true">
-            <p class="emphasis">{{ __('common.no-result') }}</p>
         </div>
     </div>
 @endsection

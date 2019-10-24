@@ -319,6 +319,11 @@ class UserController extends Controller
         }
     }
 
+    public function blocked() {
+        $users = User::where('status', 0)->get();
+        return view('admin.users.blocked', compact('users'));
+    }
+
     public function v2($page = 1)
     {
         $use_vue = TRUE;

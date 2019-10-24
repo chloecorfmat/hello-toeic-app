@@ -46,6 +46,11 @@ Breadcrumbs::for('users.show', function ($trail, $user) {
     $trail->push($user->name, route('users.show', $user->id));
 });
 
+Breadcrumbs::for('users.blocked', function ($trail) {
+    $trail->parent('users.index');
+    $trail->push(trans('users.blocked'), route('users.blocked'));
+});
+
 Breadcrumbs::for('users.edit', function ($trail, $user) {
     $trail->parent('users.show', $user);
     $trail->push(trans('common.edit'), route('users.edit', $user->id));
@@ -55,7 +60,6 @@ Breadcrumbs::for('users.delete', function ($trail, $user) {
     $trail->parent('dashboard');
     $trail->push(trans('common.delete'), route('users.delete'));
 });
-
 
 /** ADMIN PAGES for teacher users */
 Breadcrumbs::for('exercises.index', function ($trail) {
@@ -341,5 +345,5 @@ Breadcrumbs::for('games.continue', function ($trail) {
 
 Breadcrumbs::for('gdpr.collect-consent', function ($trail) {
     $trail->parent('dashboard');
-    $trail->push(trans('gdpr.collect-consent'), route('gdpr.collect-consent'));
+    $trail->push(trans('gdpr.collect-consent'), route('collectConsent'));
 });
