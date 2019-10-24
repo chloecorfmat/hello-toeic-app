@@ -1853,5 +1853,13 @@ class LanguageLinesTableSeeder extends Seeder
         ]);**/
 
         // @TODO : Here
+        LanguageLine::create([
+            'group' => 'gdpr',
+            'key' => 'information',
+            'text' => [
+                'en' => 'Vous pouvez retrouver les informations concernant la gestion de vos données personnelles dans le document suivant',
+                'fr' => 'Vous pouvez retrouver les informations concernant la gestion de vos données personnelles dans le document suivant'
+            ],
+        ]);
     }
 }
