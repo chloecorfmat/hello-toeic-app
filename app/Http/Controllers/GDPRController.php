@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\CompositeTrial;
-use App\Exercise;
 use App\Game;
 use App\Trial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class RGPDController extends Controller
+class GDPRController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -19,8 +18,15 @@ class RGPDController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
     }
 
+    /**
+     * Export personal data to JSON.
+     *
+     * @param Request $request
+     * @return mixed
+     */
     public function personalData(Request $request)
     {
         $user = Auth::user();
@@ -79,5 +85,44 @@ class RGPDController extends Controller
         $array['games'] = $games;
 
         return response()->json($array);
+    }
+
+    /**
+     * Collect consent before showing page.
+     *
+     * @param Request $request
+     */
+    public function collectConsent(Request $request) {
+        return view('gdpr.collect-consent');
+    }
+
+    /**
+     * Collect consent before showing page.
+     *
+     * @param Request $request
+     */
+    public function validateConsent(Request $request) {
+        // @TODO : validate consent.
+
+        if ($request->session()->has('redirect')) {
+            return redirect($request->session()->get('redirect'));
+        } else {
+            return redirect()->route('profile');
+        }
+    }
+
+    /**
+     * Collect consent before showing page.
+     *
+     * @param Request $request
+     */
+    public function refuseConsent(Request $request) {
+        // @TODO : refuse consent.
+
+        // 1. Send message to admin.
+        // 2. Redirect on same page.
+        // 3. Display message to prevent user that his request has been send.
+
+        return view('gdpr.collect-consent');
     }
 }

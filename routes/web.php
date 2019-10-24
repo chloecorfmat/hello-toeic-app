@@ -16,7 +16,7 @@ Route::macro('setGroupNamespace', function ($namespace) {
     $lastGroupStack = array_pop($this->groupStack);
     if ($lastGroupStack !== null) {
         array_set($lastGroupStack, 'namespace', $namespace);
-        $this->groupStack[] = $lastGroupStack;
+        $this->groupStack[] = $lastGrouphStack;
     }
     return $this;
 });
@@ -197,6 +197,9 @@ Route::group(['middleware' => ['auth']], function () {
     // Route qui permet de modifier la langue
     Route::get('locale/{lang}', 'LocalizationController@setLang')->name('app.setlang');
 
-    Route::get('personal-data', 'RGPDController@personalData')->name('personalData');
+    Route::get('personal-data', 'GDPRController@personalData')->name('personalData');
+    Route::get('collect-consent', 'GDPRController@collectConsent')->name('collectConsent');
+    Route::get('validate-consent', 'GDPRController@validateConsent')->name('validateConsent');
+    Route::get('refuse-consent', 'GDPRController@refuseConsent')->name('refuseConsent');
 });
 

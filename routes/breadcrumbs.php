@@ -338,3 +338,8 @@ Breadcrumbs::for('games.continue', function ($trail) {
     $trail->parent('games');
     $trail->push(trans('games.play'), route('games.continue'));
 });
+
+Breadcrumbs::for('gdpr.collect-consent', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push(trans('gdpr.collect-consent'), route('gdpr.collect-consent'));
+});

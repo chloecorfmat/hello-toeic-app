@@ -1792,5 +1792,20 @@ class LanguageLinesTableSeeder extends Seeder
             'key' => 'personal-data-export',
             'text' => ['en' => 'Personal data export', 'fr' => 'Export des données personnelles'],
         ]);
+
+        LanguageLine::create([
+            'group' => 'gdpr',
+            'key' => 'collect-consent',
+            'text' => ['en' => 'RGPD : informations sur la politique de traitement des données personnelles', 'fr' => 'RGPD : informations sur la politique de traitement des données personnelles'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'gdpr',
+            'key' => 'refuse-consent',
+            'text' => [
+                'en' => 'En refusant de donner votre consentement, vous demandez la suppression de votre compte utilisateur. Un administrateur en sera informé.',
+                'fr' => 'En refusant de donner votre consentement, vous demandez la suppression de votre compte utilisateur. Un administrateur en sera informé.'
+            ],
+        ]);
     }
 }
