@@ -1784,9 +1784,8 @@ class LanguageLinesTableSeeder extends Seeder
             'group' => 'app',
             'key' => 'contact',
             'text' => ['en' => 'Contact', 'fr' => 'Contact'],
-        ]);**/
+        ]);
 
-        // @TODO : Here
         LanguageLine::create([
             'group' => 'gdpr',
             'key' => 'personal-data-export',
@@ -1851,6 +1850,8 @@ class LanguageLinesTableSeeder extends Seeder
                 'en' => 'I refuse',
                 'fr' => 'Je refuse'
             ],
-        ]);
+        ]);**/
+
+        // @TODO : Here
     }
 }
