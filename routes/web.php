@@ -25,17 +25,16 @@ Auth::routes(['register' => false]);
 
 Route::get('/', 'HomeController@home');
 Route::get('/home', 'HomeController@home');
-Route::get('/profile', 'HomeController@index')->name('profile');
-Route::get('/train', 'HomeController@train')->name('train');
-Route::get('/contact', 'HomeController@contact')->name('contact');
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth', 'allowed.account']], function () {
     Route::setGroupNamespace('App\Http\Controllers\Admin');
     Route::resource('admin/permissions', 'PermissionController');
 
 
+    Route::get('admin/users/blocked', 'UserController@blocked')
+        ->name('users.blocked');
     Route::get('admin/v2/users/{page?}', 'UserController@v2')
         ->name('users.import');
     Route::get('admin/users/import', 'UserController@import')
@@ -120,73 +119,73 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 
-// Display tests & exercises.
-Route::resource('exercises', 'ExerciseController', [
-    // Renamed routes due to Admin/ExerciseController.
-    'names' => [
-        'index' => 'student.exercises.index',
-        'create' => 'student.exercises.create',
-        'store' => 'student.exercises.store',
-        'show' => 'student.exercises.show',
-        'edit' => 'student.exercises.edit',
-        'update' => 'student.exercises.update',
-        'destroy' => 'student.exercises.destroy',
-    ]
-]);
+Route::group(['middleware' => ['auth', 'allowed.account']], function () {
+    // Display tests & exercises.
+    Route::resource('exercises', 'ExerciseController', [
+        // Renamed routes due to Admin/ExerciseController.
+        'names' => [
+            'index' => 'student.exercises.index',
+            'create' => 'student.exercises.create',
+            'store' => 'student.exercises.store',
+            'show' => 'student.exercises.show',
+            'edit' => 'student.exercises.edit',
+            'update' => 'student.exercises.update',
+            'destroy' => 'student.exercises.destroy',
+        ]
+    ]);
 
-Route::resource('composite-tests', 'CompositeTestController', [
-    // Renamed routes due to Admin/ExerciseController.
-    'names' => [
-        'index' => 'student.composite-tests.index',
-        'create' => 'student.composite-tests.create',
-        'store' => 'student.composite-tests.store',
-        'show' => 'student.composite-tests.show',
-        'edit' => 'student.composite-tests.edit',
-        'update' => 'student.composite-tests.update',
-        'destroy' => 'student.composite-tests.destroy',
-    ]
-]);
+    Route::resource('composite-tests', 'CompositeTestController', [
+        // Renamed routes due to Admin/ExerciseController.
+        'names' => [
+            'index' => 'student.composite-tests.index',
+            'create' => 'student.composite-tests.create',
+            'store' => 'student.composite-tests.store',
+            'show' => 'student.composite-tests.show',
+            'edit' => 'student.composite-tests.edit',
+            'update' => 'student.composite-tests.update',
+            'destroy' => 'student.composite-tests.destroy',
+        ]
+    ]);
 
-Route::resource('trials', 'TrialController', [
-    // Renamed routes due to Admin/ExerciseController.
-    'names' => [
-        'index' => 'student.trials.index',
-        'create' => 'student.trials.create',
-        'store' => 'student.trials.store',
-        'show' => 'student.trials.show',
-        'edit' => 'student.trials.edit',
-        'update' => 'student.trials.update',
-        'destroy' => 'student.trials.destroy',
-    ]
-]);
+    Route::resource('trials', 'TrialController', [
+        // Renamed routes due to Admin/ExerciseController.
+        'names' => [
+            'index' => 'student.trials.index',
+            'create' => 'student.trials.create',
+            'store' => 'student.trials.store',
+            'show' => 'student.trials.show',
+            'edit' => 'student.trials.edit',
+            'update' => 'student.trials.update',
+            'destroy' => 'student.trials.destroy',
+        ]
+    ]);
 
-Route::resource('composite-trials', 'CompositeTrialController', [
-    // Renamed routes due to Admin/ExerciseController.
-    'names' => [
-        'index' => 'student.composite-trials.index',
-        'create' => 'student.composite-trials.create',
-        'store' => 'student.composite-trials.store',
-        'show' => 'student.composite-trials.show',
-        'edit' => 'student.composite-trials.edit',
-        'update' => 'student.composite-trials.update',
-        'destroy' => 'student.composite-trials.destroy',
-    ]
-]);
+    Route::resource('composite-trials', 'CompositeTrialController', [
+        // Renamed routes due to Admin/ExerciseController.
+        'names' => [
+            'index' => 'student.composite-trials.index',
+            'create' => 'student.composite-trials.create',
+            'store' => 'student.composite-trials.store',
+            'show' => 'student.composite-trials.show',
+            'edit' => 'student.composite-trials.edit',
+            'update' => 'student.composite-trials.update',
+            'destroy' => 'student.composite-trials.destroy',
+        ]
+    ]);
 
-Route::resource('users', 'UserController', [
-    // Renamed routes due to Admin/ExerciseController.
-    'names' => [
-        'index' => 'student.users.index',
-        'create' => 'student.users.create',
-        'store' => 'student.users.store',
-        'show' => 'student.users.show',
-        'edit' => 'student.users.edit',
-        'update' => 'student.users.update',
-        'destroy' => 'student.users.destroy',
-    ]
-]);
+    Route::resource('users', 'UserController', [
+        // Renamed routes due to Admin/ExerciseController.
+        'names' => [
+            'index' => 'student.users.index',
+            'create' => 'student.users.create',
+            'store' => 'student.users.store',
+            'show' => 'student.users.show',
+            'edit' => 'student.users.edit',
+            'update' => 'student.users.update',
+            'destroy' => 'student.users.destroy',
+        ]
+    ]);
 
-Route::group(['middleware' => ['auth']], function () {
     Route::get('games/play', 'GameController@play')->name('games.play');
     Route::get('games', 'GameController@index')->name('games');
     Route::post('games/continue', 'GameController@continue')->name('games.continue');
@@ -197,6 +196,17 @@ Route::group(['middleware' => ['auth']], function () {
     // Route qui permet de modifier la langue
     Route::get('locale/{lang}', 'LocalizationController@setLang')->name('app.setlang');
 
-    Route::get('personal-data', 'RGPDController@personalData')->name('personalData');
+    Route::get('personal-data', 'GDPRController@personalData')->name('personalData');
+
+    Route::get('/profile', 'HomeController@index')->name('profile');
+    Route::get('/train', 'HomeController@train')->name('train');
+    Route::get('/contact', 'HomeController@contact')->name('contact');
 });
 
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('collect-consent', 'GDPRController@collectConsent')->name('collectConsent');
+    Route::get('validate-consent', 'GDPRController@validateConsent')->name('validateConsent');
+    Route::get('refuse-consent', 'GDPRController@refuseConsent')->name('refuseConsent');
+
+    Route::get('blocked-account', 'ErrorController@blockedAccount')->name('blockedAccount');
+});
