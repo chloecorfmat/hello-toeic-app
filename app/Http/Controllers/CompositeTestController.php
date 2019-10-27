@@ -24,6 +24,12 @@ class CompositeTestController extends Controller
     {
         $compositeTests = CompositeTest::where('visible', '1')->orderBy('created_at', 'desc')->get();
         $tests = [];
+        $user = Auth::user();
+
+        $testsDone = CompositeTrial::where('user_id', $user->id)
+            ->distinct()
+            ->pluck('composite_test_id')
+            ->toArray();
 
         foreach ($compositeTests as $test) {
             $t['name'] = $test->name;
@@ -36,6 +42,7 @@ class CompositeTestController extends Controller
             $t['exercise_part5'] = Exercise::find($test->exercise_part5);
             $t['exercise_part6'] = Exercise::find($test->exercise_part6);
             $t['exercise_part7'] = Exercise::find($test->exercise_part7);
+            $t['done'] = in_array($test->id, $testsDone) ? 1 : 0;
 
             $tests[] = $t;
         }

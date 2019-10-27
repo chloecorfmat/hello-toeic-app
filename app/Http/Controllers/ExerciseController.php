@@ -29,8 +29,12 @@ class ExerciseController extends Controller
 
         $before_last_login = Auth::user()->before_last_login_at;
         $newExercises = Exercise::select('id')->where('created_at', '>', $before_last_login)->pluck('id')->toArray();
+        $doneExercises = Trial::where('user_id', Auth::user()->id)
+            ->distinct()
+            ->pluck('exercise_id')
+            ->toArray();
 
-        return view('exercises.index', compact('exercises', 'newExercises'));
+        return view('exercises.index', compact('exercises', 'newExercises', 'doneExercises'));
     }
 
     /**

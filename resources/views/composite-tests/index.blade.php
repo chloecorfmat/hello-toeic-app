@@ -52,7 +52,11 @@
                     <tbody class="list">
                     @foreach ($tests as $key => $test)
                         <tr>
-                            <td class="name">{{ $test['name'] }} @if (in_array($test['id'], $newTests))<img src="/images/gif-new.jpg" class="gif-new" alt="{{ __('common.new-test') }}"/>@endif</td>
+                            <td class="name">
+                                {{ $test['name'] }}
+                                @if (in_array($test['id'], $newTests))<img src="/images/gif-new.jpg" class="gif-new" alt="{{ __('common.new-test') }}"/>@endif
+                                @if ($test['done'])<i class="fas fa-check" aria-hidden="true" title="{{ __('common.done') }}"></i><span class="sr-only">{{ __('common.done') }}</span>@endif
+                            </td>
                             <td class="version">{{ $test['version'] }}</td>
                             <td>
                                 <ul>

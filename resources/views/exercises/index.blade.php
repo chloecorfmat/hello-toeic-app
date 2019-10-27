@@ -48,7 +48,11 @@
                     <tbody class="list">
                     @foreach ($exercises as $key => $exercise)
                         <tr>
-                            <td class="name">{{ $exercise->name }} @if (in_array($exercise->id, $newExercises))<img src="/images/gif-new.jpg" class="gif-new" alt="{{ __('common.new-exercise') }}"/>@endif</td>
+                            <td class="name">
+                                {{ $exercise->name }}
+                                @if (in_array($exercise->id, $newExercises))<img src="/images/gif-new.jpg" class="gif-new" alt="{{ __('common.new-exercise') }}"/>@endif
+                                @if (in_array($exercise->id, $doneExercises))<i class="fas fa-check" aria-hidden="true" title="{{ __('common.done') }}"></i><span class="sr-only">{{ __('common.done') }}</span>@endif
+                            </td>
                             <td class="part">{{ $exercise->part->name }}</td>
                             <td>
                                 <a href="{{ action('ExerciseController@show', ['id' => $exercise->id]) }}">Try !</a>
