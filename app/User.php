@@ -70,4 +70,8 @@ class User extends Authenticatable
     public function disabilities() {
         return $this->hasMany('App\Disability', 'user_id', 'id');
     }
+
+    public function messages() {
+        return $this->hasMany('App\Message', 'from', 'id');
+    }
 }
