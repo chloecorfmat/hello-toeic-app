@@ -30,6 +30,12 @@
                 </div>
             @endif
 
+            @if (session('status'))
+                <div class="alert alert-success" role="alert">
+                    <p>{{ session('status') }}</p>
+                </div>
+            @endif
+
             @if (sizeof($lessons) > 0)
                 <h2>{{ __('lessons.in-progress') }}</h2>
                 <div class="table" id="profile-lessons">
