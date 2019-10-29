@@ -22,7 +22,7 @@
                                     <i class="fas fa-pencil-alt"></i> Edit
                                 </a>
                             </li>
-                            <li>
+                            <li v-if="this.isStudent">
                                 <a v-bind:href="this.baseUrl + '/admin/users/delete/' + user.id">
                                     <i class="fas fa-trash"></i> Delete
                                 </a>
@@ -40,6 +40,7 @@
         data: function() {
             return {
                 displayed: false,
+                isStudent: false,
             }
         },
         computed: {
@@ -50,8 +51,20 @@
         watch: {
             user: function(user) {
                 if (user) {
+                    this.isStudent = false;
+
+                    for (var i = 0; i < user.roles.length; i++) {
+                        console.log(user.roles[i].name);
+                        if (user.roles[i].name === 'student') {
+                            this.isStudent = true;
+                        }
+                    }
+
                     this.displayed = true;
-                    document.getElementById('actions--btn-close').focus();
+
+                    if (document.getElementById('actions--btn-close')) {
+                        document.getElementById('actions--btn-close').focus();
+                    }
                 }
             }
         },

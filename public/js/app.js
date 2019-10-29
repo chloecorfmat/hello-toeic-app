@@ -2288,7 +2288,8 @@ __webpack_require__.r(__webpack_exports__);
   props: ['user'],
   data: function data() {
     return {
-      displayed: false
+      displayed: false,
+      isStudent: false
     };
   },
   computed: {
@@ -2299,8 +2300,21 @@ __webpack_require__.r(__webpack_exports__);
   watch: {
     user: function user(_user) {
       if (_user) {
+        this.isStudent = false;
+
+        for (var i = 0; i < _user.roles.length; i++) {
+          console.log(_user.roles[i].name);
+
+          if (_user.roles[i].name === 'student') {
+            this.isStudent = true;
+          }
+        }
+
         this.displayed = true;
-        document.getElementById('actions--btn-close').focus();
+
+        if (document.getElementById('actions--btn-close')) {
+          document.getElementById('actions--btn-close').focus();
+        }
       }
     }
   },
@@ -4607,21 +4621,25 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("li", [
-                  _c(
-                    "a",
-                    {
-                      attrs: {
-                        href:
-                          this.baseUrl + "/admin/users/delete/" + _vm.user.id
-                      }
-                    },
-                    [
-                      _c("i", { staticClass: "fas fa-trash" }),
-                      _vm._v(" Delete\n                        ")
-                    ]
-                  )
-                ])
+                this.isStudent
+                  ? _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: {
+                            href:
+                              this.baseUrl +
+                              "/admin/users/delete/" +
+                              _vm.user.id
+                          }
+                        },
+                        [
+                          _c("i", { staticClass: "fas fa-trash" }),
+                          _vm._v(" Delete\n                        ")
+                        ]
+                      )
+                    ])
+                  : _vm._e()
               ])
             ])
           ])
