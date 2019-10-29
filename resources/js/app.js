@@ -22,6 +22,12 @@ import store from './store/store';
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 Vue.component('base-table', require('./components/Tables/BaseTable.vue').default);
 
+Vue.directive('focus', {
+    inserted: function (el) {
+        el.focus()
+    }
+});
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

@@ -37,7 +37,7 @@
                             </ul>
                         </td>
                         <td class="actions-column">
-                            <button>
+                            <button v-on:click="userActions(user)">
                                 <i class="actions-ico fas fa-ellipsis-h fa-lg"></i>
                             </button>
                         </td>
@@ -58,15 +58,18 @@
                     :pages-number="this.pagesNumber"
             ></base-pagination>
         </div>
+
+        <base-table-actions :user="this.userActionsData"></base-table-actions>
     </div>
 </template>
 
 <script>
     import BasePagination from "../Paginations/BasePagination";
+    import BaseTableActions from "./BaseTableActions";
     import axios from "axios";
 
     export default {
-        components: {BasePagination},
+        components: {BasePagination, BaseTableActions},
         props: ['currentUserData', 'currentPageData'],
         data: function() {
             return {
@@ -74,6 +77,7 @@
                 usersNb: 0,
                 pagesNumber: 1,
                 currentPage: 1,
+                userActionsData: null,
                 search: "",
                 sorts: [
                     {
@@ -112,6 +116,9 @@
                     this.currentPage = page;
                     this.buildUrl();
                 }
+            },
+            userActions: function (user) {
+                this.userActionsData = user;
             },
             reloadUsers: function () {
                 let get_url = "";
@@ -157,7 +164,6 @@
 
                 this.buildUrl();
             },
-
             buildUrl: function () {
                 let url = window.location.href.replace(/\/$/, "");
                 let base_url = url.substring(0, url.lastIndexOf("/"));
