@@ -2096,6 +2096,7 @@ __webpack_require__.r(__webpack_exports__);
       pagesNumber: 1,
       currentPage: 1,
       userActionsData: null,
+      refreshActions: 0,
       search: "",
       sorts: [{
         'name': 'name',
@@ -2137,7 +2138,11 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     userActions: function userActions(user) {
-      this.userActionsData = user;
+      if (this.userActionsData == user) {
+        this.refreshActions++;
+      } else {
+        this.userActionsData = user;
+      }
     },
     reloadUsers: function reloadUsers() {
       var _this = this;
@@ -2285,7 +2290,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['user'],
+  props: ['user', 'refresh'],
   data: function data() {
     return {
       displayed: false,
@@ -2303,24 +2308,28 @@ __webpack_require__.r(__webpack_exports__);
         this.isStudent = false;
 
         for (var i = 0; i < _user.roles.length; i++) {
-          console.log(_user.roles[i].name);
-
           if (_user.roles[i].name === 'student') {
             this.isStudent = true;
           }
         }
 
-        this.displayed = true;
-
-        if (document.getElementById('actions--btn-close')) {
-          document.getElementById('actions--btn-close').focus();
-        }
+        this.displayActions();
       }
+    },
+    refresh: function refresh() {
+      this.displayActions();
     }
   },
   methods: {
     hideActions: function hideActions() {
       this.displayed = false;
+    },
+    displayActions: function displayActions() {
+      this.displayed = true;
+
+      if (document.getElementById('actions--btn-close')) {
+        document.getElementById('actions--btn-close').focus();
+      }
     }
   }
 });
@@ -4527,7 +4536,9 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("base-table-actions", { attrs: { user: this.userActionsData } })
+      _c("base-table-actions", {
+        attrs: { user: this.userActionsData, refresh: this.refreshActions }
+      })
     ],
     1
   )

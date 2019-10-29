@@ -36,7 +36,7 @@
 
 <script>
     export default {
-        props: ['user'],
+        props: ['user', 'refresh'],
         data: function() {
             return {
                 displayed: false,
@@ -54,23 +54,28 @@
                     this.isStudent = false;
 
                     for (var i = 0; i < user.roles.length; i++) {
-                        console.log(user.roles[i].name);
                         if (user.roles[i].name === 'student') {
                             this.isStudent = true;
                         }
                     }
 
-                    this.displayed = true;
-
-                    if (document.getElementById('actions--btn-close')) {
-                        document.getElementById('actions--btn-close').focus();
-                    }
+                    this.displayActions();
                 }
+            },
+            refresh: function() {
+                this.displayActions();
             }
         },
         methods: {
             hideActions: function() {
                 this.displayed = false;
+            },
+            displayActions: function() {
+                this.displayed = true;
+
+                if (document.getElementById('actions--btn-close')) {
+                    document.getElementById('actions--btn-close').focus();
+                }
             }
         }
     }

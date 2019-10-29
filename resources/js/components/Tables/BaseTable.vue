@@ -59,7 +59,7 @@
             ></base-pagination>
         </div>
 
-        <base-table-actions :user="this.userActionsData"></base-table-actions>
+        <base-table-actions :user="this.userActionsData" :refresh="this.refreshActions"></base-table-actions>
     </div>
 </template>
 
@@ -78,6 +78,7 @@
                 pagesNumber: 1,
                 currentPage: 1,
                 userActionsData: null,
+                refreshActions: 0,
                 search: "",
                 sorts: [
                     {
@@ -118,7 +119,11 @@
                 }
             },
             userActions: function (user) {
-                this.userActionsData = user;
+                if (this.userActionsData == user) {
+                    this.refreshActions++;
+                } else {
+                    this.userActionsData = user;
+                }
             },
             reloadUsers: function () {
                 let get_url = "";
