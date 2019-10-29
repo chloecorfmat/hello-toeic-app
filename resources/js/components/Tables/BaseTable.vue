@@ -12,11 +12,6 @@
                 <table>
                     <caption class="sr-only">Users list</caption>
                     <thead>
-                    <th class="numeric-column">
-                        <button class="sort" v-on:click="sortBy('id')">
-                            ID <i class="fas fa-arrows-alt-v"></i>
-                        </button>
-                    </th>
                     <th>
                         <button class="sort" v-on:click="sortBy('name')">
                             Name <i class="fas fa-arrows-alt-v"></i>
@@ -29,7 +24,6 @@
                     </thead>
                     <tbody>
                     <tr v-for="user in users">
-                        <td class="numeric-column">{{ user.id }}</td>
                         <td class="important">{{ user.name }}</td>
                         <td>
                             <a v-bind:href="'mailto:' + user.email">{{ user.email }}</a>
@@ -82,11 +76,6 @@
                 currentPage: 1,
                 search: "",
                 sorts: [
-                    {
-                        'name' : 'id',
-                        'active': false,
-                        'type': 'desc'
-                    },
                     {
                         'name': 'name',
                         'active': false,
