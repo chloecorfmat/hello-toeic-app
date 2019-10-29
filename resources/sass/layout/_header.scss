@@ -1,3 +1,57 @@
+.profile--menu {
+    background: $light-grey;
+
+    &-list {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &-item {
+        text-align: center;
+        font-size: .8rem;
+
+        .profile--menu-link {
+            display: block;
+            padding: 0.3rem 2rem;
+            color: $white;
+
+            &:hover {
+                font-weight: 700;
+            }
+        }
+
+        &.student--item {
+            .profile--menu-link {
+                background: $primary-color;
+
+                &:hover {
+                    background: $primary-color-dark;
+                }
+            }
+        }
+
+        &.teacher--item {
+            .profile--menu-link {
+                background: $info-color;
+
+                &:hover {
+                    background: $info-color-dark;
+                }
+            }
+        }
+
+        &.admin--item {
+            .profile--menu-link {
+                background: $warning-color;
+
+                &:hover {
+                    background: $warning-color-dark;
+                }
+            }
+        }
+    }
+}
+
 .header {
     align-items: center;
     background-color: $white;
@@ -6,12 +60,45 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    //margin-bottom: 2rem;
     min-height: 8vh;
     padding: .5rem 3rem;
 
     .header--part {
         margin: .5rem auto;
+    }
+}
+
+.header--menu {
+    li {
+        display: inline-block;
+        margin: auto 1rem;
+        vertical-align: middle;
+    }
+
+    a {
+        color: $main-color;
+        font-weight: 700;
+
+        &.active {
+            color: $primary-color;
+            transform: translateY(25%);
+            display: inline-block;
+
+            &:hover {
+                color: $primary-color-dark;
+                opacity: 1;
+            }
+
+            &::after {
+                content: "•";
+                display: block;
+                text-align: center;
+            }
+        }
+
+        &:hover {
+            opacity: .8;
+        }
     }
 }
 
@@ -69,13 +156,27 @@
     margin-left: 0.25rem;
 }
 
-@media screen and (min-width: $breakpoint-small) {
+@media screen and (min-width: $breakpoint-medium) {
     .header {
         flex-direction: row;
         padding: .5rem 5rem;
 
         .header--part {
             margin: initial;
+        }
+    }
+
+    .profile--menu-list {
+        flex-direction: row;
+        padding: 0 5rem;
+
+        .profile--menu-link {
+            transform: skewX(-20deg);
+
+            span {
+                transform: skewX(+20deg);
+                display: inline-block;
+            }
         }
     }
 }

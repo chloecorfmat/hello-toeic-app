@@ -1,13 +1,8 @@
 .breadcrumb {
   display: block;
   margin-bottom: 1rem;
-
-  &:before {
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    content: "\f277";
-    margin-right: .5rem;
-  }
+  text-align: center;
+  font-size: .8rem;
 
   &-item {
     display: inline-block;
