@@ -13,7 +13,7 @@
                     <caption class="sr-only">Users list</caption>
                     <thead>
                     <th class="numeric-column">
-                        <button class="sort">
+                        <button class="sort" v-on:click="sortBy('id')">
                             ID <i class="fas fa-arrows-alt-v"></i>
                         </button>
                     </th>
@@ -85,12 +85,12 @@
                     {
                         'name' : 'id',
                         'active': false,
-                        'type': 'asc'
+                        'type': 'desc'
                     },
                     {
                         'name': 'name',
                         'active': false,
-                        'type': 'asc'
+                        'type': 'desc'
                     }
                 ]
             };
@@ -120,22 +120,33 @@
             },
             changePage: function (page) {
                 if (this.currentPage !== page) {
-                    let url = window.location.href.replace(/\/$/, "");
-                    let base_url = url.substring(0, url.lastIndexOf("/"));
-                    if (search !== '') {
-                        console.log('search2');
-                        window.history.pushState("", "", base_url + '/' + this.currentPage + "?search=" + this.search);
-                    } else {
-                        window.history.pushState("", "", base_url + '/' + this.currentPage);
-                    }
-
                     this.currentPage = page;
-                    this.reloadUsers();
+                    this.buildUrl();
                 }
             },
             reloadUsers: function () {
+                let get_url = "";
+                let gets = [];
+
+                if (this.search !== '' && this.search !== undefined) {
+                    gets.push({'search' : this.search});
+                }
+
+                this.sorts.forEach(function(el) {
+                    if (el.active) {
+                        gets.push({'sortBy' : el.name});
+                        gets.push({'orderBy' : el.type });
+                    }
+                });
+
+                if (gets.length !== 0) {
+                    gets.forEach(function(el) {
+                        get_url += Object.keys(el)[0] + "=" + Object.values(el)[0] + "&";
+                    });
+                }
+
                 axios
-                    .get('/api/users/' + this.currentPage + '?api_token=' + this.currentUser.api_token + '&search=' + this.search)
+                    .get('/api/users/' + this.currentPage + '?api_token=' + this.currentUser.api_token + '&' + get_url)
                     .then(response => (
                         this.users = response.data.users,
                             this.usersNb = response.data.users_nb,
@@ -143,29 +154,50 @@
                     ));
             },
             searchUsers: function () {
-                let url = window.location.href.replace(/\/$/, "");
-                let base_url = url.substring(0, url.lastIndexOf("/"));
-                if (this.search !== '') {
-                    console.log('search');
-                    window.history.pushState("", "", base_url + '/' + this.currentPage + "?search=" + this.search);
-                } else {
-                    window.history.pushState("", "", base_url + '/' + this.currentPage);
-                }
-
-                this.reloadUsers();
+                this.buildUrl();
             },
             sortBy: function (filter) {
                 this.sorts.forEach(function(el) {
                     if (el.name === filter) {
                         el.active = true;
+                        el.type = (el.type == 'asc' ? 'desc' : 'asc');
                     } else {
                         el.active = false;
                     }
                 });
+
+                this.buildUrl();
             },
 
             buildUrl: function () {
+                let url = window.location.href.replace(/\/$/, "");
+                let base_url = url.substring(0, url.lastIndexOf("/"));
 
+                let gets = [];
+
+                base_url += '/' + this.currentPage;
+
+                if (this.search !== '' && this.search !== undefined) {
+                    gets.push({'search' : this.search});
+                }
+
+                this.sorts.forEach(function(el) {
+                    if (el.active) {
+                        gets.push({'sortBy' : el.name});
+                        gets.push({'orderBy' : el.type });
+                    }
+                });
+
+                if (gets.length !== 0) {
+                    base_url = base_url + "?";
+
+                    gets.forEach(function(el) {
+                        base_url += Object.keys(el)[0] + "=" + Object.values(el)[0] + "&";
+                    });
+                }
+
+                window.history.pushState("", "", base_url);
+                this.reloadUsers(gets);
             },
             getGETParameters: function () {
                 var prmstr = window.location.search.substr(1);
