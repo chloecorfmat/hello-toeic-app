@@ -35,15 +35,15 @@
     border-radius: 50%;
 
     &.role-student {
-      background: $tertiary-color-1;
+      background: $student-color;
     }
 
     &.role-teacher {
-      background: $secondary-color-2;
+      background: $teacher-color;
     }
 
     &.role-admin {
-      background: $danger-color;
+      background: $admin-color;
     }
   }
 }

@@ -2077,12 +2077,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2098,10 +2092,6 @@ __webpack_require__.r(__webpack_exports__);
       currentPage: 1,
       search: "",
       sorts: [{
-        'name': 'id',
-        'active': false,
-        'type': 'desc'
-      }, {
         'name': 'name',
         'active': false,
         'type': 'desc'
@@ -4329,24 +4319,6 @@ var render = function() {
               _c("caption", { staticClass: "sr-only" }, [_vm._v("Users list")]),
               _vm._v(" "),
               _c("thead", [
-                _c("th", { staticClass: "numeric-column" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "sort",
-                      on: {
-                        click: function($event) {
-                          return _vm.sortBy("id")
-                        }
-                      }
-                    },
-                    [
-                      _vm._v("\n                        ID "),
-                      _c("i", { staticClass: "fas fa-arrows-alt-v" })
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
                 _c("th", [
                   _c(
                     "button",
@@ -4380,10 +4352,6 @@ var render = function() {
                 "tbody",
                 _vm._l(_vm.users, function(user) {
                   return _c("tr", [
-                    _c("td", { staticClass: "numeric-column" }, [
-                      _vm._v(_vm._s(user.id))
-                    ]),
-                    _vm._v(" "),
                     _c("td", { staticClass: "important" }, [
                       _vm._v(_vm._s(user.name))
                     ]),
@@ -4403,11 +4371,10 @@ var render = function() {
                         "ul",
                         _vm._l(user.roles, function(role) {
                           return _c("li", [
-                            _c("span", { class: "role role-" + role.name }),
-                            _vm._v(
-                              _vm._s(role.name) +
-                                "\n                            "
-                            )
+                            _c("span", {
+                              class: "role role-" + role.name,
+                              attrs: { title: role.name }
+                            })
                           ])
                         }),
                         0
