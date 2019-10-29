@@ -2100,11 +2100,11 @@ __webpack_require__.r(__webpack_exports__);
       sorts: [{
         'name': 'id',
         'active': false,
-        'type': 'asc'
+        'type': 'desc'
       }, {
         'name': 'name',
         'active': false,
-        'type': 'asc'
+        'type': 'desc'
       }]
     };
   },
@@ -2136,50 +2136,90 @@ __webpack_require__.r(__webpack_exports__);
     },
     changePage: function changePage(page) {
       if (this.currentPage !== page) {
-        var url = window.location.href.replace(/\/$/, "");
-        var base_url = url.substring(0, url.lastIndexOf("/"));
-
-        if (search !== '') {
-          console.log('search2');
-          window.history.pushState("", "", base_url + '/' + this.currentPage + "?search=" + this.search);
-        } else {
-          window.history.pushState("", "", base_url + '/' + this.currentPage);
-        }
-
         this.currentPage = page;
-        this.reloadUsers();
+        this.buildUrl();
       }
     },
     reloadUsers: function reloadUsers() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/users/' + this.currentPage + '?api_token=' + this.currentUser.api_token + '&search=' + this.search).then(function (response) {
+      var get_url = "";
+      var gets = [];
+
+      if (this.search !== '' && this.search !== undefined) {
+        gets.push({
+          'search': this.search
+        });
+      }
+
+      this.sorts.forEach(function (el) {
+        if (el.active) {
+          gets.push({
+            'sortBy': el.name
+          });
+          gets.push({
+            'orderBy': el.type
+          });
+        }
+      });
+
+      if (gets.length !== 0) {
+        gets.forEach(function (el) {
+          get_url += Object.keys(el)[0] + "=" + Object.values(el)[0] + "&";
+        });
+      }
+
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/users/' + this.currentPage + '?api_token=' + this.currentUser.api_token + '&' + get_url).then(function (response) {
         return _this.users = response.data.users, _this.usersNb = response.data.users_nb, _this.pagesNumber = Math.ceil(response.data.users_nb / 30);
       });
     },
     searchUsers: function searchUsers() {
-      var url = window.location.href.replace(/\/$/, "");
-      var base_url = url.substring(0, url.lastIndexOf("/"));
-
-      if (this.search !== '') {
-        console.log('search');
-        window.history.pushState("", "", base_url + '/' + this.currentPage + "?search=" + this.search);
-      } else {
-        window.history.pushState("", "", base_url + '/' + this.currentPage);
-      }
-
-      this.reloadUsers();
+      this.buildUrl();
     },
     sortBy: function sortBy(filter) {
       this.sorts.forEach(function (el) {
         if (el.name === filter) {
           el.active = true;
+          el.type = el.type == 'asc' ? 'desc' : 'asc';
         } else {
           el.active = false;
         }
       });
+      this.buildUrl();
     },
-    buildUrl: function buildUrl() {},
+    buildUrl: function buildUrl() {
+      var url = window.location.href.replace(/\/$/, "");
+      var base_url = url.substring(0, url.lastIndexOf("/"));
+      var gets = [];
+      base_url += '/' + this.currentPage;
+
+      if (this.search !== '' && this.search !== undefined) {
+        gets.push({
+          'search': this.search
+        });
+      }
+
+      this.sorts.forEach(function (el) {
+        if (el.active) {
+          gets.push({
+            'sortBy': el.name
+          });
+          gets.push({
+            'orderBy': el.type
+          });
+        }
+      });
+
+      if (gets.length !== 0) {
+        base_url = base_url + "?";
+        gets.forEach(function (el) {
+          base_url += Object.keys(el)[0] + "=" + Object.values(el)[0] + "&";
+        });
+      }
+
+      window.history.pushState("", "", base_url);
+      this.reloadUsers(gets);
+    },
     getGETParameters: function getGETParameters() {
       var prmstr = window.location.search.substr(1);
       return prmstr != null && prmstr != "" ? this.transformToAssocArray(prmstr) : {};
@@ -4289,7 +4329,23 @@ var render = function() {
               _c("caption", { staticClass: "sr-only" }, [_vm._v("Users list")]),
               _vm._v(" "),
               _c("thead", [
-                _vm._m(0),
+                _c("th", { staticClass: "numeric-column" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "sort",
+                      on: {
+                        click: function($event) {
+                          return _vm.sortBy("id")
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("\n                        ID "),
+                      _c("i", { staticClass: "fas fa-arrows-alt-v" })
+                    ]
+                  )
+                ]),
                 _vm._v(" "),
                 _c("th", [
                   _c(
@@ -4358,7 +4414,7 @@ var render = function() {
                       )
                     ]),
                     _vm._v(" "),
-                    _vm._m(1, true)
+                    _vm._m(0, true)
                   ])
                 }),
                 0
@@ -4385,17 +4441,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("th", { staticClass: "numeric-column" }, [
-      _c("button", { staticClass: "sort" }, [
-        _vm._v("\n                        ID "),
-        _c("i", { staticClass: "fas fa-arrows-alt-v" })
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
