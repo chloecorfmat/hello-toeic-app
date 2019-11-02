@@ -17,7 +17,7 @@
                                     <i class="fas fa-eye"></i> Show
                                 </a>
                             </li>
-                            <li>
+                            <li v-if="this.isStudent">
                                 <a v-bind:href="this.baseUrl + '/admin/users/' + user.id + '/edit'">
                                     <i class="fas fa-pencil-alt"></i> Edit
                                 </a>

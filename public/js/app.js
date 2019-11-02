@@ -4616,21 +4616,26 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("li", [
-                  _c(
-                    "a",
-                    {
-                      attrs: {
-                        href:
-                          this.baseUrl + "/admin/users/" + _vm.user.id + "/edit"
-                      }
-                    },
-                    [
-                      _c("i", { staticClass: "fas fa-pencil-alt" }),
-                      _vm._v(" Edit\n                        ")
-                    ]
-                  )
-                ]),
+                this.isStudent
+                  ? _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: {
+                            href:
+                              this.baseUrl +
+                              "/admin/users/" +
+                              _vm.user.id +
+                              "/edit"
+                          }
+                        },
+                        [
+                          _c("i", { staticClass: "fas fa-pencil-alt" }),
+                          _vm._v(" Edit\n                        ")
+                        ]
+                      )
+                    ])
+                  : _vm._e(),
                 _vm._v(" "),
                 this.isStudent
                   ? _c("li", [
