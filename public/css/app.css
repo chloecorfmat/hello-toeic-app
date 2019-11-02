@@ -882,6 +882,13 @@ tr:nth-child(2n) {
   width: 100%;
 }
 
+.login .forgot-password {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  text-align: right;
+  display: block;
+}
+
 .container-pagination {
   text-align: center;
 }

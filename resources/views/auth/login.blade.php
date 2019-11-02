@@ -31,6 +31,8 @@
                 {{ __('common.login') }}
             </button>
         </form>
+
+        <a class="forgot-password" href="{{ route('password.request') }}">{{ __('common.forgot-password') }}</a>
     </div>
 </div>
 @endsection
