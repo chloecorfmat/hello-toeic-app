@@ -14,7 +14,9 @@ class ApiController extends Controller
 
         if (!empty($request->get('search') && $request->get('search') !== "undefined")) {
             $search = $request->get('search');
-            $query->where('name', 'LIKE', '%' . $search . '%');
+            $query->orWhere('name', 'LIKE', '%' . $search . '%')
+                ->orWhere('matricule', 'LIKE', '%' . $search . '%')
+                ->orWhere('email', 'LIKE', '%' . $search . '%');
         }
 
         if (!empty($request->get('sortBy')) && !empty($request->get('orderBy'))) {
