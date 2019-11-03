@@ -75,6 +75,13 @@
                                     {{ __('common.score') }} <i class="fas fa-arrows-alt-v"></i>
                                 </button>
                             </th>
+                            @foreach($exercises_ids as $key => $exercise)
+                                <th scope="col">
+                                    <button class="sort" data-sort="score_{{ $key }}">
+                                        Part {{ $key }}<i class="fas fa-arrows-alt-v"></i>
+                                    </button>
+                                </th>
+                            @endforeach
                         </tr>
                         </thead>
                         <tbody class="list">
@@ -87,8 +94,6 @@
                                 @php ($score = $result['score'])
                                 @php ($class_score = $score === $statistics['max'] ? 'score--high' : ($score === $statistics['min'] ? 'score--low' : ''))
 
-
-
                                 <td class="score {{ $class_score }}">
                                     @if (is_string($score))
                                         {{ $score }}
@@ -97,6 +102,18 @@
                                         <span class="important">{{ $score }}/{{ $max_possible }}</span> ({{ $percent }}%)
                                     @endif
                                 </td>
+
+                                @foreach ($exercises_ids as $key => $id)
+                                    @if (isset($result['exercises'][$key]))
+                                        @php ($score = $result['exercises'][$key])
+                                        <td class="score_{{ $key }}">
+                                            @php ($percent = round(100*intval($score)/$exercises[$id], 1))
+                                            <span class="important">{{ $result['exercises'][$key] }}/{{ $exercises[$id] }}</span> ({{ $percent }}%)
+                                        </td>
+                                    @else
+                                        <td>{{ __('common.not-passed') }}</td>
+                                    @endif
+                                @endforeach
                             </tr>
                         @endforeach
                         </tbody>
