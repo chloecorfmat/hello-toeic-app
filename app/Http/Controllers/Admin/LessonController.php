@@ -93,9 +93,11 @@ class LessonController extends Controller
         for ($i = 1; $i < 8; $i++) {
             $function = 'exercisePart' . $i;
             $exercise = $composite_test->$function()->get()->first();
-
-            $exercises[$exercise->id] = $exercise->part()->get()->first()->nb_questions * 5;
-            $exercises_ids[$i] = $exercise->id;
+            
+            if (!is_null($exercise)) {
+                $exercises[$exercise->id] = $exercise->part()->get()->first()->nb_questions * 5;
+                $exercises_ids[$i] = $exercise->id;
+            }
         }
 
         $students = Group::find($lesson->group_id)->users()->get();
