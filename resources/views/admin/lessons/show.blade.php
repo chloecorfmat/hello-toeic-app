@@ -78,7 +78,7 @@
                             @foreach($exercises_ids as $key => $exercise)
                                 <th scope="col">
                                     <button class="sort" data-sort="score_{{ $key }}">
-                                        Part {{ $key }}<i class="fas fa-arrows-alt-v"></i>
+                                        {{ __('common.part') }} {{ $key }}<i class="fas fa-arrows-alt-v"></i>
                                     </button>
                                 </th>
                             @endforeach

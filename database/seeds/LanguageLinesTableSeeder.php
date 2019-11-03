@@ -1868,9 +1868,7 @@ class LanguageLinesTableSeeder extends Seeder
                 'en' => 'Done',
                 'fr' => 'Fait'
             ],
-        ]);**/
-
-        // @TODO : Here
+        ]);
 
         LanguageLine::create([
             'group' => 'common',
@@ -1879,6 +1877,8 @@ class LanguageLinesTableSeeder extends Seeder
                 'en' => 'Forgot your password?',
                 'fr' => 'Mot de passe oublié ?'
             ],
-        ]);
+        ]);**/
+
+        // @TODO : Here
     }
 }
