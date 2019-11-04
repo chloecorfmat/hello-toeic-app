@@ -88,10 +88,9 @@
 
                         @yield('laterale-bar-content-begin')
 
+                        @role('student')
                         <div class="laterale-bar--part laterale-bar--menu">
                             <h3>{{__('app.training')}}</h3>
-                            <!--<a href="{{ route('train') }}" class="btn">S'entraîner</a>-->
-
                             <ul class="laterale-bar--menu-list">
                                 <li>
                                     <a class="btn btn-training" href="{{ route('student.composite-tests.index') }}">
@@ -110,6 +109,7 @@
                                 </li>
                             </ul>
                         </div>
+                        @endrole
 
                         @role('teacher')
                         <div class="laterale-bar--part laterale-bar--menu">

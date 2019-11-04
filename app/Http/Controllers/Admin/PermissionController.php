@@ -10,9 +10,12 @@ use Spatie\Permission\Models\Permission;
 class PermissionController extends Controller
 {
 
+    /**
+     * Constructor.
+     */
     public function __construct()
     {
-        $this->middleware(['role:admin']);
+        $this->middleware(['permission:permissions-manage']);
     }
 
     /**

@@ -15,9 +15,12 @@ use Illuminate\Support\Facades\DB;
 
 class LessonController extends Controller
 {
+    /**
+     * Constructor.
+     */
     public function __construct()
     {
-        $this->middleware(['role:teacher']);
+        $this->middleware(['permission:lessons-manage']);
     }
 
     /**
@@ -93,7 +96,7 @@ class LessonController extends Controller
         for ($i = 1; $i < 8; $i++) {
             $function = 'exercisePart' . $i;
             $exercise = $composite_test->$function()->get()->first();
-            
+
             if (!is_null($exercise)) {
                 $exercises[$exercise->id] = $exercise->part()->get()->first()->nb_questions * 5;
                 $exercises_ids[$i] = $exercise->id;

@@ -8,9 +8,12 @@ use Illuminate\Http\Request;
 
 class ConfigController extends Controller
 {
+    /**
+     * Constructor.
+     */
     public function __construct()
     {
-        $this->middleware(['role:admin']);
+        $this->middleware(['permission:configs-manage']);
     }
 
     /**

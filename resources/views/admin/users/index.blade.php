@@ -73,7 +73,7 @@
                                 <ul>
                                     <li>
                                         <a href="{{ route('users.show', ['id' => $user->id]) }}" title="{{ __('users.show') }}"><i class="fas fa-eye"></i></a>
-                                        @if ($user->hasRole('student') || $is_admin)
+                                        @if ((!$user->hasRole('teacher') && !$user->hasRole('admin')) || $is_admin)
                                             <a href="{{ route('users.edit', ['id' => $user->id]) }}" title="{{ __('users.edit') }}"><i class="fas fa-pencil-alt"></i></a>
                                         @endif
                                         <a href="{{ route('users.delete', $user->id) }}" title="{{ __('users.delete') }}"><i class="fas fa-trash"></i></a>

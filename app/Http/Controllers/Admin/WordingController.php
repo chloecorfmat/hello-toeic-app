@@ -9,9 +9,12 @@ use Spatie\TranslationLoader\LanguageLine;
 
 class WordingController extends Controller
 {
+    /**
+     * Constructor.
+     */
     public function __construct()
     {
-        $this->middleware(['role:admin']);
+        $this->middleware(['permission:translations-manage']);
     }
 
     /**

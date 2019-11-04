@@ -69,7 +69,9 @@
                     {{ __('common.validate') }}
                 </button>
 
-                <a href="{{ route('personalData') }}" target="_blank" class="btn btn-inverted">{{ __('gdpr.personal-data-export') }}</a>
+                @can('personal-data-export')
+                    <a href="{{ route('personalData') }}" target="_blank" class="btn btn-inverted">{{ __('gdpr.personal-data-export') }}</a>
+                @endcan
             </form>
         </div>
     </div>

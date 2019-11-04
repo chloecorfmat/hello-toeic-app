@@ -12,9 +12,12 @@ use Webpatser\Sanitize\Sanitize;
 
 class GroupController extends Controller
 {
+    /**
+     * Constructor.
+     */
     public function __construct()
     {
-        $this->middleware(['role:teacher']);
+        $this->middleware(['permission:groups-manage']);
     }
 
     /**

@@ -74,9 +74,11 @@
                                 </ul>
                             </td>
                             <td>
-                                <a href="{{ action('CompositeTestController@show', ['id' => $test['id']]) }}" title="{{ __('composite-tests.execute') }}">
-                                    <i class="fas fa-play fa-lg"></i>
-                                </a>
+                                @can('tests-achieve')
+                                    <a href="{{ action('CompositeTestController@show', ['id' => $test['id']]) }}" title="{{ __('composite-tests.execute') }}">
+                                        <i class="fas fa-play fa-lg"></i>
+                                    </a>
+                                @endcan
                                 <a href="{{ action('Admin\CompositeTestController@edit', ['id' => $test['id']]) }}" title="{{ __('composite-tests.edit') }}">
                                     <i class="fas fa-pencil-alt"></i>
                                 </a>

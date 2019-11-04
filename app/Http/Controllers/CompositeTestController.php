@@ -16,6 +16,14 @@ use wapmorgan\Mp3Info\Mp3Info;
 class CompositeTestController extends Controller
 {
     /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware(['permission:tests-achieve']);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

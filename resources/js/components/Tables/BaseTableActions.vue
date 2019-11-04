@@ -53,10 +53,8 @@
                 if (user) {
                     this.isStudent = false;
 
-                    for (var i = 0; i < user.roles.length; i++) {
-                        if (user.roles[i].name === 'student') {
-                            this.isStudent = true;
-                        }
+                    if ((user.roles.length === 1) && user.roles[0].name === 'student' ) {
+                        this.isStudent = true;
                     }
 
                     this.displayActions();

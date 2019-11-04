@@ -11,9 +11,12 @@ use App\Http\Controllers\Controller;
 
 class ResultController extends Controller
 {
+    /**
+     * Constructor.
+     */
     public function __construct()
     {
-        $this->middleware(['role:teacher']);
+        $this->middleware(['permission:results-see']);
     }
 
     /**

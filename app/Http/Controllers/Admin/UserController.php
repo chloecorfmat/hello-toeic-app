@@ -16,9 +16,12 @@ use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
+    /**
+     * Constructor.
+     */
     public function __construct()
     {
-        $this->middleware(['role:teacher|admin']);
+        $this->middleware(['permission:users-manage']);
     }
 
     /**

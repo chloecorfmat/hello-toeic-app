@@ -18,8 +18,8 @@ class GDPRController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
-
+        $this->middleware('auth')->only(['collectConsent', 'validateConsent']);
+        $this->middleware('permission:personal-data-export')->only(['personalData']);
     }
 
     /**

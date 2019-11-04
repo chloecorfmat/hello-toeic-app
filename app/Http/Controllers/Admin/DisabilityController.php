@@ -8,6 +8,14 @@ use Illuminate\Http\Request;
 class DisabilityController extends Controller
 {
     /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware(['permission:users-manage']);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

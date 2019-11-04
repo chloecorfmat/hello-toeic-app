@@ -8,9 +8,12 @@ use Illuminate\Http\Request;
 
 class PartController extends Controller
 {
+    /**
+     * Constructor.
+     */
     public function __construct()
     {
-        $this->middleware(['role:teacher']);
+        $this->middleware(['permission:parts-manage']);
     }
 
     /**

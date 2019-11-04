@@ -2307,10 +2307,8 @@ __webpack_require__.r(__webpack_exports__);
       if (_user) {
         this.isStudent = false;
 
-        for (var i = 0; i < _user.roles.length; i++) {
-          if (_user.roles[i].name === 'student') {
-            this.isStudent = true;
-          }
+        if (_user.roles.length === 1 && _user.roles[0].name === 'student') {
+          this.isStudent = true;
         }
 
         this.displayActions();
