@@ -75,7 +75,22 @@ class UserController extends Controller
                 'passed' => $request->get('passed'),
             ]);
 
-            $user->assignRole($request->get('role'));
+            $role = $request->get('role');
+
+            switch($role) {
+                case 'admin':
+                    $user->assignRole('admin');
+                    $user->assignRole('teacher');
+                    $user->assignRole('student');
+                    break;
+                case 'teacher':
+                    $user->assignRole('teacher');
+                    $user->assignRole('student');
+                    break;
+                default:
+                    $user->assignRole('student');
+                    break;
+            }
 
             if (Setting::where('key', 'ff.email')->first()->value == true) {
                 //Mail::to($user)->send(new UserAccountCreated($user));
@@ -294,6 +309,10 @@ class UserController extends Controller
                     ]);
 
                     $user->assignRole($role);
+
+                    if ($role === 'teacher') {
+                        $user->assignRole('student');
+                    }
 
                     if (Setting::where('key', 'ff.email')->first()->value == true) {
                         //Mail::to($user)->send(new UserAccountCreated($user));
