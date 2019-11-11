@@ -73,6 +73,7 @@ class UserController extends Controller
                 'password' => Hash::make($request->get('matricule')),
                 'api_token' => Str::random(60),
                 'passed' => $request->get('passed'),
+                'promo' => $request->get('course') ? intval(substr($request->get('course'), -4)) : NULL,
             ]);
 
             $role = $request->get('role');
@@ -90,6 +91,13 @@ class UserController extends Controller
                 default:
                     $user->assignRole('student');
                     break;
+            }
+
+            if (($user->promo != NULL) && (strpos($user->email, '@enssat.fr') !== false)) {
+                $pos = strpos($user->email, '@enssat.fr');
+                $login = substr($user->email, 0, $pos);
+                $url = 'https://intranet.enssat.fr/bindocs/trombi/' . $user->promo  . '/' . $user->promo  . '_' . $login . '.jpg';
+                $user->picture = $url;
             }
 
             if (Setting::where('key', 'ff.email')->first()->value == true) {
@@ -294,9 +302,10 @@ class UserController extends Controller
                 $data = explode("\t", $line);
 
                 $email = $data[1] . $request->get('suffix_mail');
+                $matricule = $data[5];
 
                 $existEmail = User::where('email', $email)->count();
-                $existMatricule = User::where('matricule', $data[5])->count();
+                $existMatricule = User::where('matricule', $matricule)->count();
 
                 if (!$existEmail && !$existMatricule) {
                     $user = User::create([
@@ -304,6 +313,7 @@ class UserController extends Controller
                         'matricule' => $data[5],
                         'email' => $email,
                         'course' => $data[3] . $data[2],
+                        'promo' => $data[2],
                         'password' => Hash::make(str_replace("\n", "", $data[5])),
                         'api_token' => Str::random(60),
                     ]);
@@ -313,6 +323,14 @@ class UserController extends Controller
                     if ($role === 'teacher') {
                         $user->assignRole('student');
                     }
+
+                    if (($user->promo != NULL) && ($request->get('suffix_mail') === "@enssat.fr")) {
+                        $login = $data[1];
+                        $url = 'https://intranet.enssat.fr/bindocs/trombi/' . $user->promo  . '/' . $user->promo  . '_' . $login . '.jpg';
+                        $user->picture = $url;
+                    }
+
+                    $user->save();
 
                     if (Setting::where('key', 'ff.email')->first()->value == true) {
                         //Mail::to($user)->send(new UserAccountCreated($user));
