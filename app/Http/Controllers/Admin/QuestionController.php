@@ -17,15 +17,12 @@ use App\Http\Controllers\Controller;
 class QuestionController extends Controller
 {
 
+    /**
+     * Constructor.
+     */
     public function __construct()
     {
-        $this->middleware(['permission:question-add'])->only('create', 'store');
-        $this->middleware(['permission:question-update'])->only('edit', 'update');
-        $this->middleware(['permission:question-list'])->only('index');
-        $this->middleware(['permission:question-show'])->only('show');
-
-        // This route are currently not used.
-        $this->middleware(['role:teacher'])->only('destroy');
+        $this->middleware(['permission:exercises-manage']);
     }
 
     /**

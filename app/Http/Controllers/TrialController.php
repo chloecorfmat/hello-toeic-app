@@ -11,7 +11,8 @@ class TrialController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['permission:trial-show'])->only('show');
+        $this->middleware(['permission:exercises-achieve'])->except(['show']);
+        $this->middleware(['permission:exercises-achieve|exercises-manage'])->only(['show']);
     }
 
     /**

@@ -12,10 +12,12 @@ use wapmorgan\Mp3Info\Mp3Info;
 
 class ExerciseController extends Controller
 {
+    /**
+     * Constructor.
+     */
     public function __construct()
     {
-        $this->middleware(['permission:test-execute'])->only('show', 'update');
-        $this->middleware(['permission:test-list'])->only('index');
+        $this->middleware(['permission:exercises-achieve']);
     }
 
     /**

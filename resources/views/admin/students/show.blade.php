@@ -38,7 +38,8 @@
             </div>
         </div>
 
-        <div class="part-container">
+        @if(sizeof($trials) > 0)
+            <div class="part-container">
             <h2>{{ __('exercises.results_last') }}</h2>
             <div class="table" id="profile-tests">
                 <div class="table--filters">
@@ -109,8 +110,10 @@
                 <p class="emphasis">{{ __('common.no-result') }}</p>
             </div>
         </div>
+        @endif
 
-        <div class="part-container">
+        @if(sizeof($composite_trials) > 0)
+            <div class="part-container">
             <h2>{{ __('composite-tests.results_last') }}</h2>
             <div class="table">
                 <div class="table--filters">
@@ -182,8 +185,10 @@
                 <p class="emphasis">{{ __('common.no-result') }}</p>
             </div>
         </div>
+        @endif
 
-        <div class="part-container">
+        @if(sizeof($games) > 0)
+            <div class="part-container">
             <h2>{{ __('games.results_last') }}</h2>
             <div class="table" id="games">
                 <div class="table--filters">
@@ -235,5 +240,6 @@
                 <p class="emphasis">{{ __('common.no-result') }}</p>
             </div>
         </div>
+        @endif
     </div>
 @endsection

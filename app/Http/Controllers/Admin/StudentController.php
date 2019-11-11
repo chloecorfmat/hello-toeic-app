@@ -14,15 +14,12 @@ use App\Setting;
 
 class StudentController extends Controller
 {
+    /**
+     * Constructor.
+     */
     public function __construct()
     {
-        //$this->middleware(['permission:document-add'])->only('create', 'store');
-        //$this->middleware(['permission:document-update'])->only('edit', 'update');
-        //$this->middleware(['permission:document-list'])->only('index');
-        //$this->middleware(['permission:document-show'])->only('show');
-
-        // This route are currently not used.
-        $this->middleware(['role:teacher']);
+        $this->middleware(['permission:users-manage']);
     }
 
     /**

@@ -13,10 +13,12 @@ use Illuminate\Support\Facades\Cookie;
 
 class GameController extends Controller
 {
+    /**
+     * Constructor.
+     */
     public function __construct()
     {
-        $this->middleware(['permission:game-execute'])->only('play', 'continue');
-        $this->middleware(['permission:game-list'])->only('index');
+        $this->middleware(['permission:games-achieve']);
     }
 
     public function index() {

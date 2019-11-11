@@ -13,67 +13,66 @@ class PermissionTableSeeder extends Seeder
      */
     public function run()
     {
+        $permissions = [
+            'badges-manage',
+            'users-manage',
+            'tests-manage',
+            'exercises-manage',
+            'groups-manage',
+            'lessons-manage',
+            'parts-manage',
+            'explanations-manage',
+            'examples-manage',
+            'permissions-manage',
+            'features-manage',
+            'configs-manage',
+            'translations-manage',
+            'results-see',
+            'exercises-achieve',
+            'tests-achieve',
+            'games-achieve',
+            'personal-data-export',
+        ];
+
         $permissions_admin = [
-            'admin',
-            'dashboard-own-see',
-            'dashboard-students-see',
-            'document-add',
-            'document-show',
-            'document-list',
-            'document-update',
-            'profile-own-update',
-            'profile-students-update',
-            'profile-teachers-update',
-            'question-add',
-            'question-show',
-            'question-list',
-            'question-update',
-            'test-add',
-            'test-execute',
-            'test-list',
-            'trial-show',
-            'game-execute',
-            'game-list',
+            'permissions-manage',
+            'features-manage',
+            'configs-manage',
+            'translations-manage',
+            'users-manage',
         ];
 
         $permissions_teacher = [
-            'dashboard-own-see',
-            'dashboard-students-see',
-            'document-add',
-            'document-show',
-            'document-list',
-            'document-update',
-            'profile-own-update',
-            'profile-students-update',
-            'question-add',
-            'question-show',
-            'question-list',
-            'question-update',
-            'test-add',
-            'test-execute',
-            'test-list',
-            'trial-show',
-            'game-execute',
-            'game-list',
+            'badges-manage',
+            'users-manage',
+            'tests-manage',
+            'exercises-manage',
+            'groups-manage',
+            'lessons-manage',
+            'explanations-manage',
+            'parts-manage',
+            'examples-manage',
+            'results-see',
+            'personal-data-export',
         ];
 
         $permissions_student = [
-            'dashboard-own-see',
-            'profile-own-update',
-            'test-execute',
-            'test-list',
-            'trial-show',
-            'game-execute',
-            'game-list',
+            'exercises-achieve',
+            'tests-achieve',
+            'games-achieve',
+            'personal-data-export',
         ];
 
         $admin = Role::findByName('admin');
         $teacher = Role::findByName('teacher');
         $student = Role::findByName('student');
 
-        foreach ($permissions_admin as $permission) {
+        foreach ($permissions as $permission) {
             Permission::create(['name' => $permission]);
-            $admin->givePermissionTo($permission);
+
+            if (in_array($permission, $permissions_admin)) {
+                $admin->givePermissionTo($permission);
+            }
 
             if (in_array($permission, $permissions_teacher)) {
                 $teacher->givePermissionTo($permission);

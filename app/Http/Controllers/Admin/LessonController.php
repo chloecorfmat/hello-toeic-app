@@ -15,9 +15,12 @@ use Illuminate\Support\Facades\DB;
 
 class LessonController extends Controller
 {
+    /**
+     * Constructor.
+     */
     public function __construct()
     {
-        $this->middleware(['role:teacher']);
+        $this->middleware(['permission:lessons-manage']);
     }
 
     /**
@@ -85,6 +88,21 @@ class LessonController extends Controller
             abort(404);
         }
 
+        $composite_test = $lesson->composite_test()->get()->first();
+
+        $exercises = [];
+        $exercises_ids = [];
+
+        for ($i = 1; $i < 8; $i++) {
+            $function = 'exercisePart' . $i;
+            $exercise = $composite_test->$function()->get()->first();
+
+            if (!is_null($exercise)) {
+                $exercises[$exercise->id] = $exercise->part()->get()->first()->nb_questions * 5;
+                $exercises_ids[$i] = $exercise->id;
+            }
+        }
+
         $students = Group::find($lesson->group_id)->users()->get();
 
         $results = [];
@@ -106,10 +124,19 @@ class LessonController extends Controller
                 $score = $composite_trial->score;
                 $scores[] = $score;
 
+                $ex_scores = [];
+                $trials = $composite_trial->trials()->get();
+
+                foreach ($trials as $trial) {
+                    $id = array_search($trial->exercise_id, $exercises_ids);
+                    $ex_scores[$id] = $trial->score;
+                }
+
                 $results[] = [
                     'name' => $student->name,
                     'datetime' => $composite_trial->datetime,
                     'score' => $composite_trial->score,
+                    'exercises' => $ex_scores,
                 ];
 
                 if ($min < 0 || $score < $min) {
@@ -127,6 +154,7 @@ class LessonController extends Controller
                     'name' => $student->name,
                     'datetime' => '-',
                     'score' => trans('common.not-passed'),
+                    'exercises' => []
                 ];
             }
         }
@@ -142,7 +170,7 @@ class LessonController extends Controller
             'students_passed' => $s_number,
         ];
 
-        return view('admin.lessons.show', compact('lesson', 'results', 'statistics'));
+        return view('admin.lessons.show', compact('lesson', 'results', 'exercises', 'exercises_ids', 'statistics'));
     }
 
     /**

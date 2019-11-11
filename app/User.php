@@ -26,6 +26,8 @@ class User extends Authenticatable
         'before_last_login_at',
         'consent_at',
         'status',
+        'promo',
+        'picture',
     ];
     /**
      * The attributes that should be hidden for arrays.

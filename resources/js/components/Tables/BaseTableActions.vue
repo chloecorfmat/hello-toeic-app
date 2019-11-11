@@ -17,7 +17,7 @@
                                     <i class="fas fa-eye"></i> Show
                                 </a>
                             </li>
-                            <li>
+                            <li v-if="this.isStudent">
                                 <a v-bind:href="this.baseUrl + '/admin/users/' + user.id + '/edit'">
                                     <i class="fas fa-pencil-alt"></i> Edit
                                 </a>
@@ -53,10 +53,8 @@
                 if (user) {
                     this.isStudent = false;
 
-                    for (var i = 0; i < user.roles.length; i++) {
-                        if (user.roles[i].name === 'student') {
-                            this.isStudent = true;
-                        }
+                    if ((user.roles.length === 1) && user.roles[0].name === 'student' ) {
+                        this.isStudent = true;
                     }
 
                     this.displayActions();

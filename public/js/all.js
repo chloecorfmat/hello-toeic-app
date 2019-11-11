@@ -469,7 +469,7 @@ function lists(e) {
 
   if (document.getElementById('students-lesson') !== null) {
     var options = {
-      valueNames: ['student', 'datetime', 'score'],
+      valueNames: ['student', 'datetime', 'score', 'score_1', 'score_2', 'score_3', 'score_4', 'score_5', 'score_6', 'score_7'],
       page: 30,
       pagination: {
         paginationClass: "pagination",

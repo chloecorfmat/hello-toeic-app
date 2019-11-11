@@ -8,9 +8,12 @@ use App\Http\Controllers\Controller;
 
 class ExplanationController extends Controller
 {
+    /**
+     * Constructor.
+     */
     public function __construct()
     {
-        $this->middleware(['role:teacher']);
+        $this->middleware(['permission:explanations-manage']);
     }
 
     /**

@@ -78,7 +78,14 @@
                 @else
                     <li class="header--actions-list-item">
                         <a href="{{ route('student.users.show', ['id' => Auth::user()->id]) }}">
-                            <i class="user-ico fas fa-user-circle fa-lg"></i>
+                            @if (Auth::user()->picture)
+                                <div class="user-picture--container user-picture--header">
+                                    <img src="{{ Auth::user()->picture }}" alt="" class="user-picture">
+                                </div>
+                            @else
+                                <i class="user-ico fas fa-user-circle fa-lg"></i>
+                            @endif
+
                             <span class="legend-ico">{{ __('app.profile') }}</span>
                         </a>
                     </li>

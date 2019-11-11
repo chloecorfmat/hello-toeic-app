@@ -9,15 +9,12 @@ use Illuminate\Support\Facades\Storage;
 
 class DocumentController extends Controller
 {
+    /**
+     * Constructor.
+     */
     public function __construct()
     {
-        $this->middleware(['permission:document-add'])->only('create', 'store');
-        $this->middleware(['permission:document-update'])->only('edit', 'update');
-        $this->middleware(['permission:document-list'])->only('index');
-        $this->middleware(['permission:document-show'])->only('show');
-
-        // This route are currently not used.
-        $this->middleware(['role:admin'])->only('destroy');
+        $this->middleware(['permission:exercises-manage']);
     }
 
     /**

@@ -397,7 +397,6 @@ footer p {
 .header--actions-list .header--actions-list-item {
   display: inline-block;
   text-align: center;
-  vertical-align: middle;
 }
 
 .header--actions-list .header--actions-list-item a {
@@ -977,6 +976,13 @@ tr:nth-child(2n) {
   width: 100%;
 }
 
+.login .forgot-password {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  text-align: right;
+  display: block;
+}
+
 .container-pagination {
   text-align: center;
 }
@@ -1135,6 +1141,30 @@ tr:nth-child(2n) {
 
 .user-ico {
   color: #c5cbd3;
+}
+
+.user-picture--container {
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.user-picture--container.user-picture--header {
+  height: 21px;
+  width: 21px;
+  margin: auto;
+}
+
+.user-picture--container.user-picture--header .user-picture {
+  width: 21px;
+}
+
+.user-picture--container.user-picture--laterale-bar {
+  height: 80px;
+  width: 80px;
+}
+
+.user-picture--container.user-picture--laterale-bar .user-picture {
+  width: 80px;
 }
 
 .list-documents {

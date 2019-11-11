@@ -9,9 +9,12 @@ use Webpatser\Sanitize\Sanitize;
 
 class ExampleController extends Controller
 {
+    /**
+     * Constructor.
+     */
     public function __construct()
     {
-        $this->middleware(['role:teacher']);
+        $this->middleware(['permission:examples-manage']);
     }
 
     /**

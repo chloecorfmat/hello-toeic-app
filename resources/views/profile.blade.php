@@ -8,20 +8,26 @@
         <!-- Results -->
         <div class="part-container">
             <div class="card-container">
-                <div class="card">
-                    <p class="card-text"><span class="card-number">{{ $stats['composite-trials'] }} </span>{{ __('composite-tests.done') }}</p>
-                    <a href="{{ route('student.composite-trials.index') }}" class="card-link">{{ __('common.learn-more') }}</a>
-                </div>
+                @can('tests-achieve')
+                    <div class="card">
+                        <p class="card-text"><span class="card-number">{{ $stats['composite-trials'] }} </span>{{ __('composite-tests.done') }}</p>
+                        <a href="{{ route('student.composite-trials.index') }}" class="card-link">{{ __('common.learn-more') }}</a>
+                    </div>
+                @endcan
 
-                <div class="card">
-                    <p class="card-text"><span class="card-number">{{ $stats['trials'] }} </span>{{ __('exercises.done') }}</p>
-                    <a href="{{ route('student.trials.index') }}" class="card-link">{{ __('common.learn-more') }}</a>
-                </div>
+                @can('exercises-achieve')
+                    <div class="card">
+                        <p class="card-text"><span class="card-number">{{ $stats['trials'] }} </span>{{ __('exercises.done') }}</p>
+                        <a href="{{ route('student.trials.index') }}" class="card-link">{{ __('common.learn-more') }}</a>
+                    </div>
+                @endcan
 
-                <div class="card">
-                    <p class="card-text"><span class="card-number">{{ $stats['games'] }} </span>{{ __('games.done') }}</p>
-                    <a href="{{ route('games') }}" class="card-link">{{ __('common.learn-more') }}</a>
-                </div>
+                @can('games-achieve')
+                    <div class="card">
+                        <p class="card-text"><span class="card-number">{{ $stats['games'] }} </span>{{ __('games.done') }}</p>
+                        <a href="{{ route('games') }}" class="card-link">{{ __('common.learn-more') }}</a>
+                    </div>
+                @endcan
             </div>
 
             @if ($message = Session::get('success'))
@@ -120,7 +126,8 @@
                 </div>
             @endif
         </div>
-        <div class="part-container">
+        @can('exercises-achieve')
+            <div class="part-container">
             <h2>{{ __('exercises.results_last') }}</h2>
             @if (!Auth::user()->hasRole('teacher'))
                 <p class="emphasis">{{ __('correction.limitation') }}</p>
@@ -219,8 +226,10 @@
                 <p class="emphasis">{{ __('common.no-result') }}</p>
             </div>
         </div>
+        @endcan
 
-        <div class="part-container">
+        @can('tests-achieve')
+            <div class="part-container">
             <h2>{{ __('composite-tests.results_last') }}</h2>
             @if (!Auth::user()->hasRole('teacher'))
                 <p class="emphasis">{{ __('correction.limitation') }}</p>
@@ -303,6 +312,7 @@
                 <p class="emphasis">{{ __('common.no-result') }}</p>
             </div>
         </div>
+        @endcan
 
         <div class="part-container">
             <h2>{{ __('common.rewards') }}</h2>

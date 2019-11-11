@@ -9,6 +9,14 @@ use App\CompositeTest;
 class CompositeTrialController extends Controller
 {
     /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware(['permission:tests-achieve']);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

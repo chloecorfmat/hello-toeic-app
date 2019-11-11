@@ -1859,9 +1859,8 @@ class LanguageLinesTableSeeder extends Seeder
                 'en' => 'Vous pouvez retrouver les informations concernant la gestion de vos données personnelles dans le document suivant',
                 'fr' => 'Vous pouvez retrouver les informations concernant la gestion de vos données personnelles dans le document suivant'
             ],
-        ]);**/
+        ]);
 
-        // @TODO : Here
         LanguageLine::create([
             'group' => 'common',
             'key' => 'done',
@@ -1870,5 +1869,16 @@ class LanguageLinesTableSeeder extends Seeder
                 'fr' => 'Fait'
             ],
         ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'forgot-password',
+            'text' => [
+                'en' => 'Forgot your password?',
+                'fr' => 'Mot de passe oublié ?'
+            ],
+        ]);**/
+
+        // @TODO : Here
     }
 }

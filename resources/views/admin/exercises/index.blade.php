@@ -58,7 +58,9 @@
                             <td>
                                 <a href="{{ route('exercises.show', ['id' => $exercise->id]) }}" title="{{ __('exercises.show') }}"><i class="fas fa-eye"></i></a>
                                 <a href="{{ route('exercises.edit', $exercise->id) }}" title="{{ __('exercises.edit') }}"><i class="fas fa-pencil-alt"></i></a>
-                                <a href="{{ action('ExerciseController@show', ['id' => $exercise->id]) }}" title="{{ __('exercises.execute') }}"><i class="fas fa-play"></i></a>
+                                @can('exercises-achieve')
+                                    <a href="{{ action('ExerciseController@show', ['id' => $exercise->id]) }}" title="{{ __('exercises.execute') }}"><i class="fas fa-play"></i></a>
+                                @endcan
                                 <a href="{{ route('exercises.delete', $exercise->id) }}" title="{{ __('exercises.delete') }}"><i class="fas fa-trash"></i></a>
                             </td>
                         </tr>

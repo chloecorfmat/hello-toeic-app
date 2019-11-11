@@ -70,3 +70,27 @@
 .user-ico {
     color: $tertiary-color-2;
 }
+
+.user-picture--container {
+    overflow: hidden;
+    border-radius: 50%;
+
+    &.user-picture--header {
+        height: 21px;
+        width: 21px;
+        margin: auto;
+
+        .user-picture {
+            width: 21px;
+        }
+    }
+
+    &.user-picture--laterale-bar {
+        height: 80px;
+        width: 80px;
+
+        .user-picture {
+            width: 80px;
+        }
+    }
+}

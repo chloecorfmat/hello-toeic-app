@@ -2307,10 +2307,8 @@ __webpack_require__.r(__webpack_exports__);
       if (_user) {
         this.isStudent = false;
 
-        for (var i = 0; i < _user.roles.length; i++) {
-          if (_user.roles[i].name === 'student') {
-            this.isStudent = true;
-          }
+        if (_user.roles.length === 1 && _user.roles[0].name === 'student') {
+          this.isStudent = true;
         }
 
         this.displayActions();
@@ -4615,21 +4613,26 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("li", [
-                  _c(
-                    "a",
-                    {
-                      attrs: {
-                        href:
-                          this.baseUrl + "/admin/users/" + _vm.user.id + "/edit"
-                      }
-                    },
-                    [
-                      _c("i", { staticClass: "fas fa-pencil-alt" }),
-                      _vm._v(" Edit\n                        ")
-                    ]
-                  )
-                ]),
+                this.isStudent
+                  ? _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: {
+                            href:
+                              this.baseUrl +
+                              "/admin/users/" +
+                              _vm.user.id +
+                              "/edit"
+                          }
+                        },
+                        [
+                          _c("i", { staticClass: "fas fa-pencil-alt" }),
+                          _vm._v(" Edit\n                        ")
+                        ]
+                      )
+                    ])
+                  : _vm._e(),
                 _vm._v(" "),
                 this.isStudent
                   ? _c("li", [

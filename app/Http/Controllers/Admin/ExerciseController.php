@@ -17,9 +17,12 @@ use Illuminate\Support\Facades\Auth;
 
 class ExerciseController extends Controller
 {
+    /**
+     * Constructor.
+     */
     public function __construct()
     {
-        $this->middleware(['role:teacher']);
+        $this->middleware(['permission:exercises-manage']);
     }
 
     /**
