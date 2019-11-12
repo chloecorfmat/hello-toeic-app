@@ -205,6 +205,13 @@
                                         {{__('explanations.list')}}
                                     </a>
                                 </li>
+
+                                <li class="laterale-bar--menu-item">
+                                    <a href="{{ route('messages.index') }}">
+                                        <i class="menu-ico fas fa-envelope"></i>
+                                        {{__('messages.list')}}
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                         @endrole

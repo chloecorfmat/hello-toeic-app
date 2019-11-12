@@ -366,6 +366,18 @@ class UserController extends Controller
         return view('admin.users.blocked', compact('users'));
     }
 
+    public function activate(Request $request, $id) {
+        $user = User::find($id);
+        if (!$user->status) {
+            $user->status = 1;
+            $user->save();
+
+            return redirect()->route('users.edit', [$id])->with('success', trans('users.account-activate'));
+        }
+
+        return redirect()->route('users.edit', [$id]);
+    }
+
     public function v2($page = 1)
     {
         $use_vue = TRUE;

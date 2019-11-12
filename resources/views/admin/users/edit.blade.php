@@ -135,6 +135,10 @@
             <button type="submit" class="btn btn-primary">
                 {{ __('common.validate') }}
             </button>
+
+            @if (!$user->status)
+                <a href="{{ route('users.activate', [$user->id]) }}" class="btn btn--success">Activate account</a>
+            @endif
         </form>
     </div>
 

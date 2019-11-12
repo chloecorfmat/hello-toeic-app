@@ -1880,5 +1880,49 @@ class LanguageLinesTableSeeder extends Seeder
         ]);**/
 
         // @TODO : Here
+        LanguageLine::create([
+            'group' => 'messages',
+            'key' => 'list',
+            'text' => [
+                'en' => 'Messages list',
+                'fr' => 'Liste des messages'
+            ],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'from',
+            'text' => [
+                'en' => 'From',
+                'fr' => 'De'
+            ],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'subject',
+            'text' => [
+                'en' => 'Subject',
+                'fr' => 'Objet'
+            ],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'status',
+            'text' => [
+                'en' => 'Status',
+                'fr' => 'Statut'
+            ],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'users',
+            'key' => 'account-activate',
+            'text' => [
+                'en' => 'User account activate',
+                'fr' => 'Le compte de l\'utilisateur a été activé'
+            ],
+        ]);
     }
 }
