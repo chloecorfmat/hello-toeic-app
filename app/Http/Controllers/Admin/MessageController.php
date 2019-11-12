@@ -20,7 +20,10 @@ class MessageController extends Controller
      */
     public function index()
     {
-        $messages = Message::orderBy('datetime', 'desc')->get();
+        $roles = \Auth::user()->roles()->pluck('id')->toArray();
+        $messages = Message::whereIn('to', $roles)
+            ->orderBy('datetime', 'desc')
+            ->get();
         return view('admin.messages.index', compact('messages'));
     }
 
