@@ -1924,5 +1924,32 @@ class LanguageLinesTableSeeder extends Seeder
                 'fr' => 'Le compte de l\'utilisateur a été activé'
             ],
         ]);
+
+        LanguageLine::create([
+            'group' => 'messages',
+            'key' => 'handled',
+            'text' => [
+                'en' => 'Le message a bien été traité.',
+                'fr' => 'Le message a bien été traité.'
+            ],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'messages',
+            'key' => 'handle',
+            'text' => [
+                'en' => 'Handle message',
+                'fr' => 'Traiter le message'
+            ],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'messages',
+            'key' => 'handle_by',
+            'text' => [
+                'en' => 'Handle by',
+                'fr' => 'Traité par'
+            ],
+        ]);
     }
 }

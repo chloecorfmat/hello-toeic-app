@@ -1,0 +1,14 @@
+.tag {
+  font-size: .8rem;
+  background: $secondary-color-1;
+  color: $white;
+  padding: 0.2rem 0.4rem;
+  display: inline-block;
+  border-radius: 3rem;
+  vertical-align: middle;
+
+  &:hover {
+    background: $tertiary-color-1;
+    color: $white;
+  }
+}

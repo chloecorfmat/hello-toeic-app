@@ -15,7 +15,7 @@ class MessageController extends Controller
      */
     public function index()
     {
-        $messages = Message::orderBy('datetime')->get();
+        $messages = Message::orderBy('datetime', 'desc')->get();
         return view('admin.messages.index', compact('messages'));
     }
 
@@ -83,5 +83,19 @@ class MessageController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function handle(Request $request, $id) {
+        $message = Message::find($id);
+
+        if (!$message->status) {
+            $message->status = 1;
+            $message->handle_by = \Auth::user()->id;
+            $message->save();
+
+            return redirect()->route('messages.index')->with('success', trans('messages.handled'));
+        }
+
+        return redirect()->route('messages.index');
     }
 }

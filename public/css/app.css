@@ -1287,6 +1287,21 @@ tr:nth-child(2n) {
   padding: 1rem;
 }
 
+.tag {
+  font-size: 0.8rem;
+  background: #4b3f72;
+  color: #fff;
+  padding: 0.2rem 0.4rem;
+  display: inline-block;
+  border-radius: 3rem;
+  vertical-align: middle;
+}
+
+.tag:hover {
+  background: #8d6a9f;
+  color: #fff;
+}
+
 .test legend {
   font-family: "Nunito", sans-serif;
 }

@@ -119,6 +119,8 @@ Route::group(['middleware' => ['auth', 'allowed.account']], function () {
     Route::get('admin/results/games', 'ResultController@games')
         ->name('results.games');
 
+    Route::get('admin/messages/handle/{id?}', 'MessageController@handle')
+        ->name('messages.handle');
     Route::resource('admin/messages', 'MessageController');
 });
 

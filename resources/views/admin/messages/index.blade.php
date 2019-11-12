@@ -48,7 +48,7 @@
                         </th>
                         <th scope="col">
                             <button class="sort" data-sort="status">
-                                {{ __('common.status') }} <i class="fas fa-arrows-alt-v"></i>
+                                {{ __('messages.handle_by') }} <i class="fas fa-arrows-alt-v"></i>
                             </button>
                         </th>
                     </tr>
@@ -59,7 +59,13 @@
                             <td class="datetime">{{ $message->datetime }}</td>
                             <td class="subject">{{ $message->subject }}</td>
                             <td class="from">{{ $message->from()->first()->name }}</td>
-                            <td class="status">{{ $message->status }}</td>
+                            <td class="status">
+                                @if ($message->status)
+                                    {{ $message->handle_by()->first()->name }}
+                                @else
+                                    <a class="tag" href="{{ route('messages.handle', [$message->id]) }}">Handle the message</a>
+                                @endif
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>
