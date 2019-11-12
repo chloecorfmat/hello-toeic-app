@@ -223,4 +223,11 @@ function lists(e) {
         var list = new List('exercise-questions', options);
     }
 
+    if (document.getElementById('messages') !== null) {
+        var options = {
+            valueNames: ['datetime', 'subject', 'from', 'to'],
+        };
+
+        var list = new List('messages', options);
+    }
 }
