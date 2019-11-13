@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\CompositeTrial;
 use App\Game;
+use App\Message;
 use App\Trial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -123,6 +124,15 @@ class GDPRController extends Controller
         $user = Auth::user();
         $user->status = 0;
         $user->save();
+
+        Message::create([
+            'from' => $user->id,
+            'datetime' => (new \DateTime()),
+            'subject' => trans('app.blocked-account'),
+            'status' => 0,
+            'to' => 1,
+            'message' => '',
+        ]);
 
         return redirect()->route('blockedAccount');
     }

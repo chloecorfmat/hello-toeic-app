@@ -291,6 +291,31 @@ Breadcrumbs::for('lessons.delete', function ($trail, $lesson) {
     $trail->push(trans('common.delete'), route('lessons.delete'));
 });
 
+Breadcrumbs::for('messages.index', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push(trans('messages.list'), route('messages.index'));
+});
+
+Breadcrumbs::for('messages.create', function ($trail) {
+    $trail->parent('messages.index');
+    $trail->push(trans('common.create'), route('messages.create'));
+});
+
+Breadcrumbs::for('messages.show', function ($trail, $message) {
+    $trail->parent('messages.index');
+    $trail->push($message->name, route('messages.show', $message->id));
+});
+
+Breadcrumbs::for('messages.edit', function ($trail, $message) {
+    $trail->parent('messages.show', $message);
+    $trail->push(trans('common.edit'), route('messages.edit', $message->id));
+});
+
+Breadcrumbs::for('messages.delete', function ($trail) {
+    $trail->parent('messages.index');
+    $trail->push(trans('common.delete'), route('messages.delete'));
+});
+
 Breadcrumbs::for('results.index', function ($trail) {
     $trail->parent('dashboard');
     $trail->push(trans('app.results'), route('results.index'));

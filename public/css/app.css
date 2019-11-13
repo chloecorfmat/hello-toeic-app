@@ -533,6 +533,14 @@ button {
   width: 1.25rem;
 }
 
+.btn.btn--success {
+  background: #6fa939;
+}
+
+.btn.btn--success:hover {
+  opacity: 0.8;
+}
+
 .btn-inverted {
   background: #fff;
   border: 1px solid #a42424;
@@ -1371,6 +1379,21 @@ tr:nth-child(2n) {
   font-size: 1.1rem;
   line-height: 1.5;
   padding: 1rem;
+}
+
+.tag {
+  font-size: 0.8rem;
+  background: #4b3f72;
+  color: #fff;
+  padding: 0.2rem 0.4rem;
+  display: inline-block;
+  border-radius: 3rem;
+  vertical-align: middle;
+}
+
+.tag:hover {
+  background: #8d6a9f;
+  color: #fff;
 }
 
 .test legend {

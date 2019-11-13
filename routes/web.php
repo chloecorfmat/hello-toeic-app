@@ -35,6 +35,9 @@ Route::group(['middleware' => ['auth', 'allowed.account']], function () {
 
     Route::get('admin/users/blocked', 'UserController@blocked')
         ->name('users.blocked');
+    Route::get('admin/users/activate/{id}', 'UserController@activate')
+        ->name('users.activate');
+
     Route::get('admin/v2/users/{page?}', 'UserController@v2')
         ->name('users.import');
     Route::get('admin/users/import', 'UserController@import')
@@ -116,6 +119,9 @@ Route::group(['middleware' => ['auth', 'allowed.account']], function () {
     Route::get('admin/results/games', 'ResultController@games')
         ->name('results.games');
 
+    Route::get('admin/messages/handle/{id?}', 'MessageController@handle')
+        ->name('messages.handle');
+    Route::resource('admin/messages', 'MessageController');
 });
 
 

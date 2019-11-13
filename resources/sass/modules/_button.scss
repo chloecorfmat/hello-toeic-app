@@ -32,6 +32,14 @@ button {
             width: 1.25rem;
         }
     }
+
+    &.btn--success {
+        background: $success-color;
+
+        &:hover {
+            opacity: .8;
+        }
+    }
 }
 
 .btn-inverted {

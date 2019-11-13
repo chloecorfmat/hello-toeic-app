@@ -1880,5 +1880,76 @@ class LanguageLinesTableSeeder extends Seeder
         ]);**/
 
         // @TODO : Here
+        LanguageLine::create([
+            'group' => 'messages',
+            'key' => 'list',
+            'text' => [
+                'en' => 'Messages list',
+                'fr' => 'Liste des messages'
+            ],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'from',
+            'text' => [
+                'en' => 'From',
+                'fr' => 'De'
+            ],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'subject',
+            'text' => [
+                'en' => 'Subject',
+                'fr' => 'Objet'
+            ],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'status',
+            'text' => [
+                'en' => 'Status',
+                'fr' => 'Statut'
+            ],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'users',
+            'key' => 'account-activate',
+            'text' => [
+                'en' => 'User account activate',
+                'fr' => 'Le compte de l\'utilisateur a été activé'
+            ],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'messages',
+            'key' => 'handled',
+            'text' => [
+                'en' => 'Le message a bien été traité.',
+                'fr' => 'Le message a bien été traité.'
+            ],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'messages',
+            'key' => 'handle',
+            'text' => [
+                'en' => 'Handle message',
+                'fr' => 'Traiter le message'
+            ],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'messages',
+            'key' => 'handle_by',
+            'text' => [
+                'en' => 'Handle by',
+                'fr' => 'Traité par'
+            ],
+        ]);
     }
 }
