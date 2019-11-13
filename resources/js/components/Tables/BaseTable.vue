@@ -105,8 +105,7 @@
             this.$store.watch(
                 (state, getters) => getters.ready,
                 (newValue, oldValue) => {
-                    this.neededTranslations.users_list = this.$store.getters.translationByKey('users_list'),
-                        this.toto = "tata"
+                    this.neededTranslations.users_list = this.$store.getters.translationByKey('users_list')
                 }
             );
         },

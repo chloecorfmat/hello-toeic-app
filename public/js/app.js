@@ -2128,7 +2128,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.$store.watch(function (state, getters) {
       return getters.ready;
     }, function (newValue, oldValue) {
-      _this.neededTranslations.users_list = _this.$store.getters.translationByKey('users_list'), _this.toto = "tata";
+      _this.neededTranslations.users_list = _this.$store.getters.translationByKey('users_list');
     });
   },
   beforeMount: function beforeMount() {
