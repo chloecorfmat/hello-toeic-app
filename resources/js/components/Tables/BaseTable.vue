@@ -10,7 +10,7 @@
         <div v-if="users.length !== 0">
             <div class="table-container is-visible">
                 <table>
-                    <caption class="sr-only">Users list</caption>
+                    <caption class="sr-only">{{ this.neededTranslations.users_list }}</caption>
                     <thead>
                     <th>
                         <button class="sort" v-on:click="sortBy('name')">
@@ -67,9 +67,12 @@
     import BasePagination from "../Paginations/BasePagination";
     import BaseTableActions from "./BaseTableActions";
     import axios from "axios";
+    import store from '../../store/store';
+    import {mapState} from 'vuex';
 
     export default {
         components: {BasePagination, BaseTableActions},
+        store,
         props: ['currentUserData', 'currentPageData'],
         data: function() {
             return {
@@ -86,17 +89,33 @@
                         'active': false,
                         'type': 'desc'
                     }
-                ]
+                ],
+                neededTranslations: {
+                    "users_list" : "Users list",
+                }
             };
         },
         computed: {
+            ...mapState(['ready']),
             currentUser: function () {
                 return JSON.parse(this.currentUserData);
             },
         },
+        created() {
+            this.$store.watch(
+                (state, getters) => getters.ready,
+                (newValue, oldValue) => {
+                    this.neededTranslations.users_list = this.$store.getters.translationByKey('users_list'),
+                        this.toto = "tata"
+                }
+            );
+        },
         beforeMount: function() {
             this.currentPage = parseInt(this.currentPageData);
             this.list();
+
+            this.$store.commit('setApiToken', this.currentUser.api_token);
+            this.$store.dispatch('loadTranslations');
         },
         methods: {
             list: function () {
@@ -211,8 +230,8 @@
                     params[tmparr[0]] = tmparr[1];
                 }
                 return params;
-            }
-        }
+            },
+        },
     }
 </script>
 

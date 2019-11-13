@@ -9,7 +9,6 @@ import 'es6-promise/auto';
 import store from './store/store';
 
 
-
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -36,5 +35,5 @@ Vue.directive('focus', {
 
 const app = new Vue({
     el: '#app',
-    store
+    store,
 });

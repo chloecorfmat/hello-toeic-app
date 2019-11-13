@@ -57,6 +57,8 @@ class LoginController extends Controller
 
         $user->last_login_at = (new \DateTime());
         $user->save();
+
+        setcookie('lang', 'en', 0, '/');
     }
 
     /**

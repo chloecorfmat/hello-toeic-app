@@ -2015,6 +2015,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _BaseTableActions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BaseTableActions */ "./resources/js/components/Tables/BaseTableActions.vue");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../store/store */ "./resources/js/store/store.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2080,6 +2086,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
+
 
 
 
@@ -2088,6 +2096,7 @@ __webpack_require__.r(__webpack_exports__);
     BasePagination: _Paginations_BasePagination__WEBPACK_IMPORTED_MODULE_0__["default"],
     BaseTableActions: _BaseTableActions__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
+  store: _store_store__WEBPACK_IMPORTED_MODULE_3__["default"],
   props: ['currentUserData', 'currentPageData'],
   data: function data() {
     return {
@@ -2102,17 +2111,31 @@ __webpack_require__.r(__webpack_exports__);
         'name': 'name',
         'active': false,
         'type': 'desc'
-      }]
+      }],
+      neededTranslations: {
+        "users_list": "Users list"
+      }
     };
   },
-  computed: {
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(['ready']), {
     currentUser: function currentUser() {
       return JSON.parse(this.currentUserData);
     }
+  }),
+  created: function created() {
+    var _this = this;
+
+    this.$store.watch(function (state, getters) {
+      return getters.ready;
+    }, function (newValue, oldValue) {
+      _this.neededTranslations.users_list = _this.$store.getters.translationByKey('users_list'), _this.toto = "tata";
+    });
   },
   beforeMount: function beforeMount() {
     this.currentPage = parseInt(this.currentPageData);
     this.list();
+    this.$store.commit('setApiToken', this.currentUser.api_token);
+    this.$store.dispatch('loadTranslations');
   },
   methods: {
     list: function list() {
@@ -2145,7 +2168,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     reloadUsers: function reloadUsers() {
-      var _this = this;
+      var _this2 = this;
 
       var get_url = "";
       var gets = [];
@@ -2174,7 +2197,7 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('/api/users/' + this.currentPage + '?api_token=' + this.currentUser.api_token + '&' + get_url).then(function (response) {
-        return _this.users = response.data.users, _this.usersNb = response.data.users_nb, _this.pagesNumber = Math.ceil(response.data.users_nb / 30);
+        return _this2.users = response.data.users, _this2.usersNb = response.data.users_nb, _this2.pagesNumber = Math.ceil(response.data.users_nb / 30);
       });
     },
     searchUsers: function searchUsers() {
@@ -4424,7 +4447,7 @@ var render = function() {
             _c("div", { staticClass: "table-container is-visible" }, [
               _c("table", [
                 _c("caption", { staticClass: "sr-only" }, [
-                  _vm._v("Users list")
+                  _vm._v(_vm._s(this.neededTranslations.users_list))
                 ]),
                 _vm._v(" "),
                 _c("thead", [
@@ -18071,13 +18094,54 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+
 
 
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_0__["default"]);
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_0__["default"].Store({
-  state: {},
-  mutations: {},
-  actions: {}
+  state: {
+    translations_keys: [],
+    translations_values: [],
+    apiToken: '',
+    ready: false
+  },
+  mutations: {
+    translations: function translations(state, _translations) {
+      state.translations = _translations;
+    },
+    setApiToken: function setApiToken(state, apiToken) {
+      state.apiToken = apiToken;
+    },
+    MUTATE_TRANS: function MUTATE_TRANS(state, data) {
+      state.translations_keys = Object.keys(data);
+      state.translations_values = Object.values(data);
+      state.ready = true;
+    }
+  },
+  actions: {
+    loadTranslations: function loadTranslations(_ref) {
+      var commit = _ref.commit,
+          state = _ref.state;
+      var query = "; ".concat(document.cookie).match(";\\s*".concat('lang', "=([^;]+)"));
+      var lang = query ? query[1] : 'en';
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('/api/translations?api_token=' + state.apiToken).then(function (response) {
+        return commit('MUTATE_TRANS', response.data);
+      });
+    }
+  },
+  getters: {
+    ready: function ready(state) {
+      return state.ready;
+    },
+    translationByKey: function translationByKey(state) {
+      return function (key) {
+        var index = state.translations_keys.indexOf(key);
+        return state.translations_values[index];
+      };
+    }
+  }
 }));
 
 /***/ }),

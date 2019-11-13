@@ -18,8 +18,10 @@ class LocalizationController extends Controller
         return \App::getLocale();
     }
 
-    public function setLang($lang){
+    public function setLang(Request $request, $lang){
         \Session::put('lang', $lang);
+        \App::setLocale($lang);
+        setcookie('lang', $lang, 0, '/');
         return redirect()->back();
     }
 }

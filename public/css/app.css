@@ -534,7 +534,7 @@ button {
 }
 
 .btn.btn--success {
-  background: #6fa939;
+  background: #66a810;
 }
 
 .btn.btn--success:hover {
@@ -1383,7 +1383,7 @@ tr:nth-child(2n) {
 
 .tag {
   font-size: 0.8rem;
-  background: #4b3f72;
+  background: #a42424;
   color: #fff;
   padding: 0.2rem 0.4rem;
   display: inline-block;
@@ -1392,7 +1392,7 @@ tr:nth-child(2n) {
 }
 
 .tag:hover {
-  background: #8d6a9f;
+  background: #C85D53;
   color: #fff;
 }
 
