@@ -20,6 +20,7 @@ export default new Vuex.Store({
         },
         MUTATE_TRANS (state, data) {
             state.translations_keys = Object.keys(data);
+            state.translations_keys.forEach(el => el.replace('-', '_')); // @TODO : check this line.
             state.translations_values = Object.values(data);
 
             state.ready = true;
@@ -27,10 +28,7 @@ export default new Vuex.Store({
     },
     actions: {
         loadTranslations({commit, state }) {
-                var query = `; ${document.cookie}`.match(`;\\s*${'lang'}=([^;]+)`);
-                var lang = query ? query[1] : 'en';
-
-                return axios
+                 return axios
                     .get('/api/translations?api_token=' + state.apiToken)
                     .then(response => (
                         commit('MUTATE_TRANS', response.data)

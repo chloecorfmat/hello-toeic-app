@@ -2,7 +2,7 @@
     <div class="table tablev2">
         <div class="table--filters">
             <div class="field-container">
-                <label for="search">Search</label>
+                <label for="search">{{ this.neededTranslations.common_search }}</label>
                 <input v-on:keyup="searchUsers" v-model="search" type="text" id="search" name="search" class="search">
             </div>
         </div>
@@ -14,13 +14,13 @@
                     <thead>
                     <th>
                         <button class="sort" v-on:click="sortBy('name')">
-                            Name <i class="fas fa-arrows-alt-v"></i>
+                            {{ this.neededTranslations.common_name }} <i class="fas fa-arrows-alt-v"></i>
                         </button>
                     </th>
-                    <th>E-mail</th>
-                    <th class="numeric-column">Matricule</th>
-                    <th>Role</th>
-                    <th class="actions-column">Actions</th>
+                    <th>{{ this.neededTranslations.common_email }}</th>
+                    <th class="numeric-column">{{ this.neededTranslations.common_matricule }}</th>
+                    <th>{{ this.neededTranslations.common_role }}</th>
+                    <th class="actions-column">{{ this.neededTranslations.common_actions }}</th>
                     </thead>
                     <tbody>
                     <tr v-for="user in users">
@@ -48,7 +48,7 @@
         </div>
 
         <div v-else>
-            <p>Aucun résultat.</p>
+            <p>{{ this.neededTranslations.common_no_result }}</p>
         </div>
 
         <div class="pagination-container">
@@ -72,7 +72,7 @@
 
     export default {
         components: {BasePagination, BaseTableActions},
-        store,
+        store, // Enable store in component.
         props: ['currentUserData', 'currentPageData'],
         data: function() {
             return {
@@ -92,6 +92,13 @@
                 ],
                 neededTranslations: {
                     "users_list" : "Users list",
+                    "common_search": "Search",
+                    "common_name": "Name",
+                    "common_email": "E-mail",
+                    "common_matricule": "Matricule",
+                    "common_role": "Role",
+                    "common_actions": "Actions",
+                    "common_no_result": "No result.",
                 }
             };
         },
@@ -105,7 +112,16 @@
             this.$store.watch(
                 (state, getters) => getters.ready,
                 (newValue, oldValue) => {
-                    this.neededTranslations.users_list = this.$store.getters.translationByKey('users_list')
+                    // @TODO : Check this.
+                    this.neededTranslations.users_list = this.$store.getters.translationByKey('users_list');
+                    this.neededTranslations.common_search = this.$store.getters.translationByKey('common_search');
+                    this.neededTranslations.common_name = this.$store.getters.translationByKey('common_name');
+                    this.neededTranslations.common_email = this.$store.getters.translationByKey('common_email');
+                    this.neededTranslations.common_matricule = this.$store.getters.translationByKey('common_matricule');
+                    this.neededTranslations.common_role = this.$store.getters.translationByKey('common_role');
+                    this.neededTranslations.common_actions = this.$store.getters.translationByKey('common_actions');
+                    this.neededTranslations.common_no_result = this.$store.getters.translationByKey('common_no_result');
+
                 }
             );
         },
