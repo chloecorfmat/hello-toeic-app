@@ -112,7 +112,6 @@
             this.$store.watch(
                 (state, getters) => getters.ready,
                 (newValue, oldValue) => {
-                    // @TODO : Check this.
                     this.neededTranslations.users_list = this.$store.getters.translationByKey('users_list');
                     this.neededTranslations.common_search = this.$store.getters.translationByKey('common_search');
                     this.neededTranslations.common_name = this.$store.getters.translationByKey('common_name');
@@ -181,7 +180,7 @@
                 }
 
                 axios
-                    .get('/api/users/' + this.currentPage + '?api_token=' + this.currentUser.api_token + '&' + get_url)
+                    .get('/api/users/' + this.currentPage + '?api_token=' + this.$store.state.apiToken + '&' + get_url)
                     .then(response => (
                         this.users = response.data.users,
                             this.usersNb = response.data.users_nb,

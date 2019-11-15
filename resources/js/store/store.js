@@ -9,7 +9,10 @@ export default new Vuex.Store({
         translations_keys: [],
         translations_values: [],
         apiToken: '',
+        roles: [],
         ready: false,
+        currentUser: {},
+        authenticated: false,
     },
     mutations: {
         translations(state, translations) {
@@ -18,9 +21,20 @@ export default new Vuex.Store({
         setApiToken(state, apiToken) {
             state.apiToken = apiToken;
         },
+        setCurrentUser(state, currentUser) {
+            state.currentUser = currentUser;
+
+            if (state.currentUser !== {}) {
+                state.authenticated = true;
+
+                state.currentUser.roles.forEach(function(el) {
+                    state.roles.push(el.name);
+                });
+            }
+        },
         MUTATE_TRANS (state, data) {
             state.translations_keys = Object.keys(data);
-            state.translations_keys.forEach(el => el.replace('-', '_')); // @TODO : check this line.
+            state.translations_keys.forEach(el => el.replace('-', '_'));
             state.translations_values = Object.values(data);
 
             state.ready = true;
@@ -40,6 +54,13 @@ export default new Vuex.Store({
         translationByKey: state => (key) => {
             const index = state.translations_keys.indexOf(key);
             return state.translations_values[index];
+        },
+        hasRole: state => (role) => {
+            return state.roles.includes(role);
+        },
+        getRolesNumber: state => {
+            console.log(state.roles.length);
+            return state.roles.length;
         }
     }
 });

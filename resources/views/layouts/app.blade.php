@@ -32,79 +32,8 @@
 </head>
 <body>
     <div id="app" class="app">
-        <div class="profile--menu">
-            <ul class="profile--menu-list">
-                <li class="profile--menu-item student--item">
-                    <a href="./profile" class="profile--menu-link">
-                        <span>Student</span>
-                    </a>
-                </li>
-                <li class="profile--menu-item teacher--item">
-                    <a href="./profile" class="profile--menu-link">
-                        <span>Teacher</span>
-                    </a>
-                </li>
-                <li class="profile--menu-item admin--item">
-                    <a href="./profile" class="profile--menu-link">
-                        <span>Admin</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <header class="header">
-            <div class="header--part header--logo">
-                <a href="{{ route('profile') }}">
-                    <img src="/svg/hello-toeic-small.svg" alt="">
-                    {{ config('app.name', 'Hello Toeic') }}
-                </a>
-            </div>
-            <div class="header--part header--menu">
-                <nav>
-                    <ul>
-                        <li><a href="" class="active">Composite tests</a></li>
-                        <li><a href="">Exercises</a></li>
-                        <li><a href="">Challenge mode</a></li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="header--part">
-                <ul class="header--actions-list">
-                @guest
-                    <li class="header--actions-list-item">
-                        <a href="{{ route('login') }}">
-                            <span>{{__('common.login')}}</span>
-                        </a>
-                    </li>
-                @else
-                    <li class="header--actions-list-item">
-                        <a href="{{ route('student.users.show', ['id' => Auth::user()->id]) }}">
-                            @if (Auth::user()->picture)
-                                <div class="user-picture--container user-picture--header">
-                                    <img src="{{ Auth::user()->picture }}" alt="" class="user-picture">
-                                </div>
-                            @else
-                                <i class="user-ico fas fa-user-circle fa-lg"></i>
-                            @endif
-
-                            <span class="legend-ico">{{ __('app.profile') }}</span>
-                        </a>
-                    </li>
-                    <li class="header--actions-list-item">
-                        <a href="{{ route('contact') }}">
-                            <i class="fas fa-info-circle fa-lg"></i>
-                            <span class="legend-ico">{{ __('app.contact') }}</span>
-                        </a>
-                    </li>
-                    <li class="header--actions-list-item">
-                        <a href="{{ route('logout') }}">
-                            <i class="fas fa-power-off fa-lg"></i>
-                            <span class="legend-ico">{{__('common.logout')}}</span>
-                        </a>
-                    </li>
-                @endguest
-                </ul>
-            </div>
-        </header>
+        @php ($user = json_encode(Auth::user()))
+        <base-header current-user-data="{{ $user }}"></base-header>
         <main
             @if (isset($class_main) && !empty($class_main))
                 class="{{ $class_main }}"
@@ -142,9 +71,6 @@
 
     </script>
     <script src="{{ asset('js/all.js') }}" defer></script>
-
-    @if (isset($use_vue) && $use_vue)
-        <script src="{{ asset('js/app.js') }}" defer></script>
-    @endif
+    <script src="{{ asset('js/app.js') }}" defer></script>
 </body>
 </html>

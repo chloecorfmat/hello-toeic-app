@@ -20,6 +20,7 @@ import store from './store/store';
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 Vue.component('base-table', require('./components/Tables/BaseTable.vue').default);
+Vue.component('base-header', require('./components/Header/BaseHeader.vue').default);
 
 Vue.directive('focus', {
     inserted: function (el) {
