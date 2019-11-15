@@ -33,67 +33,67 @@ Route::group(['middleware' => ['auth', 'allowed.account']], function () {
     Route::resource('admin/permissions', 'PermissionController');
 
 
-    Route::get('admin/users/blocked', 'UserController@blocked')
+    Route::get('teacher/users/blocked', 'UserController@blocked')
         ->name('users.blocked');
-    Route::get('admin/users/activate/{id}', 'UserController@activate')
+    Route::get('teacher/users/activate/{id}', 'UserController@activate')
         ->name('users.activate');
 
-    Route::get('admin/v2/users/{page?}', 'UserController@v2')
+    Route::get('teacher/v2/users/{page?}', 'UserController@v2')
         ->name('users.import');
-    Route::get('admin/users/import', 'UserController@import')
+    Route::get('teacher/users/import', 'UserController@import')
         ->name('users.import');
-    Route::post('admin/users/storeImport', 'UserController@storeImport')
+    Route::post('teacher/users/storeImport', 'UserController@storeImport')
         ->name('users.storeImport');
-    Route::get('admin/users/delete/{id?}', 'UserController@delete')
+    Route::get('teacher/users/delete/{id?}', 'UserController@delete')
         ->name('users.delete');
-    Route::resource('admin/users', 'UserController');
+    Route::resource('teacher/users', 'UserController');
 
-    Route::get('admin/questions/delete/{id?}', 'QuestionController@delete')
+    Route::get('teacher/questions/delete/{id?}', 'QuestionController@delete')
         ->name('questions.delete');
-    Route::resource('admin/questions', 'QuestionController');
+    Route::resource('teacher/questions', 'QuestionController');
 
-    Route::resource('admin/documents', 'DocumentController');
-    Route::resource('admin/students', 'StudentController');
-    Route::resource('admin/composite-tests', 'CompositeTestController');
+    Route::resource('teacher/documents', 'DocumentController');
+    Route::resource('teacher/students', 'StudentController');
+    Route::resource('teacher/composite-tests', 'CompositeTestController');
 
-    Route::get('admin/parts/delete/{id?}', 'PartController@delete')
+    Route::get('teacher/parts/delete/{id?}', 'PartController@delete')
         ->name('parts.delete');
-    Route::resource('admin/parts', 'PartController');
+    Route::resource('teacher/parts', 'PartController');
 
-    Route::get('admin/groups/assign', 'GroupController@assign')
+    Route::get('teacher/groups/assign', 'GroupController@assign')
         ->name('groups.assign');
-    Route::post('admin/groups/storeAssign', 'GroupController@storeAssign')
+    Route::post('teacher/groups/storeAssign', 'GroupController@storeAssign')
         ->name('groups.storeAssign');
-    Route::get('admin/groups/unassign/{group}/{student}', 'GroupController@unassign')
+    Route::get('teacher/groups/unassign/{group}/{student}', 'GroupController@unassign')
         ->name('groups.unassign');
-    Route::get('admin/groups/import', 'GroupController@import')
+    Route::get('teacher/groups/import', 'GroupController@import')
         ->name('groups.import');
-    Route::post('admin/groups/storeImport', 'GroupController@storeImport')
+    Route::post('teacher/groups/storeImport', 'GroupController@storeImport')
         ->name('groups.storeImport');
-    Route::get('admin/groups/delete/{id?}', 'GroupController@delete')
+    Route::get('teacher/groups/delete/{id?}', 'GroupController@delete')
         ->name('groups.delete');
 
-    Route::resource('admin/groups', 'GroupController');
+    Route::resource('teacher/groups', 'GroupController');
 
-    Route::get('admin/explanations/delete/{id?}', 'ExplanationController@delete')
+    Route::get('teacher/explanations/delete/{id?}', 'ExplanationController@delete')
         ->name('explanations.delete');
-    Route::resource('admin/explanations', 'ExplanationController');
+    Route::resource('teacher/explanations', 'ExplanationController');
 
-    Route::get('admin/lessons/delete/{id?}', 'LessonController@delete')
+    Route::get('teacher/lessons/delete/{id?}', 'LessonController@delete')
         ->name('lessons.delete');
-    Route::get('admin/lessons/{id?}/stats', 'LessonController@stats')
+    Route::get('teacher/lessons/{id?}/stats', 'LessonController@stats')
         ->name('lessons.stats');
-    Route::resource('admin/lessons', 'LessonController');
+    Route::resource('teacher/lessons', 'LessonController');
 
     Route::resource('admin/exercises/examples', 'ExampleController');
 
-    Route::get('admin/exercises/import/{id?}', 'ExerciseController@import')
+    Route::get('teacher/exercises/import/{id?}', 'ExerciseController@import')
         ->name('exercises.import');
-    Route::post('admin/exercises/storeImport', 'ExerciseController@storeImport')
+    Route::post('teacher/exercises/storeImport', 'ExerciseController@storeImport')
         ->name('exercises.storeImport');
-    Route::get('admin/exercises/delete/{id?}', 'ExerciseController@delete')
+    Route::get('teacher/exercises/delete/{id?}', 'ExerciseController@delete')
         ->name('exercises.delete');
-    Route::resource('admin/exercises', 'ExerciseController');
+    Route::resource('teacher/exercises', 'ExerciseController');
 
     Route::get('/admin/feature-flipping', 'FeatureFlippingController@index')
         ->name('feature-flipping.index');
@@ -110,16 +110,16 @@ Route::group(['middleware' => ['auth', 'allowed.account']], function () {
     Route::post('/admin/wordings', 'WordingController@store')
         ->name('wordings.store');
 
-    Route::get('admin/results', 'ResultController@index')
+    Route::get('teacher/results', 'ResultController@index')
         ->name('results.index');
-    Route::get('admin/results/composite-tests', 'ResultController@compositeTests')
+    Route::get('teacher/results/composite-tests', 'ResultController@compositeTests')
         ->name('results.composite-tests');
-    Route::get('admin/results/exercises', 'ResultController@exercises')
+    Route::get('teacher/results/exercises', 'ResultController@exercises')
         ->name('results.exercises');
-    Route::get('admin/results/games', 'ResultController@games')
+    Route::get('teacher/results/games', 'ResultController@games')
         ->name('results.games');
 
-    Route::get('admin/messages/handle/{id?}', 'MessageController@handle')
+    Route::get('teacher/messages/handle/{id?}', 'MessageController@handle')
         ->name('messages.handle');
     Route::resource('admin/messages', 'MessageController');
 });

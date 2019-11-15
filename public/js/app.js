@@ -4133,19 +4133,72 @@ var render = function() {
           _c("ul", { staticClass: "profile--menu-list" }, [
             this.$store.getters.hasRole("student")
               ? _c("li", { staticClass: "profile--menu-item student--item" }, [
-                  _vm._m(0)
+                  _c(
+                    "a",
+                    {
+                      staticClass: "profile--menu-link",
+                      attrs: { href: "./profile" }
+                    },
+                    [
+                      _c(
+                        "span",
+                        {
+                          class: {
+                            important:
+                              this.$store.state.activeMenu === "student"
+                          }
+                        },
+                        [_vm._v("Student")]
+                      )
+                    ]
+                  )
                 ])
               : _vm._e(),
             _vm._v(" "),
             this.$store.getters.hasRole("teacher")
               ? _c("li", { staticClass: "profile--menu-item teacher--item" }, [
-                  _vm._m(1)
+                  _c(
+                    "a",
+                    {
+                      staticClass: "profile--menu-link",
+                      attrs: { href: "./profile" }
+                    },
+                    [
+                      _c(
+                        "span",
+                        {
+                          class: {
+                            important:
+                              this.$store.state.activeMenu === "teacher"
+                          }
+                        },
+                        [_vm._v("Teacher")]
+                      )
+                    ]
+                  )
                 ])
               : _vm._e(),
             _vm._v(" "),
             this.$store.getters.hasRole("admin")
               ? _c("li", { staticClass: "profile--menu-item admin--item" }, [
-                  _vm._m(2)
+                  _c(
+                    "a",
+                    {
+                      staticClass: "profile--menu-link",
+                      attrs: { href: "./profile" }
+                    },
+                    [
+                      _c(
+                        "span",
+                        {
+                          class: {
+                            important: this.$store.state.activeMenu === "admin"
+                          }
+                        },
+                        [_vm._v("Admin")]
+                      )
+                    ]
+                  )
                 ])
               : _vm._e()
           ])
@@ -4153,38 +4206,7 @@ var render = function() {
       : _vm._e()
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      { staticClass: "profile--menu-link", attrs: { href: "./profile" } },
-      [_c("span", [_vm._v("Student")])]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      { staticClass: "profile--menu-link", attrs: { href: "./profile" } },
-      [_c("span", [_vm._v("Teacher")])]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      { staticClass: "profile--menu-link", attrs: { href: "./profile" } },
-      [_c("span", [_vm._v("Admin")])]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -18355,7 +18377,8 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_0__
     roles: [],
     ready: false,
     currentUser: {},
-    authenticated: false
+    authenticated: false,
+    activeMenu: 'student'
   },
   mutations: {
     translations: function translations(state, _translations) {
@@ -18369,6 +18392,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_0__
 
       if (state.currentUser !== {}) {
         state.authenticated = true;
+        state.activeMenu = window.location.pathname.split('/')[1];
         state.currentUser.roles.forEach(function (el) {
           state.roles.push(el.name);
         });
@@ -18408,7 +18432,6 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_0__
       };
     },
     getRolesNumber: function getRolesNumber(state) {
-      console.log(state.roles.length);
       return state.roles.length;
     }
   }

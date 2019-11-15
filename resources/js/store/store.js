@@ -13,6 +13,7 @@ export default new Vuex.Store({
         ready: false,
         currentUser: {},
         authenticated: false,
+        activeMenu: 'student',
     },
     mutations: {
         translations(state, translations) {
@@ -26,10 +27,13 @@ export default new Vuex.Store({
 
             if (state.currentUser !== {}) {
                 state.authenticated = true;
+                state.activeMenu = window.location.pathname.split('/')[1];
 
                 state.currentUser.roles.forEach(function(el) {
                     state.roles.push(el.name);
                 });
+
+
             }
         },
         MUTATE_TRANS (state, data) {
@@ -59,7 +63,6 @@ export default new Vuex.Store({
             return state.roles.includes(role);
         },
         getRolesNumber: state => {
-            console.log(state.roles.length);
             return state.roles.length;
         }
     }

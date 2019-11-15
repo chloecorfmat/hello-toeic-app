@@ -4,17 +4,17 @@
             <ul class="profile--menu-list">
                 <li v-if="this.$store.getters.hasRole('student')" class="profile--menu-item student--item">
                     <a href="./profile" class="profile--menu-link">
-                        <span>Student</span>
+                        <span v-bind:class="{ important: this.$store.state.activeMenu === 'student'}">Student</span>
                     </a>
                 </li>
                 <li v-if="this.$store.getters.hasRole('teacher')" class="profile--menu-item teacher--item">
                     <a href="./profile" class="profile--menu-link">
-                        <span>Teacher</span>
+                        <span v-bind:class="{ important: this.$store.state.activeMenu === 'teacher'}">Teacher</span>
                     </a>
                 </li>
                 <li v-if="this.$store.getters.hasRole('admin')" class="profile--menu-item admin--item">
                     <a href="./profile" class="profile--menu-link">
-                        <span>Admin</span>
+                        <span v-bind:class="{ important: this.$store.state.activeMenu === 'admin'}">Admin</span>
                     </a>
                 </li>
             </ul>
