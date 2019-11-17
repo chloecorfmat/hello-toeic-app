@@ -6,8 +6,8 @@
 
 import Vue from 'vue';
 import 'es6-promise/auto';
-import store from './store/store';
 
+import store from './store/store';
 
 /**
  * The following block of code may be used to automatically register your

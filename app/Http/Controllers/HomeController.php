@@ -19,6 +19,8 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('role:admin')->only('admin');
+        $this->middleware('role:teacher')->only('teacher');
     }
 
     /**
@@ -96,5 +98,13 @@ class HomeController extends Controller
      */
     public function contact() {
         return view('contact');
+    }
+
+    public function teacher() {
+        return view('teacher');
+    }
+
+    public function admin() {
+        return view('admin');
     }
 }

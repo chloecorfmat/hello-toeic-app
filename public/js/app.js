@@ -1891,6 +1891,63 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4137,7 +4194,7 @@ var render = function() {
                     "a",
                     {
                       staticClass: "profile--menu-link",
-                      attrs: { href: "./profile" }
+                      attrs: { href: "/profile" }
                     },
                     [
                       _c(
@@ -4161,7 +4218,7 @@ var render = function() {
                     "a",
                     {
                       staticClass: "profile--menu-link",
-                      attrs: { href: "./profile" }
+                      attrs: { href: "/teacher" }
                     },
                     [
                       _c(
@@ -4185,7 +4242,7 @@ var render = function() {
                     "a",
                     {
                       staticClass: "profile--menu-link",
-                      attrs: { href: "./profile" }
+                      attrs: { href: "/admin" }
                     },
                     [
                       _c(
@@ -4203,10 +4260,179 @@ var render = function() {
               : _vm._e()
           ])
         ])
-      : _vm._e()
+      : _vm._e(),
+    _vm._v(" "),
+    _c("header", { staticClass: "header" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "header--part header--menu" }, [
+        Object.keys(this.$store.state.currentUser).length !== 0
+          ? _c("nav", [
+              this.$store.state.activeMenu === "admin"
+                ? _c("ul", [_vm._m(1)])
+                : this.$store.state.activeMenu === "teacher"
+                ? _c("ul", [_vm._m(2)])
+                : _c("ul", [
+                    _vm._m(3),
+                    _vm._v(" "),
+                    _vm._m(4),
+                    _vm._v(" "),
+                    _vm._m(5)
+                  ])
+            ])
+          : _vm._e()
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "header--part" }, [
+        _c("ul", { staticClass: "header--actions-list" }, [
+          Object.keys(this.$store.state.currentUser).length === 0
+            ? _c("li", { staticClass: "header--actions-list-item" }, [
+                _vm._m(6)
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          Object.keys(this.$store.state.currentUser).length !== 0
+            ? _c("li", { staticClass: "header--actions-list-item" }, [
+                _c(
+                  "a",
+                  {
+                    attrs: {
+                      href: "/teacher/users/" + this.$store.state.currentUser.id
+                    }
+                  },
+                  [
+                    this.$store.state.currentUser.picture
+                      ? _c(
+                          "div",
+                          {
+                            staticClass:
+                              "user-picture--container user-picture--header"
+                          },
+                          [
+                            _c("img", {
+                              staticClass: "user-picture",
+                              attrs: {
+                                src: this.$store.state.currentUser.picture,
+                                alt: ""
+                              }
+                            })
+                          ]
+                        )
+                      : _c("i", {
+                          staticClass: "user-ico fas fa-user-circle fa-lg"
+                        }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "legend-ico" }, [
+                      _vm._v("Profile")
+                    ])
+                  ]
+                )
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          Object.keys(this.$store.state.currentUser).length !== 0
+            ? _c("li", { staticClass: "header--actions-list-item" }, [
+                _vm._m(7)
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          Object.keys(this.$store.state.currentUser).length !== 0
+            ? _c("li", { staticClass: "header--actions-list-item" }, [
+                _vm._m(8)
+              ])
+            : _vm._e()
+        ])
+      ])
+    ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "header--part header--logo" }, [
+      _c("a", { attrs: { href: "/profile" } }, [
+        _c("img", { attrs: { src: "/svg/hello-toeic-small.svg", alt: "" } }),
+        _vm._v("\n                Hello Toeic\n            ")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { staticClass: "active", attrs: { href: "/admin" } }, [
+        _vm._v("Admin")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { staticClass: "active", attrs: { href: "/teacher" } }, [
+        _vm._v("Teacher")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "/composite-tests" } }, [
+        _vm._v("Composite tests")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "/exercises" } }, [_vm._v("Exercises")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "/games" } }, [_vm._v("Challenge mode")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", { attrs: { href: "/login" } }, [
+      _c("span", [_vm._v("Login")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", { attrs: { href: "/contact" } }, [
+      _c("i", { staticClass: "fas fa-info-circle fa-lg" }),
+      _vm._v(" "),
+      _c("span", { staticClass: "legend-ico" }, [_vm._v("Contact")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", { attrs: { href: "/logout" } }, [
+      _c("i", { staticClass: "fas fa-power-off fa-lg" }),
+      _vm._v(" "),
+      _c("span", { staticClass: "legend-ico" }, [_vm._v("Logout")])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -18392,10 +18618,17 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_0__
 
       if (state.currentUser !== {}) {
         state.authenticated = true;
-        state.activeMenu = window.location.pathname.split('/')[1];
         state.currentUser.roles.forEach(function (el) {
           state.roles.push(el.name);
-        });
+        }); // Manage active menu item.
+
+        var activeMenu = window.location.pathname.split('/')[1];
+
+        if ((activeMenu === 'teacher' || activeMenu === 'admin') && state.roles.includes(activeMenu)) {
+          state.activeMenu = activeMenu;
+        } else if (activeMenu === 'admin' && states.roles.includes('teacher')) {
+          state.activeMenu = 'teacher';
+        }
       }
     },
     MUTATE_TRANS: function MUTATE_TRANS(state, data) {

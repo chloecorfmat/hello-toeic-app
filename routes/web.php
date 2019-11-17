@@ -121,7 +121,7 @@ Route::group(['middleware' => ['auth', 'allowed.account']], function () {
 
     Route::get('teacher/messages/handle/{id?}', 'MessageController@handle')
         ->name('messages.handle');
-    Route::resource('admin/messages', 'MessageController');
+    Route::resource('teacher/messages', 'MessageController');
 });
 
 
@@ -207,6 +207,8 @@ Route::group(['middleware' => ['auth', 'allowed.account']], function () {
     Route::get('/profile', 'HomeController@index')->name('profile');
     Route::get('/train', 'HomeController@train')->name('train');
     Route::get('/contact', 'HomeController@contact')->name('contact');
+    Route::get('/teacher', 'HomeController@teacher')->name('teacher');
+    Route::get('/admin', 'HomeController@admin')->name('admin');
 });
 
 Route::group(['middleware' => ['auth']], function () {

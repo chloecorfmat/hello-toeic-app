@@ -27,13 +27,18 @@ export default new Vuex.Store({
 
             if (state.currentUser !== {}) {
                 state.authenticated = true;
-                state.activeMenu = window.location.pathname.split('/')[1];
 
                 state.currentUser.roles.forEach(function(el) {
                     state.roles.push(el.name);
                 });
 
-
+                // Manage active menu item.
+                let activeMenu = window.location.pathname.split('/')[1];
+                if ((activeMenu === 'teacher' || activeMenu === 'admin') && state.roles.includes(activeMenu)) {
+                    state.activeMenu = activeMenu;
+                } else if (activeMenu === 'admin' && states.roles.includes('teacher')) {
+                    state.activeMenu = 'teacher';
+                }
             }
         },
         MUTATE_TRANS (state, data) {
