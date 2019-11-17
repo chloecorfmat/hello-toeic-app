@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\BackgroundImage;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -30,6 +31,13 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = '/profile';
+
+    public function showLoginForm()
+    {
+        $background_image = BackgroundImage::all()->random(1)->first();
+        return view('auth.login', compact('background_image'));
+    }
+
 
     public function logout(Request $request) {
         Auth::logout();
