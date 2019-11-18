@@ -27,7 +27,7 @@
                     Hello Toeic
                 </a>
             </div>
-            <div class="header--part header--menu">
+            <div class="header--part header--menu" v-click-outside="closeSubmenu">
                 <nav v-if="Object.keys(this.$store.state.currentUser).length !== 0">
                     <ul v-if="this.$store.state.activeProfile === 'admin'">
                         <li id="adminMenu"><a class="active" href="/admin">Admin</a></li>
@@ -186,6 +186,13 @@
 
                     document.getElementById(id).classList.toggle('opened');
                     document.getElementById(id).previousElementSibling.classList.toggle('submenu-opened');
+                }
+            },
+            closeSubmenu: function () {
+                if (this.isOpened !== null) {
+                    document.getElementById(this.isOpened).classList.remove('opened');
+                    document.getElementById(this.isOpened).previousElementSibling.classList.remove('submenu-opened');
+                    this.isOpened = null;
                 }
             }
         }

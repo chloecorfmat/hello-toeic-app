@@ -2052,6 +2052,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         document.getElementById(id).classList.toggle('opened');
         document.getElementById(id).previousElementSibling.classList.toggle('submenu-opened');
       }
+    },
+    closeSubmenu: function closeSubmenu() {
+      if (this.isOpened !== null) {
+        document.getElementById(this.isOpened).classList.remove('opened');
+        document.getElementById(this.isOpened).previousElementSibling.classList.remove('submenu-opened');
+        this.isOpened = null;
+      }
     }
   }
 });
@@ -5120,97 +5127,113 @@ var render = function() {
     _c("header", { staticClass: "header" }, [
       _vm._m(0),
       _vm._v(" "),
-      _c("div", { staticClass: "header--part header--menu" }, [
-        Object.keys(this.$store.state.currentUser).length !== 0
-          ? _c("nav", [
-              this.$store.state.activeProfile === "admin"
-                ? _c("ul", [_vm._m(1)])
-                : this.$store.state.activeProfile === "teacher"
-                ? _c("ul", [
-                    _c(
-                      "li",
-                      {
-                        staticClass: "header--menu-item",
-                        attrs: { id: "teacherUsersMenu" }
-                      },
-                      [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "active",
-                            on: {
-                              click: function($event) {
-                                return _vm.toggleSubmenu("teacherUsersSubmenu")
+      _c(
+        "div",
+        {
+          directives: [
+            {
+              name: "click-outside",
+              rawName: "v-click-outside",
+              value: _vm.closeSubmenu,
+              expression: "closeSubmenu"
+            }
+          ],
+          staticClass: "header--part header--menu"
+        },
+        [
+          Object.keys(this.$store.state.currentUser).length !== 0
+            ? _c("nav", [
+                this.$store.state.activeProfile === "admin"
+                  ? _c("ul", [_vm._m(1)])
+                  : this.$store.state.activeProfile === "teacher"
+                  ? _c("ul", [
+                      _c(
+                        "li",
+                        {
+                          staticClass: "header--menu-item",
+                          attrs: { id: "teacherUsersMenu" }
+                        },
+                        [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "active",
+                              on: {
+                                click: function($event) {
+                                  return _vm.toggleSubmenu(
+                                    "teacherUsersSubmenu"
+                                  )
+                                }
                               }
-                            }
-                          },
-                          [_vm._v("Gérer les utilisateurs")]
-                        ),
-                        _vm._v(" "),
-                        _vm._m(2)
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "li",
-                      {
-                        staticClass: "header--menu-item",
-                        attrs: { id: "teacherExercisesMenu" }
-                      },
-                      [
-                        _c(
-                          "button",
-                          {
-                            on: {
-                              click: function($event) {
-                                return _vm.toggleSubmenu(
-                                  "teacherExercisesSubmenu"
-                                )
+                            },
+                            [_vm._v("Gérer les utilisateurs")]
+                          ),
+                          _vm._v(" "),
+                          _vm._m(2)
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "li",
+                        {
+                          staticClass: "header--menu-item",
+                          attrs: { id: "teacherExercisesMenu" }
+                        },
+                        [
+                          _c(
+                            "button",
+                            {
+                              on: {
+                                click: function($event) {
+                                  return _vm.toggleSubmenu(
+                                    "teacherExercisesSubmenu"
+                                  )
+                                }
                               }
-                            }
-                          },
-                          [_vm._v("Gérer les exercices")]
-                        ),
-                        _vm._v(" "),
-                        _vm._m(3)
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "li",
-                      {
-                        staticClass: "header--menu-item",
-                        attrs: { id: "teacherResultsMenu" }
-                      },
-                      [
-                        _c(
-                          "button",
-                          {
-                            on: {
-                              click: function($event) {
-                                return _vm.toggleSubmenu(
-                                  "teacherResultsSubmenu"
-                                )
+                            },
+                            [_vm._v("Gérer les exercices")]
+                          ),
+                          _vm._v(" "),
+                          _vm._m(3)
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "li",
+                        {
+                          staticClass: "header--menu-item",
+                          attrs: { id: "teacherResultsMenu" }
+                        },
+                        [
+                          _c(
+                            "button",
+                            {
+                              on: {
+                                click: function($event) {
+                                  return _vm.toggleSubmenu(
+                                    "teacherResultsSubmenu"
+                                  )
+                                }
                               }
-                            }
-                          },
-                          [_vm._v("Voir les résultats")]
-                        ),
-                        _vm._v(" "),
-                        _vm._m(4)
-                      ]
-                    )
-                  ])
-                : _c("ul", [
-                    _vm._m(5),
-                    _vm._v(" "),
-                    _vm._m(6),
-                    _vm._v(" "),
-                    _vm._m(7)
-                  ])
-            ])
-          : _vm._e()
-      ]),
+                            },
+                            [_vm._v("Voir les résultats")]
+                          ),
+                          _vm._v(" "),
+                          _vm._m(4)
+                        ]
+                      )
+                    ])
+                  : _c("ul", [
+                      _vm._m(5),
+                      _vm._v(" "),
+                      _vm._m(6),
+                      _vm._v(" "),
+                      _vm._m(7)
+                    ])
+              ])
+            : _vm._e()
+        ]
+      ),
       _vm._v(" "),
       _c("div", { staticClass: "header--part" }, [
         _c("ul", { staticClass: "header--actions-list" }, [
