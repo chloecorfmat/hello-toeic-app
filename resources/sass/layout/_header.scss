@@ -75,9 +75,31 @@
         vertical-align: middle;
     }
 
-    a {
+    a,
+    button {
         color: $main-color;
         font-weight: 700;
+        border: none;
+        background: none;
+        font-size: .85rem;
+
+        &.submenu-opened {
+            color: $main-color;
+            transform: translateY(25%);
+            display: inline-block;
+
+            &::after {
+                content: "•";
+                display: block;
+                text-align: center;
+            }
+        }
+
+        &:hover {
+            cursor: pointer;
+            opacity: .8;
+        }
+
 
         &.active {
             color: $primary-color;
@@ -94,10 +116,6 @@
                 display: block;
                 text-align: center;
             }
-        }
-
-        &:hover {
-            opacity: .8;
         }
     }
 }

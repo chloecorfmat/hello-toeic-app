@@ -1,20 +1,20 @@
 <template>
-    <div>
+    <div class="main-header">
         <div v-if="this.$store.getters.getRolesNumber > 1" class="profile--menu">
             <ul class="profile--menu-list">
                 <li v-if="this.$store.getters.hasRole('student')" class="profile--menu-item student--item">
                     <a href="/profile" class="profile--menu-link">
-                        <span v-bind:class="{ important: this.$store.state.activeMenu === 'student'}">Student</span>
+                        <span v-bind:class="{ important: this.$store.state.activeProfile === 'student'}">Student</span>
                     </a>
                 </li>
                 <li v-if="this.$store.getters.hasRole('teacher')" class="profile--menu-item teacher--item">
                     <a href="/teacher" class="profile--menu-link">
-                        <span v-bind:class="{ important: this.$store.state.activeMenu === 'teacher'}">Teacher</span>
+                        <span v-bind:class="{ important: this.$store.state.activeProfile === 'teacher'}">Teacher</span>
                     </a>
                 </li>
                 <li v-if="this.$store.getters.hasRole('admin')" class="profile--menu-item admin--item">
                     <a href="/admin" class="profile--menu-link">
-                        <span v-bind:class="{ important: this.$store.state.activeMenu === 'admin'}">Admin</span>
+                        <span v-bind:class="{ important: this.$store.state.activeProfile === 'admin'}">Admin</span>
                     </a>
                 </li>
             </ul>
@@ -29,17 +29,68 @@
             </div>
             <div class="header--part header--menu">
                 <nav v-if="Object.keys(this.$store.state.currentUser).length !== 0">
-                    <ul v-if="this.$store.state.activeMenu === 'admin'">
-                        <li><a class="active" href="/admin">Admin</a></li>
+                    <ul v-if="this.$store.state.activeProfile === 'admin'">
+                        <li id="adminMenu"><a class="active" href="/admin">Admin</a></li>
                     </ul>
-                    <ul v-else-if="this.$store.state.activeMenu === 'teacher'">
-                        <li><a class="active" href="/teacher">Teacher</a></li>
+                    <ul v-else-if="this.$store.state.activeProfile === 'teacher'">
+                        <!-- Add class="active" -->
+                        <li class="header--menu-item" id="teacherUsersMenu">
+                            <button v-on:click="toggleSubmenu('teacherUsersSubmenu')" class="active">Gérer les utilisateurs</button>
+                            <ul class="submenu" id="teacherUsersSubmenu">
+                                <li class="submenu--item">
+                                    <a href="/teacher/users">Users list</a>
+                                </li>
+                                <li class="submenu--item">
+                                    <a href="/teacher/students">Students list</a>
+                                </li>
+                                <li class="submenu--item">
+                                    <a href="/teacher/groups">Groups list</a>
+                                </li>
+                                <li class="submenu--item">
+                                    <a href="/teacher/messages">Messages list</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="header--menu-item" id="teacherExercisesMenu">
+                            <button v-on:click="toggleSubmenu('teacherExercisesSubmenu')">Gérer les exercices</button>
+                            <ul class="submenu" id="teacherExercisesSubmenu">
+                                <li class="submenu--item">
+                                    <a href="/teacher/exercises">Exercises list</a>
+                                </li>
+                                <li class="submenu--item">
+                                    <a href="/teacher/composite-tests">Composite tests list</a>
+                                </li>
+                                <li class="submenu--item">
+                                    <a href="/teacher/questions">Questions list</a>
+                                </li>
+                                <li class="submenu--item">
+                                    <a href="/teacher/documents">Documents list</a>
+                                </li>
+                                <li class="submenu--item">
+                                    <a href="/teacher/explanations">Explanations list</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="header--menu-item" id="teacherResultsMenu">
+                            <button v-on:click="toggleSubmenu('teacherResultsSubmenu')">Voir les résultats</button>
+                            <ul class="submenu" id="teacherResultsSubmenu">
+                                <li class="submenu--item">
+                                    <a href="/teacher/results/exercises">Résultats des exercices</a>
+                                </li>
+                                <li class="submenu--item">
+                                    <a href="/teacher/results/composite-tests">Résultats des tests composés</a>
+                                </li>
+                                <li class="submenu--item">
+                                    <a href="/teacher/results/games">Résultats des challenges</a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                     <ul v-else>
                         <!-- Add class="active" -->
-                        <li><a href="/composite-tests">Composite tests</a></li>
-                        <li><a href="/exercises">Exercises</a></li>
-                        <li><a href="/games">Challenge mode</a></li>
+                        <li id="studentCompositeTestsMenu"><a href="/composite-tests">Composite tests</a></li>
+                        <li id="studentExercisesMenu"><a href="/exercises">Exercises</a></li>
+                        <li id="studentChallengesMenu"><a href="/games">Challenge mode</a></li>
                     </ul>
                 </nav>
             </div>
@@ -89,7 +140,8 @@
         props: ['currentUserData'],
         data: function() {
             return {
-
+                'isOpened': null,
+                'isActive': null,
             }
         },
         created() {
@@ -114,7 +166,71 @@
             },
         },
         methods: {
+            toggleSubmenu: function (id) {
+                if (id === null) {
+                    if (this.isOpened !== null) {
+                        document.getElementById(this.isOpened).classList.remove('opened');
+                        document.getElementById(this.isOpened).previousElementSibling.classList.toggle('submenu-opened');
+                    }
+                    this.isOpened = null;
+                } else {
+                    if (this.isOpened === id) {
+                        this.isOpened = null;
+                    } else {
+                        if (this.isOpened !== null) {
+                            document.getElementById(this.isOpened).classList.remove('opened');
+                            document.getElementById(this.isOpened).previousElementSibling.classList.toggle('submenu-opened');
+                        }
+                        this.isOpened = id;
+                    }
 
+                    document.getElementById(id).classList.toggle('opened');
+                    document.getElementById(id).previousElementSibling.classList.toggle('submenu-opened');
+                }
+            }
         }
     }
 </script>
+
+<style scoped>
+    .main-header {
+        position: relative;
+    }
+
+    .header--menu-item {
+        position: relative;
+        width: 14rem;
+        text-align: center;
+    }
+
+    .submenu {
+        display: none;
+    }
+
+    .submenu.opened {
+        display: block;
+        position: absolute;
+        top: 2.75rem;
+        background: #a42424;
+        width: 14rem;
+        z-index: 1;
+        text-align: left;
+    }
+
+    .submenu--item {
+        display: block;
+        margin: 0;
+        padding: 0;
+    }
+
+    .submenu--item a {
+        display: block;
+        padding: .75rem 1rem;
+        color: #fff;
+        font-size: .9rem;
+    }
+
+    .submenu--item a:hover {
+        background: #8D1A24;
+    }
+</style>

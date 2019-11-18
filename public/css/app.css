@@ -350,31 +350,55 @@ footer p {
   vertical-align: middle;
 }
 
-.header--menu a {
+.header--menu a,
+.header--menu button {
   color: #1f2041;
   font-weight: 700;
+  border: none;
+  background: none;
+  font-size: 0.85rem;
 }
 
-.header--menu a.active {
+.header--menu a.submenu-opened,
+.header--menu button.submenu-opened {
+  color: #1f2041;
+  -webkit-transform: translateY(25%);
+          transform: translateY(25%);
+  display: inline-block;
+}
+
+.header--menu a.submenu-opened::after,
+.header--menu button.submenu-opened::after {
+  content: "\2022";
+  display: block;
+  text-align: center;
+}
+
+.header--menu a:hover,
+.header--menu button:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.header--menu a.active,
+.header--menu button.active {
   color: #a42424;
   -webkit-transform: translateY(25%);
           transform: translateY(25%);
   display: inline-block;
 }
 
-.header--menu a.active:hover {
+.header--menu a.active:hover,
+.header--menu button.active:hover {
   color: #8D1A24;
   opacity: 1;
 }
 
-.header--menu a.active::after {
+.header--menu a.active::after,
+.header--menu button.active::after {
   content: "\2022";
   display: block;
   text-align: center;
-}
-
-.header--menu a:hover {
-  opacity: 0.8;
 }
 
 .header--logo {
@@ -503,7 +527,7 @@ body {
 
 a,
 button {
-  outline-color: #ffc857;
+  outline: none;
 }
 
 .btn {

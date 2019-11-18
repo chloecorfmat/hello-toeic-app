@@ -13,7 +13,8 @@ export default new Vuex.Store({
         ready: false,
         currentUser: {},
         authenticated: false,
-        activeMenu: 'student',
+        activeProfile: 'student',
+        activeMenu: ''
     },
     mutations: {
         translations(state, translations) {
@@ -33,11 +34,11 @@ export default new Vuex.Store({
                 });
 
                 // Manage active menu item.
-                let activeMenu = window.location.pathname.split('/')[1];
-                if ((activeMenu === 'teacher' || activeMenu === 'admin') && state.roles.includes(activeMenu)) {
-                    state.activeMenu = activeMenu;
-                } else if (activeMenu === 'admin' && states.roles.includes('teacher')) {
-                    state.activeMenu = 'teacher';
+                let activeProfile = window.location.pathname.split('/')[1];
+                if ((activeProfile === 'teacher' || activeProfile === 'admin') && state.roles.includes(activeProfile)) {
+                    state.activeProfile = activeProfile;
+                } else if (activeProfile === 'admin' && states.roles.includes('teacher')) {
+                    state.activeProfile = 'teacher';
                 }
             }
         },
