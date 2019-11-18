@@ -256,6 +256,10 @@ li {
   vertical-align: middle;
 }
 
+#app {
+  min-height: 100vh;
+}
+
 footer {
   padding: 0.4rem;
   background: #a42424;

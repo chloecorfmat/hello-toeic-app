@@ -22,6 +22,8 @@ import store from './store/store';
 Vue.component('base-table', require('./components/Tables/BaseTable.vue').default);
 Vue.component('base-header', require('./components/Header/BaseHeader.vue').default);
 
+Vue.component('login-page', require('./components/Pages/LoginPage.vue').default);
+
 Vue.directive('focus', {
     inserted: function (el) {
         el.focus()

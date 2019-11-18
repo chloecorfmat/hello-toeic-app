@@ -1,5 +1,3 @@
-@php ($class_main = 'login-page')
-
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -34,48 +32,8 @@
 </head>
 <body style="background-image:url('{{ url('storage/' . $background_image->url) }}'); background-size:cover; color:{{ $background_image->color }};">
     <div id="app" class="app">
-        <main
-                @if (isset($class_main) && !empty($class_main))
-                class="{{ $class_main }}"
-                @endif
-        >
-            <div class="container">
-                <div class="login">
-                    <div class="form-container">
-                        <h1>{{ __('common.login') }}</h1>
-
-                        @foreach($errors->all() as $error)
-                            <div class="alert alert-error">
-                                <ul>
-                                    <li>{{ $error }}</li>
-                                </ul>
-                            </div>
-                        @endforeach
-
-                        <form method="POST" action="{{ route('login') }}">
-                            @csrf
-                            <div class="field-container">
-                                <label for="email">{{ __('common.email') }} <span class="required">*</span></label>
-                                <input type="email" id="email" name="email" value="{{ old('email') }}" required autofocus>
-                            </div>
-
-                            <div class="field-container">
-                                <label for="password">{{ __('common.password') }} <span class="required">*</span></label>
-                                <input type="password" id="password" name="password" required>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary">
-                                {{ __('common.login') }}
-                            </button>
-                        </form>
-
-                        <a class="forgot-password" href="{{ route('password.request') }}">{{ __('common.forgot-password') }}</a>
-                    </div>
-                </div>
-            </div>
-        </main>
+        <login-page background="{{ json_encode($background_image) }}"></login-page>
     </div>
-<script src="{{ asset('js/all.js') }}" defer></script>
 <script src="{{ asset('js/app.js') }}" defer></script>
 </body>
 </html>
