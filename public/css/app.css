@@ -965,17 +965,11 @@ tr:nth-child(2n) {
   flex-grow: 1;
 }
 
-@media screen and (min-width: 1020px) {
-  .login {
-    margin-left: 5rem;
-  }
-}
-
 .login .form-container {
   border: 1px solid #a42424;
   border-radius: 1rem;
   padding: 2rem;
-  width: 40%;
+  width: 70%;
   background: #fff;
 }
 
@@ -993,6 +987,16 @@ tr:nth-child(2n) {
   font-size: 0.8rem;
   text-align: right;
   display: block;
+}
+
+@media screen and (min-width: 1020px) {
+  .login {
+    margin-left: 5rem;
+  }
+
+  .login .form-container {
+    width: 40%;
+  }
 }
 
 .container-pagination {

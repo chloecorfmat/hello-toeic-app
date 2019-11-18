@@ -11,15 +11,11 @@
   width: 100%;
   flex-grow: 1;
 
-  @media screen and (min-width: $breakpoint-medium) {
-    margin-left: 5rem;
-  }
-
   .form-container {
     border: 1px solid $secondary-color-1;
     border-radius: 1rem;
     padding: 2rem;
-    width: 40%;
+    width: 70%;
     background: $white;
   }
 
@@ -37,5 +33,13 @@
     font-size: .8rem;
     text-align: right;
     display: block;
+  }
+
+  @media screen and (min-width: $breakpoint-medium) {
+    margin-left: 5rem;
+
+    .form-container {
+      width: 40%;
+    }
   }
 }

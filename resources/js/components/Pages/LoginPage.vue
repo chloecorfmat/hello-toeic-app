@@ -62,6 +62,10 @@
         background-size: cover;
     }
 
+    main * {
+        font-family: 'Montserrat' !important;
+    }
+
     @media screen and (min-width: 1020px) {
         .login.right {
             justify-content: right;
