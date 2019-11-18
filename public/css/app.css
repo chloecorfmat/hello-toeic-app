@@ -893,25 +893,39 @@ tr:nth-child(2n) {
 }
 
 .alert {
+  background: #fff;
   border: 1px solid;
   border-radius: 5px;
   padding: 1rem;
   margin-bottom: 2rem;
 }
 
+.alert li {
+  font-size: 0.9rem;
+}
+
 .alert-success {
-  background: #B6E06C;
   border-color: #66a810;
 }
 
+.alert-success li {
+  color: #66a810;
+}
+
 .alert-error {
-  background: #E26A7B;
   border-color: #bc1a4d;
 }
 
+.alert-error li {
+  color: #bc1a4d;
+}
+
 .alert-warning {
-  background: #E7B35D;
   border-color: #d68400;
+}
+
+.alert-warning li {
+  color: #d68400;
 }
 
 .alert-answer {

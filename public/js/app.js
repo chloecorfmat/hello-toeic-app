@@ -2019,8 +2019,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['background'],
+  props: ['background', 'errors'],
   data: function data() {
     return {
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
@@ -2037,9 +2045,17 @@ __webpack_require__.r(__webpack_exports__);
         '--bg-image': 'url(\'/storage/' + data.url + '\')',
         '--color': data.color
       };
+    },
+    hasErrors: function hasErrors() {
+      var errors = JSON.parse(this.errors);
+
+      if (errors.length > 0) {
+        return true;
+      }
+
+      return false;
     }
-  },
-  methods: {}
+  }
 });
 
 /***/ }),
@@ -5169,6 +5185,35 @@ var render = function() {
       _c("div", { class: [_vm.loginClasses] }, [
         _c("div", { staticClass: "form-container" }, [
           _c("h1", [_vm._v("Login")]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.hasErrors,
+                  expression: "hasErrors"
+                }
+              ],
+              staticClass: "alert alert-error"
+            },
+            [
+              _c(
+                "ul",
+                _vm._l(JSON.parse(this.errors), function(error) {
+                  return _c("li", [
+                    _c("span", { staticClass: "important" }, [
+                      _vm._v("Error!")
+                    ]),
+                    _vm._v(" " + _vm._s(error) + "\n                        ")
+                  ])
+                }),
+                0
+              )
+            ]
+          ),
           _vm._v(" "),
           _c("form", { attrs: { method: "POST", action: "/login" } }, [
             _c("input", {

@@ -5,6 +5,14 @@
                 <div class="form-container">
                     <h1>Login</h1>
 
+                    <div v-show="hasErrors" class="alert alert-error">
+                        <ul>
+                            <li v-for="error in JSON.parse(this.errors)">
+                                <span class="important">Error!</span> {{ error }}
+                            </li>
+                        </ul>
+                    </div>
+
                     <form method="POST" action="/login">
                         <input type="hidden" name="_token" :value="csrf">
                         <div class="field-container">
@@ -31,10 +39,10 @@
 
 <script>
     export default {
-        props: ['background'],
+        props: ['background', 'errors'],
         data: function() {
             return {
-                csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
             }
         },
         computed: {
@@ -48,9 +56,14 @@
                     '--bg-image': 'url(\'/storage/' + data.url + '\')',
                     '--color': data.color,
                 }
+            },
+            hasErrors() {
+                var errors = JSON.parse(this.errors);
+                if (errors.length > 0) {
+                    return true;
+                }
+                return false;
             }
-        },
-        methods: {
         }
     }
 </script>

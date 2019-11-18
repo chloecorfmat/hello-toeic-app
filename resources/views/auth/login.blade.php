@@ -32,7 +32,7 @@
 </head>
 <body style="background-image:url('{{ url('storage/' . $background_image->url) }}'); background-size:cover; color:{{ $background_image->color }};">
     <div id="app" class="app">
-        <login-page background="{{ json_encode($background_image) }}"></login-page>
+        <login-page background="{{ json_encode($background_image) }}" errors="{{ json_encode($errors->all()) }}"></login-page>
     </div>
 <script src="{{ asset('js/app.js') }}" defer></script>
 </body>

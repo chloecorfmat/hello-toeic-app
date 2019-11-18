@@ -1,23 +1,37 @@
 .alert {
+  background: $white;
   border: 1px solid;
   border-radius: 5px;
   padding: 1rem;
   margin-bottom: 2rem;
+
+  li {
+    font-size: .9rem;
+  }
 }
 
 .alert-success {
-  background: $success-color-light;
   border-color: $success-color;
+
+  li {
+    color: $success-color;
+  }
 }
 
 .alert-error {
-  background: $danger-color-light;
   border-color: $danger-color;
+
+  li {
+    color: $danger-color;
+  }
 }
 
 .alert-warning {
-  background: $warning-color-light;
   border-color: $warning-color;
+
+  li {
+    color: $warning-color;
+  }
 }
 
 .alert-answer {
