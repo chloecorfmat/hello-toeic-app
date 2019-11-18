@@ -68,11 +68,11 @@
 
     @media screen and (min-width: 1020px) {
         .login.right {
-            justify-content: right;
+            justify-content: flex-end;
         }
 
         .login.left {
-            justify-content: left;
+            justify-content: flex-start;
         }
 
         .login.center {
@@ -85,7 +85,10 @@
         border-color: var(--color);
     }
 
-    .field-container label {
+    .field-container label,
+    .field-container input,
+    .field-container select,
+    .field-container textarea {
         color: var(--color);
     }
 
