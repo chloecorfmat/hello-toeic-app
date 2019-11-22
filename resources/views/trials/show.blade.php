@@ -20,7 +20,7 @@
             <ol>
                 @foreach ($datas['trial']->corrections as $key => $correction)
                     <!-- Question from reading (not listening) -->
-                    @if ((Auth::user()->hasRole('teacher') || ($correction->question->number > 100)))
+                    @if ((Auth::user()->hasRole('teacher') || ($exercise->part()->get()->first()->type === 'reading')))
                         <li class="block-question"> {{-- State in class --}}
                                 <p class="question-legend">({{ $correction->question->number }}) {{ $correction->question->question }}</p>
                                 <ul>
