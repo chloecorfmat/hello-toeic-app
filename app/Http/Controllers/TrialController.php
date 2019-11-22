@@ -76,9 +76,9 @@ class TrialController extends Controller
         $stats = [];
         $test_id = $trial->test->id;
 
-        $test = Exercise::find($test_id);
+        $exercise = Exercise::find($test_id);
 
-        return view('trials.show', compact('datas', 'stats'));
+        return view('trials.show', compact('datas', 'stats', 'exercise'));
     }
 
     /**
