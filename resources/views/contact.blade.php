@@ -5,8 +5,11 @@
         {{ Breadcrumbs::render('contact') }}
 
         <h1>{{__('app.contact')}}</h1>
+        <h2>Contacter le responsable du traitement des données</h2>
+        <p>Le responsable du traitement des données à caractère personnel est l'<span class="important">association Enssat Projets Étudiants</span>. Pour exercer vos droits en matière de collecte et de traitement des données personnelles, vous pouvez contacter son bureau par <a href="mailto:contact@epe.bzh">e-mail (contact@epe.bzh)</a>.</p>
+
         <h2>Contacter l'administrateur du site</h2>
-        <p>L'application Hello World a été développée par <span class="important"><a href="https://chloecorfmat.fr">Chloé Corfmat</a></span> (promotion Enssat IMR 2019). Vous pouvez la contacter par <a href="mailto:hello-world@chloecorfmat.space">e-mail (hello-world@chloecorfmat.space)</a></p>
+        <p>L'application Hello a été développée par <span class="important"><a href="https://chloecorfmat.fr">Chloé Corfmat</a></span> (promotion Enssat IMR 2019). Vous pouvez la contacter par <a href="mailto:hello@epe.bzh">e-mail (hello@epe.bzh)</a></p>
         <p class="important">Elle est votre contact privilégié pour tout échange technique notamment sur les sujets suivants :</p>
         <ul class="default-style">
             <li>Question et/ou problème technique</li>
