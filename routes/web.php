@@ -124,7 +124,6 @@ Route::group(['middleware' => ['auth', 'allowed.account']], function () {
     Route::resource('teacher/messages', 'MessageController');
 });
 
-
 Route::group(['middleware' => ['auth', 'allowed.account']], function () {
     // Display tests & exercises.
     Route::resource('exercises', 'ExerciseController', [
