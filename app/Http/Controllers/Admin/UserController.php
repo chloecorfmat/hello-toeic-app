@@ -98,6 +98,7 @@ class UserController extends Controller
                 $login = substr($user->email, 0, $pos);
                 $url = 'https://intranet.enssat.fr/bindocs/trombi/' . $user->promo  . '/' . $user->promo  . '_' . $login . '.jpg';
                 $user->picture = $url;
+                $user->save();
             }
 
             if (Setting::where('key', 'ff.email')->first()->value == true) {
@@ -190,16 +191,29 @@ class UserController extends Controller
         if (!$existEmail && !$existMatricule) {
             $user->name = $request->get('name');
             $user->matricule = $request->get('matricule');
-            $user->email = $request->get('email');
+
+            $email = $request->get('email');
+            $user->email = $email;
+
             $user->course = $request->get('course');
             $user->passed = $request->get('passed');
+
+            $promo = $request->get('course') ? intval(substr($request->get('course'), -4)) : NULL;
+            $user->promo = $promo;
+
+            if (($promo != NULL) && (strpos($email, '@enssat.fr') !== false)) {
+                $pos = strpos($email, '@enssat.fr');
+                $login = substr($email, 0, $pos);
+                $url = 'https://intranet.enssat.fr/bindocs/trombi/' . $promo  . '/' . $promo  . '_' . $login . '.jpg';
+                $user->picture = $url;
+            } else {
+                $user->picture = NULL;
+            }
 
             $user->groups()->detach();
             $user->groups()->attach($request->get('groups'));
 
             // Manage disability.
-            $t = null;
-
             if ($request->get('disabilities')) {
                 if ($user->disabilities()->count() === 0) {
                     $date = (new \DateTime())->format('y-m-d');
