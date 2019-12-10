@@ -10,6 +10,15 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#4b3f72">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+
     <!-- Styles -->
     <style>
         html, body {
@@ -39,7 +48,7 @@
             text-align: center;
         }
 
-        .title {
+        .title h1 {
             font-size: 36px;
             padding: 20px;
         }
@@ -59,9 +68,17 @@
         }
 
         .btn:hover {
-             background: #8d6a9f;
-             color: #fff;
-         }
+            background: #8d6a9f;
+            color: #fff;
+        }
+
+        a {
+            color: #4b3f72;
+        }
+
+        a:hover {
+            color: #8d6a9f;
+        }
 
     </style>
 </head>
@@ -69,8 +86,9 @@
 <div class="flex-center position-ref full-height">
     <div class="content">
         <div class="title">
-            <p>{{ __('app.blocked-account') }}</p>
+            <h1>{{ __('app.blocked-account') }}</h1>
             <a href="logout" class="btn">{{ __('common.logout') }}</a>
+            <p>Feel free to contact <a href="mailto:hello@epe.bzh">hello@epe.bzh</a> in case of problem.</p>
         </div>
     </div>
 </div>
