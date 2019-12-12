@@ -25,7 +25,9 @@ class FeatureFlippingController extends Controller
     {
         $features = Setting::where('type', 'feature_flipping')->get();
 
-        return view('admin.feature-flipping.index',compact('features'));
+        $common_data['active_trail'] = 'admin';
+
+        return view('admin.feature-flipping.index',compact('features', 'common_data'));
     }
 
     /**

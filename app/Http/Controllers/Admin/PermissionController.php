@@ -43,7 +43,9 @@ class PermissionController extends Controller
             'sync' => $sync,
         ];
 
-        return view('admin.permissions.index',compact('datas'))
+        $common_data['active_trail'] = 'admin';
+
+        return view('admin.permissions.index',compact('datas', 'common_data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 

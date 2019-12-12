@@ -25,7 +25,8 @@ class ConfigController extends Controller
     {
         $configs = Setting::where('type', 'config')->get();
 
-        return view('admin.config.index',compact('configs'));
+        $common_data['active_trail'] = 'admin';
+        return view('admin.config.index',compact('configs', 'common_data'));
     }
 
     /**

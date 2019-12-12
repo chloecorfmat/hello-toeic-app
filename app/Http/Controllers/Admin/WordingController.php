@@ -28,7 +28,9 @@ class WordingController extends Controller
             ->orderBy('key', 'asc')
             ->get();
 
-        return view('admin.wordings.index',compact('wordings'));
+        $common_data['active_trail'] = 'admin';
+
+        return view('admin.wordings.index',compact('wordings', 'common_data'));
     }
 
     /**
