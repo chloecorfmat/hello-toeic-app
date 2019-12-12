@@ -66,6 +66,9 @@
                                     <a href="/teacher/composite-tests">Composite tests list</a>
                                 </li>
                                 <li class="submenu--item">
+                                    <a href="/teacher/parts">Parts list</a>
+                                </li>
+                                <li class="submenu--item">
                                     <a href="/teacher/questions">Questions list</a>
                                 </li>
                                 <li class="submenu--item">
@@ -183,6 +186,7 @@
                     if (this.isOpened !== null) {
                         document.getElementById(this.isOpened).classList.remove('opened');
                         document.getElementById(this.isOpened).previousElementSibling.classList.toggle('submenu-opened');
+                        document.getElementById(id).parentElement.classList.toggle('submenu-opened');
                     }
                     this.isOpened = null;
                 } else {
@@ -192,18 +196,21 @@
                         if (this.isOpened !== null) {
                             document.getElementById(this.isOpened).classList.remove('opened');
                             document.getElementById(this.isOpened).previousElementSibling.classList.toggle('submenu-opened');
+                            document.getElementById(id).parentElement.classList.toggle('submenu-opened');
                         }
                         this.isOpened = id;
                     }
 
                     document.getElementById(id).classList.toggle('opened');
                     document.getElementById(id).previousElementSibling.classList.toggle('submenu-opened');
+                    document.getElementById(id).parentElement.classList.toggle('submenu-opened');
                 }
             },
             closeSubmenu: function () {
                 if (this.isOpened !== null) {
                     document.getElementById(this.isOpened).classList.remove('opened');
                     document.getElementById(this.isOpened).previousElementSibling.classList.remove('submenu-opened');
+                    document.getElementById(this.isOpened).parentElement.classList.remove('submenu-opened');
                     this.isOpened = null;
                 }
             }
@@ -218,8 +225,12 @@
 
     .header--menu-item {
         position: relative;
-        width: 14rem;
+        width: 100%;
         text-align: center;
+    }
+
+    .header--menu-item button {
+        padding: .5rem 0;
     }
 
     .submenu {
@@ -228,9 +239,8 @@
 
     .submenu.opened {
         display: block;
-        position: absolute;
-        top: 3rem;
-        width: 14rem;
+        position: initial;
+        width: 100%;
         z-index: 1;
         text-align: left;
     }
@@ -245,6 +255,24 @@
         display: block;
         padding: .75rem 1rem;
         color: #fff;
-        font-size: .9rem;
+        font-size: .8rem;
+    }
+
+    @media screen and (min-width: 1020px) {
+        .header--menu-item {
+            padding: 0;
+            border: 0;
+            width: 14rem;
+        }
+
+        .header--menu-item button {
+            padding: 0;
+        }
+
+        .submenu.opened {
+            position: absolute;
+            top: 3rem;
+            width: 14rem;
+        }
     }
 </style>

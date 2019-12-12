@@ -2012,6 +2012,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2048,6 +2051,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         if (this.isOpened !== null) {
           document.getElementById(this.isOpened).classList.remove('opened');
           document.getElementById(this.isOpened).previousElementSibling.classList.toggle('submenu-opened');
+          document.getElementById(id).parentElement.classList.toggle('submenu-opened');
         }
 
         this.isOpened = null;
@@ -2058,6 +2062,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           if (this.isOpened !== null) {
             document.getElementById(this.isOpened).classList.remove('opened');
             document.getElementById(this.isOpened).previousElementSibling.classList.toggle('submenu-opened');
+            document.getElementById(id).parentElement.classList.toggle('submenu-opened');
           }
 
           this.isOpened = id;
@@ -2065,12 +2070,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
         document.getElementById(id).classList.toggle('opened');
         document.getElementById(id).previousElementSibling.classList.toggle('submenu-opened');
+        document.getElementById(id).parentElement.classList.toggle('submenu-opened');
       }
     },
     closeSubmenu: function closeSubmenu() {
       if (this.isOpened !== null) {
         document.getElementById(this.isOpened).classList.remove('opened');
         document.getElementById(this.isOpened).previousElementSibling.classList.remove('submenu-opened');
+        document.getElementById(this.isOpened).parentElement.classList.remove('submenu-opened');
         this.isOpened = null;
       }
     }
@@ -2695,7 +2702,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.main-header[data-v-ca495a76] {\n    position: relative;\n}\n.header--menu-item[data-v-ca495a76] {\n    position: relative;\n    width: 14rem;\n    text-align: center;\n}\n.submenu[data-v-ca495a76] {\n    display: none;\n}\n.submenu.opened[data-v-ca495a76] {\n    display: block;\n    position: absolute;\n    top: 3rem;\n    width: 14rem;\n    z-index: 1;\n    text-align: left;\n}\n.submenu--item[data-v-ca495a76] {\n    display: block;\n    margin: 0;\n    padding: 0;\n}\n.submenu--item a[data-v-ca495a76] {\n    display: block;\n    padding: .75rem 1rem;\n    color: #fff;\n    font-size: .9rem;\n}\n", ""]);
+exports.push([module.i, "\n.main-header[data-v-ca495a76] {\n    position: relative;\n}\n.header--menu-item[data-v-ca495a76] {\n    position: relative;\n    width: 100%;\n    text-align: center;\n}\n.header--menu-item button[data-v-ca495a76] {\n    padding: .5rem 0;\n}\n.submenu[data-v-ca495a76] {\n    display: none;\n}\n.submenu.opened[data-v-ca495a76] {\n    display: block;\n    position: initial;\n    width: 100%;\n    z-index: 1;\n    text-align: left;\n}\n.submenu--item[data-v-ca495a76] {\n    display: block;\n    margin: 0;\n    padding: 0;\n}\n.submenu--item a[data-v-ca495a76] {\n    display: block;\n    padding: .75rem 1rem;\n    color: #fff;\n    font-size: .8rem;\n}\n@media screen and (min-width: 1020px) {\n.header--menu-item[data-v-ca495a76] {\n        padding: 0;\n        border: 0;\n        width: 14rem;\n}\n.header--menu-item button[data-v-ca495a76] {\n        padding: 0;\n}\n.submenu.opened[data-v-ca495a76] {\n        position: absolute;\n        top: 3rem;\n        width: 14rem;\n}\n}\n", ""]);
 
 // exports
 
@@ -5448,6 +5455,10 @@ var staticRenderFns = [
           _c("a", { attrs: { href: "/teacher/composite-tests" } }, [
             _vm._v("Composite tests list")
           ])
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "submenu--item" }, [
+          _c("a", { attrs: { href: "/teacher/parts" } }, [_vm._v("Parts list")])
         ]),
         _vm._v(" "),
         _c("li", { staticClass: "submenu--item" }, [

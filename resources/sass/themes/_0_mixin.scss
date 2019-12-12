@@ -20,6 +20,13 @@
     }
   }
 
+  .header--menu-item {
+    .submenu-opened {
+      border-top: 2px solid $main-color;
+      border-bottom: 2px solid $main-color;
+    }
+  }
+
   .header--actions-list-item {
     .legend-ico {
       color: $main-color;
@@ -90,6 +97,14 @@
   .field-container {
     label {
       color: $main-color;
+    }
+  }
+
+  @media screen and (min-width: $breakpoint-medium) {
+    .header--menu-item {
+      .submenu-opened {
+        border: none;
+      }
     }
   }
 }
