@@ -30,7 +30,7 @@
             <div class="header--part header--menu" v-click-outside="closeSubmenu">
                 <nav v-if="Object.keys(this.$store.state.currentUser).length !== 0">
                     <ul v-if="this.$store.state.activeProfile === 'admin'">
-                        <li id="adminMenu">
+                        <li class="header--menu-item" id="adminMenu">
                             <a href="/admin" v-bind:class="this.$store.state.activeTrail == 'admin' ? 'active' : ''">Admin</a>
                         </li>
                     </ul>
@@ -96,13 +96,13 @@
                     </ul>
                     <ul v-else>
                         <!-- Add class="active" -->
-                        <li id="studentCompositeTestsMenu">
+                        <li class="header--menu-item" id="studentCompositeTestsMenu">
                             <a href="/composite-tests" v-bind:class="this.$store.state.activeTrail == 'student-composite-tests' ? 'active' : ''">Composite tests</a>
                         </li>
-                        <li id="studentExercisesMenu">
+                        <li class="header--menu-item" id="studentExercisesMenu">
                             <a href="/exercises" v-bind:class="this.$store.state.activeTrail == 'student-exercises' ? 'active' : ''">Exercises</a>
                         </li>
-                        <li id="studentChallengesMenu">
+                        <li class="header--menu-item" id="studentChallengesMenu">
                             <a href="/games" v-bind:class="this.$store.state.activeTrail == 'student-challenges' ? 'active' : ''">Challenge mode</a>
                         </li>
                     </ul>

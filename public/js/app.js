@@ -5168,19 +5168,26 @@ var render = function() {
             ? _c("nav", [
                 this.$store.state.activeProfile === "admin"
                   ? _c("ul", [
-                      _c("li", { attrs: { id: "adminMenu" } }, [
-                        _c(
-                          "a",
-                          {
-                            class:
-                              this.$store.state.activeTrail == "admin"
-                                ? "active"
-                                : "",
-                            attrs: { href: "/admin" }
-                          },
-                          [_vm._v("Admin")]
-                        )
-                      ])
+                      _c(
+                        "li",
+                        {
+                          staticClass: "header--menu-item",
+                          attrs: { id: "adminMenu" }
+                        },
+                        [
+                          _c(
+                            "a",
+                            {
+                              class:
+                                this.$store.state.activeTrail == "admin"
+                                  ? "active"
+                                  : "",
+                              attrs: { href: "/admin" }
+                            },
+                            [_vm._v("Admin")]
+                          )
+                        ]
+                      )
                     ])
                   : this.$store.state.activeProfile === "teacher"
                   ? _c("ul", [
@@ -5274,50 +5281,71 @@ var render = function() {
                       )
                     ])
                   : _c("ul", [
-                      _c("li", { attrs: { id: "studentCompositeTestsMenu" } }, [
-                        _c(
-                          "a",
-                          {
-                            class:
-                              this.$store.state.activeTrail ==
-                              "student-composite-tests"
-                                ? "active"
-                                : "",
-                            attrs: { href: "/composite-tests" }
-                          },
-                          [_vm._v("Composite tests")]
-                        )
-                      ]),
+                      _c(
+                        "li",
+                        {
+                          staticClass: "header--menu-item",
+                          attrs: { id: "studentCompositeTestsMenu" }
+                        },
+                        [
+                          _c(
+                            "a",
+                            {
+                              class:
+                                this.$store.state.activeTrail ==
+                                "student-composite-tests"
+                                  ? "active"
+                                  : "",
+                              attrs: { href: "/composite-tests" }
+                            },
+                            [_vm._v("Composite tests")]
+                          )
+                        ]
+                      ),
                       _vm._v(" "),
-                      _c("li", { attrs: { id: "studentExercisesMenu" } }, [
-                        _c(
-                          "a",
-                          {
-                            class:
-                              this.$store.state.activeTrail ==
-                              "student-exercises"
-                                ? "active"
-                                : "",
-                            attrs: { href: "/exercises" }
-                          },
-                          [_vm._v("Exercises")]
-                        )
-                      ]),
+                      _c(
+                        "li",
+                        {
+                          staticClass: "header--menu-item",
+                          attrs: { id: "studentExercisesMenu" }
+                        },
+                        [
+                          _c(
+                            "a",
+                            {
+                              class:
+                                this.$store.state.activeTrail ==
+                                "student-exercises"
+                                  ? "active"
+                                  : "",
+                              attrs: { href: "/exercises" }
+                            },
+                            [_vm._v("Exercises")]
+                          )
+                        ]
+                      ),
                       _vm._v(" "),
-                      _c("li", { attrs: { id: "studentChallengesMenu" } }, [
-                        _c(
-                          "a",
-                          {
-                            class:
-                              this.$store.state.activeTrail ==
-                              "student-challenges"
-                                ? "active"
-                                : "",
-                            attrs: { href: "/games" }
-                          },
-                          [_vm._v("Challenge mode")]
-                        )
-                      ])
+                      _c(
+                        "li",
+                        {
+                          staticClass: "header--menu-item",
+                          attrs: { id: "studentChallengesMenu" }
+                        },
+                        [
+                          _c(
+                            "a",
+                            {
+                              class:
+                                this.$store.state.activeTrail ==
+                                "student-challenges"
+                                  ? "active"
+                                  : "",
+                              attrs: { href: "/games" }
+                            },
+                            [_vm._v("Challenge mode")]
+                          )
+                        ]
+                      )
                     ])
               ])
             : _vm._e()
