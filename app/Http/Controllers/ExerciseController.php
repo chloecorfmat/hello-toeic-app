@@ -36,7 +36,9 @@ class ExerciseController extends Controller
             ->pluck('exercise_id')
             ->toArray();
 
-        return view('exercises.index', compact('exercises', 'newExercises', 'doneExercises'));
+        $common_data['active_trail'] = 'student-exercises';
+
+        return view('exercises.index', compact('exercises', 'newExercises', 'doneExercises', 'common_data'));
     }
 
     /**
@@ -120,8 +122,10 @@ class ExerciseController extends Controller
         }
 
         $datasources = implode(', ', $datasources_ar);
-
         $part = $exercise->part; // Finally, an exercise has only one part.
+
+        $common_data['active_trail'] = 'student-exercises';
+
         return view(
             'exercises.show',
             compact(
@@ -131,7 +135,8 @@ class ExerciseController extends Controller
                 'source',
                 'listening_duration',
                 'reading_duration',
-                'part'
+                'part',
+                'common_data'
             )
         );
     }

@@ -50,7 +50,9 @@ class GameController extends Controller
             'axisY' => json_encode($axisY),
         ];
 
-        return view('games.index', compact('datas', 'best_scores'));
+        $common_data['active_trail'] = 'student-challenges';
+
+        return view('games.index', compact('datas', 'best_scores', 'common_data'));
     }
 
     /**
@@ -83,7 +85,9 @@ class GameController extends Controller
 
             $datas['question'] = $question;
 
-            return view('games.play', compact('datas'));
+            $common_data['active_trail'] = 'student-challenges';
+
+            return view('games.play', compact('datas', 'common_data'));
         }
 
         $score = Cookie::get('game_score');

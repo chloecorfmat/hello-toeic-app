@@ -28,7 +28,9 @@ class TrialController extends Controller
             ->orderBy('datetime', 'DESC')
             ->get();
 
-        return view('trials.index', compact('trials', 'user'));
+        $common_data['active_trail'] = 'student-exercises';
+
+        return view('trials.index', compact('trials', 'user', 'common_data'));
 
     }
 
@@ -78,7 +80,9 @@ class TrialController extends Controller
 
         $exercise = Exercise::find($test_id);
 
-        return view('trials.show', compact('datas', 'stats', 'exercise'));
+        $common_data['active_trail'] = 'student-exercises';
+
+        return view('trials.show', compact('datas', 'stats', 'exercise', 'common_data'));
     }
 
     /**

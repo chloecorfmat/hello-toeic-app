@@ -36,7 +36,9 @@ class CompositeTrialController extends Controller
             $names[] = CompositeTest::find($trial->composite_test_id)->name;
         }
 
-        return view('composite-trials.index', compact('trials', 'user', 'names'));
+        $common_data['active_trail'] = 'student-composite-tests';
+
+        return view('composite-trials.index', compact('trials', 'user', 'names', 'common_data'));
     }
 
     /**

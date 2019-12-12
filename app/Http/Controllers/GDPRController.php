@@ -33,7 +33,6 @@ class GDPRController extends Controller
     {
         $user = Auth::user();
 
-
         // Manage groups.
         $groups = $user->groups()->get();
         $arr_groups = $groups->toArray();

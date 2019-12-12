@@ -34,7 +34,8 @@
 <body>
     <div id="app" class="app">
         @php ($user = json_encode(Auth::user()))
-        <base-header current-user-data="{{ $user }}"></base-header>
+        @php ($active_trail = $common_data['active_trail'] ?? 'null')
+        <base-header current-user-data="{{ $user }}" active-trail-data="{{ $active_trail }}"></base-header>
         <main
             @if (isset($class_main) && !empty($class_main))
                 class="{{ $class_main }}"

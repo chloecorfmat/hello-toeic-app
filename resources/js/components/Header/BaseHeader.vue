@@ -30,12 +30,14 @@
             <div class="header--part header--menu" v-click-outside="closeSubmenu">
                 <nav v-if="Object.keys(this.$store.state.currentUser).length !== 0">
                     <ul v-if="this.$store.state.activeProfile === 'admin'">
-                        <li id="adminMenu"><a class="active" href="/admin">Admin</a></li>
+                        <li id="adminMenu">
+                            <a href="/admin" v-bind:class="this.$store.state.activeTrail == 'admin' ? 'active' : ''">Admin</a>
+                        </li>
                     </ul>
                     <ul v-else-if="this.$store.state.activeProfile === 'teacher'">
                         <!-- Add class="active" -->
                         <li class="header--menu-item" id="teacherUsersMenu">
-                            <button v-on:click="toggleSubmenu('teacherUsersSubmenu')" class="active">Gérer les utilisateurs</button>
+                            <button v-on:click="toggleSubmenu('teacherUsersSubmenu')" v-bind:class="this.$store.state.activeTrail == 'teacher-users' ? 'active' : ''">Gérer les utilisateurs</button>
                             <ul class="submenu" id="teacherUsersSubmenu">
                                 <li class="submenu--item">
                                     <a href="/teacher/users">Users list</a>
@@ -52,7 +54,7 @@
                             </ul>
                         </li>
                         <li class="header--menu-item" id="teacherExercisesMenu">
-                            <button v-on:click="toggleSubmenu('teacherExercisesSubmenu')">Gérer les exercices</button>
+                            <button v-on:click="toggleSubmenu('teacherExercisesSubmenu')" v-bind:class="this.$store.state.activeTrail == 'teacher-exercises' ? 'active' : ''">Gérer les exercices</button>
                             <ul class="submenu" id="teacherExercisesSubmenu">
                                 <li class="submenu--item">
                                     <a href="/teacher/exercises">Exercises list</a>
@@ -72,7 +74,7 @@
                             </ul>
                         </li>
                         <li class="header--menu-item" id="teacherResultsMenu">
-                            <button v-on:click="toggleSubmenu('teacherResultsSubmenu')">Voir les résultats</button>
+                            <button v-on:click="toggleSubmenu('teacherResultsSubmenu')" v-bind:class="this.$store.state.activeTrail == 'teacher-results' ? 'active' : ''">Voir les résultats</button>
                             <ul class="submenu" id="teacherResultsSubmenu">
                                 <li class="submenu--item">
                                     <a href="/teacher/results/exercises">Résultats des exercices</a>
@@ -88,9 +90,15 @@
                     </ul>
                     <ul v-else>
                         <!-- Add class="active" -->
-                        <li id="studentCompositeTestsMenu"><a href="/composite-tests">Composite tests</a></li>
-                        <li id="studentExercisesMenu"><a href="/exercises">Exercises</a></li>
-                        <li id="studentChallengesMenu"><a href="/games">Challenge mode</a></li>
+                        <li id="studentCompositeTestsMenu">
+                            <a href="/composite-tests" v-bind:class="this.$store.state.activeTrail == 'student-composite-tests' ? 'active' : ''">Composite tests</a>
+                        </li>
+                        <li id="studentExercisesMenu">
+                            <a href="/exercises" v-bind:class="this.$store.state.activeTrail == 'student-exercises' ? 'active' : ''">Exercises</a>
+                        </li>
+                        <li id="studentChallengesMenu">
+                            <a href="/games" v-bind:class="this.$store.state.activeTrail == 'student-challenges' ? 'active' : ''">Challenge mode</a>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -137,7 +145,7 @@
 
     export default {
         store,
-        props: ['currentUserData'],
+        props: ['currentUserData', 'activeTrailData'],
         data: function() {
             return {
                 'isOpened': null,
@@ -156,6 +164,7 @@
             if (this.currentUser) {
                 this.$store.commit('setCurrentUser', this.currentUser);
                 this.$store.commit('setApiToken', this.currentUser.api_token);
+                this.$store.commit('setActiveTrail', this.activeTrailData);
                 this.$store.dispatch('loadTranslations');
             }
         },

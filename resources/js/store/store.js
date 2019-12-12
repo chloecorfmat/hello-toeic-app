@@ -14,7 +14,7 @@ export default new Vuex.Store({
         currentUser: {},
         authenticated: false,
         activeProfile: 'student',
-        activeMenu: '',
+        activeTrail: '',
         activeTheme: 'student'
     },
     mutations: {
@@ -44,6 +44,9 @@ export default new Vuex.Store({
                     state.activeTheme = 'teacher';
                 }
             }
+        },
+        setActiveTrail(state, activeTrail) {
+            state.activeTrail = activeTrail;
         },
         MUTATE_TRANS (state, data) {
             state.translations_keys = Object.keys(data);

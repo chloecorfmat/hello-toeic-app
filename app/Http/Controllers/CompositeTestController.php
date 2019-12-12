@@ -58,7 +58,9 @@ class CompositeTestController extends Controller
         $before_last_login = Auth::user()->before_last_login_at;
         $newTests = CompositeTest::select('id')->where('created_at', '>', $before_last_login)->pluck('id')->toArray();
 
-        return view('composite-tests.index', compact('tests', 'newTests'));
+        $common_data['active_trail'] = 'student-composite-tests';
+
+        return view('composite-tests.index', compact('tests', 'newTests', 'common_data'));
     }
 
     /**
@@ -204,7 +206,9 @@ class CompositeTestController extends Controller
             'questions' => $questions,
         ];
 
-        return view('composite-tests.show', compact('datas', 'datasources', 'source', 'listening_duration', 'reading_duration'));
+        $common_data['active_trail'] = 'student-composite-tests';
+
+        return view('composite-tests.show', compact('datas', 'datasources', 'source', 'listening_duration', 'reading_duration', 'common_data'));
     }
 
     /**

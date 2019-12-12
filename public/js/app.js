@@ -2001,11 +2001,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   store: _store_store__WEBPACK_IMPORTED_MODULE_0__["default"],
-  props: ['currentUserData'],
+  props: ['currentUserData', 'activeTrailData'],
   data: function data() {
     return {
       'isOpened': null,
@@ -2022,6 +2030,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     if (this.currentUser) {
       this.$store.commit('setCurrentUser', this.currentUser);
       this.$store.commit('setApiToken', this.currentUser.api_token);
+      this.$store.commit('setActiveTrail', this.activeTrailData);
       this.$store.dispatch('loadTranslations');
     }
   },
@@ -5148,7 +5157,21 @@ var render = function() {
           Object.keys(this.$store.state.currentUser).length !== 0
             ? _c("nav", [
                 this.$store.state.activeProfile === "admin"
-                  ? _c("ul", [_vm._m(1)])
+                  ? _c("ul", [
+                      _c("li", { attrs: { id: "adminMenu" } }, [
+                        _c(
+                          "a",
+                          {
+                            class:
+                              this.$store.state.activeTrail == "admin"
+                                ? "active"
+                                : "",
+                            attrs: { href: "/admin" }
+                          },
+                          [_vm._v("Admin")]
+                        )
+                      ])
+                    ])
                   : this.$store.state.activeProfile === "teacher"
                   ? _c("ul", [
                       _c(
@@ -5161,7 +5184,10 @@ var render = function() {
                           _c(
                             "button",
                             {
-                              staticClass: "active",
+                              class:
+                                this.$store.state.activeTrail == "teacher-users"
+                                  ? "active"
+                                  : "",
                               on: {
                                 click: function($event) {
                                   return _vm.toggleSubmenu(
@@ -5173,7 +5199,7 @@ var render = function() {
                             [_vm._v("Gérer les utilisateurs")]
                           ),
                           _vm._v(" "),
-                          _vm._m(2)
+                          _vm._m(1)
                         ]
                       ),
                       _vm._v(" "),
@@ -5187,6 +5213,11 @@ var render = function() {
                           _c(
                             "button",
                             {
+                              class:
+                                this.$store.state.activeTrail ==
+                                "teacher-exercises"
+                                  ? "active"
+                                  : "",
                               on: {
                                 click: function($event) {
                                   return _vm.toggleSubmenu(
@@ -5198,7 +5229,7 @@ var render = function() {
                             [_vm._v("Gérer les exercices")]
                           ),
                           _vm._v(" "),
-                          _vm._m(3)
+                          _vm._m(2)
                         ]
                       ),
                       _vm._v(" "),
@@ -5212,6 +5243,11 @@ var render = function() {
                           _c(
                             "button",
                             {
+                              class:
+                                this.$store.state.activeTrail ==
+                                "teacher-results"
+                                  ? "active"
+                                  : "",
                               on: {
                                 click: function($event) {
                                   return _vm.toggleSubmenu(
@@ -5223,16 +5259,55 @@ var render = function() {
                             [_vm._v("Voir les résultats")]
                           ),
                           _vm._v(" "),
-                          _vm._m(4)
+                          _vm._m(3)
                         ]
                       )
                     ])
                   : _c("ul", [
-                      _vm._m(5),
+                      _c("li", { attrs: { id: "studentCompositeTestsMenu" } }, [
+                        _c(
+                          "a",
+                          {
+                            class:
+                              this.$store.state.activeTrail ==
+                              "student-composite-tests"
+                                ? "active"
+                                : "",
+                            attrs: { href: "/composite-tests" }
+                          },
+                          [_vm._v("Composite tests")]
+                        )
+                      ]),
                       _vm._v(" "),
-                      _vm._m(6),
+                      _c("li", { attrs: { id: "studentExercisesMenu" } }, [
+                        _c(
+                          "a",
+                          {
+                            class:
+                              this.$store.state.activeTrail ==
+                              "student-exercises"
+                                ? "active"
+                                : "",
+                            attrs: { href: "/exercises" }
+                          },
+                          [_vm._v("Exercises")]
+                        )
+                      ]),
                       _vm._v(" "),
-                      _vm._m(7)
+                      _c("li", { attrs: { id: "studentChallengesMenu" } }, [
+                        _c(
+                          "a",
+                          {
+                            class:
+                              this.$store.state.activeTrail ==
+                              "student-challenges"
+                                ? "active"
+                                : "",
+                            attrs: { href: "/games" }
+                          },
+                          [_vm._v("Challenge mode")]
+                        )
+                      ])
                     ])
               ])
             : _vm._e()
@@ -5243,7 +5318,7 @@ var render = function() {
         _c("ul", { staticClass: "header--actions-list" }, [
           Object.keys(this.$store.state.currentUser).length === 0
             ? _c("li", { staticClass: "header--actions-list-item" }, [
-                _vm._m(8)
+                _vm._m(4)
               ])
             : _vm._e(),
           _vm._v(" "),
@@ -5288,13 +5363,13 @@ var render = function() {
           _vm._v(" "),
           Object.keys(this.$store.state.currentUser).length !== 0
             ? _c("li", { staticClass: "header--actions-list-item" }, [
-                _vm._m(9)
+                _vm._m(5)
               ])
             : _vm._e(),
           _vm._v(" "),
           Object.keys(this.$store.state.currentUser).length !== 0
             ? _c("li", { staticClass: "header--actions-list-item" }, [
-                _vm._m(10)
+                _vm._m(6)
               ])
             : _vm._e()
         ])
@@ -5311,16 +5386,6 @@ var staticRenderFns = [
       _c("a", { attrs: { href: "/profile" } }, [
         _c("img", { attrs: { src: "/svg/hello-toeic-small.svg", alt: "" } }),
         _vm._v("\n                Hello Toeic\n            ")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { attrs: { id: "adminMenu" } }, [
-      _c("a", { staticClass: "active", attrs: { href: "/admin" } }, [
-        _vm._v("Admin")
       ])
     ])
   },
@@ -5423,32 +5488,6 @@ var staticRenderFns = [
         ])
       ]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { attrs: { id: "studentCompositeTestsMenu" } }, [
-      _c("a", { attrs: { href: "/composite-tests" } }, [
-        _vm._v("Composite tests")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { attrs: { id: "studentExercisesMenu" } }, [
-      _c("a", { attrs: { href: "/exercises" } }, [_vm._v("Exercises")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { attrs: { id: "studentChallengesMenu" } }, [
-      _c("a", { attrs: { href: "/games" } }, [_vm._v("Challenge mode")])
-    ])
   },
   function() {
     var _vm = this
@@ -19942,7 +19981,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_0__
     currentUser: {},
     authenticated: false,
     activeProfile: 'student',
-    activeMenu: '',
+    activeTrail: '',
     activeTheme: 'student'
   },
   mutations: {
@@ -19971,6 +20010,9 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_0__
           state.activeTheme = 'teacher';
         }
       }
+    },
+    setActiveTrail: function setActiveTrail(state, activeTrail) {
+      state.activeTrail = activeTrail;
     },
     MUTATE_TRANS: function MUTATE_TRANS(state, data) {
       state.translations_keys = Object.keys(data);
