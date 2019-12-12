@@ -1,0 +1,6 @@
+.theme-teacher {
+  $main-color: $teacher-color;
+  $main-color-dark: $info-color-dark;
+
+  @include theme($main-color, $main-color-dark);
+}

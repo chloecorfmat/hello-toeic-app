@@ -1,0 +1,56 @@
+@mixin theme($main-color, $main-color-dark) {
+  a {
+    color: $main-color;
+
+    &:hover {
+      color: $main-color-dark;
+    }
+  }
+
+  .header--menu {
+    a,
+    button {
+      &.active {
+        color: $main-color-dark;
+
+        &:hover {
+          color: $main-color-dark;
+        }
+      }
+    }
+  }
+
+  .header--actions-list-item {
+    .legend-ico {
+      color: $main-color;
+    }
+
+    &:hover {
+      color: $main-color-dark;
+    }
+  }
+
+  .header--actions-list-item {
+    .legend-ico {
+      color: $main-color;
+    }
+
+    &:hover {
+      .legend-ico {
+        color: $main-color-dark;
+      }
+    }
+  }
+
+  .submenu {
+    &.opened {
+      background: $main-color;
+    }
+  }
+
+  .submenu--item {
+    a:hover {
+      background: $main-color-dark;
+    }
+  }
+}

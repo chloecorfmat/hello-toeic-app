@@ -20,7 +20,7 @@
             </ul>
         </div>
 
-        <header class="header">
+        <header v-bind:class="'header theme-' + this.$store.state.activeTheme">
             <div class="header--part header--logo">
                 <a href="/profile">
                     <img src="/svg/hello-toeic-small.svg" alt="">
@@ -217,8 +217,7 @@
     .submenu.opened {
         display: block;
         position: absolute;
-        top: 2.75rem;
-        background: #a42424;
+        top: 3rem;
         width: 14rem;
         z-index: 1;
         text-align: left;
@@ -235,9 +234,5 @@
         padding: .75rem 1rem;
         color: #fff;
         font-size: .9rem;
-    }
-
-    .submenu--item a:hover {
-        background: #8D1A24;
     }
 </style>

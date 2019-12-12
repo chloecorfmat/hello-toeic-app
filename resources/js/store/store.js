@@ -14,7 +14,8 @@ export default new Vuex.Store({
         currentUser: {},
         authenticated: false,
         activeProfile: 'student',
-        activeMenu: ''
+        activeMenu: '',
+        activeTheme: 'student'
     },
     mutations: {
         translations(state, translations) {
@@ -37,8 +38,10 @@ export default new Vuex.Store({
                 let activeProfile = window.location.pathname.split('/')[1];
                 if ((activeProfile === 'teacher' || activeProfile === 'admin') && state.roles.includes(activeProfile)) {
                     state.activeProfile = activeProfile;
+                    state.activeTheme = activeProfile;
                 } else if (activeProfile === 'admin' && states.roles.includes('teacher')) {
                     state.activeProfile = 'teacher';
+                    state.activeTheme = 'teacher';
                 }
             }
         },

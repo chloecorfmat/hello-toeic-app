@@ -1,0 +1,6 @@
+.theme-student {
+  $main-color: $student-color;
+  $main-color-dark: $primary-color-dark;
+
+  @include theme($main-color, $main-color-dark);
+}

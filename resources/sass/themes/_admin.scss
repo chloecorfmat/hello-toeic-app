@@ -1,0 +1,6 @@
+.theme-admin {
+  $main-color: $admin-color;
+  $main-color-dark: $warning-color-dark;
+
+  @include theme($main-color, $main-color-dark);
+}
