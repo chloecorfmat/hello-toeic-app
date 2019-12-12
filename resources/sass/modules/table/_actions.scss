@@ -5,16 +5,17 @@
   bottom: 0;
   right: 0;
   width: 100%;
-  background-color: $tertiary-color-1;
+  background-color: $light-grey;
   color: $white;
   font-size: .9rem;
   z-index: 15;
+  border-top: 3px solid;
 
   a,
   i,
   p,
   h3 {
-    color: $white;
+    color: $main-color;
   }
 
   li,
@@ -31,13 +32,17 @@
   .btn-close {
     background: none;
     border: none;
-    color: $white;
+    color: $main-color;
     position: absolute;
     right: 2rem;
+
+    &:hover {
+      cursor: pointer;
+      opacity: .8;
+    }
   }
 
   @media screen and (min-width: $breakpoint-medium) {
-    width: calc(75% + 2rem);
     z-index: 1;
 
     .btn-close {

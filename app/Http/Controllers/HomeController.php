@@ -39,7 +39,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $use_vue = TRUE;
         $datetime = (new \DateTime())->format('Y-m-d H:i:s');
         $user = \Auth::user();
 
@@ -90,7 +89,18 @@ class HomeController extends Controller
 
         $badges = $user->badges;
 
-        return view('profile', compact('datas', 'stats', 'scores', 'lessons', 'composite_trials', 'lessons_access', 'badges', 'use_vue'));
+        return view(
+            'profile',
+            compact(
+                'datas',
+                'stats',
+                'scores',
+                'lessons',
+                'composite_trials',
+                'lessons_access',
+                'badges'
+            )
+        );
     }
 
     /**
@@ -105,6 +115,7 @@ class HomeController extends Controller
     }
 
     public function admin() {
-        return view('admin');
+        $common_data['active_trail'] = 'admin';
+        return view('admin', compact('common_data'));
     }
 }

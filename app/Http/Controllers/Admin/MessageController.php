@@ -24,7 +24,15 @@ class MessageController extends Controller
         $messages = Message::whereIn('to', $roles)
             ->orderBy('datetime', 'desc')
             ->get();
-        return view('admin.messages.index', compact('messages'));
+
+        $common_data['active_trail'] = 'teacher-users';
+        return view(
+            'admin.messages.index',
+            compact(
+                'messages',
+                'common_data'
+            )
+        );
     }
 
     /**

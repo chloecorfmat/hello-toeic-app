@@ -37,7 +37,8 @@ class ExerciseController extends Controller
         $before_last_login = Auth::user()->before_last_login_at;
         $newExercises = Exercise::select('id')->where('created_at', '>', $before_last_login)->pluck('id')->toArray();
 
-        return view('admin.exercises.index', compact('exercises', 'newExercises'));
+        $common_data['active_trail'] = 'teacher-exercises';
+        return view('admin.exercises.index', compact('exercises', 'newExercises', 'common_data'));
     }
 
     /**
@@ -118,7 +119,19 @@ class ExerciseController extends Controller
             'nb_trials' => count($scores),
         ];
 
-        return view('admin.exercises.show', compact('exercise', 'questions', 'part', 'statistics', 'trials', 'constant_scores'));
+        $common_data['active_trail'] = 'teacher-exercises';
+        return view(
+            'admin.exercises.show',
+            compact(
+                'exercise',
+                'questions',
+                'part',
+                'statistics',
+                'trials',
+                'constant_scores',
+                'common_data'
+            )
+        );
     }
 
     /**
@@ -136,7 +149,8 @@ class ExerciseController extends Controller
         }
 
         $examples = Example::all();
-        return view('admin.exercises.edit', compact('exercise', 'examples'));
+        $common_data['active_trail'] = 'teacher-exercises';
+        return view('admin.exercises.edit', compact('exercise', 'examples', 'common_data'));
     }
 
     /**
@@ -177,7 +191,8 @@ class ExerciseController extends Controller
             abort(404);
         }
 
-        return view('admin.exercises.delete', compact('exercise'));
+        $common_data['active_trail'] = 'teacher-exercises';
+        return view('admin.exercises.delete', compact('exercise', 'common_data'));
     }
 
     /**
@@ -210,7 +225,8 @@ class ExerciseController extends Controller
         } else {
             $part = Part::find($id);
             $examples = Example::all();
-            return view('admin.exercises.import', compact('part', 'examples'));
+            $common_data['active_trail'] = 'teacher-exercises';
+            return view('admin.exercises.import', compact('part', 'examples', 'common_data'));
         }
     }
 

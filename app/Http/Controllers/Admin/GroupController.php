@@ -37,7 +37,8 @@ class GroupController extends Controller
             }
         }
 
-        return view('admin.groups.index', compact('groups', 'teachers'));
+        $common_data['active_trail'] = 'teacher-users';
+        return view('admin.groups.index', compact('groups', 'teachers', 'common_data'));
     }
 
     /**
@@ -49,7 +50,8 @@ class GroupController extends Controller
     {
         $teachers = User::whereHas("roles", function($q){ $q->where("name", "teacher"); })->get();
         $students = User::whereHas("roles", function($q){ $q->where("name", "student"); })->get();
-        return view('admin.groups.create', compact('teachers', 'students'));
+        $common_data['active_trail'] = 'teacher-users';
+        return view('admin.groups.create', compact('teachers', 'students', 'common_data'));
     }
 
     /**
@@ -109,7 +111,8 @@ class GroupController extends Controller
 
         $students = $group->users()->get();
 
-        return view('admin.groups.show', compact('group', 'teacher', 'students'));
+        $common_data['active_trail'] = 'teacher-users';
+        return view('admin.groups.show', compact('group', 'teacher', 'students', 'common_data'));
     }
 
     /**
@@ -127,7 +130,8 @@ class GroupController extends Controller
         }
 
         $teachers = User::whereHas("roles", function($q){ $q->where("name", "teacher"); })->get();
-        return view('admin.groups.edit', compact('group', 'teachers'));
+        $common_data['active_trail'] = 'teacher-users';
+        return view('admin.groups.edit', compact('group', 'teachers', 'common_data'));
     }
 
     /**
@@ -204,11 +208,13 @@ class GroupController extends Controller
             abort(404);
         }
 
-        return view('admin.groups.delete', compact('group'));
+        $common_data['active_trail'] = 'teacher-users';
+        return view('admin.groups.delete', compact('group', 'common_data'));
     }
 
     public function assign() {
-        return view('admin.groups.assign');
+        $common_data['active_trail'] = 'teacher-users';
+        return view('admin.groups.assign', compact('common_data'));
     }
 
     public function storeAssign(Request $request) {
@@ -319,7 +325,8 @@ class GroupController extends Controller
     }
 
     public function import() {
-        return view('admin.groups.import');
+        $common_data['active_trail'] = 'teacher-users';
+        return view('admin.groups.import', compact('common_data'));
     }
 
     public function storeImport(Request $request) {

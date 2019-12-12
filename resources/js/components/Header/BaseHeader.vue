@@ -49,6 +49,9 @@
                                     <a href="/teacher/groups">Groups list</a>
                                 </li>
                                 <li class="submenu--item">
+                                    <a href="/teacher/lessons">Lessons list</a>
+                                </li>
+                                <li class="submenu--item">
                                     <a href="/teacher/messages">Messages list</a>
                                 </li>
                             </ul>

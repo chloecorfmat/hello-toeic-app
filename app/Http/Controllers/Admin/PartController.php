@@ -24,7 +24,15 @@ class PartController extends Controller
     public function index()
     {
         $parts = Part::orderBy('version')->get();
-        return view('admin.parts.index', compact('parts'));
+
+        $common_data['active_trail'] = 'teacher-exercises';
+        return view(
+            'admin.parts.index',
+            compact(
+                'parts',
+                'common_data'
+            )
+        );
     }
 
     /**
@@ -34,7 +42,8 @@ class PartController extends Controller
      */
     public function create()
     {
-        return view('admin.parts.create');
+        $common_data['active_trail'] = 'teacher-exercises';
+        return view('admin.parts.create', compact('common_data'));
     }
 
     /**
@@ -87,7 +96,14 @@ class PartController extends Controller
             abort(404);
         }
 
-        return view('admin.parts.show', compact('part'));
+        $common_data['active_trail'] = 'teacher-exercises';
+        return view(
+            'admin.parts.show',
+            compact(
+                'part',
+                'common_data'
+            )
+        );
     }
 
     /**
@@ -104,7 +120,14 @@ class PartController extends Controller
             abort(404);
         }
 
-        return view('admin.parts.edit', compact('part'));
+        $common_data['active_trail'] = 'teacher-exercises';
+        return view(
+            'admin.parts.edit',
+            compact(
+                'part',
+                'common_data'
+            )
+        );
     }
 
     /**
@@ -159,7 +182,14 @@ class PartController extends Controller
             abort(404);
         }
 
-        return view('admin.parts.delete', compact('part'));
+        $common_data['active_trail'] = 'teacher-exercises';
+        return view(
+            'admin.parts.delete',
+            compact(
+                'part',
+                'common_data'
+            )
+        );
     }
 
     /**

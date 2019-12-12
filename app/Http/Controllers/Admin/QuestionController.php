@@ -33,7 +33,14 @@ class QuestionController extends Controller
     public function index()
     {
         $questions = Question::paginate(20);
-        return view('admin.questions.index', ['questions' => $questions]);
+        $common_data['active_trail'] = 'teacher-exercises';
+        return view(
+            'admin.questions.index',
+            [
+                'questions' => $questions,
+                'common_data' => $common_data
+            ]
+        );
     }
 
     /**
@@ -46,7 +53,15 @@ class QuestionController extends Controller
         $parts = Part::all();
         $documents = Document::all();
 
-        return view('admin.questions.create', compact('parts', 'documents'));
+        $common_data['active_trail'] = 'teacher-exercises';
+        return view(
+            'admin.questions.create',
+            compact(
+                'parts',
+                'documents',
+                'common_data'
+            )
+        );
     }
 
     /**
@@ -122,7 +137,17 @@ class QuestionController extends Controller
                 ->where('exercise_question.question_id', $id)
                 ->get();
 
-            return view('admin.questions.show', compact('question', 'statistics', 'explanation', 'exercises'));
+            $common_data['active_trail'] = 'teacher-exercises';
+            return view(
+                'admin.questions.show',
+                compact(
+                    'question',
+                    'statistics',
+                    'explanation',
+                    'exercises',
+                    'common_data'
+                )
+            );
         }
 
         abort(404);
@@ -143,7 +168,15 @@ class QuestionController extends Controller
         }
 
         $explanations = Explanation::all();
-        return view('admin.questions.edit', compact('datas', 'explanations'));
+        $common_data['active_trail'] = 'teacher-exercises';
+        return view(
+            'admin.questions.edit',
+            compact(
+                'datas',
+                'explanations',
+                'common_data'
+            )
+        );
     }
 
     /**
@@ -225,7 +258,14 @@ class QuestionController extends Controller
             abort(404);
         }
 
-        return view('admin.questions.delete', compact('question'));
+        $common_data['active_trail'] = 'teacher-exercises';
+        return view(
+            'admin.questions.delete',
+            compact(
+                'question',
+                'common_data'
+            )
+        );
     }
 
     /**

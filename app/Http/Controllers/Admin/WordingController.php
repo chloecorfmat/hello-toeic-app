@@ -29,8 +29,13 @@ class WordingController extends Controller
             ->get();
 
         $common_data['active_trail'] = 'admin';
-
-        return view('admin.wordings.index',compact('wordings', 'common_data'));
+        return view(
+            'admin.wordings.index',
+            compact(
+                'wordings',
+                'common_data'
+            )
+        );
     }
 
     /**

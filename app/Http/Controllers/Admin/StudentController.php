@@ -32,7 +32,14 @@ class StudentController extends Controller
         // Get all students.
         $students = User::whereHas("roles", function($q){ $q->where("name", "student"); })->get();
 
-        return view('admin.students.index', compact('students'));
+        $common_data['active_trail'] = 'teacher-users';
+        return view(
+            'admin.students.index',
+            compact(
+                'students',
+                'common_data'
+            )
+        );
 
     }
 
@@ -96,7 +103,19 @@ class StudentController extends Controller
             'intermediate' => Setting::where('key', 'config.score.intermediate')->first()->value
         ];
 
-        return view('admin.students.show', compact('student', 'trials', 'composite_trials', 'composite_trials_names', 'games', 'scores'));
+        $common_data['active_trail'] = 'teacher-users';
+        return view(
+            'admin.students.show',
+            compact(
+                'student',
+                'trials',
+                'composite_trials',
+                'composite_trials_names',
+                'games',
+                'scores',
+                'common_data'
+            )
+        );
     }
 
     /**

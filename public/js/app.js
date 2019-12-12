@@ -2009,6 +2009,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -5414,6 +5417,12 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("li", { staticClass: "submenu--item" }, [
+          _c("a", { attrs: { href: "/teacher/lessons" } }, [
+            _vm._v("Lessons list")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "submenu--item" }, [
           _c("a", { attrs: { href: "/teacher/messages" } }, [
             _vm._v("Messages list")
           ])
@@ -6039,7 +6048,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "table tablev2" },
+    { class: "table tablev2 theme-" + this.$store.state.activeTheme },
     [
       _c("div", { staticClass: "table--filters" }, [
         _c("div", { staticClass: "field-container" }, [
@@ -6157,6 +6166,7 @@ var render = function() {
                         _c(
                           "button",
                           {
+                            staticClass: "actions-btn",
                             on: {
                               click: function($event) {
                                 return _vm.userActions(user)

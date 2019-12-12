@@ -24,7 +24,8 @@ class ExplanationController extends Controller
     public function index()
     {
         $explanations = Explanation::orderBy('title')->get();
-        return view('admin.explanations.index', compact('explanations'));
+        $common_data['active_trail'] = 'teacher-exercises';
+        return view('admin.explanations.index', compact('explanations', 'common_data'));
     }
 
     /**
@@ -34,7 +35,8 @@ class ExplanationController extends Controller
      */
     public function create()
     {
-        return view('admin.explanations.create');
+        $common_data['active_trail'] = 'teacher-exercises';
+        return view('admin.explanations.create', compact('common_data'));
     }
 
     /**
@@ -67,7 +69,8 @@ class ExplanationController extends Controller
             abort(404);
         }
 
-        return view('admin.explanations.show', compact('explanation'));
+        $common_data['active_trail'] = 'teacher-exercises';
+        return view('admin.explanations.show', compact('explanation', 'common_data'));
     }
 
     /**
@@ -84,7 +87,8 @@ class ExplanationController extends Controller
             abort(404);
         }
 
-        return view('admin.explanations.edit', compact('explanation'));
+        $common_data['active_trail'] = 'teacher-exercises';
+        return view('admin.explanations.edit', compact('explanation', 'common_data'));
     }
 
     /**
@@ -123,7 +127,8 @@ class ExplanationController extends Controller
             abort(404);
         }
 
-        return view('admin.explanations.delete', compact('explanation'));
+        $common_data['active_trail'] = 'teacher-exercises';
+        return view('admin.explanations.delete', compact('explanation', 'common_data'));
     }
 
     /**

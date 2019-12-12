@@ -53,4 +53,43 @@
       background: $main-color-dark;
     }
   }
+
+  /** TABLE **/
+  .table--actions {
+    border-color: $main-color;
+  }
+
+  .actions-column {
+    .actions-ico {
+      color: $main-color;
+    }
+
+    .actions-btn {
+      &:hover {
+        cursor: pointer;
+
+        .actions-ico {
+          color: $main-color-dark;
+        }
+      }
+    }
+  }
+
+  /** PAGINATION **/
+  .paginationv2 {
+    button {
+      color: $main-color;
+
+      &:hover {
+        color: $main-color-dark;
+      }
+    }
+  }
+
+  /** FORM **/
+  .field-container {
+    label {
+      color: $main-color;
+    }
+  }
 }

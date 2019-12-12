@@ -25,7 +25,8 @@ class DocumentController extends Controller
     public function index()
     {
         $datas['documents'] = Document::orderBy('name')->get();
-        return view('admin.documents.index', compact('datas'));
+        $common_data['active_trail'] = 'teacher-exercises';
+        return view('admin.documents.index', compact('datas', 'common_data'));
     }
 
     /**
@@ -35,7 +36,8 @@ class DocumentController extends Controller
      */
     public function create()
     {
-        return view('admin.documents.create');
+        $common_data['active_trail'] = 'teacher-exercises';
+        return view('admin.documents.create', compact('common_data'));
     }
 
     /**
@@ -81,7 +83,9 @@ class DocumentController extends Controller
             abort(404);
         }
 
-        return view('admin.documents.show', compact('datas'));
+        $common_data['active_trail'] = 'teacher-exercises';
+
+        return view('admin.documents.show', compact('datas', 'common_data'));
     }
 
     /**
@@ -98,7 +102,8 @@ class DocumentController extends Controller
             abort(404);
         }
 
-        return view('admin.documents.edit', compact('document'));
+        $common_data['active_trail'] = 'teacher-exercises';
+        return view('admin.documents.edit', compact('document', 'common_data'));
     }
 
     /**

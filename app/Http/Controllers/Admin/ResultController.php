@@ -26,7 +26,8 @@ class ResultController extends Controller
      */
     public function index()
     {
-        return view('admin.results.index');
+        $common_data['active_trail'] = 'teacher-results';
+        return view('admin.results.index', compact('common_data'));
     }
 
     /**
@@ -44,7 +45,15 @@ class ResultController extends Controller
         $composite_trials = CompositeTrial::orderBy('datetime', 'DESC')
             ->get();
 
-        return view('admin.results.composite-tests', compact('composite_trials', 'scores'));
+        $common_data['active_trail'] = 'teacher-results';
+        return view(
+            'admin.results.composite-tests',
+            compact(
+                'composite_trials',
+                'scores',
+                'common_data'
+            )
+        );
     }
 
     /**
@@ -62,7 +71,15 @@ class ResultController extends Controller
         $trials = Trial::orderBy('datetime', 'DESC')
             ->get();
 
-        return view('admin.results.exercises', compact('trials', 'scores'));
+        $common_data['active_trail'] = 'teacher-results';
+        return view(
+            'admin.results.exercises',
+            compact(
+                'trials',
+                'scores',
+                'common_data'
+            )
+        );
     }
 
     /**
@@ -75,6 +92,13 @@ class ResultController extends Controller
         $games = Game::orderBy('datetime', 'DESC')
             ->get();
 
-        return view('admin.results.games', compact('games'));
+        $common_data['active_trail'] = 'teacher-results';
+        return view(
+            'admin.results.games',
+            compact(
+                'games',
+                'common_data'
+            )
+        );
     }
 }

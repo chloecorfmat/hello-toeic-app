@@ -39,7 +39,15 @@ class UserController extends Controller
             $users = User::whereHas("roles", function($q){ $q->whereIn("name", ["student", "teacher"]); })->get();
         }
 
-        return view('admin.users.index', compact('users', 'is_admin'));
+        $common_data['active_trail'] = 'teacher-users';
+        return view(
+            'admin.users.index',
+            compact(
+                'users',
+                'is_admin',
+                'common_data'
+            )
+        );
     }
 
     /**
@@ -50,7 +58,14 @@ class UserController extends Controller
     public function create()
     {
         $is_admin = auth()->user()->hasRole('admin');
-        return view('admin.users.create', compact('is_admin'));
+        $common_data['active_trail'] = 'teacher-users';
+        return view(
+            'admin.users.create',
+            compact(
+                'is_admin',
+                'common_data'
+            )
+        );
     }
 
     /**
@@ -129,7 +144,15 @@ class UserController extends Controller
         if ($user->hasRole('student')) {
             return redirect()->route('students.show', ['id' => $id]);
         }
-        return view('admin.users.show', compact('user'));
+
+        $common_data['active_trail'] = 'teacher-users';
+        return view(
+            'admin.users.show',
+            compact(
+                'user',
+                'common_data'
+            )
+        );
     }
 
     /**
@@ -163,7 +186,18 @@ class UserController extends Controller
                 $current_groups[] = $group->id;
             }
         }
-        return view('admin.users.edit', compact('user', 'is_student', 'groups', 'current_groups'));
+
+        $common_data['active_trail'] = 'teacher-users';
+        return view(
+            'admin.users.edit',
+            compact(
+                'user',
+                'is_student',
+                'groups',
+                'current_groups',
+                'common_data'
+            )
+        );
     }
 
     /**
@@ -295,11 +329,19 @@ class UserController extends Controller
             abort(404);
         }
 
-        return view('admin.users.delete', compact('user'));
+        $common_data['active_trail'] = 'teacher-users';
+        return view(
+            'admin.users.delete',
+            compact(
+                'user',
+                'common_data'
+            )
+        );
     }
 
     public function import() {
-        return view('admin.users.import');
+        $common_data['active_trail'] = 'teacher-users';
+        return view('admin.users.import', compact('common_data'));
     }
 
     public function storeImport(Request $request) {
@@ -394,10 +436,19 @@ class UserController extends Controller
 
     public function v2($page = 1)
     {
-        $use_vue = TRUE;
         $is_admin = auth()->user()->hasRole('admin');
         $current_user = json_encode(\Auth::user());
         $current_page = is_int(intval($page)) ? intval($page) : 1;
-        return view('admin.users.v2', compact( 'use_vue', 'is_admin', 'current_user', 'current_page'));
+
+        $common_data['active_trail'] = 'teacher-users';
+        return view(
+            'admin.users.v2',
+            compact(
+                'is_admin',
+                'current_user',
+                'current_page',
+                'common_data'
+            )
+        );
     }
 }

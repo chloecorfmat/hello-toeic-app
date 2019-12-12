@@ -31,7 +31,8 @@ class LessonController extends Controller
     public function index()
     {
         $lessons = Lesson::orderBy('start_datetime')->get();
-        return view('admin.lessons.index', compact('lessons'));
+        $common_data['active_trail'] = 'teacher-users';
+        return view('admin.lessons.index', compact('lessons', 'common_data'));
     }
 
     /**
@@ -43,7 +44,8 @@ class LessonController extends Controller
     {
         $groups = Group::orderBy('name')->get();
         $tests = CompositeTest::orderBy('name')->get();
-        return view('admin.lessons.create', compact('groups', 'tests'));
+        $common_data['active_trail'] = 'teacher-users';
+        return view('admin.lessons.create', compact('groups', 'tests', 'common_data'));
     }
 
     /**
@@ -170,7 +172,18 @@ class LessonController extends Controller
             'students_passed' => $s_number,
         ];
 
-        return view('admin.lessons.show', compact('lesson', 'results', 'exercises', 'exercises_ids', 'statistics'));
+        $common_data['active_trail'] = 'teacher-users';
+        return view(
+            'admin.lessons.show',
+            compact(
+                'lesson',
+                'results',
+                'exercises',
+                'exercises_ids',
+                'statistics',
+                'common_data'
+            )
+        );
     }
 
     /**
@@ -189,7 +202,16 @@ class LessonController extends Controller
 
         $groups = Group::orderBy('name')->get();
         $tests = CompositeTest::orderBy('name')->get();
-        return view('admin.lessons.edit', compact('lesson', 'groups', 'tests'));
+        $common_data['active_trail'] = 'teacher-users';
+        return view(
+            'admin.lessons.edit',
+            compact(
+                'lesson',
+                'groups',
+                'tests',
+                'common_data'
+            )
+        );
     }
 
     /**
@@ -240,7 +262,14 @@ class LessonController extends Controller
             abort(404);
         }
 
-        return view('admin.lessons.delete', compact('lesson'));
+        $common_data['active_trail'] = 'teacher-users';
+        return view(
+            'admin.lessons.delete',
+            compact(
+                'lesson',
+                'common_data'
+            )
+        );
     }
 
     /**
@@ -381,6 +410,17 @@ class LessonController extends Controller
             $exercises[$exercise->exercise_id] = $e;
         }
 
-        return view('admin.lessons.stats', compact('score_by_exercises', 'exercises', 'composite_test', 'lesson', 'levels'));
+        $common_data['active_trail'] = 'teacher-users';
+        return view(
+            'admin.lessons.stats',
+            compact(
+                'score_by_exercises',
+                'exercises',
+                'composite_test',
+                'lesson',
+                'levels',
+                'common_data'
+            )
+        );
     }
 }

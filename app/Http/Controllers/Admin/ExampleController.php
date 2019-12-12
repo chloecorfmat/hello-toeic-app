@@ -25,7 +25,8 @@ class ExampleController extends Controller
     public function index()
     {
         $examples = Example::all();
-        return view('admin.exercises.examples.index', compact('examples'));
+        $common_data['active_trail'] = 'teacher-exercises';
+        return view('admin.exercises.examples.index', compact('examples', 'common_data'));
     }
 
     /**
@@ -35,7 +36,8 @@ class ExampleController extends Controller
      */
     public function create()
     {
-        return view('admin.exercises.examples.create');
+        $common_data['active_trail'] = 'teacher-exercises';
+        return view('admin.exercises.examples.create', compact('common_data'));
     }
 
     /**

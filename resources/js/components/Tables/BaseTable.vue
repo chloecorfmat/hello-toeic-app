@@ -1,5 +1,5 @@
 <template>
-    <div class="table tablev2">
+    <div v-bind:class="'table tablev2 theme-' + this.$store.state.activeTheme">
         <div class="table--filters">
             <div class="field-container">
                 <label for="search">{{ this.neededTranslations.common_search }}</label>
@@ -37,7 +37,7 @@
                             </ul>
                         </td>
                         <td class="actions-column">
-                            <button v-on:click="userActions(user)">
+                            <button class="actions-btn" v-on:click="userActions(user)">
                                 <i class="actions-ico fas fa-ellipsis-h fa-lg"></i>
                             </button>
                         </td>
