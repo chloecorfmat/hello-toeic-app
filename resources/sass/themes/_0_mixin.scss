@@ -109,7 +109,7 @@
   }
 
   /** FOOTER **/
-  footer {
-    border-top: 5px solid $main-color;
+  &.footer {
+    border-top: 4px solid $main-color;
   }
 }

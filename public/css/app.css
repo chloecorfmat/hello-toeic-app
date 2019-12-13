@@ -260,23 +260,48 @@ li {
   min-height: 100vh;
 }
 
-footer {
-  padding: 0.4rem;
-  background: #a42424;
+.footer {
+  padding: 0.5rem;
+  background: #1f2041;
   font-size: 0.9rem;
   text-align: center;
 }
 
-footer a {
+.footer li {
+  margin: 0.3rem auto;
+}
+
+@media screen and (min-width: 580px) {
+  .footer li {
+    margin: initial;
+    display: inline-block;
+  }
+
+  .footer li:not(:last-child):after {
+    content: "-";
+    margin: 0 1rem;
+    display: inline-block;
+    color: #fff;
+  }
+}
+
+.footer .footer--link {
   color: #fff;
-  text-decoration: underline;
+  text-decoration: none;
+  font-weight: 700;
 }
 
-footer a:hover {
-  color: #ffc857;
+.footer .footer--link:hover {
+  color: #fff;
+  opacity: 0.8;
 }
 
-footer p {
+.footer .footer--ico {
+  display: inline-block;
+  margin-left: 0.2rem;
+}
+
+.footer p {
   color: #fff;
 }
 
@@ -520,7 +545,6 @@ footer p {
 main {
   -webkit-box-flex: 1;
           flex-grow: 1;
-  min-height: 91.2vh;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
           flex-direction: column;
@@ -1904,6 +1928,7 @@ ul.default-style li {
   /** TABLE **/
   /** PAGINATION **/
   /** FORM **/
+  /** FOOTER **/
 }
 
 .theme-admin a {
@@ -1987,10 +2012,15 @@ ul.default-style li {
   }
 }
 
+.theme-admin.footer {
+  border-top: 4px solid #d68400;
+}
+
 .theme-student {
   /** TABLE **/
   /** PAGINATION **/
   /** FORM **/
+  /** FOOTER **/
 }
 
 .theme-student a {
@@ -2074,10 +2104,15 @@ ul.default-style li {
   }
 }
 
+.theme-student.footer {
+  border-top: 4px solid #a42424;
+}
+
 .theme-teacher {
   /** TABLE **/
   /** PAGINATION **/
   /** FORM **/
+  /** FOOTER **/
 }
 
 .theme-teacher a {
@@ -2159,5 +2194,9 @@ ul.default-style li {
   .theme-teacher .header--menu-item .submenu-opened {
     border: none;
   }
+}
+
+.theme-teacher.footer {
+  border-top: 4px solid #01608c;
 }
 

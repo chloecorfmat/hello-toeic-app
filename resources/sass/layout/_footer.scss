@@ -1,16 +1,41 @@
-footer {
-  padding: .4rem;
-  background: $secondary-color-1;
+.footer {
+  padding: .5rem;
+  background: $main-color;
   font-size: .9rem;
   text-align: center;
 
-  a {
+  li {
+    margin: .3rem auto;
+
+    @media screen and (min-width: $breakpoint-small) {
+      margin: initial;
+      display: inline-block;
+
+      &:not(:last-child) {
+        &:after {
+          content: '-';
+          margin: 0 1rem;
+          display: inline-block;
+          color: $white;
+        }
+      }
+    }
+  }
+
+  .footer--link {
     color: $white;
-    text-decoration: underline;
+    text-decoration: none;
+    font-weight: 700;
 
     &:hover {
-      color: $secondary-color-2;
+      color: $white;
+      opacity: .8;
     }
+  }
+
+  .footer--ico {
+    display: inline-block;
+    margin-left: .2rem;
   }
 
   p {
