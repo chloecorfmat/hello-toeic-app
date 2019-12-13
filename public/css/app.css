@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap);@charset "UTF-8";
 
 /**.navbar-laravel {
   background-color: #fff;
@@ -223,7 +223,7 @@ li,
 p,
 td,
 th {
-  font-family: "Nunito", sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 caption,
@@ -606,7 +606,7 @@ body {
 
 a,
 button {
-  font-family: "Nunito", sans-serif;
+  font-family: "Montserrat", sans-serif;
   outline: none;
 }
 
@@ -761,7 +761,7 @@ legend {
 }
 
 .question-legend {
-  font-family: "Nunito", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 1.2rem;
   margin-bottom: 1rem;
 }
@@ -790,7 +790,7 @@ legend {
   border: 1px solid #c5cbd3;
   box-sizing: border-box;
   color: #a42424;
-  font-family: "Nunito", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.9rem;
   line-height: 1.5;
   margin-top: 0.25rem;
@@ -1559,7 +1559,7 @@ tr:nth-child(2n) {
 }
 
 .test legend {
-  font-family: "Nunito", sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .test h2 {
