@@ -13,17 +13,17 @@
                     <div class="actions--list">
                         <ul>
                             <li>
-                                <a v-bind:href="this.baseUrl + '/admin/users/' + user.id">
+                                <a v-bind:href="this.baseUrl + '/teacher/users/' + user.id">
                                     <i class="fas fa-eye"></i> Show
                                 </a>
                             </li>
                             <li v-if="this.isStudent">
-                                <a v-bind:href="this.baseUrl + '/admin/users/' + user.id + '/edit'">
+                                <a v-bind:href="this.baseUrl + '/teacher/users/' + user.id + '/edit'">
                                     <i class="fas fa-pencil-alt"></i> Edit
                                 </a>
                             </li>
                             <li v-if="this.isStudent">
-                                <a v-bind:href="this.baseUrl + '/admin/users/delete/' + user.id">
+                                <a v-bind:href="this.baseUrl + '/teacher/users/delete/' + user.id">
                                     <i class="fas fa-trash"></i> Delete
                                 </a>
                             </li>

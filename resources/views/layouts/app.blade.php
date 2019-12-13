@@ -46,7 +46,8 @@
             </div>
         </main>
 
-        <div class="body-border"></div>
+        <!--<div class="body-border"></div>-->
+        <base-footer></base-footer>
     </div>
 
     <!-- Scripts -->
