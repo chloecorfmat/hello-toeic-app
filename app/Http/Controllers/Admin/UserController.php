@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\UserAccountCreated;
 use App\Setting;
 use App\User;
+use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -40,6 +41,7 @@ class UserController extends Controller
         }
 
         $common_data['active_trail'] = 'teacher-users';
+
         return view(
             'admin.users.index',
             compact(
@@ -441,6 +443,12 @@ class UserController extends Controller
         $current_page = is_int(intval($page)) ? intval($page) : 1;
 
         $common_data['active_trail'] = 'teacher-users';
+        $common_data['header'] = [
+            'title' => 'Users list',
+            'subtitle' => '('. User::all()->count() .' results)',
+            'breadcrumb' => Breadcrumbs::generate('users.index'),
+        ];
+
         return view(
             'admin.users.v2',
             compact(

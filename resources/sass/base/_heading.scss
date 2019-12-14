@@ -4,10 +4,9 @@ h3 {
 }
 
 h1 {
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin-bottom: 2rem;
+    font-size: 2rem;
     text-align: center;
+    margin: .5rem auto .8rem;
 }
 
 h2 {
@@ -24,5 +23,12 @@ h3 {
     font-size: 1.3rem;
     font-weight: 700;
     color: $secondary-color-1;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    text-align: center;
+    font-style: italic;
+    margin-bottom: 1rem;
 }
 

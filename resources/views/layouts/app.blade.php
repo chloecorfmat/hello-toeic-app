@@ -41,6 +41,11 @@
                 class="{{ $class_main }}"
             @endif
         >
+
+            @if (isset($common_data) && isset($common_data['header']))
+                <content-header header-data="{{ json_encode($common_data['header']) }}"></content-header>
+            @endif
+
             <div class="container">
                 @yield('content')
             </div>

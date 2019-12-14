@@ -143,8 +143,6 @@ table {
   border-spacing: 0;
 }
 
-/**$light-grey: #f4f4f4;**/
-
 .fa-check-circle {
   color: #66a810;
 }
@@ -159,10 +157,9 @@ h3 {
 }
 
 h1 {
-  font-size: 1.8rem;
-  font-weight: 700;
-  margin-bottom: 2rem;
+  font-size: 2rem;
   text-align: center;
+  margin: 0.5rem auto 0.8rem;
 }
 
 h2 {
@@ -179,6 +176,13 @@ h3 {
   font-size: 1.3rem;
   font-weight: 700;
   color: #a42424;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  text-align: center;
+  font-style: italic;
+  margin-bottom: 1rem;
 }
 
 .sr-only {
@@ -552,12 +556,6 @@ main {
   display: flex;
 }
 
-@media screen and (min-width: 1020px) {
-  main {
-    padding: 0.5rem 5rem;
-  }
-}
-
 .body-border {
   box-sizing: border-box;
   border-bottom: 0.4rem solid #a42424;
@@ -586,6 +584,7 @@ body {
   height: 100%;
   -webkit-box-flex: 1;
           flex-grow: 1;
+  background: #f4f4f4;
 }
 
 .container p {
@@ -597,6 +596,17 @@ body {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
             flex-direction: row;
+    padding: 0.5rem 5rem;
+  }
+}
+
+.content-header {
+  padding: 1rem 2rem 0rem;
+}
+
+@media screen and (min-width: 1020px) {
+  .content-header {
+    padding: 1rem 5rem 0rem;
   }
 }
 
@@ -1079,6 +1089,10 @@ tr:nth-child(2n) {
   margin: auto 0.5rem;
 }
 
+.breadcrumb-item a {
+  font-weight: 700;
+}
+
 .charts {
   width: 70%;
 }
@@ -1458,7 +1472,7 @@ tr:nth-child(2n) {
 @media screen and (min-width: 1020px) {
   .main-content {
     margin-top: initial;
-    padding: 2rem 0 2rem 2rem;
+    padding: 2rem 0;
   }
 }
 
@@ -2016,6 +2030,24 @@ ul.default-style li {
   border-top: 4px solid #d68400;
 }
 
+.theme-admin.content-header.colored-background {
+  background: #d68400;
+}
+
+.theme-admin.content-header.colored-background h1,
+.theme-admin.content-header.colored-background li,
+.theme-admin.content-header.colored-background p {
+  color: #fff;
+}
+
+.theme-admin.content-header.colored-background a {
+  color: #fff;
+}
+
+.theme-admin.content-header.colored-background a:hover {
+  opacity: 0.8;
+}
+
 .theme-student {
   /** TABLE **/
   /** PAGINATION **/
@@ -2108,6 +2140,24 @@ ul.default-style li {
   border-top: 4px solid #a42424;
 }
 
+.theme-student.content-header.colored-background {
+  background: #a42424;
+}
+
+.theme-student.content-header.colored-background h1,
+.theme-student.content-header.colored-background li,
+.theme-student.content-header.colored-background p {
+  color: #fff;
+}
+
+.theme-student.content-header.colored-background a {
+  color: #fff;
+}
+
+.theme-student.content-header.colored-background a:hover {
+  opacity: 0.8;
+}
+
 .theme-teacher {
   /** TABLE **/
   /** PAGINATION **/
@@ -2198,5 +2248,23 @@ ul.default-style li {
 
 .theme-teacher.footer {
   border-top: 4px solid #01608c;
+}
+
+.theme-teacher.content-header.colored-background {
+  background: #01608c;
+}
+
+.theme-teacher.content-header.colored-background h1,
+.theme-teacher.content-header.colored-background li,
+.theme-teacher.content-header.colored-background p {
+  color: #fff;
+}
+
+.theme-teacher.content-header.colored-background a {
+  color: #fff;
+}
+
+.theme-teacher.content-header.colored-background a:hover {
+  opacity: 0.8;
 }
 

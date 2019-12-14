@@ -112,4 +112,24 @@
   &.footer {
     border-top: 4px solid $main-color;
   }
+
+  &.content-header {
+    &.colored-background {
+      background: $main-color;
+
+      h1,
+      li,
+      p {
+        color: $white;
+      }
+
+      a {
+        color: $white;
+
+        &:hover {
+          opacity: .8;
+        }
+      }
+    }
+  }
 }
