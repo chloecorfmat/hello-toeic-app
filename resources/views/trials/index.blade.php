@@ -11,7 +11,6 @@
 
 @section('content')
     <div class="main-content">
-        <h1>{{ __('exercises.results_last') }}</h1>
         <!-- Results -->
         <div class="part-container">
             @if ($message = Session::get('success'))

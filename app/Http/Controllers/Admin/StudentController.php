@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\CompositeTest;
 use App\CompositeTrial;
+use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -19,7 +20,8 @@ class StudentController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['permission:users-manage']);
+        $this->middleware('auth');
+        $this->middleware(['permission:users-manage'])->except('show');
     }
 
     /**
@@ -104,6 +106,11 @@ class StudentController extends Controller
         ];
 
         $common_data['active_trail'] = 'teacher-users';
+        $common_data['header'] = [
+            'title' => trans('app.profile'),
+            'breadcrumb' => Breadcrumbs::generate('students.show', $student),
+        ];
+
         return view(
             'admin.students.show',
             compact(

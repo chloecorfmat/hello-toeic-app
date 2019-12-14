@@ -5,8 +5,6 @@
     @php ($current_part = null)
     @php ($current_document = null)
     <div class="main-content">
-        <h1>{{ $exercise->name }}</h1>
-
         <form method="POST" action="{{ route('student.exercises.update', ['id' => $exercise->id]) }}" id="test" class="test">
             @csrf
             {{ method_field('PUT')}}

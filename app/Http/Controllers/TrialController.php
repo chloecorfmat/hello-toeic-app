@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exercise;
 use App\Trial;
+use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Http\Request;
 
 class TrialController extends Controller
@@ -29,6 +30,13 @@ class TrialController extends Controller
             ->get();
 
         $common_data['active_trail'] = 'student-exercises';
+
+        $common_data['header'] = [
+            'title' => trans('exercises.results_last'),
+            'subtitle' => '(' . $trials->count() . ' ' . trans('app.results') . ')',
+            'breadcrumb' => Breadcrumbs::generate('student.exercises.index'),
+            'theme' => 'colored-background',
+        ];
 
         return view('trials.index', compact('trials', 'user', 'common_data'));
 
@@ -81,6 +89,11 @@ class TrialController extends Controller
         $exercise = Exercise::find($test_id);
 
         $common_data['active_trail'] = 'student-exercises';
+        $common_data['header'] = [
+            'title' => trans('common.correction'),
+            'breadcrumb' => Breadcrumbs::generate('student.exercises.index'),
+            'theme' => 'colored-background',
+        ];
 
         return view('trials.show', compact('datas', 'stats', 'exercise', 'common_data'));
     }

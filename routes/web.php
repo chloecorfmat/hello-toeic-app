@@ -32,7 +32,6 @@ Route::group(['middleware' => ['auth', 'allowed.account']], function () {
     Route::setGroupNamespace('App\Http\Controllers\Admin');
     Route::resource('admin/permissions', 'PermissionController');
 
-
     Route::get('teacher/users/blocked', 'UserController@blocked')
         ->name('users.blocked');
     Route::get('teacher/users/activate/{id}', 'UserController@activate')

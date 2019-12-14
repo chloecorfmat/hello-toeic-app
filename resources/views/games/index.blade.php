@@ -2,8 +2,6 @@
 
 @section('content')
     <div class="main-content">
-        {{ Breadcrumbs::render('games') }}
-        <h1>{{__('games.list')}}</h1>
         @if ($message = Session::get('success'))
             <div class="alert alert-success">
                 <p>{!! html_entity_decode($message) !!}</p>
@@ -105,7 +103,5 @@
         <div class="container-empty-search" id="js-empty-search" aria-hidden="true">
             <p class="emphasis">{{__('common.no-result')}}</p>
         </div>
-
-        <a href="{{ route('games.play') }}" class="btn">{{__('games.play')}}</a>
     </div>
 @endsection

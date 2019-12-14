@@ -7,6 +7,7 @@ use App\BadgeType;
 use App\Game;
 use App\Proposal;
 use App\Question;
+use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
@@ -51,6 +52,17 @@ class GameController extends Controller
         ];
 
         $common_data['active_trail'] = 'student-challenges';
+        $common_data['header'] = [
+            'title' => trans('games.list'),
+            'breadcrumb' => Breadcrumbs::generate('games'),
+            'buttons' => [
+                [
+                    'title' => trans('games.play'),
+                    'url' => route('games.play'),
+                ]
+            ],
+            'theme' => 'colored-background',
+        ];
 
         return view('games.index', compact('datas', 'best_scores', 'common_data'));
     }
@@ -86,6 +98,11 @@ class GameController extends Controller
             $datas['question'] = $question;
 
             $common_data['active_trail'] = 'student-challenges';
+            $common_data['header'] = [
+                'title' => trans('games.play'),
+                'breadcrumb' => Breadcrumbs::generate('games.continue'),
+                'theme' => 'colored-background',
+            ];
 
             return view('games.play', compact('datas', 'common_data'));
         }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Http\Request;
 use App\CompositeTrial;
 use App\CompositeTest;
@@ -37,6 +38,12 @@ class CompositeTrialController extends Controller
         }
 
         $common_data['active_trail'] = 'student-composite-tests';
+        $common_data['header'] = [
+            'title' => trans('composite-tests.results_last'),
+            'subtitle' => '(' . $trials->count() . ' ' . trans('app.results') . ')',
+            'breadcrumb' => Breadcrumbs::generate('student.composite-tests.index'),
+            'theme' => 'colored-background',
+        ];
 
         return view('composite-trials.index', compact('trials', 'user', 'names', 'common_data'));
     }

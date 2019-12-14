@@ -3,8 +3,7 @@
 @section('content')
     <div class="main-content">
         <div class="main-content--header">
-            {{ Breadcrumbs::render('students.show', $student) }}
-            <h1>{{ __('common.details') }} : {{ $student->name }}</h1>
+            <h2>{{ __('common.details') }} : {{ $student->name }}</h2>
         </div>
 
         @if ($message = Session::get('success'))
@@ -40,7 +39,7 @@
 
         @if(sizeof($trials) > 0)
             <div class="part-container">
-            <h2>{{ __('exercises.results_last') }}</h2>
+            <h3>{{ __('exercises.results_last') }}</h3>
             <div class="table" id="profile-tests">
                 <div class="table--filters">
                     <div class="field-container">
@@ -114,7 +113,7 @@
 
         @if(sizeof($composite_trials) > 0)
             <div class="part-container">
-            <h2>{{ __('composite-tests.results_last') }}</h2>
+            <h3>{{ __('composite-tests.results_last') }}</h3>
             <div class="table">
                 <div class="table--filters">
                     <div class="field-container">
@@ -189,7 +188,7 @@
 
         @if(sizeof($games) > 0)
             <div class="part-container">
-            <h2>{{ __('games.results_last') }}</h2>
+            <h3>{{ __('games.results_last') }}</h3>
             <div class="table" id="games">
                 <div class="table--filters">
                     <div class="field-container">

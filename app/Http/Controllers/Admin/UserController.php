@@ -22,7 +22,8 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['permission:users-manage']);
+        $this->middleware('auth');
+        $this->middleware(['permission:users-manage'])->except('show');
     }
 
     /**

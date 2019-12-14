@@ -4,8 +4,6 @@
     @php ($index = ['A', 'B', 'C', 'D'])
 
     <div class="main-content">
-        <h1>Correction</h1>
-
         <div class="part-container">
             <div class="student-profile">
                 <p><span>{{ $datas['trial']->user->name }}</span>, le <span>{{ date('d/m/Y à H:i', strtotime($datas['trial']->datetime)) }}</span></p>

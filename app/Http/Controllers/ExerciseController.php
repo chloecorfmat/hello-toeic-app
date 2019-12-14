@@ -132,6 +132,11 @@ class ExerciseController extends Controller
         $part = $exercise->part; // Finally, an exercise has only one part.
 
         $common_data['active_trail'] = 'student-exercises';
+        $common_data['header'] = [
+            'title' => $exercise->name,
+            'breadcrumb' => Breadcrumbs::generate('student.exercises.show', $exercise),
+            'theme' => 'colored-background',
+        ];
 
         return view(
             'exercises.show',
