@@ -43,6 +43,11 @@ class UserController extends Controller
 
         $common_data['active_trail'] = 'teacher-users';
 
+        $common_data['header'] = [
+            'title' => trans('users.list'),
+            'breadcrumb' => Breadcrumbs::generate('users.index'),
+        ];
+
         return view(
             'admin.users.index',
             compact(

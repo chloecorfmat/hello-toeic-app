@@ -3,12 +3,6 @@
 @section('content')
     <div class="container">
         <div class="main-content">
-            <div class="main-content--header">
-                {{ Breadcrumbs::render('config.index') }}
-                <h1>
-                    {{ __('app.configuration') }}
-                </h1>
-            </div>
             @if ($message = Session::get('success'))
                 <div class="alert alert-success">
                     <p>{{ $message }}</p>

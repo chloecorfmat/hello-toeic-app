@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Setting;
+use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Http\Request;
 
 class FeatureFlippingController extends Controller
@@ -26,6 +27,11 @@ class FeatureFlippingController extends Controller
         $features = Setting::where('type', 'feature_flipping')->get();
 
         $common_data['active_trail'] = 'admin';
+        $common_data['header'] = [
+            'title' => trans('app.feature-flipping'),
+            'breadcrumb' => Breadcrumbs::generate('feature-flipping.index'),
+            'theme' => 'colored-background',
+        ];
 
         return view('admin.feature-flipping.index',compact('features', 'common_data'));
     }

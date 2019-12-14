@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Setting;
+use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Http\Request;
 
 class ConfigController extends Controller
@@ -26,6 +27,11 @@ class ConfigController extends Controller
         $configs = Setting::where('type', 'config')->get();
 
         $common_data['active_trail'] = 'admin';
+        $common_data['header'] = [
+            'title' => trans('app.configuration'),
+            'breadcrumb' => Breadcrumbs::generate('config.index'),
+            'theme' => 'colored-background',
+        ];
         return view('admin.config.index',compact('configs', 'common_data'));
     }
 

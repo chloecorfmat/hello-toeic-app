@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Services\RenderService;
+use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Http\Request;
 use Spatie\TranslationLoader\LanguageLine;
 
@@ -29,6 +30,12 @@ class WordingController extends Controller
             ->get();
 
         $common_data['active_trail'] = 'admin';
+        $common_data['header'] = [
+            'title' => trans('wordings.title'),
+            'breadcrumb' => Breadcrumbs::generate('wordings.index'),
+            'theme' => 'colored-background',
+        ];
+
         return view(
             'admin.wordings.index',
             compact(

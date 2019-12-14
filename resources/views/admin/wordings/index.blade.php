@@ -4,12 +4,6 @@
     @inject('render', 'App\Services\RenderService')
     <div class="container">
         <div class="main-content">
-            <div class="main-content--header">
-                {{ Breadcrumbs::render('wordings.index') }}
-                <h1>
-                    {{ __('wordings.title') }}
-                </h1>
-            </div>
             @if ($message = Session::get('success'))
                 <div class="alert alert-success">
                     <p>{{ $message }}</p>

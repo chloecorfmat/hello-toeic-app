@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -44,6 +45,11 @@ class PermissionController extends Controller
         ];
 
         $common_data['active_trail'] = 'admin';
+        $common_data['header'] = [
+            'title' => trans('permissions.manage'),
+            'breadcrumb' => Breadcrumbs::generate('permissions.index'),
+            'theme' => 'colored-background',
+        ];
 
         return view('admin.permissions.index',compact('datas', 'common_data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);

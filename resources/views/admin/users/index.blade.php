@@ -3,8 +3,6 @@
 @section('content')
     <div class="main-content">
         <div class="main-content--header">
-            {{ Breadcrumbs::render('users.index') }}
-            <h1>{{ __('users.list') }}</h1>
             <a href="{{ route('users.create') }}" class="main-content--header-actions">
                 <i class="fas fa-plus-circle"></i>
             </a>
