@@ -46,6 +46,7 @@ class UserController extends Controller
         $common_data['header'] = [
             'title' => trans('users.list'),
             'breadcrumb' => Breadcrumbs::generate('users.index'),
+            'theme' => 'colored-background',
         ];
 
         return view(
@@ -498,6 +499,7 @@ class UserController extends Controller
             'title' => trans('users.list'),
             'subtitle' => '('. User::all()->count() .' ' . trans('app.results') .')',
             'breadcrumb' => Breadcrumbs::generate('users.index'),
+            'theme' => 'colored-background',
         ];
 
         return view(

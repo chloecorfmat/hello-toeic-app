@@ -93,6 +93,7 @@ class HomeController extends Controller
         $common_data['header'] = [
             'title' => trans('app.dashboard'),
             'breadcrumb' => Breadcrumbs::generate('dashboard'),
+            'theme' => 'colored-background',
         ];
 
         return view(
@@ -117,6 +118,7 @@ class HomeController extends Controller
         $common_data['header'] = [
             'title' => trans('app.contact'),
             'breadcrumb' => Breadcrumbs::generate('contact'),
+            'theme' => 'colored-background',
         ];
 
         return view('contact', compact('common_data'));
@@ -125,6 +127,7 @@ class HomeController extends Controller
     public function teacher() {
         $common_data['header'] = [
             'title' => 'Teacher menu',
+            'theme' => 'colored-background',
         ];
 
         return view('teacher', compact('common_data'));
@@ -135,6 +138,7 @@ class HomeController extends Controller
 
         $common_data['header'] = [
             'title' => 'Admin menu',
+            'theme' => 'colored-background',
         ];
 
         return view('admin', compact('common_data'));

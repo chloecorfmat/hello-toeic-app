@@ -115,6 +115,7 @@ class StudentController extends Controller
         $common_data['header'] = [
             'title' => trans('app.profile'),
             'breadcrumb' => Breadcrumbs::generate('students.show', $student),
+            'theme' => 'colored-background',
         ];
 
         return view(
