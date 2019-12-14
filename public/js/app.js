@@ -1979,14 +1979,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   store: _store_store__WEBPACK_IMPORTED_MODULE_0__["default"],
-  props: [],
+  props: ['buttonsData'],
   data: function data() {
     return {};
   },
-  computed: {},
+  computed: {
+    buttons: function buttons() {
+      return this.buttonsData;
+    }
+  },
   created: function created() {
     this.$store.watch(function (state, getters) {
       return getters.ready;
@@ -5313,7 +5321,9 @@ var render = function() {
       _vm._v(" "),
       this.description ? _c("p", [_vm._v(_vm._s(this.description))]) : _vm._e(),
       _vm._v(" "),
-      this.buttons ? _c("content-header-buttons") : _vm._e()
+      this.buttons
+        ? _c("content-header-buttons", { attrs: { buttonsData: this.buttons } })
+        : _vm._e()
     ],
     1
   )
@@ -5340,7 +5350,23 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("p", [_vm._v("Content header buttons")])
+  return _c(
+    "ul",
+    { staticClass: "content-header--buttons" },
+    _vm._l(_vm.buttons, function(button) {
+      return _c("li", { staticClass: "content-header--buttons--item" }, [
+        _c(
+          "a",
+          {
+            class: button.theme ? "btn " + button.theme : "btn",
+            attrs: { href: button.url }
+          },
+          [_vm._v(_vm._s(button.title))]
+        )
+      ])
+    }),
+    0
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

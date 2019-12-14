@@ -1,5 +1,9 @@
 <template>
-    <p>Content header buttons</p>
+    <ul class="content-header--buttons">
+        <li v-for="button in buttons" class="content-header--buttons--item">
+            <a v-bind:href="button.url" v-bind:class="button.theme ? 'btn ' + button.theme : 'btn'">{{ button.title }}</a>
+        </li>
+    </ul>
 </template>
 
 <script>
@@ -7,13 +11,16 @@
 
     export default {
         store,
-        props: [],
+        props: ['buttonsData'],
         data: function() {
             return {
 
             }
         },
         computed: {
+            buttons: function () {
+                return this.buttonsData;
+            }
         },
         created() {
             this.$store.watch(

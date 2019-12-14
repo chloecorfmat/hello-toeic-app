@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Http\Request;
 use App\Exercise;
 use App\Trial;
@@ -37,6 +38,12 @@ class ExerciseController extends Controller
             ->toArray();
 
         $common_data['active_trail'] = 'student-exercises';
+        $common_data['header'] = [
+            'title' => trans('exercises.list'),
+            'subtitle' => '('. $exercises->count() .' ' . trans('app.results') .')',
+            'breadcrumb' => Breadcrumbs::generate('exercises.index'),
+            'theme' => 'colored-background',
+        ];
 
         return view('exercises.index', compact('exercises', 'newExercises', 'doneExercises', 'common_data'));
     }

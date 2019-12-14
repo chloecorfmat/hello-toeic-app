@@ -609,6 +609,20 @@ body {
   }
 }
 
+.content-header--buttons {
+  display: block;
+  margin: 2rem auto 1rem;
+  text-align: center;
+}
+
+.content-header--buttons--item {
+  display: inline-block;
+}
+
+.content-header--buttons--item:not(:first-child) {
+  margin-left: 1rem;
+}
+
 .part-container {
   margin-bottom: 2rem;
 }
@@ -1942,6 +1956,7 @@ ul.default-style li {
   /** PAGINATION **/
   /** FORM **/
   /** FOOTER **/
+  /** CONTENT HEADER **/
 }
 
 .theme-admin a {
@@ -2047,11 +2062,35 @@ ul.default-style li {
   opacity: 0.8;
 }
 
+.theme-admin.content-header.colored-background .content-header--buttons .btn {
+  background: #fff;
+  color: #d68400;
+  border: 1px solid #fff;
+}
+
+.theme-admin.content-header.colored-background .content-header--buttons .btn:hover {
+  background: #B86A00;
+  color: #fff;
+  opacity: 1;
+}
+
+.theme-admin.content-header.colored-background .content-header--buttons .btn.btn-inverted {
+  background: #d68400;
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+.theme-admin.content-header.colored-background .content-header--buttons .btn.btn-inverted:hover {
+  background: #fff;
+  color: #B86A00;
+}
+
 .theme-student {
   /** TABLE **/
   /** PAGINATION **/
   /** FORM **/
   /** FOOTER **/
+  /** CONTENT HEADER **/
 }
 
 .theme-student a {
@@ -2157,11 +2196,35 @@ ul.default-style li {
   opacity: 0.8;
 }
 
+.theme-student.content-header.colored-background .content-header--buttons .btn {
+  background: #fff;
+  color: #a42424;
+  border: 1px solid #fff;
+}
+
+.theme-student.content-header.colored-background .content-header--buttons .btn:hover {
+  background: #8D1A24;
+  color: #fff;
+  opacity: 1;
+}
+
+.theme-student.content-header.colored-background .content-header--buttons .btn.btn-inverted {
+  background: #a42424;
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+.theme-student.content-header.colored-background .content-header--buttons .btn.btn-inverted:hover {
+  background: #fff;
+  color: #8D1A24;
+}
+
 .theme-teacher {
   /** TABLE **/
   /** PAGINATION **/
   /** FORM **/
   /** FOOTER **/
+  /** CONTENT HEADER **/
 }
 
 .theme-teacher a {
@@ -2265,5 +2328,28 @@ ul.default-style li {
 
 .theme-teacher.content-header.colored-background a:hover {
   opacity: 0.8;
+}
+
+.theme-teacher.content-header.colored-background .content-header--buttons .btn {
+  background: #fff;
+  color: #01608c;
+  border: 1px solid #fff;
+}
+
+.theme-teacher.content-header.colored-background .content-header--buttons .btn:hover {
+  background: #004A78;
+  color: #fff;
+  opacity: 1;
+}
+
+.theme-teacher.content-header.colored-background .content-header--buttons .btn.btn-inverted {
+  background: #01608c;
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+.theme-teacher.content-header.colored-background .content-header--buttons .btn.btn-inverted:hover {
+  background: #fff;
+  color: #004A78;
 }
 

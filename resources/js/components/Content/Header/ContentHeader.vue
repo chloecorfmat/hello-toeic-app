@@ -4,7 +4,7 @@
         <h1>{{ this.title }}</h1>
         <p class="subtitle">{{ this.subtitle }}</p>
         <p v-if="this.description">{{ this.description }}</p>
-        <content-header-buttons v-if="this.buttons"></content-header-buttons>
+        <content-header-buttons v-if="this.buttons" v-bind:buttonsData="this.buttons"></content-header-buttons>
     </div>
 </template>
 

@@ -7,6 +7,7 @@ use App\Correction;
 use App\Lesson;
 use App\Setting;
 use App\Trial;
+use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Http\Request;
 use App\CompositeTest;
 use App\Exercise;
@@ -59,6 +60,18 @@ class CompositeTestController extends Controller
         $newTests = CompositeTest::select('id')->where('created_at', '>', $before_last_login)->pluck('id')->toArray();
 
         $common_data['active_trail'] = 'student-composite-tests';
+        $common_data['header'] = [
+            'title' => trans('composite-tests.list'),
+            'subtitle' => '('. $compositeTests->count() .' ' . trans('app.results') .')',
+            'breadcrumb' => Breadcrumbs::generate('composite-tests.index'),
+            'theme' => 'colored-background',
+            'buttons' => [
+                [
+                    'title' => trans('exercises.list'),
+                    'url' => route('student.exercises.index'),
+                ],
+            ],
+        ];
 
         return view('composite-tests.index', compact('tests', 'newTests', 'common_data'));
     }
@@ -207,6 +220,11 @@ class CompositeTestController extends Controller
         ];
 
         $common_data['active_trail'] = 'student-composite-tests';
+        $common_data['header'] = [
+            'title' => $test->name,
+            'breadcrumb' => Breadcrumbs::generate('student.composite-tests.show', $test),
+            'theme' => 'colored-background',
+        ];
 
         return view('composite-tests.show', compact('datas', 'datasources', 'source', 'listening_duration', 'reading_duration', 'common_data'));
     }

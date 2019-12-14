@@ -114,15 +114,29 @@ class HomeController extends Controller
      * Contact page.
      */
     public function contact() {
-        return view('contact');
+        $common_data['header'] = [
+            'title' => trans('app.contact'),
+            'breadcrumb' => Breadcrumbs::generate('contact'),
+        ];
+
+        return view('contact', compact('common_data'));
     }
 
     public function teacher() {
-        return view('teacher');
+        $common_data['header'] = [
+            'title' => 'Teacher menu',
+        ];
+
+        return view('teacher', compact('common_data'));
     }
 
     public function admin() {
         $common_data['active_trail'] = 'admin';
+
+        $common_data['header'] = [
+            'title' => 'Admin menu',
+        ];
+
         return view('admin', compact('common_data'));
     }
 }

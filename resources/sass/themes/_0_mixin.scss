@@ -113,6 +113,7 @@
     border-top: 4px solid $main-color;
   }
 
+  /** CONTENT HEADER **/
   &.content-header {
     &.colored-background {
       background: $main-color;
@@ -128,6 +129,31 @@
 
         &:hover {
           opacity: .8;
+        }
+      }
+
+      .content-header--buttons {
+        .btn {
+          background: $white;
+          color: $main-color;
+          border: 1px solid $white;
+
+          &:hover {
+            background: $main-color-dark;
+            color: $white;
+            opacity: 1;
+          }
+
+          &.btn-inverted {
+            background: $main-color;
+            color: $white;
+            border: 1px solid $white;
+
+            &:hover {
+              background: $white;
+              color: $main-color-dark;
+            }
+          }
         }
       }
     }

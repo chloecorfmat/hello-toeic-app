@@ -2,12 +2,6 @@
 
 @section('content')
     <div class="main-content list-tests">
-        <div class="main-content--header">
-            {{ Breadcrumbs::render('student.composite-tests.index') }}
-            <h1>
-                {{__('composite-tests.list')}}
-            </h1>
-        </div>
         @if ($message = Session::get('success'))
             <div class="alert alert-success">
                 <p>{{ $message }}</p>

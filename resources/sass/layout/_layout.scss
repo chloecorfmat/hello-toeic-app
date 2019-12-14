@@ -43,6 +43,20 @@ body {
     }
 }
 
+.content-header--buttons {
+    display: block;
+    margin: 2rem auto 1rem;
+    text-align: center;
+
+    &--item {
+        display: inline-block;
+
+        &:not(:first-child) {
+            margin-left: 1rem;
+        }
+    }
+}
+
 .part-container {
     margin-bottom: 2rem;
 }

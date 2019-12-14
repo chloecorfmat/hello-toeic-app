@@ -2,7 +2,6 @@
 
 @section('content')
     <div class="main-content">
-        <h1>Admin menu</h1>
         <nav>
             <ul>
                 <li><a href="/teacher/users">Users list</a></li>

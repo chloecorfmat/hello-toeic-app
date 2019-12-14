@@ -2,9 +2,6 @@
 
 @section('content')
     <div class="main-content">
-        {{ Breadcrumbs::render('contact') }}
-
-        <h1>{{__('app.contact')}}</h1>
         <h2>Contacter le responsable du traitement des données</h2>
         <p>Le responsable du traitement des données à caractère personnel est l'<span class="important">association Enssat Projets Étudiants</span>. Pour exercer vos droits en matière de collecte et de traitement des données personnelles, vous pouvez contacter son bureau par <a href="mailto:contact@epe.bzh">e-mail (contact@epe.bzh)</a>.</p>
 
