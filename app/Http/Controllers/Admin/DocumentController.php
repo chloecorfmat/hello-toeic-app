@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Document;
 use App\Http\Controllers\Controller;
+use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -25,7 +26,14 @@ class DocumentController extends Controller
     public function index()
     {
         $datas['documents'] = Document::orderBy('name')->get();
+
         $common_data['active_trail'] = 'teacher-exercises';
+        $common_data['header'] = [
+            'title' => trans('documents.list'),
+            'breadcrumb' => Breadcrumbs::generate('documents.index'),
+            'theme' => 'colored-background',
+        ];
+
         return view('admin.documents.index', compact('datas', 'common_data'));
     }
 
@@ -37,6 +45,12 @@ class DocumentController extends Controller
     public function create()
     {
         $common_data['active_trail'] = 'teacher-exercises';
+        $common_data['header'] = [
+            'title' => trans('documents.add'),
+            'breadcrumb' => Breadcrumbs::generate('documents.create'),
+            'theme' => 'colored-background',
+        ];
+
         return view('admin.documents.create', compact('common_data'));
     }
 
@@ -77,13 +91,19 @@ class DocumentController extends Controller
      */
     public function show($id)
     {
-        $datas['document'] = Document::find($id);
+        $document = Document::find($id);
+        $datas['document'] = $document;
 
         if (is_null($datas['document'])) {
             abort(404);
         }
 
         $common_data['active_trail'] = 'teacher-exercises';
+        $common_data['header'] = [
+            'title' => trans('common.details'),
+            'breadcrumb' => Breadcrumbs::generate('documents.show', $document),
+            'theme' => 'colored-background',
+        ];
 
         return view('admin.documents.show', compact('datas', 'common_data'));
     }
@@ -103,6 +123,12 @@ class DocumentController extends Controller
         }
 
         $common_data['active_trail'] = 'teacher-exercises';
+        $common_data['header'] = [
+            'title' => trans('documents.edit'),
+            'breadcrumb' => Breadcrumbs::generate('documents.edit', $document),
+            'theme' => 'colored-background',
+        ];
+
         return view('admin.documents.edit', compact('document', 'common_data'));
     }
 

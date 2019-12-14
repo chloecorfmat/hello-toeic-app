@@ -3,10 +3,6 @@
 @section('content')
     <div class="main-content list-tests">
         <div class="main-content--header">
-            {{ Breadcrumbs::render('explanations.index') }}
-            <h1>
-                {{ __('explanations.list') }}
-            </h1>
             <a href="{{ route('explanations.create') }}" class="main-content--header-actions">
                 <i class="fas fa-plus-circle"></i>
             </a>

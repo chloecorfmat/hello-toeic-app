@@ -2,10 +2,6 @@
 
 @section('content')
     <div class="main-content">
-        <div class="main-content--header">
-            {{ Breadcrumbs::render('exercises.edit', $exercise) }}
-            <h1>{{ __('common.edit') }}</h1>
-        </div>
         @if ($message = Session::get('success'))
             <div class="alert alert-success">
                 <p>{{ $message }}</p>

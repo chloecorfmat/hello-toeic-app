@@ -2,12 +2,6 @@
 
 @section('content')
     <div class="main-content list-tests">
-        <div class="main-content--header">
-            {{ Breadcrumbs::render('exercises.index') }}
-            <h1>
-                {{ __('exercises.list') }}
-            </h1>
-        </div>
         @if ($message = Session::get('success'))
             <div class="alert alert-success">
                 <p>{{ $message }}</p>
@@ -19,7 +13,6 @@
         @endif
 
         <div class="table" id="exercises">
-            <h2>{{ __('exercises.list') }}</h2>
             <div class="table--filters">
                 <div class="field-container">
                     <label for="search">{{ __('common.search') }}</label>

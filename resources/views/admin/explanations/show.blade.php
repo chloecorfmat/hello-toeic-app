@@ -2,11 +2,6 @@
 
 @section('content')
     <div class="main-content">
-        <div class="main-content--header">
-            {{ Breadcrumbs::render('explanations.show', $explanation) }}
-            <h1>{{ __('common.details') }}: {{ $explanation->title }}</h1>
-        </div>
-
         <p>{{ __('common.title') }} : <span>{{ $explanation->title }}</span></p>
         <p>{{ __('common.details') }} : <span>{{ $explanation->explanation }}</span></p>
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\CompositeTest;
 use App\Exercise;
 use App\Http\Controllers\Controller;
+use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -46,6 +47,12 @@ class CompositeTestController extends Controller
 
 
         $common_data['active_trail'] = 'teacher-exercises';
+        $common_data['header'] = [
+            'title' => trans('composite-tests.list'),
+            'breadcrumb' => Breadcrumbs::generate('composite-tests.index'),
+            'theme' => 'colored-background',
+        ];
+
         return view('admin.composite-tests.index', compact('tests', 'newTests', 'common_data'));
     }
 
@@ -59,6 +66,11 @@ class CompositeTestController extends Controller
         $exercises = Exercise::all();
 
         $common_data['active_trail'] = 'teacher-exercises';
+        $common_data['header'] = [
+            'title' => trans('composite-tests.add'),
+            'breadcrumb' => Breadcrumbs::generate('composite-tests.create'),
+            'theme' => 'colored-background',
+        ];
         return view('admin.composite-tests.create', compact('exercises', 'common_data'));
     }
 
@@ -128,7 +140,14 @@ class CompositeTestController extends Controller
         }
 
         $exercises = Exercise::all();
+
         $common_data['active_trail'] = 'teacher-exercises';
+        $common_data['header'] = [
+            'title' => trans('common.edit'),
+            'breadcrumb' => Breadcrumbs::generate('composite-tests.edit', $test),
+            'theme' => 'colored-background',
+        ];
+
         return view('admin.composite-tests.edit', compact('test', 'exercises', 'common_data'));
     }
 

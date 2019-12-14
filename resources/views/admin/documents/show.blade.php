@@ -3,14 +3,6 @@
 @section('content')
     <div class="main-content">
         <div class="main-content--header">
-            {{ Breadcrumbs::render('documents.show', $datas['document']) }}
-            <h1>{{ __('common.details') }}:
-                @if (empty($datas['document']->name))
-                    <span class="emphasis">{{ __('documents.unamed') }}
-                @else
-                    <span>{{ $datas['document']->name }}
-                @endif
-            </h1>
             <a href="{{ route('documents.edit', ['id' => $datas['document']->id]) }}" class="main-content--header-actions" title="Modifier la question">
                 <i class="fas fa-pencil-alt"></i>
             </a>

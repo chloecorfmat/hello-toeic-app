@@ -4,8 +4,6 @@
     @php ($index = ['A', 'B', 'C', 'D'])
 
     <div class="main-content">
-        <h1>{{ __('common.details') }} : {{ $exercise->name }}</h1>
-
         <div class="part-container">
             <div class="student-profile">
                 <p>

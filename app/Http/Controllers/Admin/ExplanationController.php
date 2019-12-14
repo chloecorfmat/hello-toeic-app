@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Explanation;
+use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -24,7 +25,14 @@ class ExplanationController extends Controller
     public function index()
     {
         $explanations = Explanation::orderBy('title')->get();
+
         $common_data['active_trail'] = 'teacher-exercises';
+        $common_data['header'] = [
+            'title' => trans('explanations.list'),
+            'breadcrumb' => Breadcrumbs::generate('explanations.index'),
+            'theme' => 'colored-background',
+        ];
+
         return view('admin.explanations.index', compact('explanations', 'common_data'));
     }
 
@@ -36,6 +44,12 @@ class ExplanationController extends Controller
     public function create()
     {
         $common_data['active_trail'] = 'teacher-exercises';
+        $common_data['header'] = [
+            'title' => trans('explanations.add'),
+            'breadcrumb' => Breadcrumbs::generate('explanations.create'),
+            'theme' => 'colored-background',
+        ];
+
         return view('admin.explanations.create', compact('common_data'));
     }
 
@@ -70,6 +84,12 @@ class ExplanationController extends Controller
         }
 
         $common_data['active_trail'] = 'teacher-exercises';
+        $common_data['header'] = [
+            'title' => trans('common.details') . ': ' . $explanation->title,
+            'breadcrumb' => Breadcrumbs::generate('explanations.show', $explanation),
+            'theme' => 'colored-background',
+        ];
+
         return view('admin.explanations.show', compact('explanation', 'common_data'));
     }
 
@@ -88,6 +108,12 @@ class ExplanationController extends Controller
         }
 
         $common_data['active_trail'] = 'teacher-exercises';
+        $common_data['header'] = [
+            'title' => trans('common.edit') . ': ' . $explanation->title,
+            'breadcrumb' => Breadcrumbs::generate('explanations.edit', $explanation),
+            'theme' => 'colored-background',
+        ];
+
         return view('admin.explanations.edit', compact('explanation', 'common_data'));
     }
 
@@ -128,6 +154,12 @@ class ExplanationController extends Controller
         }
 
         $common_data['active_trail'] = 'teacher-exercises';
+        $common_data['header'] = [
+            'title' => trans('common.delete') . ': ' . $explanation->title,
+            'breadcrumb' => Breadcrumbs::generate('explanations.delete', $explanation),
+            'theme' => 'colored-background',
+        ];
+
         return view('admin.explanations.delete', compact('explanation', 'common_data'));
     }
 

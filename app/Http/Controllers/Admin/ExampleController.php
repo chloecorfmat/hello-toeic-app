@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Example;
 use App\Http\Controllers\Controller;
+use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Http\Request;
 use Webpatser\Sanitize\Sanitize;
 
@@ -25,7 +26,14 @@ class ExampleController extends Controller
     public function index()
     {
         $examples = Example::all();
+
         $common_data['active_trail'] = 'teacher-exercises';
+        $common_data['header'] = [
+            'title' => trans('examples.list'),
+            'breadcrumb' => Breadcrumbs::generate('exercises.examples.index'),
+            'theme' => 'colored-background',
+        ];
+
         return view('admin.exercises.examples.index', compact('examples', 'common_data'));
     }
 
@@ -37,6 +45,12 @@ class ExampleController extends Controller
     public function create()
     {
         $common_data['active_trail'] = 'teacher-exercises';
+        $common_data['header'] = [
+            'title' => trans('examples.add'),
+            'breadcrumb' => Breadcrumbs::generate('exercises.examples.create'),
+            'theme' => 'colored-background',
+        ];
+
         return view('admin.exercises.examples.create', compact('common_data'));
     }
 

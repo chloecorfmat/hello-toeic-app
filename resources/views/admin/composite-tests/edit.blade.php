@@ -2,10 +2,6 @@
 
 @section('content')
     <div class="main-content">
-        <div class="main-content--header">
-            {{ Breadcrumbs::render('composite-tests.edit', $test) }}
-            <h1>{{ __('common.edit') }}</h1>
-        </div>
         @if ($errors->any())
             <div>
                 <ul class="alert alert-error">

@@ -12,6 +12,7 @@ use App\Services\ExerciseService;
 use App\Services\StatsService;
 use App\Setting;
 use App\Trial;
+use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -38,6 +39,12 @@ class ExerciseController extends Controller
         $newExercises = Exercise::select('id')->where('created_at', '>', $before_last_login)->pluck('id')->toArray();
 
         $common_data['active_trail'] = 'teacher-exercises';
+        $common_data['header'] = [
+            'title' => trans('exercises.list'),
+            'breadcrumb' => Breadcrumbs::generate('exercises.index'),
+            'theme' => 'colored-background',
+        ];
+
         return view('admin.exercises.index', compact('exercises', 'newExercises', 'common_data'));
     }
 
@@ -120,6 +127,11 @@ class ExerciseController extends Controller
         ];
 
         $common_data['active_trail'] = 'teacher-exercises';
+        $common_data['header'] = [
+            'title' => trans('common.details') . ': ' . $exercise->name,
+            'theme' => 'colored-background',
+        ];
+
         return view(
             'admin.exercises.show',
             compact(
@@ -150,6 +162,12 @@ class ExerciseController extends Controller
 
         $examples = Example::all();
         $common_data['active_trail'] = 'teacher-exercises';
+        $common_data['header'] = [
+            'title' => trans('common.edit'),
+            'breadcrumb' => Breadcrumbs::generate('exercises.edit', $exercise),
+            'theme' => 'colored-background',
+        ];
+
         return view('admin.exercises.edit', compact('exercise', 'examples', 'common_data'));
     }
 
@@ -192,6 +210,12 @@ class ExerciseController extends Controller
         }
 
         $common_data['active_trail'] = 'teacher-exercises';
+        $common_data['header'] = [
+            'title' => trans('common.delete') . ': ' . $exercise->name,
+            'breadcrumb' => Breadcrumbs::generate('exercises.delete', $exercise),
+            'theme' => 'colored-background',
+        ];
+
         return view('admin.exercises.delete', compact('exercise', 'common_data'));
     }
 
@@ -225,7 +249,14 @@ class ExerciseController extends Controller
         } else {
             $part = Part::find($id);
             $examples = Example::all();
+
             $common_data['active_trail'] = 'teacher-exercises';
+            $common_data['header'] = [
+                'title' => trans('exercises.import_title') . ': ' . $part->name . ' (' . $part->version . ')',
+                'breadcrumb' => Breadcrumbs::generate('exercises.import', $part),
+                'theme' => 'colored-background',
+            ];
+
             return view('admin.exercises.import', compact('part', 'examples', 'common_data'));
         }
     }
