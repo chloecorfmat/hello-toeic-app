@@ -1,6 +1,6 @@
 <template>
     <main :style="cssVars" class="login-page">
-        <div class="container">
+        <div class="container login-container">
             <div v-bind:class="[loginClasses]">
                 <div class="form-container">
                     <h1>Login</h1>
@@ -77,6 +77,10 @@
 
     main * {
         font-family: 'Montserrat' !important;
+    }
+
+    .container {
+        background: none;
     }
 
     @media screen and (min-width: 1020px) {

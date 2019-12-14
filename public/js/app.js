@@ -2911,7 +2911,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\nmain[data-v-ce00b25c] {\n    color: var(--color);\n    background-image: var(--bg-image);\n    background-size: cover;\n}\nmain *[data-v-ce00b25c] {\n    font-family: 'Montserrat' !important;\n}\n@media screen and (min-width: 1020px) {\n.login.right[data-v-ce00b25c] {\n        -webkit-box-pack: end;\n                justify-content: flex-end;\n}\n.login.left[data-v-ce00b25c] {\n        -webkit-box-pack: start;\n                justify-content: flex-start;\n}\n.login.center[data-v-ce00b25c] {\n        -webkit-box-pack: center;\n                justify-content: center;\n}\n}\n.login .form-container[data-v-ce00b25c] {\n    border-color: var(--color);\n}\n.field-container label[data-v-ce00b25c],\n.field-container input[data-v-ce00b25c],\n.field-container select[data-v-ce00b25c],\n.field-container textarea[data-v-ce00b25c] {\n    color: var(--color);\n}\n.btn[data-v-ce00b25c] {\n    background-color: var(--color);\n}\n.btn[data-v-ce00b25c]:hover {\n    -webkit-filter: brightness(85%);\n            filter: brightness(85%);\n}\na[data-v-ce00b25c] {\n    color: var(--color);\n}\na[data-v-ce00b25c]:hover {\n    -webkit-filter: brightness(85%);\n            filter: brightness(85%);\n}\n", ""]);
+exports.push([module.i, "\nmain[data-v-ce00b25c] {\n    color: var(--color);\n    background-image: var(--bg-image);\n    background-size: cover;\n}\nmain *[data-v-ce00b25c] {\n    font-family: 'Montserrat' !important;\n}\n.container[data-v-ce00b25c] {\n    background: none;\n}\n@media screen and (min-width: 1020px) {\n.login.right[data-v-ce00b25c] {\n        -webkit-box-pack: end;\n                justify-content: flex-end;\n}\n.login.left[data-v-ce00b25c] {\n        -webkit-box-pack: start;\n                justify-content: flex-start;\n}\n.login.center[data-v-ce00b25c] {\n        -webkit-box-pack: center;\n                justify-content: center;\n}\n}\n.login .form-container[data-v-ce00b25c] {\n    border-color: var(--color);\n}\n.field-container label[data-v-ce00b25c],\n.field-container input[data-v-ce00b25c],\n.field-container select[data-v-ce00b25c],\n.field-container textarea[data-v-ce00b25c] {\n    color: var(--color);\n}\n.btn[data-v-ce00b25c] {\n    background-color: var(--color);\n}\n.btn[data-v-ce00b25c]:hover {\n    -webkit-filter: brightness(85%);\n            filter: brightness(85%);\n}\na[data-v-ce00b25c] {\n    color: var(--color);\n}\na[data-v-ce00b25c]:hover {\n    -webkit-filter: brightness(85%);\n            filter: brightness(85%);\n}\n", ""]);
 
 // exports
 
@@ -5944,7 +5944,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("main", { staticClass: "login-page", style: _vm.cssVars }, [
-    _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "container login-container" }, [
       _c("div", { class: [_vm.loginClasses] }, [
         _c("div", { staticClass: "form-container" }, [
           _c("h1", [_vm._v("Login")]),

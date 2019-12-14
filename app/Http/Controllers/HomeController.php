@@ -7,6 +7,7 @@ use App\Setting;
 use App\Trial;
 use App\CompositeTrial;
 use App\Game;
+use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -89,6 +90,11 @@ class HomeController extends Controller
 
         $badges = $user->badges;
 
+        $common_data['header'] = [
+            'title' => trans('app.dashboard'),
+            'breadcrumb' => Breadcrumbs::generate('dashboard'),
+        ];
+
         return view(
             'profile',
             compact(
@@ -98,7 +104,8 @@ class HomeController extends Controller
                 'lessons',
                 'composite_trials',
                 'lessons_access',
-                'badges'
+                'badges',
+                'common_data'
             )
         );
     }

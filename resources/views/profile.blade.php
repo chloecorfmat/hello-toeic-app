@@ -2,9 +2,6 @@
 
 @section('content')
     <div class="main-content">
-        {{ Breadcrumbs::render('dashboard') }}
-
-        <h1>{{__('app.dashboard')}}</h1>
         <!-- Results -->
         <div class="part-container">
             <div class="card-container">
