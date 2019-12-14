@@ -4,11 +4,6 @@
     @php ($max_possible = $lesson->composite_test()->first()->max_score())
 
     <div class="main-content">
-        <div class="main-content--header">
-            {{ Breadcrumbs::render('lessons.show', $lesson) }}
-            <h1>{{ __('common.details') }}: {{ $lesson->name }}</h1>
-        </div>
-
         <p><span class="important">{{ __('common.name') }} : </span>{{ $lesson->name }}</p>
         <p><span class="important">{{ __('common.date') }} : </span>{{ $lesson->start_datetime }} to {{ $lesson->end_datetime }}</p>
         <p><span class="important">{{ __('common.group') }} : </span>{{ $lesson->group()->first()->name }}</p>
@@ -18,8 +13,6 @@
                 {{ $lesson->composite_test()->first()->name }}
             </a>
         </p>
-
-        <a href="{{ route('lessons.stats', ['id' => $lesson->id]) }}" class="btn btn--action">{{__('statistics.title')}}</a>
 
         <div class="card-container cards-five">
             <div class="card">

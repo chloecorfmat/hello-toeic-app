@@ -2,8 +2,6 @@
 
 @section('content')
     <div class="main-content">
-        {{ Breadcrumbs::render('groups.create') }}
-        <h1>{{ __('groups.add') }}</h1>
         @if ($errors->any())
             <div>
                 <ul class="alert alert-error">

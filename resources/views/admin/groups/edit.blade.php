@@ -2,8 +2,6 @@
 
 @section('content')
     <div class="main-content">
-        {{ Breadcrumbs::render('groups.edit', $group) }}
-        <h1>{{ __('groups.edit-this', ['name' => $group->name]) }}</h1>
         @if ($message = Session::get('success'))
             <div class="alert alert-success">
                 <p>{!! html_entity_decode($message) !!}</p>

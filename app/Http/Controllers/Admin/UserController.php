@@ -66,7 +66,14 @@ class UserController extends Controller
     public function create()
     {
         $is_admin = auth()->user()->hasRole('admin');
+
         $common_data['active_trail'] = 'teacher-users';
+        $common_data['header'] = [
+            'title' => trans('users.add'),
+            'breadcrumb' => Breadcrumbs::generate('users.create'),
+            'theme' => 'colored-background',
+        ];
+
         return view(
             'admin.users.create',
             compact(
@@ -154,6 +161,12 @@ class UserController extends Controller
         }
 
         $common_data['active_trail'] = 'teacher-users';
+        $common_data['header'] = [
+            'title' => trans('common.details') . ': ' . $user->name,
+            'breadcrumb' => Breadcrumbs::generate('users.show', $user),
+            'theme' => 'colored-background',
+        ];
+
         return view(
             'admin.users.show',
             compact(
@@ -196,6 +209,12 @@ class UserController extends Controller
         }
 
         $common_data['active_trail'] = 'teacher-users';
+        $common_data['header'] = [
+            'title' => trans('users.edit-this', ['name' => $user->name]),
+            'breadcrumb' => Breadcrumbs::generate('users.edit', $user),
+            'theme' => 'colored-background',
+        ];
+
         return view(
             'admin.users.edit',
             compact(
@@ -338,6 +357,12 @@ class UserController extends Controller
         }
 
         $common_data['active_trail'] = 'teacher-users';
+        $common_data['header'] = [
+            'title' => trans('users.delete-this', ['name' => $user->name]),
+            'breadcrumb' => Breadcrumbs::generate('users.delete', $user),
+            'theme' => 'colored-background',
+        ];
+
         return view(
             'admin.users.delete',
             compact(
@@ -349,6 +374,12 @@ class UserController extends Controller
 
     public function import() {
         $common_data['active_trail'] = 'teacher-users';
+        $common_data['header'] = [
+            'title' => trans('users.import_title'),
+            'breadcrumb' => Breadcrumbs::generate('users.import'),
+            'theme' => 'colored-background',
+        ];
+
         return view('admin.users.import', compact('common_data'));
     }
 
@@ -427,7 +458,21 @@ class UserController extends Controller
         $users = User::where('status', 0)
             ->where('consent_at' , NULL)
             ->get();
-        return view('admin.users.blocked', compact('users'));
+
+        $common_data['active_trail'] = 'teacher-users';
+        $common_data['header'] = [
+            'title' => trans('users.blocked'),
+            'breadcrumb' => Breadcrumbs::generate('users.blocked'),
+            'theme' => 'colored-background',
+        ];
+
+        return view(
+            'admin.users.blocked',
+            compact(
+                'users',
+                'common_data'
+            )
+        );
     }
 
     public function activate(Request $request, $id) {

@@ -3,7 +3,6 @@
 @section('content')
     @php ($index = ['A', 'B', 'C', 'D'])
     <div class="main-content">
-        <h1>{{ __('questions.add') }}</h1>
         @if ($errors->any())
             <div>
                 <ul class="alert alert-error">

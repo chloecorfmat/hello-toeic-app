@@ -9,6 +9,7 @@ use App\Group;
 use App\Lesson;
 use App\Services\StatsService;
 use App\Setting;
+use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -31,7 +32,14 @@ class LessonController extends Controller
     public function index()
     {
         $lessons = Lesson::orderBy('start_datetime')->get();
+
         $common_data['active_trail'] = 'teacher-users';
+        $common_data['header'] = [
+            'title' => trans('lessons.list'),
+            'breadcrumb' => Breadcrumbs::generate('lessons.index'),
+            'theme' => 'colored-background',
+        ];
+
         return view('admin.lessons.index', compact('lessons', 'common_data'));
     }
 
@@ -44,7 +52,14 @@ class LessonController extends Controller
     {
         $groups = Group::orderBy('name')->get();
         $tests = CompositeTest::orderBy('name')->get();
+
         $common_data['active_trail'] = 'teacher-users';
+        $common_data['header'] = [
+            'title' => trans('lessons.add'),
+            'breadcrumb' => Breadcrumbs::generate('lessons.create'),
+            'theme' => 'colored-background',
+        ];
+
         return view('admin.lessons.create', compact('groups', 'tests', 'common_data'));
     }
 
@@ -173,6 +188,18 @@ class LessonController extends Controller
         ];
 
         $common_data['active_trail'] = 'teacher-users';
+        $common_data['header'] = [
+            'title' => trans('common.details') . ': ' . $lesson->name,
+            'breadcrumb' => Breadcrumbs::generate('lessons.show', $lesson),
+            'buttons' => [
+                [
+                    'title' => trans('statistics.title'),
+                    'url' => route('lessons.stats', ['id' => $lesson->id]),
+                ]
+            ],
+            'theme' => 'colored-background',
+        ];
+
         return view(
             'admin.lessons.show',
             compact(
@@ -202,7 +229,14 @@ class LessonController extends Controller
 
         $groups = Group::orderBy('name')->get();
         $tests = CompositeTest::orderBy('name')->get();
+
         $common_data['active_trail'] = 'teacher-users';
+        $common_data['header'] = [
+            'title' => trans('lessons.edit'),
+            'breadcrumb' => Breadcrumbs::generate('lessons.edit', $lesson),
+            'theme' => 'colored-background',
+        ];
+
         return view(
             'admin.lessons.edit',
             compact(
@@ -263,6 +297,12 @@ class LessonController extends Controller
         }
 
         $common_data['active_trail'] = 'teacher-users';
+        $common_data['header'] = [
+            'title' => trans('lessons.delete') . ': ' . $lesson->name,
+            'breadcrumb' => Breadcrumbs::generate('lessons.delete', $lesson),
+            'theme' => 'colored-background',
+        ];
+
         return view(
             'admin.lessons.delete',
             compact(
@@ -411,6 +451,11 @@ class LessonController extends Controller
         }
 
         $common_data['active_trail'] = 'teacher-users';
+        $common_data['header'] = [
+            'title' => trans('statistics.title'),
+            'breadcrumb' => Breadcrumbs::generate('lessons.stats', $lesson),
+            'theme' => 'colored-background',
+        ];
         return view(
             'admin.lessons.stats',
             compact(

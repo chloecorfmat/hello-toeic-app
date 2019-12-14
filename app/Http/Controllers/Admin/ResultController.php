@@ -6,6 +6,7 @@ use App\CompositeTrial;
 use App\Game;
 use App\Setting;
 use App\Trial;
+use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -27,6 +28,25 @@ class ResultController extends Controller
     public function index()
     {
         $common_data['active_trail'] = 'teacher-results';
+        $common_data['header'] = [
+            'title' => trans('app.results'),
+            'breadcrumb' => Breadcrumbs::generate('results.index'),
+            'buttons' => [
+                [
+                    'title' => trans('exercises.results'),
+                    'url' => route('results.exercises'),
+                ],
+                [
+                    'title' => trans('composite-tests.results'),
+                    'url' => route('results.composite-tests'),
+                ],
+                [
+                    'title' => trans('games.results'),
+                    'url' => route('results.games'),
+                ],
+            ],
+            'theme' => 'colored-background',
+        ];
         return view('admin.results.index', compact('common_data'));
     }
 
@@ -46,6 +66,12 @@ class ResultController extends Controller
             ->get();
 
         $common_data['active_trail'] = 'teacher-results';
+        $common_data['header'] = [
+            'title' => trans('composite-tests.results'),
+            'breadcrumb' => Breadcrumbs::generate('results.composite-tests'),
+            'theme' => 'colored-background',
+        ];
+
         return view(
             'admin.results.composite-tests',
             compact(
@@ -72,6 +98,12 @@ class ResultController extends Controller
             ->get();
 
         $common_data['active_trail'] = 'teacher-results';
+        $common_data['header'] = [
+            'title' => trans('exercises.results'),
+            'breadcrumb' => Breadcrumbs::generate('results.exercises'),
+            'theme' => 'colored-background',
+        ];
+
         return view(
             'admin.results.exercises',
             compact(
@@ -93,6 +125,12 @@ class ResultController extends Controller
             ->get();
 
         $common_data['active_trail'] = 'teacher-results';
+        $common_data['header'] = [
+            'title' => trans('games.results'),
+            'breadcrumb' => Breadcrumbs::generate('results.games'),
+            'theme' => 'colored-background',
+        ];
+
         return view(
             'admin.results.games',
             compact(

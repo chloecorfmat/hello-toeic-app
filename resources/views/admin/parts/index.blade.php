@@ -3,8 +3,6 @@
 @section('content')
     <div class="main-content">
         <div class="main-content--header">
-            {{ Breadcrumbs::render('parts.index') }}
-            <h1>{{ __('parts.list') }}</h1>
             <a href="{{ route('parts.create') }}" class="main-content--header-actions">
                 <i class="fas fa-plus-circle"></i>
             </a>
@@ -29,7 +27,6 @@
         @endif
 
         <div class="table" id="parts">
-            <h2>{{ __('parts.list') }}</h2>
             <div class="table--filters">
                 <div class="field-container">
                     <label for="search">{{ __('common.search') }}</label>

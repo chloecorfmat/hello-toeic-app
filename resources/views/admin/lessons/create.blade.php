@@ -2,8 +2,6 @@
 
 @section('content')
     <div class="main-content">
-        {{ Breadcrumbs::render('lessons.create') }}
-        <h1>{{ __('lessons.add') }}</h1>
         @if ($errors->any())
             <div>
                 <ul class="alert alert-error">

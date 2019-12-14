@@ -2,8 +2,6 @@
 
 @section('content')
     <div class="main-content">
-        {{ Breadcrumbs::render('users.edit', $user) }}
-        <h1>{{ __('users.edit-this', ['name' => $user->name]) }}</h1>
         @if ($errors->any())
             <div>
                 <ul class="alert alert-error">

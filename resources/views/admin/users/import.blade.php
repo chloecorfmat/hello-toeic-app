@@ -2,12 +2,6 @@
 
 @section('content')
     <div class="main-content">
-        <div class="main-content--header">
-            {{ Breadcrumbs::render('users.import') }}
-            <h1>{{ __('users.import_title') }}</h1>
-        </div>
-
-        <p>{{ __('users.import_title') }}</p>
         <form method="POST" action="{{ route('users.storeImport') }}" enctype="multipart/form-data">
             @csrf
 

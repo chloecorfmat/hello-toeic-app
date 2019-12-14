@@ -2,11 +2,6 @@
 
 @section('content')
     <div class="main-content">
-        <div class="main-content--header">
-            {{ Breadcrumbs::render('results.games') }}
-            <h1>{{ __('games.results') }}</h1>
-        </div>
-
         @if ($errors->any())
             <div>
                 <ul class="alert alert-error">

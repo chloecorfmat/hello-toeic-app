@@ -6,6 +6,7 @@ use App\Group;
 use App\Http\Controllers\Controller;
 use App\Services\StringService;
 use App\User;
+use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Http\Request;
 use Webpatser\Sanitize\Sanitize;
 
@@ -38,6 +39,11 @@ class GroupController extends Controller
         }
 
         $common_data['active_trail'] = 'teacher-users';
+        $common_data['header'] = [
+            'title' => trans('groups.list'),
+            'breadcrumb' => Breadcrumbs::generate('groups.index'),
+            'theme' => 'colored-background',
+        ];
         return view('admin.groups.index', compact('groups', 'teachers', 'common_data'));
     }
 
@@ -50,7 +56,14 @@ class GroupController extends Controller
     {
         $teachers = User::whereHas("roles", function($q){ $q->where("name", "teacher"); })->get();
         $students = User::whereHas("roles", function($q){ $q->where("name", "student"); })->get();
+
         $common_data['active_trail'] = 'teacher-users';
+        $common_data['header'] = [
+            'title' => trans('groups.add'),
+            'breadcrumb' => Breadcrumbs::generate('groups.create'),
+            'theme' => 'colored-background',
+        ];
+
         return view('admin.groups.create', compact('teachers', 'students', 'common_data'));
     }
 
@@ -112,6 +125,12 @@ class GroupController extends Controller
         $students = $group->users()->get();
 
         $common_data['active_trail'] = 'teacher-users';
+        $common_data['header'] = [
+            'title' => trans('common.details') . ': ' . $group->name,
+            'breadcrumb' => Breadcrumbs::generate('groups.show', $group),
+            'theme' => 'colored-background',
+        ];
+
         return view('admin.groups.show', compact('group', 'teacher', 'students', 'common_data'));
     }
 
@@ -130,7 +149,14 @@ class GroupController extends Controller
         }
 
         $teachers = User::whereHas("roles", function($q){ $q->where("name", "teacher"); })->get();
+
         $common_data['active_trail'] = 'teacher-users';
+        $common_data['header'] = [
+            'title' => trans('groups.edit-this', ['name' => $group->name]),
+            'breadcrumb' => Breadcrumbs::generate('groups.edit', $group),
+            'theme' => 'colored-background',
+        ];
+
         return view('admin.groups.edit', compact('group', 'teachers', 'common_data'));
     }
 
@@ -209,11 +235,23 @@ class GroupController extends Controller
         }
 
         $common_data['active_trail'] = 'teacher-users';
+        $common_data['header'] = [
+            'title' => trans('groups.delete-this', ['name' => $group->name]),
+            'breadcrumb' => Breadcrumbs::generate('groups.delete'),
+            'theme' => 'colored-background',
+        ];
+
         return view('admin.groups.delete', compact('group', 'common_data'));
     }
 
     public function assign() {
         $common_data['active_trail'] = 'teacher-users';
+        $common_data['header'] = [
+            'title' => trans('groups.assign_title'),
+            'breadcrumb' => Breadcrumbs::generate('groups.assign'),
+            'theme' => 'colored-background',
+        ];
+
         return view('admin.groups.assign', compact('common_data'));
     }
 
@@ -326,6 +364,12 @@ class GroupController extends Controller
 
     public function import() {
         $common_data['active_trail'] = 'teacher-users';
+        $common_data['header'] = [
+            'title' => trans('groups.import_title'),
+            'breadcrumb' => Breadcrumbs::generate('groups.import'),
+            'theme' => 'colored-background',
+        ];
+
         return view('admin.groups.import', compact('common_data'));
     }
 

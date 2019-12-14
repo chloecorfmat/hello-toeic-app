@@ -35,6 +35,12 @@ class StudentController extends Controller
         $students = User::whereHas("roles", function($q){ $q->where("name", "student"); })->get();
 
         $common_data['active_trail'] = 'teacher-users';
+        $common_data['header'] = [
+            'title' => trans('students.list'),
+            'breadcrumb' => Breadcrumbs::generate('students.index'),
+            'theme' => 'colored-background',
+        ];
+
         return view(
             'admin.students.index',
             compact(

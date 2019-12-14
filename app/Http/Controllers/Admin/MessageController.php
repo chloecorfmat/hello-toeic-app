@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Message;
+use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Http\Request;
 
 class MessageController extends Controller
@@ -26,6 +27,12 @@ class MessageController extends Controller
             ->get();
 
         $common_data['active_trail'] = 'teacher-users';
+        $common_data['header'] = [
+            'title' => trans('messages.list'),
+            'breadcrumb' => Breadcrumbs::generate('messages.index'),
+            'theme' => 'colored-background',
+        ];
+
         return view(
             'admin.messages.index',
             compact(

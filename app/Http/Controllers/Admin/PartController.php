@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Part;
+use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Http\Request;
 
 class PartController extends Controller
@@ -26,6 +27,12 @@ class PartController extends Controller
         $parts = Part::orderBy('version')->get();
 
         $common_data['active_trail'] = 'teacher-exercises';
+        $common_data['header'] = [
+            'title' => trans('parts.list'),
+            'breadcrumb' => Breadcrumbs::generate('parts.index'),
+            'theme' => 'colored-background',
+        ];
+
         return view(
             'admin.parts.index',
             compact(
@@ -43,6 +50,12 @@ class PartController extends Controller
     public function create()
     {
         $common_data['active_trail'] = 'teacher-exercises';
+        $common_data['header'] = [
+            'title' => trans('parts.add'),
+            'breadcrumb' => Breadcrumbs::generate('parts.create'),
+            'theme' => 'colored-background',
+        ];
+
         return view('admin.parts.create', compact('common_data'));
     }
 
@@ -97,6 +110,12 @@ class PartController extends Controller
         }
 
         $common_data['active_trail'] = 'teacher-exercises';
+        $common_data['header'] = [
+            'title' => trans('common.details') . ': ' . $part->name,
+            'breadcrumb' => Breadcrumbs::generate('parts.show', $part),
+            'theme' => 'colored-background',
+        ];
+
         return view(
             'admin.parts.show',
             compact(
@@ -121,6 +140,12 @@ class PartController extends Controller
         }
 
         $common_data['active_trail'] = 'teacher-exercises';
+        $common_data['header'] = [
+            'title' => trans('common.edit') . ': ' . $part->name,
+            'breadcrumb' => Breadcrumbs::generate('parts.edit', $part),
+            'theme' => 'colored-background',
+        ];
+
         return view(
             'admin.parts.edit',
             compact(
@@ -183,6 +208,12 @@ class PartController extends Controller
         }
 
         $common_data['active_trail'] = 'teacher-exercises';
+        $common_data['header'] = [
+            'title' => trans('common.delete') . ': ' . $part->name,
+            'breadcrumb' => Breadcrumbs::generate('parts.delete', $part),
+            'theme' => 'colored-background',
+        ];
+
         return view(
             'admin.parts.delete',
             compact(

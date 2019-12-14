@@ -2,8 +2,6 @@
 
 @section('content')
     <div class="main-content">
-        {{ Breadcrumbs::render('groups.import') }}
-        <h1>{{ __('groups.import_title') }}</h1>
         @if ($errors->any())
             <div>
                 <ul class="alert alert-error">

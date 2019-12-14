@@ -2,11 +2,6 @@
 
 @section('content')
     <div class="main-content">
-        <div class="main-content--header">
-            {{ Breadcrumbs::render('groups.show', $group) }}
-            <h1>{{ __('common.details') }} : {{ $group->name }}</h1>
-        </div>
-
         @if ($message = Session::get('success'))
             <div class="alert alert-success">
                 <p>{{ $message }}</p>

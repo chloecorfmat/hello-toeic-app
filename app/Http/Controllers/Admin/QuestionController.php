@@ -9,6 +9,7 @@ use App\Game;
 use App\Part;
 use App\Proposal;
 use App\Question;
+use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -33,7 +34,14 @@ class QuestionController extends Controller
     public function index()
     {
         $questions = Question::paginate(20);
+
         $common_data['active_trail'] = 'teacher-exercises';
+        $common_data['header'] = [
+            'title' => trans('questions.list'),
+            'breadcrumb' => Breadcrumbs::generate('questions.index'),
+            'theme' => 'colored-background',
+        ];
+
         return view(
             'admin.questions.index',
             [
@@ -54,6 +62,12 @@ class QuestionController extends Controller
         $documents = Document::all();
 
         $common_data['active_trail'] = 'teacher-exercises';
+        $common_data['header'] = [
+            'title' => trans('questions.add'),
+            'breadcrumb' => Breadcrumbs::generate('questions.create'),
+            'theme' => 'colored-background',
+        ];
+
         return view(
             'admin.questions.create',
             compact(
@@ -138,6 +152,12 @@ class QuestionController extends Controller
                 ->get();
 
             $common_data['active_trail'] = 'teacher-exercises';
+            $common_data['header'] = [
+                'title' => trans('common.details'),
+                'breadcrumb' => Breadcrumbs::generate('questions.show', $question),
+                'theme' => 'colored-background',
+            ];
+
             return view(
                 'admin.questions.show',
                 compact(
@@ -168,7 +188,14 @@ class QuestionController extends Controller
         }
 
         $explanations = Explanation::all();
+
         $common_data['active_trail'] = 'teacher-exercises';
+        $common_data['header'] = [
+            'title' => trans('questions.edit'),
+            'breadcrumb' => Breadcrumbs::generate('questions.edit', $datas['question']),
+            'theme' => 'colored-background',
+        ];
+
         return view(
             'admin.questions.edit',
             compact(
@@ -259,6 +286,12 @@ class QuestionController extends Controller
         }
 
         $common_data['active_trail'] = 'teacher-exercises';
+        $common_data['header'] = [
+            'title' => trans('common.delete'),
+            'breadcrumb' => Breadcrumbs::generate('questions.delete', $question),
+            'theme' => 'colored-background',
+        ];
+
         return view(
             'admin.questions.delete',
             compact(

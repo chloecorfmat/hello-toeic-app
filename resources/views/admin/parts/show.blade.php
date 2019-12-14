@@ -2,11 +2,6 @@
 
 @section('content')
     <div class="main-content">
-        <div class="main-content--header">
-            {{ Breadcrumbs::render('parts.show', $part) }}
-            <h1>{{ __('common.details') }}: {{ $part->name }}</h1>
-        </div>
-
         <p>{{ __('common.name') }} : <span>{{ $part->name }}</span></p>
         <p>{{ __('common.version') }} : <span>{{ $part->version }}</span></p>
         <p>{{ __('common.type') }} : <span>{{ $part->type }}</span></p>

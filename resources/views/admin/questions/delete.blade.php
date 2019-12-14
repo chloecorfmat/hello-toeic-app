@@ -2,13 +2,6 @@
 
 @section('content')
     <div class="main-content">
-        {{ Breadcrumbs::render('questions.delete', $question) }}
-        @if (!empty($question->question))
-            <h1>{{ __('common.delete') }}: {{ $question->question }}</h1>
-        @else
-            <h1>{{ __('common.delete') }}: #none ({{ $question->id }})</h1>
-        @endif
-
         @if ($errors->any())
             <div>
                 <ul class="alert alert-error">
