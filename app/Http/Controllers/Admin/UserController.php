@@ -444,8 +444,8 @@ class UserController extends Controller
 
         $common_data['active_trail'] = 'teacher-users';
         $common_data['header'] = [
-            'title' => 'Users list',
-            'subtitle' => '('. User::all()->count() .' results)',
+            'title' => trans('users.list'),
+            'subtitle' => '('. User::all()->count() .' ' . trans('app.results') .')',
             'breadcrumb' => Breadcrumbs::generate('users.index'),
         ];
 
