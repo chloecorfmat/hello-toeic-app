@@ -185,6 +185,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        //\Illuminate\Support\Facades\Session::get('errors')
         $current_is_admin = auth()->user()->hasRole('admin');
         $user = User::find($id);
 

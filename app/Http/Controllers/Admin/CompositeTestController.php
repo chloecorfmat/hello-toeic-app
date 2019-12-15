@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\CompositeTest;
 use App\Exercise;
 use App\Http\Controllers\Controller;
+use App\Services\FlashService;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class CompositeTestController extends Controller
 {
@@ -71,6 +73,7 @@ class CompositeTestController extends Controller
             'breadcrumb' => Breadcrumbs::generate('composite-tests.create'),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
         return view('admin.composite-tests.create', compact('exercises', 'common_data'));
     }
 
@@ -101,7 +104,7 @@ class CompositeTestController extends Controller
 
             if (!is_null($exercise)) {
                 if ($last_ex_type == 'reading' && $exercise->part->type == 'listening') {
-                    return redirect()->route('composite-tests.create')->withErrors([trans('composite-tests.exercises-order')]);
+                    return redirect()->route('composite-tests.create')->withErrors(['test']);
                 }
                 $last_ex_type = $exercise->part->type;
 
