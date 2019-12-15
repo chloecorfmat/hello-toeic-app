@@ -2,22 +2,6 @@
 
 @section('content')
     <div class="main-content">
-        @if ($errors->any())
-            <div>
-                <ul class="alert alert-error">
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
-        @if ($message = Session::get('success'))
-            <div class="alert alert-success">
-                <p>{{ $message }}</p>
-            </div>
-        @endif
-
         <form method="POST" action="{{ route('composite-tests.store') }}">
             @csrf
 

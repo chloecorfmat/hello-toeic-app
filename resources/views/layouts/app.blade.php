@@ -46,6 +46,10 @@
                 <content-header header-data="{{ json_encode($common_data['header']) }}"></content-header>
             @endif
 
+            @if (isset($common_data) && isset($common_data['flashs']) && !empty($common_data['flashs']))
+                <content-flashs flashs-data="{{ json_encode($common_data['flashs']) }}"></content-flashs>
+            @endif
+
             <div class="container">
                 @yield('content')
             </div>

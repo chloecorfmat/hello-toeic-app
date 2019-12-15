@@ -104,7 +104,7 @@ class CompositeTestController extends Controller
 
             if (!is_null($exercise)) {
                 if ($last_ex_type == 'reading' && $exercise->part->type == 'listening') {
-                    return redirect()->route('composite-tests.create')->withErrors(['test']);
+                    return redirect()->route('composite-tests.create')->withErrors([trans('composite-tests.exercises-order')]);
                 }
                 $last_ex_type = $exercise->part->type;
 

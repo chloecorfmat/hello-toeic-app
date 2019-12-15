@@ -21,6 +21,8 @@ import store from './store/store';
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 Vue.component('base-footer', require('./components/Footer/BaseFooter.vue').default);
 Vue.component('base-header', require('./components/Header/BaseHeader.vue').default);
+Vue.component('content-flashs', require('./components/Content/Flashs/ContentFlashs').default);
+Vue.component('flash', require('./components/Content/Flashs/Flash').default);
 Vue.component('content-header', require('./components/Content/Header/ContentHeader').default);
 Vue.component('content-header-buttons', require('./components/Content/Header/ContentHeaderButtons').default);
 Vue.component('breadcrumb', require('./components/Content/Header/Breadcrumb').default);

@@ -26,8 +26,10 @@ class FlashService
             foreach ($names[$var] as $name) {
                 $datas = Session::get($name);
 
-                if (is_array($datas)) {
-                    $messages[$name] = array_merge($messages[$name], $datas);
+                if (is_array($datas->getMessages())) {
+                    foreach ($datas->getMessages() as $message) {
+                        $messages[$name][] = $message[0];
+                    }
                 } else {
                     $messages[$name][] = $datas;
                 }

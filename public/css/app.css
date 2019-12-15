@@ -1038,33 +1038,45 @@ tr:nth-child(2n) {
   border: 1px solid;
   border-radius: 5px;
   padding: 1rem;
-  margin-bottom: 2rem;
+  margin: 2rem;
 }
 
 .alert li {
   font-size: 0.9rem;
 }
 
+@media screen and (min-width: 1020px) {
+  .alert {
+    margin: 2rem 5rem;
+  }
+}
+
+.alert-successes,
 .alert-success {
   border-color: #66a810;
 }
 
+.alert-successes li,
 .alert-success li {
   color: #66a810;
 }
 
+.alert-errors,
 .alert-error {
   border-color: #bc1a4d;
 }
 
+.alert-errors li,
 .alert-error li {
   color: #bc1a4d;
 }
 
+.alert-warnings,
 .alert-warning {
   border-color: #d68400;
 }
 
+.alert-warnings li,
 .alert-warning li {
   color: #d68400;
 }

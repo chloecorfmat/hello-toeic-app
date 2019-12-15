@@ -3,13 +3,18 @@
   border: 1px solid;
   border-radius: 5px;
   padding: 1rem;
-  margin-bottom: 2rem;
+  margin: 2rem;
 
   li {
     font-size: .9rem;
   }
+
+  @media screen and (min-width: $breakpoint-medium) {
+    margin: 2rem 5rem;
+  }
 }
 
+.alert-successes,
 .alert-success {
   border-color: $success-color;
 
@@ -18,6 +23,7 @@
   }
 }
 
+.alert-errors,
 .alert-error {
   border-color: $danger-color;
 
@@ -26,6 +32,7 @@
   }
 }
 
+.alert-warnings,
 .alert-warning {
   border-color: $warning-color;
 
