@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\CompositeTrial;
 use App\Game;
 use App\Message;
+use App\Services\FlashService;
 use App\Trial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -94,6 +95,7 @@ class GDPRController extends Controller
      * @param Request $request
      */
     public function collectConsent(Request $request) {
+        $common_data['flashs'] = FlashService::getMessages();
         return view('gdpr.collect-consent');
     }
 

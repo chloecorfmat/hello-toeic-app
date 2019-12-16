@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\FlashService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -54,6 +55,7 @@ class UserController extends Controller
         $user = Auth::user();
 
         if ($user->id == $id) {
+            $common_data['flashs'] = FlashService::getMessages();
             return view('users.show', compact('user'));
         }
 

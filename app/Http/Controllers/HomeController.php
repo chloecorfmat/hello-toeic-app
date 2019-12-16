@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Lesson;
+use App\Services\FlashService;
 use App\Setting;
 use App\Trial;
 use App\CompositeTrial;
@@ -95,6 +96,7 @@ class HomeController extends Controller
             'breadcrumb' => Breadcrumbs::generate('dashboard'),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view(
             'profile',
@@ -120,6 +122,7 @@ class HomeController extends Controller
             'breadcrumb' => Breadcrumbs::generate('contact'),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view('contact', compact('common_data'));
     }
@@ -129,6 +132,7 @@ class HomeController extends Controller
             'title' => 'Teacher menu',
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view('teacher', compact('common_data'));
     }
@@ -140,6 +144,7 @@ class HomeController extends Controller
             'title' => 'Admin menu',
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view('admin', compact('common_data'));
     }

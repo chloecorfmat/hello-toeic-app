@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\FlashService;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Http\Request;
 use App\Exercise;
@@ -44,6 +45,7 @@ class ExerciseController extends Controller
             'breadcrumb' => Breadcrumbs::generate('exercises.index'),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view('exercises.index', compact('exercises', 'newExercises', 'doneExercises', 'common_data'));
     }
@@ -137,6 +139,7 @@ class ExerciseController extends Controller
             'breadcrumb' => Breadcrumbs::generate('student.exercises.show', $exercise),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view(
             'exercises.show',

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\FlashService;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Http\Request;
 use App\CompositeTrial;
@@ -44,6 +45,7 @@ class CompositeTrialController extends Controller
             'breadcrumb' => Breadcrumbs::generate('student.composite-tests.index'),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view('composite-trials.index', compact('trials', 'user', 'names', 'common_data'));
     }

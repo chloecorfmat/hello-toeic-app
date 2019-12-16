@@ -7,6 +7,7 @@ use App\BadgeType;
 use App\Game;
 use App\Proposal;
 use App\Question;
+use App\Services\FlashService;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -63,6 +64,7 @@ class GameController extends Controller
             ],
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view('games.index', compact('datas', 'best_scores', 'common_data'));
     }
@@ -103,6 +105,7 @@ class GameController extends Controller
                 'breadcrumb' => Breadcrumbs::generate('games.continue'),
                 'theme' => 'colored-background',
             ];
+            $common_data['flashs'] = FlashService::getMessages();
 
             return view('games.play', compact('datas', 'common_data'));
         }

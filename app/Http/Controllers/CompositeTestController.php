@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\CompositeTrial;
 use App\Correction;
 use App\Lesson;
+use App\Services\FlashService;
 use App\Setting;
 use App\Trial;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
@@ -72,6 +73,7 @@ class CompositeTestController extends Controller
                 ],
             ],
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view('composite-tests.index', compact('tests', 'newTests', 'common_data'));
     }
@@ -225,6 +227,7 @@ class CompositeTestController extends Controller
             'breadcrumb' => Breadcrumbs::generate('student.composite-tests.show', $test),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view('composite-tests.show', compact('datas', 'datasources', 'source', 'listening_duration', 'reading_duration', 'common_data'));
     }

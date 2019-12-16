@@ -74,6 +74,7 @@ class CompositeTestController extends Controller
             'theme' => 'colored-background',
         ];
         $common_data['flashs'] = FlashService::getMessages();
+
         return view('admin.composite-tests.create', compact('exercises', 'common_data'));
     }
 

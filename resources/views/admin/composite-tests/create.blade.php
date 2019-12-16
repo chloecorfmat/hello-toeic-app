@@ -55,8 +55,8 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            @for ($i = 1; $i < 8; $i++)
-                const choices{{ $i }} = new Choices('#exercise_part{{ $i }}');
+                    @for ($i = 1; $i < 8; $i++)
+            const choices{{ $i }} = new Choices('#exercise_part{{ $i }}');
             @endfor
         });
     </script>
