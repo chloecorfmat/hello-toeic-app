@@ -1,17 +1,26 @@
+.content-flashs {
+  .alert {
+    margin: 2rem;
+
+    @media screen and (min-width: $breakpoint-medium) {
+      margin: 2rem 5rem;
+    }
+  }
+}
+
 .alert {
   background: $white;
   border: 1px solid;
   border-radius: 5px;
   padding: 1rem;
-  margin: 2rem;
+  margin: auto auto 1rem;
+
 
   li {
     font-size: .9rem;
   }
 
-  @media screen and (min-width: $breakpoint-medium) {
-    margin: 2rem 5rem;
-  }
+
 }
 
 .alert-status,

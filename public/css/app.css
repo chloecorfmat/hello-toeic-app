@@ -1033,22 +1033,26 @@ tr:nth-child(2n) {
   background: #E26A7B;
 }
 
+.content-flashs .alert {
+  margin: 2rem;
+}
+
+@media screen and (min-width: 1020px) {
+  .content-flashs .alert {
+    margin: 2rem 5rem;
+  }
+}
+
 .alert {
   background: #fff;
   border: 1px solid;
   border-radius: 5px;
   padding: 1rem;
-  margin: 2rem;
+  margin: auto auto 1rem;
 }
 
 .alert li {
   font-size: 0.9rem;
-}
-
-@media screen and (min-width: 1020px) {
-  .alert {
-    margin: 2rem 5rem;
-  }
 }
 
 .alert-status,
