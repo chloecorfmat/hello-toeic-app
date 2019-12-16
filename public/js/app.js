@@ -1899,6 +1899,12 @@ __webpack_require__.r(__webpack_exports__);
       switch (type) {
         case 'errors':
           return "Error";
+          break;
+
+        case 'successes':
+        case 'success':
+          return "Success";
+          break;
       }
     }
   }
@@ -5366,7 +5372,8 @@ var render = function() {
             _c("span", { staticClass: "important" }, [
               _vm._v(_vm._s(_vm.label(type)) + "!")
             ]),
-            _vm._v(" " + _vm._s(message) + "\n        ")
+            _vm._v(" "),
+            _c("span", { domProps: { innerHTML: _vm._s(message) } })
           ])
         }),
         0

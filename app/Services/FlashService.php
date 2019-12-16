@@ -26,12 +26,12 @@ class FlashService
             foreach ($names[$var] as $name) {
                 $datas = Session::get($name);
 
-                if (is_array($datas->getMessages())) {
+                if (is_string($datas)) {
+                    $messages[$name][] = $datas;
+                } else {
                     foreach ($datas->getMessages() as $message) {
                         $messages[$name][] = $message[0];
                     }
-                } else {
-                    $messages[$name][] = $datas;
                 }
             }
         }

@@ -2,7 +2,7 @@
     <div class="content-flashs">
         <ul v-for="(messages, type) in this.flashs" v-bind:class="'alert alert-' + type">
             <li v-for="message in messages">
-                <span class="important">{{ label(type) }}!</span> {{ message }}
+                <span class="important">{{ label(type) }}!</span> <span v-html="message"></span>
             </li>
         </ul>
     </div>
@@ -39,13 +39,14 @@
                 switch (type) {
                     case 'errors' :
                         return "Error";
+                        break;
+                    case 'successes':
+                    case 'success':
+                        return "Success";
+                        break;
                 }
             },
         },
 
     }
 </script>
-
-<style>
-
-</style>
