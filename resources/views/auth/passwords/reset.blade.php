@@ -7,14 +7,6 @@
         <div class="form-container">
             <h1>{{ __('Reset Password') }}</h1>
 
-            @foreach($errors->all() as $error)
-                <div class="alert alert-error">
-                    <ul>
-                        <li>{{ $error }}</li>
-                    </ul>
-                </div>
-            @endforeach
-
             <form method="POST" action="{{ route('password.update') }}">
                 @csrf
 

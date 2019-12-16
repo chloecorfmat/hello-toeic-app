@@ -1051,11 +1051,13 @@ tr:nth-child(2n) {
   }
 }
 
+.alert-status,
 .alert-successes,
 .alert-success {
   border-color: #66a810;
 }
 
+.alert-status li,
 .alert-successes li,
 .alert-success li {
   color: #66a810;

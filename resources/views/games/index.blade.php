@@ -2,12 +2,6 @@
 
 @section('content')
     <div class="main-content">
-        @if ($message = Session::get('success'))
-            <div class="alert alert-success">
-                <p>{!! html_entity_decode($message) !!}</p>
-            </div>
-        @endif
-
         <h2>{{__('common.best-scores')}}</h2>
         <p>{{__('common.best-scores-of', ['number' => 10, 'type' => trans('common.students')])}}</p>
         <div class="table">

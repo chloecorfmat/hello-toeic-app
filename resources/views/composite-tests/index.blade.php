@@ -2,16 +2,6 @@
 
 @section('content')
     <div class="main-content list-tests">
-        @if ($message = Session::get('success'))
-            <div class="alert alert-success">
-                <p>{{ $message }}</p>
-            </div>
-        @elseif ($message = Session::get('error'))
-            <div class="alert alert-error">
-                <p>{{ $message }}</p>
-            </div>
-        @endif
-
         <div class="table" id="composite-tests">
             <h2>{{__('composite-tests.all')}}</h2>
             <div class="table--filters">
