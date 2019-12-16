@@ -2,18 +2,6 @@
 
 @section('content')
     <div class="main-content">
-        @if ($message = Session::get('success'))
-            <div class="alert alert-success">
-                <p>{{ $message }}</p>
-            </div>
-        @endif
-
-        @if ($message = Session::get('error'))
-            <div class="alert alert-error">
-                <p>{{ $message }}</p>
-            </div>
-        @endif
-
         <div class="part-container">
             <p><strong class="important">{{ __('common.name') }}: </strong>{{ $group->name }}</p>
             <p><strong class="important">{{ __('common.machine-name') }}: </strong>{{ $group->machine_name }}</p>

@@ -2,15 +2,6 @@
 
 @section('content')
     <div class="main-content">
-        @if ($errors->any())
-            <div>
-                <ul class="alert alert-error">
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
         <form method="POST" action="{{ route('explanations.update', ['id' => $explanation->id]) }}" enctype="multipart/form-data">
             @csrf
             {{ method_field('PUT')}}

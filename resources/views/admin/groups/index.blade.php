@@ -14,22 +14,6 @@
             </a>
         </div>
 
-        @if ($message = Session::get('success'))
-            <div class="alert alert-success">
-                <p>{!! html_entity_decode($message) !!}</p>
-            </div>
-        @endif
-
-        @if ($message = Session::get('warning'))
-            <div class="alert alert-warning">
-                <p>{!! html_entity_decode($message) !!}</p>
-            </div>
-        @elseif ($message = Session::get('error'))
-            <div class="alert alert-error">
-                <p>{{ $message }}</p>
-            </div>
-        @endif
-
         <div class="table" id="groups">
             <h2>{{ __('groups.list') }}</h2>
             <div class="table--filters">

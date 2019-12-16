@@ -6,12 +6,6 @@
             <h2>{{ __('common.details') }} : {{ $student->name }}</h2>
         </div>
 
-        @if ($message = Session::get('success'))
-            <div class="alert alert-success">
-                <p>{{ $message }}</p>
-            </div>
-        @endif
-
         <div class="part-container student-profile">
             <p><strong class="important">{{ __('common.name') }}: </strong>{{ $student->name }}</p>
             <p><strong class="important">{{ __('common.matricule') }}: </strong>{{ $student->matricule }}</p>

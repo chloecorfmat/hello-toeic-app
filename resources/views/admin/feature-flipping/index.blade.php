@@ -3,16 +3,6 @@
 @section('content')
     <div class="container">
         <div class="main-content list-tests">
-            @if ($message = Session::get('success'))
-                <div class="alert alert-success">
-                    <p>{{ $message }}</p>
-                </div>
-            @elseif ($message = Session::get('error'))
-                <div class="alert alert-error">
-                    <p>{{ $message }}</p>
-                </div>
-            @endif
-
             <p>{{ __('feature-flipping.explanation') }}</p>
             <form method="POST" action="{{ route('feature-flipping.store') }}">
                     @csrf

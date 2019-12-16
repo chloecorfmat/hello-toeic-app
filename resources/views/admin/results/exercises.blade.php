@@ -2,16 +2,6 @@
 
 @section('content')
     <div class="main-content">
-        @if ($errors->any())
-            <div>
-                <ul class="alert alert-error">
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
         <div class="part-container">
             <h2>{{ __('exercises.results') }}</h2>
             @if (!Auth::user()->hasRole('teacher'))

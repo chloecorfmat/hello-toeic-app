@@ -8,22 +8,6 @@
             </a>
         </div>
 
-        @if ($message = Session::get('success'))
-            <div class="alert alert-success">
-                <p>{{ $message }}</p>
-            </div>
-        @endif
-
-        @if ($errors->any())
-            <div>
-                <ul class="alert alert-error">
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
         <div class="table-container is-visible">
             <table>
                 <caption class="sr-only">{{ __('questions.list') }}</caption>

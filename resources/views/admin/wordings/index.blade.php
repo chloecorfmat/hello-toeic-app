@@ -4,15 +4,6 @@
     @inject('render', 'App\Services\RenderService')
     <div class="container">
         <div class="main-content">
-            @if ($message = Session::get('success'))
-                <div class="alert alert-success">
-                    <p>{{ $message }}</p>
-                </div>
-            @elseif ($message = Session::get('error'))
-                <div class="alert alert-error">
-                    <p>{{ $message }}</p>
-                </div>
-            @endif
             <h2>{{ __('wordings.explanation') }}</h2>
 
             <form method="POST" action="{{ route('wordings.store') }}" class="form-wordings">

@@ -2,30 +2,6 @@
 
 @section('content')
     <div class="main-content">
-        @if ($errors->any())
-            <div>
-                <ul class="alert alert-error">
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
-        @if ($message = Session::get('success'))
-            <div class="alert alert-success">
-                <p>{{ $message }}</p>
-            </div>
-        @elseif ($message = Session::get('warning'))
-            <div class="alert alert-warning">
-                {!! html_entity_decode($message) !!}
-            </div>
-        @elseif ($message = Session::get('error'))
-            <div class="alert alert-error">
-                <p>{{ $message }}</p>
-            </div>
-        @endif
-
         <form method="POST" action="{{ route('users.update', ['id' => $user->id]) }}" enctype="multipart/form-data">
             @csrf
             {{ method_field('PUT')}}

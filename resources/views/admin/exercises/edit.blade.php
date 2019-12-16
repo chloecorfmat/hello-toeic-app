@@ -2,12 +2,6 @@
 
 @section('content')
     <div class="main-content">
-        @if ($message = Session::get('success'))
-            <div class="alert alert-success">
-                <p>{{ $message }}</p>
-            </div>
-        @endif
-
         <form method="POST" action="{{ route('exercises.update', ['id' => $exercise->id]) }}">
             @csrf
             {{ method_field('PUT')}}

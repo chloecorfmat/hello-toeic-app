@@ -2,12 +2,6 @@
 
 @section('content')
     <div class="main-content">
-        @if ($message = Session::get('success'))
-            <div class="alert alert-success">
-                <p>{{ $message }}</p>
-            </div>
-        @endif
-
         <div class="part-container student-profile">
             <p><strong class="important">{{ __('common.name') }}: </strong>{{ $user->name }}</p>
             <p><strong class="important">{{ __('common.matricule') }}: </strong>{{ $user->matricule }}</p>

@@ -3,16 +3,6 @@
 @section('content')
     <div class="container">
         <div class="main-content">
-            @if ($message = Session::get('success'))
-                <div class="alert alert-success">
-                    <p>{{ $message }}</p>
-                </div>
-            @elseif ($message = Session::get('error'))
-                <div class="alert alert-error">
-                    <p>{{ $message }}</p>
-                </div>
-            @endif
-
             <p>{{ __('config.explanation') }}</p>
             <form method="POST" action="{{ route('config.store') }}">
                     @csrf

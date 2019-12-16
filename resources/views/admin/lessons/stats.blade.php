@@ -2,20 +2,6 @@
 
 @section('content')
     <div class="main-content list-tests">
-        <div class="main-content--header">
-            {{ Breadcrumbs::render('lessons.stats', $lesson) }}
-            <h1>{{ __('statistics.title') }}</h1>
-        </div>
-        @if ($message = Session::get('success'))
-            <div class="alert alert-success">
-                <p>{{ $message }}</p>
-            </div>
-        @elseif ($message = Session::get('error'))
-            <div class="alert alert-error">
-                <p>{{ $message }}</p>
-            </div>
-        @endif
-
         <div class="part-container">
             <div class="table">
                 <h2>{{ __('exercises.list') }}</h2>

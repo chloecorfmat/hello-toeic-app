@@ -10,6 +10,5 @@
         <p>{{ __('common.number-of-proposals') }} : <span>{{ $part->nb_answers }}</span></p>
         <p>{{ __('common.questions-or-texts') }} ? : <span>{{ $part->texts }}</span></p>
         <p>{{ __('common.files') }} ? : <span>{{ $part->files }}</span></p>
-
     </div>
 @endsection
