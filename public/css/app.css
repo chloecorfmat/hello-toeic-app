@@ -1128,6 +1128,14 @@ tr:nth-child(2n) {
   width: 70%;
 }
 
+.normal-flag {
+  margin: -24px !important;
+  transform: scale(0.4) !important;
+  -ms-transform: scale(0.4) !important;
+  -webkit-transform: scale(0.4) !important;
+  -moz-transform: scale(0.4) !important;
+}
+
 .login-page {
   display: -webkit-box;
   display: flex;

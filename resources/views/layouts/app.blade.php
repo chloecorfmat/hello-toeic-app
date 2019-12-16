@@ -35,7 +35,8 @@
     <div id="app" class="app">
         @php ($user = json_encode(Auth::user()))
         @php ($active_trail = $common_data['active_trail'] ?? 'null')
-        <base-header current-user-data="{{ $user }}" active-trail-data="{{ $active_trail }}"></base-header>
+        @php ($lang = app()->getLocale())
+        <base-header current-user-data="{{ $user }}" active-trail-data="{{ $active_trail }}" lang="{{ $lang }}"></base-header>
         <main
             @if (isset($class_main) && !empty($class_main))
                 class="{{ $class_main }}"

@@ -127,18 +127,22 @@
                         </a>
                     </li>
                     <li v-if="Object.keys(this.$store.state.currentUser).length !== 0" class="header--actions-list-item">
-                        <a href="/contact">
-                            <i class="fas fa-info-circle fa-lg"></i>
-                            <span class="legend-ico">Contact</span>
-                        </a>
-                    </li>
-                    <li v-if="Object.keys(this.$store.state.currentUser).length !== 0" class="header--actions-list-item">
                         <a href="/logout">
                             <i class="fas fa-power-off fa-lg"></i>
                             <span class="legend-ico">Logout</span>
                         </a>
                     </li>
+                    <li class="header--actions-list-item">
 
+                        <a v-if="lang == 'fr'" href="/locale/en">
+                            <country-flag country='gb'/>
+                            <span class="legend-ico">English</span>
+                        </a>
+                        <a v-if="lang == 'en'" href="/locale/fr">
+                            <country-flag country='fr'/>
+                            <span class="legend-ico">Français</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </header>
@@ -146,12 +150,15 @@
 </template>
 
 <script>
+    import CountryFlag from 'vue-country-flag'
+
     import store from '../../store/store';
     import {mapState} from 'vuex';
 
     export default {
         store,
-        props: ['currentUserData', 'activeTrailData'],
+        components: {CountryFlag},
+        props: ['currentUserData', 'activeTrailData', 'lang'],
         data: function() {
             return {
                 'isOpened': null,
@@ -168,6 +175,7 @@
         },
         beforeMount: function() {
             if (this.currentUser) {
+                this.$store.commit('setLang', this.lang);
                 this.$store.commit('setCurrentUser', this.currentUser);
                 this.$store.commit('setApiToken', this.currentUser.api_token);
                 this.$store.commit('setActiveTrail', this.activeTrailData);

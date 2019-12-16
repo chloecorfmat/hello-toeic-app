@@ -6,6 +6,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
+        lang: 'en',
         translations_keys: [],
         translations_values: [],
         apiToken: '',
@@ -20,6 +21,9 @@ export default new Vuex.Store({
     mutations: {
         translations(state, translations) {
             state.translations = translations;
+        },
+        setLang(state, lang) {
+          state.lang = lang;
         },
         setApiToken(state, apiToken) {
             state.apiToken = apiToken;
