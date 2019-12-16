@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Services\FlashService;
 use App\Services\RenderService;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Http\Request;
@@ -35,6 +36,7 @@ class WordingController extends Controller
             'breadcrumb' => Breadcrumbs::generate('wordings.index'),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view(
             'admin.wordings.index',

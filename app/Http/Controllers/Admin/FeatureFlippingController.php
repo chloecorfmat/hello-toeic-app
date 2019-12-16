@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Services\FlashService;
 use App\Setting;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Http\Request;
@@ -32,6 +33,7 @@ class FeatureFlippingController extends Controller
             'breadcrumb' => Breadcrumbs::generate('feature-flipping.index'),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view('admin.feature-flipping.index',compact('features', 'common_data'));
     }

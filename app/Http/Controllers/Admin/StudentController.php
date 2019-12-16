@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\CompositeTest;
 use App\CompositeTrial;
+use App\Services\FlashService;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -40,6 +41,7 @@ class StudentController extends Controller
             'breadcrumb' => Breadcrumbs::generate('students.index'),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view(
             'admin.students.index',
@@ -117,6 +119,7 @@ class StudentController extends Controller
             'breadcrumb' => Breadcrumbs::generate('students.show', $student),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view(
             'admin.students.show',

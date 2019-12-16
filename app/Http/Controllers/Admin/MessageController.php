@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Message;
+use App\Services\FlashService;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Http\Request;
 
@@ -32,6 +33,7 @@ class MessageController extends Controller
             'breadcrumb' => Breadcrumbs::generate('messages.index'),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view(
             'admin.messages.index',

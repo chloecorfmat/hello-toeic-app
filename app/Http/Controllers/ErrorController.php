@@ -20,7 +20,6 @@ class ErrorController extends Controller
     }
 
     public function blockedAccount(Request $request) {
-        $common_data['flashs'] = FlashService::getMessages();
         return view('errors.blocked-account')->withErrors(['Your account has been blocked.']);
     }
 }

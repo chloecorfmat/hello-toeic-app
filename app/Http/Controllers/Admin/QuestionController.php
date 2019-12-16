@@ -9,6 +9,7 @@ use App\Game;
 use App\Part;
 use App\Proposal;
 use App\Question;
+use App\Services\FlashService;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -41,6 +42,7 @@ class QuestionController extends Controller
             'breadcrumb' => Breadcrumbs::generate('questions.index'),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view(
             'admin.questions.index',
@@ -67,6 +69,7 @@ class QuestionController extends Controller
             'breadcrumb' => Breadcrumbs::generate('questions.create'),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view(
             'admin.questions.create',
@@ -157,6 +160,7 @@ class QuestionController extends Controller
                 'breadcrumb' => Breadcrumbs::generate('questions.show', $question),
                 'theme' => 'colored-background',
             ];
+            $common_data['flashs'] = FlashService::getMessages();
 
             return view(
                 'admin.questions.show',
@@ -195,6 +199,7 @@ class QuestionController extends Controller
             'breadcrumb' => Breadcrumbs::generate('questions.edit', $datas['question']),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view(
             'admin.questions.edit',
@@ -291,6 +296,7 @@ class QuestionController extends Controller
             'breadcrumb' => Breadcrumbs::generate('questions.delete', $question),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view(
             'admin.questions.delete',

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\CompositeTrial;
 use App\Game;
+use App\Services\FlashService;
 use App\Setting;
 use App\Trial;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
@@ -47,6 +48,8 @@ class ResultController extends Controller
             ],
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
+
         return view('admin.results.index', compact('common_data'));
     }
 
@@ -71,6 +74,7 @@ class ResultController extends Controller
             'breadcrumb' => Breadcrumbs::generate('results.composite-tests'),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view(
             'admin.results.composite-tests',
@@ -103,6 +107,7 @@ class ResultController extends Controller
             'breadcrumb' => Breadcrumbs::generate('results.exercises'),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view(
             'admin.results.exercises',
@@ -130,6 +135,7 @@ class ResultController extends Controller
             'breadcrumb' => Breadcrumbs::generate('results.games'),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view(
             'admin.results.games',

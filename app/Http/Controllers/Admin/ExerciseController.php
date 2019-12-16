@@ -9,6 +9,7 @@ use App\Exercise;
 use App\Question;
 use App\Document;
 use App\Services\ExerciseService;
+use App\Services\FlashService;
 use App\Services\StatsService;
 use App\Setting;
 use App\Trial;
@@ -44,6 +45,7 @@ class ExerciseController extends Controller
             'breadcrumb' => Breadcrumbs::generate('exercises.index'),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view('admin.exercises.index', compact('exercises', 'newExercises', 'common_data'));
     }
@@ -131,6 +133,7 @@ class ExerciseController extends Controller
             'title' => trans('common.details') . ': ' . $exercise->name,
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view(
             'admin.exercises.show',
@@ -167,6 +170,7 @@ class ExerciseController extends Controller
             'breadcrumb' => Breadcrumbs::generate('exercises.edit', $exercise),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view('admin.exercises.edit', compact('exercise', 'examples', 'common_data'));
     }
@@ -215,6 +219,7 @@ class ExerciseController extends Controller
             'breadcrumb' => Breadcrumbs::generate('exercises.delete', $exercise),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view('admin.exercises.delete', compact('exercise', 'common_data'));
     }
@@ -256,6 +261,7 @@ class ExerciseController extends Controller
                 'breadcrumb' => Breadcrumbs::generate('exercises.import', $part),
                 'theme' => 'colored-background',
             ];
+            $common_data['flashs'] = FlashService::getMessages();
 
             return view('admin.exercises.import', compact('part', 'examples', 'common_data'));
         }

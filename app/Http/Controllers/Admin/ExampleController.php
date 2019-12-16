@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Example;
 use App\Http\Controllers\Controller;
+use App\Services\FlashService;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Http\Request;
 use Webpatser\Sanitize\Sanitize;
@@ -33,6 +34,7 @@ class ExampleController extends Controller
             'breadcrumb' => Breadcrumbs::generate('exercises.examples.index'),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view('admin.exercises.examples.index', compact('examples', 'common_data'));
     }
@@ -50,6 +52,7 @@ class ExampleController extends Controller
             'breadcrumb' => Breadcrumbs::generate('exercises.examples.create'),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view('admin.exercises.examples.create', compact('common_data'));
     }

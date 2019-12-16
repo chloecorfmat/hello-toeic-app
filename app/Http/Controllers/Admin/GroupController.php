@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Group;
 use App\Http\Controllers\Controller;
+use App\Services\FlashService;
 use App\Services\StringService;
 use App\User;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
@@ -44,6 +45,8 @@ class GroupController extends Controller
             'breadcrumb' => Breadcrumbs::generate('groups.index'),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
+
         return view('admin.groups.index', compact('groups', 'teachers', 'common_data'));
     }
 
@@ -63,6 +66,7 @@ class GroupController extends Controller
             'breadcrumb' => Breadcrumbs::generate('groups.create'),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view('admin.groups.create', compact('teachers', 'students', 'common_data'));
     }
@@ -130,6 +134,7 @@ class GroupController extends Controller
             'breadcrumb' => Breadcrumbs::generate('groups.show', $group),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view('admin.groups.show', compact('group', 'teacher', 'students', 'common_data'));
     }
@@ -156,6 +161,7 @@ class GroupController extends Controller
             'breadcrumb' => Breadcrumbs::generate('groups.edit', $group),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view('admin.groups.edit', compact('group', 'teachers', 'common_data'));
     }
@@ -240,6 +246,7 @@ class GroupController extends Controller
             'breadcrumb' => Breadcrumbs::generate('groups.delete'),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view('admin.groups.delete', compact('group', 'common_data'));
     }
@@ -251,6 +258,7 @@ class GroupController extends Controller
             'breadcrumb' => Breadcrumbs::generate('groups.assign'),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view('admin.groups.assign', compact('common_data'));
     }
@@ -369,6 +377,7 @@ class GroupController extends Controller
             'breadcrumb' => Breadcrumbs::generate('groups.import'),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view('admin.groups.import', compact('common_data'));
     }

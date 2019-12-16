@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Services\FlashService;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
@@ -50,6 +51,7 @@ class PermissionController extends Controller
             'breadcrumb' => Breadcrumbs::generate('permissions.index'),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view('admin.permissions.index',compact('datas', 'common_data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Part;
+use App\Services\FlashService;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Http\Request;
 
@@ -32,6 +33,7 @@ class PartController extends Controller
             'breadcrumb' => Breadcrumbs::generate('parts.index'),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view(
             'admin.parts.index',
@@ -55,6 +57,7 @@ class PartController extends Controller
             'breadcrumb' => Breadcrumbs::generate('parts.create'),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view('admin.parts.create', compact('common_data'));
     }
@@ -115,6 +118,7 @@ class PartController extends Controller
             'breadcrumb' => Breadcrumbs::generate('parts.show', $part),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view(
             'admin.parts.show',
@@ -145,6 +149,7 @@ class PartController extends Controller
             'breadcrumb' => Breadcrumbs::generate('parts.edit', $part),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view(
             'admin.parts.edit',
@@ -213,6 +218,7 @@ class PartController extends Controller
             'breadcrumb' => Breadcrumbs::generate('parts.delete', $part),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view(
             'admin.parts.delete',

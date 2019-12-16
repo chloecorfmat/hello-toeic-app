@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Services\FlashService;
 use App\Setting;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Http\Request;
@@ -32,6 +33,8 @@ class ConfigController extends Controller
             'breadcrumb' => Breadcrumbs::generate('config.index'),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
+
         return view('admin.config.index',compact('configs', 'common_data'));
     }
 

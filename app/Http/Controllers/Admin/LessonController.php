@@ -7,6 +7,7 @@ use App\CompositeTrial;
 use App\Exercise;
 use App\Group;
 use App\Lesson;
+use App\Services\FlashService;
 use App\Services\StatsService;
 use App\Setting;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
@@ -39,6 +40,7 @@ class LessonController extends Controller
             'breadcrumb' => Breadcrumbs::generate('lessons.index'),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view('admin.lessons.index', compact('lessons', 'common_data'));
     }
@@ -59,6 +61,7 @@ class LessonController extends Controller
             'breadcrumb' => Breadcrumbs::generate('lessons.create'),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view('admin.lessons.create', compact('groups', 'tests', 'common_data'));
     }
@@ -199,6 +202,7 @@ class LessonController extends Controller
             ],
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view(
             'admin.lessons.show',
@@ -236,6 +240,7 @@ class LessonController extends Controller
             'breadcrumb' => Breadcrumbs::generate('lessons.edit', $lesson),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view(
             'admin.lessons.edit',
@@ -302,6 +307,7 @@ class LessonController extends Controller
             'breadcrumb' => Breadcrumbs::generate('lessons.delete', $lesson),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view(
             'admin.lessons.delete',
@@ -456,6 +462,8 @@ class LessonController extends Controller
             'breadcrumb' => Breadcrumbs::generate('lessons.stats', $lesson),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
+
         return view(
             'admin.lessons.stats',
             compact(

@@ -6,6 +6,7 @@ use App\Disability;
 use App\Group;
 use App\Http\Controllers\Controller;
 use App\Mail\UserAccountCreated;
+use App\Services\FlashService;
 use App\Setting;
 use App\User;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
@@ -42,12 +43,12 @@ class UserController extends Controller
         }
 
         $common_data['active_trail'] = 'teacher-users';
-
         $common_data['header'] = [
             'title' => trans('users.list'),
             'breadcrumb' => Breadcrumbs::generate('users.index'),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view(
             'admin.users.index',
@@ -74,6 +75,7 @@ class UserController extends Controller
             'breadcrumb' => Breadcrumbs::generate('users.create'),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view(
             'admin.users.create',
@@ -167,6 +169,7 @@ class UserController extends Controller
             'breadcrumb' => Breadcrumbs::generate('users.show', $user),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view(
             'admin.users.show',
@@ -216,6 +219,7 @@ class UserController extends Controller
             'breadcrumb' => Breadcrumbs::generate('users.edit', $user),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view(
             'admin.users.edit',
@@ -364,6 +368,7 @@ class UserController extends Controller
             'breadcrumb' => Breadcrumbs::generate('users.delete', $user),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view(
             'admin.users.delete',
@@ -381,6 +386,7 @@ class UserController extends Controller
             'breadcrumb' => Breadcrumbs::generate('users.import'),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view('admin.users.import', compact('common_data'));
     }
@@ -467,6 +473,7 @@ class UserController extends Controller
             'breadcrumb' => Breadcrumbs::generate('users.blocked'),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view(
             'admin.users.blocked',
@@ -502,6 +509,7 @@ class UserController extends Controller
             'breadcrumb' => Breadcrumbs::generate('users.index'),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view(
             'admin.users.v2',

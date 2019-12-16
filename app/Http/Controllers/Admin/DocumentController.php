@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Document;
 use App\Http\Controllers\Controller;
+use App\Services\FlashService;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -33,6 +34,7 @@ class DocumentController extends Controller
             'breadcrumb' => Breadcrumbs::generate('documents.index'),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view('admin.documents.index', compact('datas', 'common_data'));
     }
@@ -50,6 +52,7 @@ class DocumentController extends Controller
             'breadcrumb' => Breadcrumbs::generate('documents.create'),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view('admin.documents.create', compact('common_data'));
     }
@@ -104,6 +107,7 @@ class DocumentController extends Controller
             'breadcrumb' => Breadcrumbs::generate('documents.show', $document),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view('admin.documents.show', compact('datas', 'common_data'));
     }
@@ -128,6 +132,7 @@ class DocumentController extends Controller
             'breadcrumb' => Breadcrumbs::generate('documents.edit', $document),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view('admin.documents.edit', compact('document', 'common_data'));
     }

@@ -54,6 +54,7 @@ class CompositeTestController extends Controller
             'breadcrumb' => Breadcrumbs::generate('composite-tests.index'),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view('admin.composite-tests.index', compact('tests', 'newTests', 'common_data'));
     }
@@ -151,6 +152,7 @@ class CompositeTestController extends Controller
             'breadcrumb' => Breadcrumbs::generate('composite-tests.edit', $test),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view('admin.composite-tests.edit', compact('test', 'exercises', 'common_data'));
     }

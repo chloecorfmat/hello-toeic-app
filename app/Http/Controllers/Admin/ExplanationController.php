@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Explanation;
+use App\Services\FlashService;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -32,6 +33,7 @@ class ExplanationController extends Controller
             'breadcrumb' => Breadcrumbs::generate('explanations.index'),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view('admin.explanations.index', compact('explanations', 'common_data'));
     }
@@ -49,6 +51,7 @@ class ExplanationController extends Controller
             'breadcrumb' => Breadcrumbs::generate('explanations.create'),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view('admin.explanations.create', compact('common_data'));
     }
@@ -89,6 +92,7 @@ class ExplanationController extends Controller
             'breadcrumb' => Breadcrumbs::generate('explanations.show', $explanation),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view('admin.explanations.show', compact('explanation', 'common_data'));
     }
@@ -113,6 +117,7 @@ class ExplanationController extends Controller
             'breadcrumb' => Breadcrumbs::generate('explanations.edit', $explanation),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view('admin.explanations.edit', compact('explanation', 'common_data'));
     }
@@ -159,6 +164,7 @@ class ExplanationController extends Controller
             'breadcrumb' => Breadcrumbs::generate('explanations.delete', $explanation),
             'theme' => 'colored-background',
         ];
+        $common_data['flashs'] = FlashService::getMessages();
 
         return view('admin.explanations.delete', compact('explanation', 'common_data'));
     }
