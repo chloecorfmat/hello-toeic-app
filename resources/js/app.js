@@ -29,6 +29,8 @@ Vue.component('breadcrumb', require('./components/Content/Header/Breadcrumb').de
 Vue.component('login-page', require('./components/Pages/LoginPage.vue').default);
 Vue.component('base-table', require('./components/Tables/BaseTable.vue').default);
 
+Vue.component('composite-test-create', require('./components/Form/CompositeTestCreate.vue').default);
+
 Vue.directive('focus', {
     inserted: function (el) {
         el.focus()
