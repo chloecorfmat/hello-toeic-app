@@ -102,38 +102,4 @@ class ExampleController extends Controller
     {
         return redirect()->route('examples.index');
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Example  $exerciseExample
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Example $exerciseExample)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Example  $exerciseExample
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Example $exerciseExample)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Example  $exerciseExample
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Example $exerciseExample)
-    {
-        //
-    }
 }

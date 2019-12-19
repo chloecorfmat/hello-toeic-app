@@ -30,7 +30,7 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::group(['middleware' => ['auth', 'allowed.account']], function () {
     Route::setGroupNamespace('App\Http\Controllers\Admin');
-    Route::resource('admin/permissions', 'PermissionController');
+    Route::resource('admin/permissions', 'PermissionController')->only(['index', 'store']);
 
     Route::get('teacher/users/blocked', 'UserController@blocked')
         ->name('users.blocked');
@@ -51,9 +51,9 @@ Route::group(['middleware' => ['auth', 'allowed.account']], function () {
         ->name('questions.delete');
     Route::resource('teacher/questions', 'QuestionController');
 
-    Route::resource('teacher/documents', 'DocumentController');
-    Route::resource('teacher/students', 'StudentController');
-    Route::resource('teacher/composite-tests', 'CompositeTestController');
+    Route::resource('teacher/documents', 'DocumentController')->except(['destroy']);
+    Route::resource('teacher/students', 'StudentController')->only(['index', 'show']);
+    Route::resource('teacher/composite-tests', 'CompositeTestController')->except(['show', 'destroy']);
 
     Route::get('teacher/parts/delete/{id?}', 'PartController@delete')
         ->name('parts.delete');
@@ -71,7 +71,6 @@ Route::group(['middleware' => ['auth', 'allowed.account']], function () {
         ->name('groups.storeImport');
     Route::get('teacher/groups/delete/{id?}', 'GroupController@delete')
         ->name('groups.delete');
-
     Route::resource('teacher/groups', 'GroupController');
 
     Route::get('teacher/explanations/delete/{id?}', 'ExplanationController@delete')
@@ -84,7 +83,7 @@ Route::group(['middleware' => ['auth', 'allowed.account']], function () {
         ->name('lessons.stats');
     Route::resource('teacher/lessons', 'LessonController');
 
-    Route::resource('teacher/exercises/examples', 'ExampleController');
+    Route::resource('teacher/exercises/examples', 'ExampleController')->except(['edit', 'update', 'destroy']);
 
     Route::get('teacher/exercises/import/{id?}', 'ExerciseController@import')
         ->name('exercises.import');
@@ -92,7 +91,7 @@ Route::group(['middleware' => ['auth', 'allowed.account']], function () {
         ->name('exercises.storeImport');
     Route::get('teacher/exercises/delete/{id?}', 'ExerciseController@delete')
         ->name('exercises.delete');
-    Route::resource('teacher/exercises', 'ExerciseController');
+    Route::resource('teacher/exercises', 'ExerciseController')->except(['create', 'store']);
 
     Route::get('/admin/feature-flipping', 'FeatureFlippingController@index')
         ->name('feature-flipping.index');
@@ -120,7 +119,7 @@ Route::group(['middleware' => ['auth', 'allowed.account']], function () {
 
     Route::get('teacher/messages/handle/{id?}', 'MessageController@handle')
         ->name('messages.handle');
-    Route::resource('teacher/messages', 'MessageController');
+    Route::resource('teacher/messages', 'MessageController')->only(['index']);
 });
 
 Route::group(['middleware' => ['auth', 'allowed.account']], function () {
@@ -129,66 +128,42 @@ Route::group(['middleware' => ['auth', 'allowed.account']], function () {
         // Renamed routes due to Admin/ExerciseController.
         'names' => [
             'index' => 'student.exercises.index',
-            'create' => 'student.exercises.create',
-            'store' => 'student.exercises.store',
             'show' => 'student.exercises.show',
-            'edit' => 'student.exercises.edit',
             'update' => 'student.exercises.update',
-            'destroy' => 'student.exercises.destroy',
         ]
-    ]);
+    ])->only(['index', 'show', 'update']);
 
     Route::resource('composite-tests', 'CompositeTestController', [
         // Renamed routes due to Admin/ExerciseController.
         'names' => [
             'index' => 'student.composite-tests.index',
-            'create' => 'student.composite-tests.create',
-            'store' => 'student.composite-tests.store',
             'show' => 'student.composite-tests.show',
-            'edit' => 'student.composite-tests.edit',
             'update' => 'student.composite-tests.update',
-            'destroy' => 'student.composite-tests.destroy',
         ]
-    ]);
+    ])->only(['index', 'show', 'update']);
 
     Route::resource('trials', 'TrialController', [
         // Renamed routes due to Admin/ExerciseController.
         'names' => [
             'index' => 'student.trials.index',
-            'create' => 'student.trials.create',
-            'store' => 'student.trials.store',
             'show' => 'student.trials.show',
-            'edit' => 'student.trials.edit',
-            'update' => 'student.trials.update',
-            'destroy' => 'student.trials.destroy',
         ]
-    ]);
+    ])->only(['index', 'show']);
 
     Route::resource('composite-trials', 'CompositeTrialController', [
         // Renamed routes due to Admin/ExerciseController.
         'names' => [
             'index' => 'student.composite-trials.index',
-            'create' => 'student.composite-trials.create',
-            'store' => 'student.composite-trials.store',
-            'show' => 'student.composite-trials.show',
-            'edit' => 'student.composite-trials.edit',
-            'update' => 'student.composite-trials.update',
-            'destroy' => 'student.composite-trials.destroy',
         ]
-    ]);
+    ])->only(['index']);
 
     Route::resource('users', 'UserController', [
         // Renamed routes due to Admin/ExerciseController.
         'names' => [
-            'index' => 'student.users.index',
-            'create' => 'student.users.create',
-            'store' => 'student.users.store',
             'show' => 'student.users.show',
-            'edit' => 'student.users.edit',
             'update' => 'student.users.update',
-            'destroy' => 'student.users.destroy',
         ]
-    ]);
+    ])->only(['show', 'update']);
 
     Route::get('games/play', 'GameController@play')->name('games.play');
     Route::get('games', 'GameController@index')->name('games');
