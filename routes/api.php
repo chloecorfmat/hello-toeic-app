@@ -14,9 +14,23 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::macro('setGroupNamespace', function ($namespace) {
+    // Get last groupStack data and hard change the namespace value
+    $lastGroupStack = array_pop($this->groupStack);
+    if ($lastGroupStack !== null) {
+        array_set($lastGroupStack, 'namespace', $namespace);
+        $this->groupStack[] = $lastGroupStack;
+    }
+    return $this;
 });
 
-Route::middleware('auth:api')->get('users/{page?}', 'ApiController@users');
-Route::middleware('auth:api')->get('translations', 'ApiController@translations');
+Route::group(['middleware' => ['auth:api']], function () {
+    Route::setGroupNamespace('App\Http\Controllers\Api');
+
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+
+    Route::get('users/{page?}', 'UserController@users');
+    Route::get('translations', 'ApiController@translations');
+});
