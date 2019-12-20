@@ -35,7 +35,10 @@
 </template>
 
 <script>
+    import store from '../../store/store';
+
     export default {
+        store,
         props: ['user', 'refresh'],
         data: function() {
             return {

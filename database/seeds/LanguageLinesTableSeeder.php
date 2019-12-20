@@ -1994,5 +1994,11 @@ class LanguageLinesTableSeeder extends Seeder
             'key' => 'see_results',
             'text' => ['en' => 'Show results', 'fr' => 'Voir les résultats'],
         ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'error',
+            'text' => ['en' => 'Error', 'fr' => 'Erreur'],
+        ]);
     }
 }
