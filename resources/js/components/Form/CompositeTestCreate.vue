@@ -86,7 +86,7 @@
                     "common_visibility_explanation" : "1 for public, 0 for private.",
                     "common_reading_duration" : "Reading duration",
                     "composite_tests_composition" : "Composition du composite test",
-                    "composite_tests_composition_explanation" : "The listening exercises must all be added before the reading exercises. The timer will start with the audio files when a students starts a test.",
+                    "composite_tests_composition_explanation" : "The listening exercises must all be added before the reading exercises. The timer will start with the audio files when a students starts a test."
                 }
             }
         },

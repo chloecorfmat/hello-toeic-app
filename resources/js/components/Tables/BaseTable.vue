@@ -98,7 +98,7 @@
                     "common_matricule": "Matricule",
                     "common_role": "Role",
                     "common_actions": "Actions",
-                    "common_no_result": "No result.",
+                    "common_no_result": "No result."
                 }
             };
         },

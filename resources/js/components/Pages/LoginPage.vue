@@ -51,7 +51,7 @@
                     "common_email": "E-mail",
                     "common_password": "Password",
                     "common_error": "Error",
-                    "common_forgot_password": "Forgot your password?",
+                    "common_forgot_password": "Forgot your password?"
                 }
             }
         },
