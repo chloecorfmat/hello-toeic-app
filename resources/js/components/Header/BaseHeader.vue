@@ -44,19 +44,19 @@
                             </button>
                             <ul class="submenu" id="teacherUsersSubmenu">
                                 <li class="submenu--item">
-                                    <a href="/teacher/users">Users list</a>
+                                    <a href="/teacher/users">{{ this.neededTranslations.users_list }}</a>
                                 </li>
                                 <li class="submenu--item">
-                                    <a href="/teacher/students">Students list</a>
+                                    <a href="/teacher/students">{{ this.neededTranslations.students_list }}</a>
                                 </li>
                                 <li class="submenu--item">
-                                    <a href="/teacher/groups">Groups list</a>
+                                    <a href="/teacher/groups">{{ this.neededTranslations.groups_list }}</a>
                                 </li>
                                 <li class="submenu--item">
-                                    <a href="/teacher/lessons">Lessons list</a>
+                                    <a href="/teacher/lessons">{{ this.neededTranslations.lessons_list }}</a>
                                 </li>
                                 <li class="submenu--item">
-                                    <a href="/teacher/messages">Messages list</a>
+                                    <a href="/teacher/messages">{{ this.neededTranslations.messages_list }}</a>
                                 </li>
                             </ul>
                         </li>
@@ -66,22 +66,22 @@
                             </button>
                             <ul class="submenu" id="teacherExercisesSubmenu">
                                 <li class="submenu--item">
-                                    <a href="/teacher/exercises">Exercises list</a>
+                                    <a href="/teacher/exercises">{{ this.neededTranslations.exercises_list }}</a>
                                 </li>
                                 <li class="submenu--item">
-                                    <a href="/teacher/composite-tests">Composite tests list</a>
+                                    <a href="/teacher/composite-tests">{{ this.neededTranslations.composite_tests_list }}</a>
                                 </li>
                                 <li class="submenu--item">
-                                    <a href="/teacher/parts">Parts list</a>
+                                    <a href="/teacher/parts">{{ this.neededTranslations.parts_list }}</a>
                                 </li>
                                 <li class="submenu--item">
-                                    <a href="/teacher/questions">Questions list</a>
+                                    <a href="/teacher/questions">{{ this.neededTranslations.questions_list }}</a>
                                 </li>
                                 <li class="submenu--item">
-                                    <a href="/teacher/documents">Documents list</a>
+                                    <a href="/teacher/documents">{{ this.neededTranslations.documents_list }}</a>
                                 </li>
                                 <li class="submenu--item">
-                                    <a href="/teacher/explanations">Explanations list</a>
+                                    <a href="/teacher/explanations">{{ this.neededTranslations.explanations_list }}</a>
                                 </li>
                             </ul>
                         </li>
@@ -91,13 +91,13 @@
                             </button>
                             <ul class="submenu" id="teacherResultsSubmenu">
                                 <li class="submenu--item">
-                                    <a href="/teacher/results/exercises">Résultats des exercices</a>
+                                    <a href="/teacher/results/exercises">{{ this.neededTranslations.exercises_results }}</a>
                                 </li>
                                 <li class="submenu--item">
-                                    <a href="/teacher/results/composite-tests">Résultats des tests composés</a>
+                                    <a href="/teacher/results/composite-tests">{{ this.neededTranslations.composite_tests_results }}</a>
                                 </li>
                                 <li class="submenu--item">
-                                    <a href="/teacher/results/games">Résultats des challenges</a>
+                                    <a href="/teacher/results/games">{{ this.neededTranslations.games_results }}</a>
                                 </li>
                             </ul>
                         </li>
@@ -105,13 +105,19 @@
                     <ul v-else>
                         <!-- Add class="active" -->
                         <li class="header--menu-item" id="studentCompositeTestsMenu">
-                            <a href="/composite-tests" v-bind:class="this.$store.state.activeTrail == 'student-composite-tests' ? 'active' : ''">Composite tests</a>
+                            <a href="/composite-tests" v-bind:class="this.$store.state.activeTrail == 'student-composite-tests' ? 'active' : ''">
+                                {{ this.neededTranslations.app_composite_tests }}
+                            </a>
                         </li>
                         <li class="header--menu-item" id="studentExercisesMenu">
-                            <a href="/exercises" v-bind:class="this.$store.state.activeTrail == 'student-exercises' ? 'active' : ''">Exercises</a>
+                            <a href="/exercises" v-bind:class="this.$store.state.activeTrail == 'student-exercises' ? 'active' : ''">
+                                {{ this.neededTranslations.app_exercises }}
+                            </a>
                         </li>
                         <li class="header--menu-item" id="studentChallengesMenu">
-                            <a href="/games" v-bind:class="this.$store.state.activeTrail == 'student-challenges' ? 'active' : ''">Challenge mode</a>
+                            <a href="/games" v-bind:class="this.$store.state.activeTrail == 'student-challenges' ? 'active' : ''">
+                                {{ this.neededTranslations.app_games }}
+                            </a>
                         </li>
                     </ul>
                 </nav>
@@ -179,7 +185,26 @@
                     "app_see_results": "Show results",
                     "common_login": "Login",
                     "common_logout": "Logout",
-                    "app_profile": "Profile"
+                    "app_profile": "Profile",
+                    "users_list": "Users list",
+                    "students_list": "Students list",
+                    "groups_list": "Groups list",
+                    "lessons_list": "Lessons list",
+                    "messages_list": "Messages list",
+                    "exercises_list": "Exercises list",
+                    "composite_tests_list": "Composite tests list",
+                    "parts_list": "Parts list",
+                    "questions_list": "Questions list",
+                    "documents_list": "Documents list",
+                    "explanations_list": "Explanations list",
+
+                    "exercises_results": "Exercises results", // @TODO : change wording.
+                    "composite_tests_results": "Composite tests results", // @TODO : change wording.
+                    "games_results": "Challenges results", // @TODO : change wording.
+
+                    "app_exercises": "Exercises",
+                    "app_composite_tests": "Composite tests",
+                    "app_games": "Challenges",
                 }
             }
         },
@@ -194,6 +219,23 @@
                     this.neededTranslations.exercises_manage = this.$store.getters.translationByKey('exercises_manage');
                     this.neededTranslations.users_manage = this.$store.getters.translationByKey('users_manage');
                     this.neededTranslations.app_see_results = this.$store.getters.translationByKey('app_see_results');
+                    this.neededTranslations.users_list = this.$store.getters.translationByKey('users_list');
+                    this.neededTranslations.students_list = this.$store.getters.translationByKey('students_list');
+                    this.neededTranslations.groups_list = this.$store.getters.translationByKey('groups_list');
+                    this.neededTranslations.lessons_list = this.$store.getters.translationByKey('lessons_list');
+                    this.neededTranslations.messages_list = this.$store.getters.translationByKey('messages_list');
+                    this.neededTranslations.exercises_list = this.$store.getters.translationByKey('exercises_list');
+                    this.neededTranslations.composite_tests_list = this.$store.getters.translationByKey('composite_tests_list');
+                    this.neededTranslations.parts_list = this.$store.getters.translationByKey('parts_list');
+                    this.neededTranslations.questions_list = this.$store.getters.translationByKey('questions_list');
+                    this.neededTranslations.documents_list = this.$store.getters.translationByKey('documents_list');
+                    this.neededTranslations.explanations_list = this.$store.getters.translationByKey('explanations_list');
+                    this.neededTranslations.exercises_results = this.$store.getters.translationByKey('exercises_results');
+                    this.neededTranslations.composite_tests_results = this.$store.getters.translationByKey('composite_tests_results');
+                    this.neededTranslations.games_results = this.$store.getters.translationByKey('games_results');
+                    this.neededTranslations.games_results = this.$store.getters.translationByKey('app_exercises');
+                    this.neededTranslations.games_results = this.$store.getters.translationByKey('app_composite_tests');
+                    this.neededTranslations.games_results = this.$store.getters.translationByKey('app_games');
                 }
             );
         },
