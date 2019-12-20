@@ -10,7 +10,6 @@
 
 <script>
     import store from '../../../store/store';
-    import Flash from './Flash';
 
     export default {
         components: {Flash},
