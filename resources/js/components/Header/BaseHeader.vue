@@ -204,7 +204,7 @@
 
                     "app_exercises": "Exercises",
                     "app_composite_tests": "Composite tests",
-                    "app_games": "Challenges",
+                    "app_games": "Challenges"
                 }
             }
         },
