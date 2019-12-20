@@ -4,17 +4,17 @@
             <ul class="profile--menu-list">
                 <li v-if="this.$store.getters.hasRole('student')" class="profile--menu-item student--item">
                     <a href="/profile" class="profile--menu-link">
-                        <span v-bind:class="{ important: this.$store.state.activeProfile === 'student'}">Student</span>
+                        <span v-bind:class="{ important: this.$store.state.activeProfile === 'student'}">{{ this.neededTranslations.common_student }}</span>
                     </a>
                 </li>
                 <li v-if="this.$store.getters.hasRole('teacher')" class="profile--menu-item teacher--item">
                     <a href="/teacher" class="profile--menu-link">
-                        <span v-bind:class="{ important: this.$store.state.activeProfile === 'teacher'}">Teacher</span>
+                        <span v-bind:class="{ important: this.$store.state.activeProfile === 'teacher'}">{{ this.neededTranslations.common_teacher }}</span>
                     </a>
                 </li>
                 <li v-if="this.$store.getters.hasRole('admin')" class="profile--menu-item admin--item">
                     <a href="/admin" class="profile--menu-link">
-                        <span v-bind:class="{ important: this.$store.state.activeProfile === 'admin'}">Admin</span>
+                        <span v-bind:class="{ important: this.$store.state.activeProfile === 'admin'}">{{ this.neededTranslations.common_admin }}</span>
                     </a>
                 </li>
             </ul>
@@ -31,13 +31,17 @@
                 <nav v-if="Object.keys(this.$store.state.currentUser).length !== 0">
                     <ul v-if="this.$store.state.activeProfile === 'admin'">
                         <li class="header--menu-item" id="adminMenu">
-                            <a href="/admin" v-bind:class="this.$store.state.activeTrail == 'admin' ? 'active' : ''">Admin</a>
+                            <a href="/admin" v-bind:class="this.$store.state.activeTrail == 'admin' ? 'active' : ''">
+                                {{ this.neededTranslations.common_admin }}
+                            </a>
                         </li>
                     </ul>
                     <ul v-else-if="this.$store.state.activeProfile === 'teacher'">
                         <!-- Add class="active" -->
                         <li class="header--menu-item" id="teacherUsersMenu">
-                            <button v-on:click="toggleSubmenu('teacherUsersSubmenu')" v-bind:class="this.$store.state.activeTrail == 'teacher-users' ? 'active' : ''">Gérer les utilisateurs</button>
+                            <button v-on:click="toggleSubmenu('teacherUsersSubmenu')" v-bind:class="this.$store.state.activeTrail == 'teacher-users' ? 'active' : ''">
+                                {{ this.neededTranslations.users_manage }}
+                            </button>
                             <ul class="submenu" id="teacherUsersSubmenu">
                                 <li class="submenu--item">
                                     <a href="/teacher/users">Users list</a>
@@ -57,7 +61,9 @@
                             </ul>
                         </li>
                         <li class="header--menu-item" id="teacherExercisesMenu">
-                            <button v-on:click="toggleSubmenu('teacherExercisesSubmenu')" v-bind:class="this.$store.state.activeTrail == 'teacher-exercises' ? 'active' : ''">Gérer les exercices</button>
+                            <button v-on:click="toggleSubmenu('teacherExercisesSubmenu')" v-bind:class="this.$store.state.activeTrail == 'teacher-exercises' ? 'active' : ''">
+                                {{ this.neededTranslations.exercises_manage }}
+                            </button>
                             <ul class="submenu" id="teacherExercisesSubmenu">
                                 <li class="submenu--item">
                                     <a href="/teacher/exercises">Exercises list</a>
@@ -80,7 +86,9 @@
                             </ul>
                         </li>
                         <li class="header--menu-item" id="teacherResultsMenu">
-                            <button v-on:click="toggleSubmenu('teacherResultsSubmenu')" v-bind:class="this.$store.state.activeTrail == 'teacher-results' ? 'active' : ''">Voir les résultats</button>
+                            <button v-on:click="toggleSubmenu('teacherResultsSubmenu')" v-bind:class="this.$store.state.activeTrail == 'teacher-results' ? 'active' : ''">
+                                {{ this.neededTranslations.app_see_results }}
+                            </button>
                             <ul class="submenu" id="teacherResultsSubmenu">
                                 <li class="submenu--item">
                                     <a href="/teacher/results/exercises">Résultats des exercices</a>
@@ -112,7 +120,7 @@
                 <ul class="header--actions-list">
                     <li v-if="Object.keys(this.$store.state.currentUser).length === 0" class="header--actions-list-item">
                         <a href="/login">
-                            <span>Login</span>
+                            <span>{{ this.neededTranslations.common_login }}</span>
                         </a>
                     </li>
 
@@ -123,17 +131,16 @@
                             </div>
                             <i v-else class="user-ico fas fa-user-circle fa-lg"></i>
 
-                            <span class="legend-ico">Profile</span>
+                            <span class="legend-ico">{{ this.neededTranslations.app_profile }}</span>
                         </a>
                     </li>
                     <li v-if="Object.keys(this.$store.state.currentUser).length !== 0" class="header--actions-list-item">
                         <a href="/logout">
                             <i class="fas fa-power-off fa-lg"></i>
-                            <span class="legend-ico">Logout</span>
+                            <span class="legend-ico">{{ this.neededTranslations.common_logout }}</span>
                         </a>
                     </li>
                     <li class="header--actions-list-item">
-
                         <a v-if="lang == 'fr'" href="/locale/en">
                             <country-flag country='gb'/>
                             <span class="legend-ico">English</span>
@@ -163,6 +170,17 @@
             return {
                 'isOpened': null,
                 'isActive': null,
+                neededTranslations: {
+                    "common_student" : "Student",
+                    "common_teacher" : "Teacher",
+                    "common_admin" : "Admin",
+                    "users_manage": "Manage users",
+                    "exercises_manage": "Manage exercises",
+                    "app_see_results": "Show results",
+                    "common_login": "Login",
+                    "common_logout": "Logout",
+                    "app_profile": "Profile"
+                }
             }
         },
         created() {
@@ -170,6 +188,12 @@
                 (state, getters) => getters.ready,
                 (newValue, oldValue) => {
                     // Manage translations.
+                    this.neededTranslations.common_student = this.$store.getters.translationByKey('common_student');
+                    this.neededTranslations.common_teacher = this.$store.getters.translationByKey('common_teacher');
+                    this.neededTranslations.common_admin = this.$store.getters.translationByKey('common_admin');
+                    this.neededTranslations.exercises_manage = this.$store.getters.translationByKey('exercises_manage');
+                    this.neededTranslations.users_manage = this.$store.getters.translationByKey('users_manage');
+                    this.neededTranslations.app_see_results = this.$store.getters.translationByKey('app_see_results');
                 }
             );
         },

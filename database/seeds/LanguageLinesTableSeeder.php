@@ -1962,5 +1962,37 @@ class LanguageLinesTableSeeder extends Seeder
             ],
         ]);
 
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'privacy_policy',
+            'text' => [
+                'en' => 'Privacy policy',
+                'fr' => 'Politique de confidentialité'
+            ],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'common',
+            'key' => 'student',
+            'text' => ['en' => 'Student', 'fr' => 'Etudiant'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'users',
+            'key' => 'manage',
+            'text' => ['en' => 'Manage users', 'fr' => 'Gérer les utilisateurs'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'exercises',
+            'key' => 'manage',
+            'text' => ['en' => 'Manage exercises', 'fr' => 'Gérer les exercices'],
+        ]);
+
+        LanguageLine::create([
+            'group' => 'app',
+            'key' => 'see_results',
+            'text' => ['en' => 'Show results', 'fr' => 'Voir les résultats'],
+        ]);
     }
 }
