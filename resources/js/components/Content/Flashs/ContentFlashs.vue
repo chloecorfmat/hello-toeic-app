@@ -12,7 +12,7 @@
     import store from '../../../store/store';
 
     export default {
-        components: {Flash},
+        components: {},
         store,
         props: ['flashsData'],
         data: function() {

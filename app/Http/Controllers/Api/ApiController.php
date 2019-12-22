@@ -15,7 +15,7 @@ class ApiController extends Controller
         $language_lines = LanguageLine::all();
 
         foreach ($language_lines as $language_line) {
-            $key = $language_line->group . '_' . $language_line->key;
+            $key = str_replace('-', '_', $language_line->group) . '_' . str_replace('-', '_', $language_line->key);
 
             foreach ($language_line->text as $l => $text) {
                 if ($l === $lang) {
