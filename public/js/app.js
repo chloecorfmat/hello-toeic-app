@@ -2180,6 +2180,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2187,32 +2198,17 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     Multiselect: vue_multiselect__WEBPACK_IMPORTED_MODULE_1___default.a
   },
-  props: [],
+  props: ['exercises'],
   data: function data() {
     return {
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
       values: {
         name: '',
         version: '',
         visibility: 0,
         readingDuration: 0,
-        exercise1: '',
-        exercise2: '',
-        exercise3: '',
-        exercise4: '',
-        exercise5: '',
-        exercise6: '',
-        exercise7: ''
+        exercises: []
       },
-      options: [{
-        name: 'Vue.js',
-        code: 'vu'
-      }, {
-        name: 'Javascript',
-        code: 'js'
-      }, {
-        name: 'Open Source',
-        code: 'os'
-      }],
       neededTranslations: {
         "common_name": "Name",
         "common_version": "Version",
@@ -2224,7 +2220,19 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
   },
-  computed: {},
+  computed: {
+    options: function options() {
+      var obj = [];
+      JSON.parse(this.exercises).forEach(function (el) {
+        obj.push({
+          id: el.id,
+          name: el.name
+        });
+      });
+      console.log(obj);
+      return obj;
+    }
+  },
   created: function created() {
     var _this = this;
 
@@ -5936,201 +5944,234 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "form",
-    { attrs: { method: "POST", action: "/teacher/composite-tests" } },
-    [
-      _c("div", { staticClass: "field-container" }, [
-        _c("label", { attrs: { for: "name" } }, [
-          _vm._v(_vm._s(this.neededTranslations.common_name))
-        ]),
-        _vm._v(" "),
+  return _c("div", { class: "theme-" + this.$store.state.activeTheme }, [
+    _c(
+      "form",
+      { attrs: { method: "POST", action: "/teacher/composite-tests" } },
+      [
         _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.values.name,
-              expression: "values.name"
-            }
-          ],
-          attrs: { type: "text", name: "name", id: "name" },
-          domProps: { value: _vm.values.name },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.values, "name", $event.target.value)
-            }
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "field-container" }, [
-        _c("label", { attrs: { for: "version" } }, [
-          _vm._v(_vm._s(this.neededTranslations.common_version))
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.values.version,
-              expression: "values.version"
-            }
-          ],
-          attrs: { type: "number", name: "version", id: "version" },
-          domProps: { value: _vm.values.version },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.values, "version", $event.target.value)
-            }
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "field-container" }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.values.visibility,
-              expression: "values.visibility"
-            }
-          ],
-          attrs: {
-            type: "checkbox",
-            id: "visibility",
-            name: "visibility",
-            "aria-describedby": "visibility-description"
-          },
-          domProps: {
-            checked: Array.isArray(_vm.values.visibility)
-              ? _vm._i(_vm.values.visibility, null) > -1
-              : _vm.values.visibility
-          },
-          on: {
-            change: function($event) {
-              var $$a = _vm.values.visibility,
-                $$el = $event.target,
-                $$c = $$el.checked ? true : false
-              if (Array.isArray($$a)) {
-                var $$v = null,
-                  $$i = _vm._i($$a, $$v)
-                if ($$el.checked) {
-                  $$i < 0 &&
-                    _vm.$set(_vm.values, "visibility", $$a.concat([$$v]))
-                } else {
-                  $$i > -1 &&
-                    _vm.$set(
-                      _vm.values,
-                      "visibility",
-                      $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                    )
-                }
-              } else {
-                _vm.$set(_vm.values, "visibility", $$c)
-              }
-            }
-          }
+          attrs: { type: "hidden", name: "_token" },
+          domProps: { value: _vm.csrf }
         }),
         _vm._v(" "),
-        _c("label", { attrs: { for: "visibility" } }, [
-          _vm._v(_vm._s(this.neededTranslations.common_visibility))
+        _c("div", { staticClass: "field-container" }, [
+          _c("label", { attrs: { for: "name" } }, [
+            _vm._v(_vm._s(this.neededTranslations.common_name) + " "),
+            _c("span", { staticClass: "required" }, [_vm._v("*")])
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.values.name,
+                expression: "values.name"
+              }
+            ],
+            attrs: { type: "text", name: "name", id: "name", required: "" },
+            domProps: { value: _vm.values.name },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.values, "name", $event.target.value)
+              }
+            }
+          })
         ]),
         _vm._v(" "),
-        _c("p", { attrs: { id: "visibility-description" } }, [
-          _vm._v(_vm._s(this.neededTranslations.common_visibility_explanation))
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "field-container" }, [
-        _c("label", { attrs: { for: "reading-duration" } }, [
-          _vm._v(_vm._s(this.neededTranslations.common_reading_duration))
+        _c("div", { staticClass: "field-container" }, [
+          _c("label", { attrs: { for: "version" } }, [
+            _vm._v(_vm._s(this.neededTranslations.common_version) + " "),
+            _c("span", { staticClass: "required" }, [_vm._v("*")])
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.values.version,
+                expression: "values.version"
+              }
+            ],
+            attrs: {
+              type: "number",
+              name: "version",
+              id: "version",
+              required: ""
+            },
+            domProps: { value: _vm.values.version },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.values, "version", $event.target.value)
+              }
+            }
+          })
         ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "field-container" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.values.visibility,
+                expression: "values.visibility"
+              }
+            ],
+            attrs: {
+              type: "checkbox",
+              id: "visibility",
+              name: "visible",
+              "aria-describedby": "visibility-description"
+            },
+            domProps: {
+              checked: Array.isArray(_vm.values.visibility)
+                ? _vm._i(_vm.values.visibility, null) > -1
+                : _vm.values.visibility
+            },
+            on: {
+              change: function($event) {
+                var $$a = _vm.values.visibility,
+                  $$el = $event.target,
+                  $$c = $$el.checked ? true : false
+                if (Array.isArray($$a)) {
+                  var $$v = null,
+                    $$i = _vm._i($$a, $$v)
+                  if ($$el.checked) {
+                    $$i < 0 &&
+                      _vm.$set(_vm.values, "visibility", $$a.concat([$$v]))
+                  } else {
+                    $$i > -1 &&
+                      _vm.$set(
+                        _vm.values,
+                        "visibility",
+                        $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                      )
+                  }
+                } else {
+                  _vm.$set(_vm.values, "visibility", $$c)
+                }
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "visibility" } }, [
+            _vm._v(_vm._s(this.neededTranslations.common_visibility))
+          ]),
+          _vm._v(" "),
+          _c("p", { attrs: { id: "visibility-description" } }, [
+            _vm._v(
+              _vm._s(this.neededTranslations.common_visibility_explanation)
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "field-container" }, [
+          _c("label", { attrs: { for: "reading-duration" } }, [
+            _vm._v(_vm._s(this.neededTranslations.common_reading_duration))
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.values.readingDuration,
+                expression: "values.readingDuration"
+              }
+            ],
+            attrs: {
+              type: "number",
+              name: "reading-duration",
+              id: "reading-duration"
+            },
+            domProps: { value: _vm.values.readingDuration },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.values, "readingDuration", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c(
+          "fieldset",
+          [
+            _c("legend", [
+              _vm._v(
+                _vm._s(this.neededTranslations.composite_tests_composition)
+              )
+            ]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                _vm._s(
+                  this.neededTranslations
+                    .composite_tests_composition_explanation
+                )
+              )
+            ]),
+            _vm._v(" "),
+            _vm._l(7, function(n) {
+              return _c(
+                "div",
+                [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "typo__label",
+                      attrs: { for: "exercise_" + n }
+                    },
+                    [_vm._v("Exercise " + _vm._s(n))]
+                  ),
+                  _vm._v(" "),
+                  _c("multiselect", {
+                    attrs: {
+                      id: "exercise_" + n,
+                      placeholder: "Search",
+                      label: "name",
+                      "track-by": "id",
+                      options: _vm.options,
+                      multiple: true,
+                      taggable: true
+                    },
+                    model: {
+                      value: _vm.values.exercises[n],
+                      callback: function($$v) {
+                        _vm.$set(_vm.values.exercises, n, $$v)
+                      },
+                      expression: "values.exercises[n]"
+                    }
+                  })
+                ],
+                1
+              )
+            })
+          ],
+          2
+        ),
         _vm._v(" "),
         _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.values.readingDuration,
-              expression: "values.readingDuration"
-            }
-          ],
-          attrs: {
-            type: "number",
-            name: "reading-duration",
-            id: "reading-duration"
-          },
-          domProps: { value: _vm.values.readingDuration },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.values, "readingDuration", $event.target.value)
-            }
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c(
-        "fieldset",
-        [
-          _c("legend", [
-            _vm._v(_vm._s(this.neededTranslations.composite_tests_composition))
-          ]),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v(
-              _vm._s(
-                this.neededTranslations.composite_tests_composition_explanation
-              )
-            )
-          ]),
-          _vm._v(" "),
-          _vm._l(7, function(n) {
-            return _c(
-              "div",
-              { staticClass: "field-container" },
-              [
-                _c(
-                  "label",
-                  {
-                    staticClass: "typo__label",
-                    attrs: { for: "exercise-" + n }
-                  },
-                  [_vm._v("Exercise " + _vm._s(n))]
-                ),
-                _vm._v(" "),
-                _c("multiselect", {
-                  attrs: {
-                    id: "exercise-" + n,
-                    "v-model": "values.exercise" + n,
-                    placeholder: "Search",
-                    label: "name",
-                    "track-by": "code",
-                    options: _vm.options,
-                    multiple: true,
-                    taggable: true
-                  }
-                })
-              ],
-              1
-            )
-          })
-        ],
-        2
-      )
-    ]
-  )
+          attrs: { type: "hidden", name: "exercises" },
+          domProps: { value: JSON.stringify(_vm.values.exercises) }
+        }),
+        _vm._v(" "),
+        _c("button", { staticClass: "btn", attrs: { type: "submit" } }, [
+          _vm._v("\n            Validate\n        ")
+        ])
+      ]
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

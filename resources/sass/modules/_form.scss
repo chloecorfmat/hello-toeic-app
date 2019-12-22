@@ -32,7 +32,6 @@ legend {
 
     label {
         display: block;
-        color: $secondary-color-1;
         font-size: .8rem;
         font-weight: 700;
         text-transform: uppercase;
@@ -49,7 +48,6 @@ legend {
         border-radius: 5px;
         border: 1px solid $tertiary-color-2;
         box-sizing: border-box;
-        color: $secondary-color-1;
         font-family: $main-font;
         font-size: .9rem;
         line-height: 1.5;
@@ -60,7 +58,6 @@ legend {
         &:active,
         &:focus {
             background: $white;
-            //border-color: $secondary-color-1;
             border-color: $secondary-color-2;
             outline-color: $secondary-color-2;
         }

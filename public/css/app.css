@@ -795,7 +795,6 @@ legend {
 
 .field-container label {
   display: block;
-  color: #a42424;
   font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -812,7 +811,6 @@ legend {
   border-radius: 5px;
   border: 1px solid #c5cbd3;
   box-sizing: border-box;
-  color: #a42424;
   font-family: "Montserrat", sans-serif;
   font-size: 0.9rem;
   line-height: 1.5;
@@ -2003,6 +2001,15 @@ ul.default-style li {
   color: #B86A00;
 }
 
+.theme-admin .btn {
+  background: #d68400;
+  color: #fff;
+}
+
+.theme-admin .btn:hover {
+  background: #B86A00;
+}
+
 .theme-admin .header--menu-item .submenu-opened {
   border-top: 2px solid #d68400;
   border-bottom: 2px solid #d68400;
@@ -2137,6 +2144,15 @@ ul.default-style li {
   color: #8D1A24;
 }
 
+.theme-student .btn {
+  background: #a42424;
+  color: #fff;
+}
+
+.theme-student .btn:hover {
+  background: #8D1A24;
+}
+
 .theme-student .header--menu-item .submenu-opened {
   border-top: 2px solid #a42424;
   border-bottom: 2px solid #a42424;
@@ -2269,6 +2285,15 @@ ul.default-style li {
 .theme-teacher .header--menu a.active:hover,
 .theme-teacher .header--menu button.active:hover {
   color: #004A78;
+}
+
+.theme-teacher .btn {
+  background: #01608c;
+  color: #fff;
+}
+
+.theme-teacher .btn:hover {
+  background: #004A78;
 }
 
 .theme-teacher .header--menu-item .submenu-opened {

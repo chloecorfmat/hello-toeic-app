@@ -90,27 +90,32 @@ class CompositeTestController extends Controller
         $compositeTest = [
             'name' => addslashes($request->get('name')),
             'version' => addslashes($request->get('version')),
-            'visible' => addslashes($request->get('visible')),
+            'visible' => $request->get('visible') === "on" ? 1 : 0,
             'updated_at' => (new \DateTime()),
             'created_at' => (new \DateTime()),
         ];
 
-        if (!is_null($request->get('reading_duration'))) {
+        if (!is_null($request->get('reading_duration')) && $request->get('reading_duration' != 0)) {
             $compositeTest["reading_duration"] = addslashes($request->get('reading_duration'));
         }
 
         $last_ex_type = null;
-        for($i = 1; $i < 8; $i++) {
-            $var = 'exercise_part' . $i;
-            $exercise = Exercise::find(addslashes($request->get($var)));
+        $exercises = json_decode($request->get('exercises'));
+        $i = -1;
+        foreach($exercises as $ex) {
+            $i++;
+            if (!is_null($ex)) {
+                $exercise = Exercise::find(addslashes($ex[0]->id));
 
-            if (!is_null($exercise)) {
-                if ($last_ex_type == 'reading' && $exercise->part->type == 'listening') {
-                    return redirect()->route('composite-tests.create')->withErrors([trans('composite-tests.exercises-order')]);
+                if (!is_null($exercise)) {
+                    $var = 'exercise_part' . $i;
+                    if ($last_ex_type == 'reading' && $exercise->part->type == 'listening') {
+                        return redirect()->route('composite-tests.create')->withErrors([trans('composite-tests.exercises-order')]);
+                    }
+                    $last_ex_type = $exercise->part->type;
+
+                    $compositeTest[$var] = $exercise->id;
                 }
-                $last_ex_type = $exercise->part->type;
-
-                $compositeTest[$var] = $exercise->id;
             }
         }
 
