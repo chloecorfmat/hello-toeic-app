@@ -8,7 +8,6 @@ use Spatie\TranslationLoader\LanguageLine;
 
 class ApiController extends Controller
 {
-
     public function translations(Request $request) {
         $lang = $request->cookie('lang');
         $translations = [];

@@ -33,4 +33,8 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     Route::get('users/{page?}', 'UserController@users');
     Route::get('translations', 'ApiController@translations');
+
+    Route::get('configs', 'ConfigController@index');
+    Route::get('features', 'FeatureFlippingController@index');
+    Route::get('permissions', 'PermissionController@index');
 });
