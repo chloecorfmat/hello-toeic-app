@@ -26,6 +26,7 @@ Vue.component('content-header', require('./components/Content/Header/ContentHead
 Vue.component('content-header-buttons', require('./components/Content/Header/ContentHeaderButtons').default);
 Vue.component('breadcrumb', require('./components/Content/Header/Breadcrumb').default);
 Vue.component('login-page', require('./components/Pages/LoginPage.vue').default);
+Vue.component('config-page', require('./components/Pages/Admin/ConfigPage.vue').default);
 Vue.component('base-table', require('./components/Tables/BaseTable.vue').default);
 
 Vue.component('composite-test-create', require('./components/Form/CompositeTestCreate.vue').default);

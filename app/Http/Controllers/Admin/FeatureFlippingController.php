@@ -58,6 +58,6 @@ class FeatureFlippingController extends Controller
             }
         }
 
-        return redirect()->route('feature-flipping.index')->with('success', trans('feature-flipping.updated'));
+        return redirect()->route('config.index')->with('success', trans('feature-flipping.updated'));
     }
 }

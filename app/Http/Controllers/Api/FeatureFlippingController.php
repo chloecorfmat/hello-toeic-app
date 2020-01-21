@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class FeatureFlippingController extends Controller
 {
     public function index(Request $request) {
-        $configs = Setting::where('type', 'config')->get();
-        return response()->json($configs);
+        $features = Setting::where('type', 'feature_flipping')->get();
+        return response()->json($features);
     }
 }
