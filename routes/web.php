@@ -189,3 +189,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('blocked-account', 'ErrorController@blockedAccount')->name('blockedAccount');
 });
+
+Route::fallback(function () {
+    abort(404);
+});
