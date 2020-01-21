@@ -19,26 +19,6 @@ class FeatureFlippingController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
-    {
-        $features = Setting::where('type', 'feature_flipping')->get();
-
-        $common_data['active_trail'] = 'admin';
-        $common_data['header'] = [
-            'title' => trans('app.feature-flipping'),
-            'breadcrumb' => Breadcrumbs::generate('feature-flipping.index'),
-            'theme' => 'colored-background',
-        ];
-        $common_data['flashs'] = FlashService::getMessages();
-
-        return view('admin.feature-flipping.index',compact('features', 'common_data'));
-    }
-
-    /**
      * Store feature flipping values.
      *
      * @return \Illuminate\Http\Response

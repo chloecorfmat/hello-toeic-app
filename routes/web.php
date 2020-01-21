@@ -93,8 +93,6 @@ Route::group(['middleware' => ['auth', 'allowed.account']], function () {
         ->name('exercises.delete');
     Route::resource('teacher/exercises', 'ExerciseController')->except(['create', 'store']);
 
-    Route::get('/admin/feature-flipping', 'FeatureFlippingController@index')
-        ->name('feature-flipping.index');
     Route::post('/admin/feature-flipping', 'FeatureFlippingController@store')
         ->name('feature-flipping.store');
 
