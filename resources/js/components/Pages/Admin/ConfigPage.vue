@@ -1,7 +1,7 @@
 <template>
-    <main>
-        <div>
-            <h1>Config</h1>
+    <div v-bind:class="'main-content content-with-spaces theme-' + this.$store.state.activeTheme">
+        <div class="space two-thirds">
+            <h2>Update configuration</h2>
             <form method="POST" action="/admin/config">
                 <input type="hidden" name="_token" :value="csrf">
                 <text-input v-for="config in configs" :key="config.id" :name="config.key" :text="config.name" :initial="config.value" required="required"></text-input>
@@ -11,8 +11,8 @@
                 </button>
             </form>
         </div>
-        <div>
-            <h1>Feature flipping</h1>
+        <div class="space one-third">
+            <h2>Feature flipping</h2>
             <form method="POST" action="/admin/feature-flipping">
                 <input type="hidden" name="_token" :value="csrf">
                 <switch-input v-for="feature in features" :key="feature.id" :name="feature.key" :text="feature.name" :initial="feature.value"></switch-input>
@@ -21,7 +21,7 @@
                 </button>
             </form>
         </div>
-    </main>
+    </div>
 </template>
 
 <script>

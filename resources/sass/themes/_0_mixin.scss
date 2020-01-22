@@ -102,13 +102,6 @@
     }
   }
 
-  /** FORM **/
-  .field-container {
-    label {
-      color: $main-color;
-    }
-  }
-
   @media screen and (min-width: $breakpoint-medium) {
     .header--menu-item {
       .submenu-opened {
@@ -164,6 +157,41 @@
             }
           }
         }
+      }
+    }
+  }
+
+  /** FORM **/
+  .field-container {
+    input[type="text"],
+    input[type="number"],
+    input[type="password"],
+    input[type="date"],
+    input[type="email"],
+    textarea,
+    select {
+      &:active,
+      &:focus {
+        border-color: $main-color;
+        outline-color: $main-color;
+      }
+    }
+  }
+
+  .switch-container {
+    .form-label-text {
+      &.checked {
+        &::after {
+          background: $white;
+        }
+      }
+
+      &::before {
+        background: $main-color;
+      }
+
+      &::after {
+        background: $main-color-dark;
       }
     }
   }

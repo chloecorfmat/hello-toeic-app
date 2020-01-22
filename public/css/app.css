@@ -795,9 +795,8 @@ legend {
 
 .field-container label {
   display: block;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   font-weight: 700;
-  text-transform: uppercase;
 }
 
 .field-container input[type=text],
@@ -807,9 +806,8 @@ legend {
 .field-container input[type=email],
 .field-container textarea,
 .field-container select {
-  background: #e4e4e4;
   border-radius: 5px;
-  border: 1px solid #c5cbd3;
+  border: 1px solid #e4e4e4;
   box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
   font-size: 0.9rem;
@@ -817,6 +815,7 @@ legend {
   margin-top: 0.25rem;
   padding: 0.25rem;
   width: 100%;
+  color: #5d5e6d;
 }
 
 .field-container input[type=text]:active,
@@ -834,20 +833,6 @@ legend {
 .field-container select:active,
 .field-container select:focus {
   background: #fff;
-  border-color: #ffc857;
-  outline-color: #ffc857;
-}
-
-@media screen and (min-width: 1340px) {
-  .field-container input[type=text],
-  .field-container input[type=number],
-  .field-container input[type=password],
-  .field-container input[type=date],
-  .field-container input[type=email],
-  .field-container textarea,
-  .field-container select {
-    width: 50%;
-  }
 }
 
 .form-radio-el input[type=radio] {
@@ -944,13 +929,16 @@ legend {
   width: 100%;
 }
 
+.switch-container {
+  margin: 1rem 0;
+}
+
 .switch-container .form-label-text {
   font-family: Montserrat;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 0.9rem;
   position: relative;
   display: block;
-  width: 30%;
   cursor: pointer;
 }
 
@@ -966,7 +954,6 @@ legend {
 .switch-container .form-label-text::before {
   width: 3rem;
   height: 1.5rem;
-  background: #D68400;
   display: inline-block;
   content: "";
   vertical-align: middle;
@@ -980,7 +967,6 @@ legend {
 .switch-container .form-label-text::after {
   width: 1rem;
   height: 1rem;
-  background: #B86A00;
   display: inline-block;
   border-radius: 50%;
   content: "";
@@ -2021,6 +2007,59 @@ ul.default-style li {
   opacity: 0;
 }
 
+/** SPACES **/
+
+.content-with-spaces {
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+}
+
+.content-with-spaces .space {
+  padding: 1rem 2rem;
+  background: #fff;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  width: 100%;
+}
+
+.content-with-spaces .space:not(:first-child) {
+  margin-top: 2rem;
+}
+
+@media screen and (min-width: 1340px) {
+  .content-with-spaces .space:not(:first-child) {
+    margin-top: initial;
+  }
+
+  .content-with-spaces .space.one-third {
+    width: 32%;
+  }
+
+  .content-with-spaces .space.two-thirds {
+    width: 64%;
+  }
+}
+
+.content-with-spaces .space h2 {
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.5rem;
+  line-height: 1;
+  display: block;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid #e4e4e4;
+  margin-bottom: 1.5rem;
+}
+
+.content-with-spaces .space .btn {
+  width: 100%;
+}
+
 .gif-new {
   width: 2.5rem;
 }
@@ -2028,9 +2067,9 @@ ul.default-style li {
 .theme-admin {
   /** TABLE **/
   /** PAGINATION **/
-  /** FORM **/
   /** FOOTER **/
   /** CONTENT HEADER **/
+  /** FORM **/
 }
 
 .theme-admin a {
@@ -2113,10 +2152,6 @@ ul.default-style li {
   color: #B86A00;
 }
 
-.theme-admin .field-container label {
-  color: #d68400;
-}
-
 @media screen and (min-width: 1340px) {
   .theme-admin .header--menu-item .submenu-opened {
     border: none;
@@ -2168,12 +2203,42 @@ ul.default-style li {
   color: #B86A00;
 }
 
+.theme-admin .field-container input[type=text]:active,
+.theme-admin .field-container input[type=text]:focus,
+.theme-admin .field-container input[type=number]:active,
+.theme-admin .field-container input[type=number]:focus,
+.theme-admin .field-container input[type=password]:active,
+.theme-admin .field-container input[type=password]:focus,
+.theme-admin .field-container input[type=date]:active,
+.theme-admin .field-container input[type=date]:focus,
+.theme-admin .field-container input[type=email]:active,
+.theme-admin .field-container input[type=email]:focus,
+.theme-admin .field-container textarea:active,
+.theme-admin .field-container textarea:focus,
+.theme-admin .field-container select:active,
+.theme-admin .field-container select:focus {
+  border-color: #d68400;
+  outline-color: #d68400;
+}
+
+.theme-admin .switch-container .form-label-text.checked::after {
+  background: #fff;
+}
+
+.theme-admin .switch-container .form-label-text::before {
+  background: #d68400;
+}
+
+.theme-admin .switch-container .form-label-text::after {
+  background: #B86A00;
+}
+
 .theme-student {
   /** TABLE **/
   /** PAGINATION **/
-  /** FORM **/
   /** FOOTER **/
   /** CONTENT HEADER **/
+  /** FORM **/
 }
 
 .theme-student a {
@@ -2256,10 +2321,6 @@ ul.default-style li {
   color: #8D1A24;
 }
 
-.theme-student .field-container label {
-  color: #a42424;
-}
-
 @media screen and (min-width: 1340px) {
   .theme-student .header--menu-item .submenu-opened {
     border: none;
@@ -2311,12 +2372,42 @@ ul.default-style li {
   color: #8D1A24;
 }
 
+.theme-student .field-container input[type=text]:active,
+.theme-student .field-container input[type=text]:focus,
+.theme-student .field-container input[type=number]:active,
+.theme-student .field-container input[type=number]:focus,
+.theme-student .field-container input[type=password]:active,
+.theme-student .field-container input[type=password]:focus,
+.theme-student .field-container input[type=date]:active,
+.theme-student .field-container input[type=date]:focus,
+.theme-student .field-container input[type=email]:active,
+.theme-student .field-container input[type=email]:focus,
+.theme-student .field-container textarea:active,
+.theme-student .field-container textarea:focus,
+.theme-student .field-container select:active,
+.theme-student .field-container select:focus {
+  border-color: #a42424;
+  outline-color: #a42424;
+}
+
+.theme-student .switch-container .form-label-text.checked::after {
+  background: #fff;
+}
+
+.theme-student .switch-container .form-label-text::before {
+  background: #a42424;
+}
+
+.theme-student .switch-container .form-label-text::after {
+  background: #8D1A24;
+}
+
 .theme-teacher {
   /** TABLE **/
   /** PAGINATION **/
-  /** FORM **/
   /** FOOTER **/
   /** CONTENT HEADER **/
+  /** FORM **/
 }
 
 .theme-teacher a {
@@ -2399,10 +2490,6 @@ ul.default-style li {
   color: #004A78;
 }
 
-.theme-teacher .field-container label {
-  color: #01608c;
-}
-
 @media screen and (min-width: 1340px) {
   .theme-teacher .header--menu-item .submenu-opened {
     border: none;
@@ -2452,5 +2539,35 @@ ul.default-style li {
 .theme-teacher.content-header.colored-background .content-header--buttons .btn.btn-inverted:hover {
   background: #fff;
   color: #004A78;
+}
+
+.theme-teacher .field-container input[type=text]:active,
+.theme-teacher .field-container input[type=text]:focus,
+.theme-teacher .field-container input[type=number]:active,
+.theme-teacher .field-container input[type=number]:focus,
+.theme-teacher .field-container input[type=password]:active,
+.theme-teacher .field-container input[type=password]:focus,
+.theme-teacher .field-container input[type=date]:active,
+.theme-teacher .field-container input[type=date]:focus,
+.theme-teacher .field-container input[type=email]:active,
+.theme-teacher .field-container input[type=email]:focus,
+.theme-teacher .field-container textarea:active,
+.theme-teacher .field-container textarea:focus,
+.theme-teacher .field-container select:active,
+.theme-teacher .field-container select:focus {
+  border-color: #01608c;
+  outline-color: #01608c;
+}
+
+.theme-teacher .switch-container .form-label-text.checked::after {
+  background: #fff;
+}
+
+.theme-teacher .switch-container .form-label-text::before {
+  background: #01608c;
+}
+
+.theme-teacher .switch-container .form-label-text::after {
+  background: #004A78;
 }
 

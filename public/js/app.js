@@ -7153,86 +7153,94 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main", [
-    _c("div", [
-      _c("h1", [_vm._v("Config")]),
+  return _c(
+    "div",
+    {
+      class:
+        "main-content content-with-spaces theme-" +
+        this.$store.state.activeTheme
+    },
+    [
+      _c("div", { staticClass: "space two-thirds" }, [
+        _c("h2", [_vm._v("Update configuration")]),
+        _vm._v(" "),
+        _c(
+          "form",
+          { attrs: { method: "POST", action: "/admin/config" } },
+          [
+            _c("input", {
+              attrs: { type: "hidden", name: "_token" },
+              domProps: { value: _vm.csrf }
+            }),
+            _vm._v(" "),
+            _vm._l(_vm.configs, function(config) {
+              return _c("text-input", {
+                key: config.id,
+                attrs: {
+                  name: config.key,
+                  text: config.name,
+                  initial: config.value,
+                  required: "required"
+                }
+              })
+            }),
+            _vm._v(" "),
+            _c(
+              "button",
+              { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+              [
+                _vm._v(
+                  "\n                " +
+                    _vm._s(this.neededTranslations.common_save) +
+                    "\n            "
+                )
+              ]
+            )
+          ],
+          2
+        )
+      ]),
       _vm._v(" "),
-      _c(
-        "form",
-        { attrs: { method: "POST", action: "/admin/config" } },
-        [
-          _c("input", {
-            attrs: { type: "hidden", name: "_token" },
-            domProps: { value: _vm.csrf }
-          }),
-          _vm._v(" "),
-          _vm._l(_vm.configs, function(config) {
-            return _c("text-input", {
-              key: config.id,
-              attrs: {
-                name: config.key,
-                text: config.name,
-                initial: config.value,
-                required: "required"
-              }
-            })
-          }),
-          _vm._v(" "),
-          _c(
-            "button",
-            { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-            [
-              _vm._v(
-                "\n                " +
-                  _vm._s(this.neededTranslations.common_save) +
-                  "\n            "
-              )
-            ]
-          )
-        ],
-        2
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", [
-      _c("h1", [_vm._v("Feature flipping")]),
-      _vm._v(" "),
-      _c(
-        "form",
-        { attrs: { method: "POST", action: "/admin/feature-flipping" } },
-        [
-          _c("input", {
-            attrs: { type: "hidden", name: "_token" },
-            domProps: { value: _vm.csrf }
-          }),
-          _vm._v(" "),
-          _vm._l(_vm.features, function(feature) {
-            return _c("switch-input", {
-              key: feature.id,
-              attrs: {
-                name: feature.key,
-                text: feature.name,
-                initial: feature.value
-              }
-            })
-          }),
-          _vm._v(" "),
-          _c(
-            "button",
-            { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-            [
-              _vm._v(
-                "\n                " +
-                  _vm._s(this.neededTranslations.common_save) +
-                  "\n            "
-              )
-            ]
-          )
-        ],
-        2
-      )
-    ])
-  ])
+      _c("div", { staticClass: "space one-third" }, [
+        _c("h2", [_vm._v("Feature flipping")]),
+        _vm._v(" "),
+        _c(
+          "form",
+          { attrs: { method: "POST", action: "/admin/feature-flipping" } },
+          [
+            _c("input", {
+              attrs: { type: "hidden", name: "_token" },
+              domProps: { value: _vm.csrf }
+            }),
+            _vm._v(" "),
+            _vm._l(_vm.features, function(feature) {
+              return _c("switch-input", {
+                key: feature.id,
+                attrs: {
+                  name: feature.key,
+                  text: feature.name,
+                  initial: feature.value
+                }
+              })
+            }),
+            _vm._v(" "),
+            _c(
+              "button",
+              { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+              [
+                _vm._v(
+                  "\n                " +
+                    _vm._s(this.neededTranslations.common_save) +
+                    "\n            "
+                )
+              ]
+            )
+          ],
+          2
+        )
+      ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
