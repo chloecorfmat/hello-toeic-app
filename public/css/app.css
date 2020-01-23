@@ -905,6 +905,7 @@ legend {
           flex-direction: row;
   -webkit-box-pack: justify;
           justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .fields .field {
@@ -920,13 +921,27 @@ legend {
   width: 100%;
 }
 
-.fields .field-container {
-  -webkit-box-flex: 1;
-          flex-grow: 1;
+@media screen and (min-width: 580px) {
+  .fields {
+    flex-wrap: nowrap;
+  }
+
+  .fields .field-container {
+    -webkit-box-flex: 1;
+            flex-grow: 1;
+    box-sizing: content-box;
+    margin-right: 0.5rem;
+  }
+
+  .fields .field-container ~ .field-container {
+    margin-left: 0.5rem;
+    margin-right: 0;
+  }
 }
 
-.fields .field-container ~ .field-container {
-  margin-left: 1rem;
+.fields .field-container {
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .example.documents {
@@ -987,6 +1002,19 @@ legend {
 
 .switch-container .switch-input {
   display: none;
+}
+
+.wording-fieldset {
+  margin-bottom: 1rem;
+}
+
+.wording-fieldset legend {
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.2rem;
+  line-height: 1.4;
+  margin: 0;
 }
 
 .table-container {
@@ -2242,6 +2270,10 @@ ul.default-style li {
   background: #B86A00;
 }
 
+.theme-admin .wording-fieldset legend {
+  color: #d68400;
+}
+
 .theme-student {
   /** TABLE **/
   /** PAGINATION **/
@@ -2411,6 +2443,10 @@ ul.default-style li {
   background: #8D1A24;
 }
 
+.theme-student .wording-fieldset legend {
+  color: #a42424;
+}
+
 .theme-teacher {
   /** TABLE **/
   /** PAGINATION **/
@@ -2578,5 +2614,9 @@ ul.default-style li {
 
 .theme-teacher .switch-container .form-label-text::after {
   background: #004A78;
+}
+
+.theme-teacher .wording-fieldset legend {
+  color: #01608c;
 }
 

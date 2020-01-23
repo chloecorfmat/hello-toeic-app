@@ -137,6 +137,7 @@ legend {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    flex-wrap: wrap;
 
     .field {
         flex-grow: 1;
@@ -150,12 +151,25 @@ legend {
         }
     }
 
+    @media screen and (min-width: $breakpoint-small) {
+        flex-wrap: nowrap;
+
+        .field-container {
+            flex-grow: 1;
+            box-sizing: content-box;
+            margin-right: .5rem;
+        }
+        .field-container ~ .field-container {
+            margin-left: .5rem;
+            margin-right: 0;
+        }
+    }
+
     .field-container {
-        flex-grow: 1;
+        box-sizing: border-box;
+        width: 100%;
     }
-    .field-container ~ .field-container {
-        margin-left: 1rem;
-    }
+
 }
 
 .example {
@@ -219,5 +233,18 @@ legend {
 
     .switch-input {
         display: none;
+    }
+}
+
+.wording-fieldset {
+    margin-bottom: 1rem;
+
+    legend {
+        font-family: $main-font;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 1.2rem;
+        line-height: 1.4;
+        margin: 0;
     }
 }

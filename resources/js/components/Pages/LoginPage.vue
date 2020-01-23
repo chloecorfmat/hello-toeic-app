@@ -8,7 +8,7 @@
                     <div v-show="hasErrors" class="alert alert-error">
                         <ul>
                             <li v-for="error in JSON.parse(this.errors)">
-                                <span class="important">{{ this.neededTranslations.common_error }}!</span> {{ error }}
+                                <span class="important">{{ neededTranslations.common_error }}!</span> {{ error }}
                             </li>
                         </ul>
                     </div>

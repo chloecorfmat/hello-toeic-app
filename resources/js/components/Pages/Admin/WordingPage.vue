@@ -6,7 +6,7 @@
                 <input type="hidden" name="_token" :value="csrf">
 
                 <div v-for="wording in wordings" :key="wording.id">
-                    <fieldset>
+                    <fieldset class="wording-fieldset">
                         <legend>{{ wording.group }}.{{ wording.key}}</legend>
                         <div class="fields">
                             <text-input
@@ -20,7 +20,7 @@
                         </div>
                     </fieldset>
                 </div>
-                
+
                 <button type="submit" class="btn btn-primary">
                     {{ this.neededTranslations.common_save }}
                 </button>

@@ -87,8 +87,14 @@
     <div class="content">
         <div class="title">
             <h1>{{ __('app.blocked-account') }}</h1>
+            <div>
+                <img src="https://media2.giphy.com/media/3ohzdIk6GgMh1T6ldC/giphy.gif" alt="TOEIC is coming !"/>
+                <p>Your account bas been blocked on this test server.</p>
+                <p>FYI Hello's been moved. Please go to <a href="https://hello.epe.bzh">https://hello.epe.bzh</a> and get back to training already. TOEIC is coming!</p>
+            </div>
+
             <a href="logout" class="btn">{{ __('common.logout') }}</a>
-            <p>Feel free to contact <a href="mailto:hello@epe.bzh">hello@epe.bzh</a> in case of problem.</p>
+
         </div>
     </div>
 </div>

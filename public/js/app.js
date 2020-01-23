@@ -7377,7 +7377,7 @@ var render = function() {
             _vm._v(" "),
             _vm._l(_vm.wordings, function(wording) {
               return _c("div", { key: wording.id }, [
-                _c("fieldset", [
+                _c("fieldset", { staticClass: "wording-fieldset" }, [
                   _c("legend", [
                     _vm._v(_vm._s(wording.group) + "." + _vm._s(wording.key))
                   ]),
@@ -7467,7 +7467,7 @@ var render = function() {
                 _vm._l(JSON.parse(this.errors), function(error) {
                   return _c("li", [
                     _c("span", { staticClass: "important" }, [
-                      _vm._v(_vm._s(this.neededTranslations.common_error) + "!")
+                      _vm._v(_vm._s(_vm.neededTranslations.common_error) + "!")
                     ]),
                     _vm._v(" " + _vm._s(error) + "\n                        ")
                   ])
