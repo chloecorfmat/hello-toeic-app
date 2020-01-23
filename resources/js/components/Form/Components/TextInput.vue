@@ -2,6 +2,7 @@
     <div class="field-container">
         <label :for="this.name" class="form-label-text">
             <span>{{ this.text }}</span>
+            <span v-if="this.required" class="required">*</span>
         </label>
         <input type="text" :name="this.name" v-model="value" :id="this.name" :required="this.required">
     </div>

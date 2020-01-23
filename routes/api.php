@@ -37,4 +37,5 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('config', 'ConfigController@index');
     Route::get('feature', 'FeatureFlippingController@index');
     Route::get('permission', 'PermissionController@index');
+    Route::get('wording', 'WordingController@index');
 });

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Setting;
 use Illuminate\Http\Request;
+use Spatie\TranslationLoader\LanguageLine;
 
 class WordingController extends Controller
 {

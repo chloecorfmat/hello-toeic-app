@@ -149,6 +149,13 @@ legend {
             width: 100%;
         }
     }
+
+    .field-container {
+        flex-grow: 1;
+    }
+    .field-container ~ .field-container {
+        margin-left: 1rem;
+    }
 }
 
 .example {

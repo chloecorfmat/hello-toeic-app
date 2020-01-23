@@ -2186,6 +2186,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   store: _store_store__WEBPACK_IMPORTED_MODULE_0__["default"],
@@ -2740,6 +2741,92 @@ __webpack_require__.r(__webpack_exports__);
 
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/config?api_token=' + this.$store.state.apiToken).then(function (response) {
         return _this3.configs = response.data;
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Pages/Admin/WordingPage.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Pages/Admin/WordingPage.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../store/store */ "./resources/js/store/store.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Form_Components_TextInput__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Form/Components/TextInput */ "./resources/js/components/Form/Components/TextInput.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  store: _store_store__WEBPACK_IMPORTED_MODULE_0__["default"],
+  components: {
+    TextInput: _Form_Components_TextInput__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  data: function data() {
+    return {
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+      wordings: [],
+      neededTranslations: {
+        "common_save": "Save"
+      }
+    };
+  },
+  beforeMount: function beforeMount() {
+    this.loadTranslations();
+  },
+  created: function created() {
+    var _this = this;
+
+    this.$store.watch(function (state, getters) {
+      return getters.ready;
+    }, function (newValue, oldValue) {
+      _this.neededTranslations.common_save = _this.$store.getters.translationByKey('common_save');
+    });
+  },
+  methods: {
+    loadTranslations: function loadTranslations() {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/wording?api_token=' + this.$store.state.apiToken).then(function (response) {
+        return _this2.wordings = response.data;
       });
     }
   }
@@ -6164,7 +6251,11 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "field-container" }, [
     _c("label", { staticClass: "form-label-text", attrs: { for: this.name } }, [
-      _c("span", [_vm._v(_vm._s(this.text))])
+      _c("span", [_vm._v(_vm._s(this.text))]),
+      _vm._v(" "),
+      this.required
+        ? _c("span", { staticClass: "required" }, [_vm._v("*")])
+        : _vm._e()
     ]),
     _vm._v(" "),
     _c("input", {
@@ -7222,6 +7313,93 @@ var render = function() {
                   initial: feature.value
                 }
               })
+            }),
+            _vm._v(" "),
+            _c(
+              "button",
+              { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+              [
+                _vm._v(
+                  "\n                " +
+                    _vm._s(this.neededTranslations.common_save) +
+                    "\n            "
+                )
+              ]
+            )
+          ],
+          2
+        )
+      ])
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Pages/Admin/WordingPage.vue?vue&type=template&id=579f67be&":
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Pages/Admin/WordingPage.vue?vue&type=template&id=579f67be& ***!
+  \**************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      class:
+        "main-content content-with-spaces theme-" +
+        this.$store.state.activeTheme
+    },
+    [
+      _c("div", { staticClass: "space" }, [
+        _c("h2", [_vm._v("Translate interface")]),
+        _vm._v(" "),
+        _c(
+          "form",
+          { attrs: { method: "POST", action: "/admin/wordings" } },
+          [
+            _c("input", {
+              attrs: { type: "hidden", name: "_token" },
+              domProps: { value: _vm.csrf }
+            }),
+            _vm._v(" "),
+            _vm._l(_vm.wordings, function(wording) {
+              return _c("div", { key: wording.id }, [
+                _c("fieldset", [
+                  _c("legend", [
+                    _vm._v(_vm._s(wording.group) + "." + _vm._s(wording.key))
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "fields" },
+                    _vm._l(wording.text, function(value, lang) {
+                      return _c("text-input", {
+                        key: lang,
+                        attrs: {
+                          name: wording.group + "." + wording.key + "." + lang,
+                          text: lang,
+                          initial: value,
+                          required: true
+                        }
+                      })
+                    }),
+                    1
+                  )
+                ])
+              ])
             }),
             _vm._v(" "),
             _c(
@@ -21304,6 +21482,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('content-header-buttons', _
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('breadcrumb', __webpack_require__(/*! ./components/Content/Header/Breadcrumb */ "./resources/js/components/Content/Header/Breadcrumb.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('login-page', __webpack_require__(/*! ./components/Pages/LoginPage.vue */ "./resources/js/components/Pages/LoginPage.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('config-page', __webpack_require__(/*! ./components/Pages/Admin/ConfigPage.vue */ "./resources/js/components/Pages/Admin/ConfigPage.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('wording-page', __webpack_require__(/*! ./components/Pages/Admin/WordingPage.vue */ "./resources/js/components/Pages/Admin/WordingPage.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('base-table', __webpack_require__(/*! ./components/Tables/BaseTable.vue */ "./resources/js/components/Tables/BaseTable.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('composite-test-create', __webpack_require__(/*! ./components/Form/CompositeTestCreate.vue */ "./resources/js/components/Form/CompositeTestCreate.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive('focus', {
@@ -22063,6 +22242,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ConfigPage_vue_vue_type_template_id_1ae12d07___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ConfigPage_vue_vue_type_template_id_1ae12d07___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Pages/Admin/WordingPage.vue":
+/*!*************************************************************!*\
+  !*** ./resources/js/components/Pages/Admin/WordingPage.vue ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _WordingPage_vue_vue_type_template_id_579f67be___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./WordingPage.vue?vue&type=template&id=579f67be& */ "./resources/js/components/Pages/Admin/WordingPage.vue?vue&type=template&id=579f67be&");
+/* harmony import */ var _WordingPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./WordingPage.vue?vue&type=script&lang=js& */ "./resources/js/components/Pages/Admin/WordingPage.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _WordingPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _WordingPage_vue_vue_type_template_id_579f67be___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _WordingPage_vue_vue_type_template_id_579f67be___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Pages/Admin/WordingPage.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Pages/Admin/WordingPage.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/Pages/Admin/WordingPage.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_WordingPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./WordingPage.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Pages/Admin/WordingPage.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_WordingPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Pages/Admin/WordingPage.vue?vue&type=template&id=579f67be&":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/components/Pages/Admin/WordingPage.vue?vue&type=template&id=579f67be& ***!
+  \********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_WordingPage_vue_vue_type_template_id_579f67be___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./WordingPage.vue?vue&type=template&id=579f67be& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Pages/Admin/WordingPage.vue?vue&type=template&id=579f67be&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_WordingPage_vue_vue_type_template_id_579f67be___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_WordingPage_vue_vue_type_template_id_579f67be___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

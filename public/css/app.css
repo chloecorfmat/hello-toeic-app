@@ -920,6 +920,15 @@ legend {
   width: 100%;
 }
 
+.fields .field-container {
+  -webkit-box-flex: 1;
+          flex-grow: 1;
+}
+
+.fields .field-container ~ .field-container {
+  margin-left: 1rem;
+}
+
 .example.documents {
   max-width: 30%;
   overflow: hidden;
