@@ -39,10 +39,3 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('permission', 'PermissionController@index');
     Route::get('wording', 'WordingController@index');
 });
-
-Route::post('userlogin', 'API\UserController@userLogin');
-Route::post('userregister', 'API\UserController@userRegister');
-Route::group(['middleware' => 'auth:api'], function()
-{
-    Route::get('userdetail', 'API\UserController@userDetail');
-});
