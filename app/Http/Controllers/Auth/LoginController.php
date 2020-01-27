@@ -40,6 +40,11 @@ class LoginController extends Controller
 
 
     public function logout(Request $request) {
+        // What happened if several tabs opened ?
+        /**$user = Auth::user();
+        $user->api_token = null;
+        $user->save();**/
+
         Auth::logout();
         return redirect('/login');
     }
@@ -47,6 +52,10 @@ class LoginController extends Controller
     protected function redirectTo()
     {
         $user = Auth::user();
+
+        $token = $user->createToken('Hello')-> accessToken;
+        $user->api_token = $token;
+        $user->save();
 
         Log::info(trans('log.user-login', [
             'name' => $user->name,

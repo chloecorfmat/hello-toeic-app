@@ -59,8 +59,12 @@
         },
         methods: {
             loadTranslations: function() {
+                const config = {
+                    headers: { Authorization: `Bearer ${this.$store.state.apiToken}` }
+                };
+
                 axios
-                    .get('/api/wording?api_token=' + this.$store.state.apiToken)
+                    .get('/api/wording', config)
                     .then(response => (
                         this.wordings = response.data
                     ));

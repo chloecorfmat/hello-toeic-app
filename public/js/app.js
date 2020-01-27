@@ -2732,14 +2732,24 @@ __webpack_require__.r(__webpack_exports__);
     loadFeatures: function loadFeatures() {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/feature?api_token=' + this.$store.state.apiToken).then(function (response) {
+      var config = {
+        headers: {
+          Authorization: "Bearer ".concat(this.$store.state.apiToken)
+        }
+      };
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/feature', config).then(function (response) {
         return _this2.features = response.data;
       });
     },
     loadConfigs: function loadConfigs() {
       var _this3 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/config?api_token=' + this.$store.state.apiToken).then(function (response) {
+      var config = {
+        headers: {
+          Authorization: "Bearer ".concat(this.$store.state.apiToken)
+        }
+      };
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/config', config).then(function (response) {
         return _this3.configs = response.data;
       });
     }
@@ -2825,7 +2835,12 @@ __webpack_require__.r(__webpack_exports__);
     loadTranslations: function loadTranslations() {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/wording?api_token=' + this.$store.state.apiToken).then(function (response) {
+      var config = {
+        headers: {
+          Authorization: "Bearer ".concat(this.$store.state.apiToken)
+        }
+      };
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/wording', config).then(function (response) {
         return _this2.wordings = response.data;
       });
     }
@@ -3299,7 +3314,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
       }
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('/api/users/' + this.currentPage + '?api_token=' + this.$store.state.apiToken + '&' + get_url).then(function (response) {
+      var config = {
+        headers: {
+          Authorization: "Bearer ".concat(this.$store.state.apiToken)
+        }
+      };
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a //.get('/api/users/' + this.currentPage + '?api_token=' + this.$store.state.apiToken + '&' + get_url)
+      .get('/api/users/' + this.currentPage + '?' + get_url, config).then(function (response) {
         return _this2.users = response.data.users, _this2.usersNb = response.data.users_nb, _this2.pagesNumber = Math.ceil(response.data.users_nb / 30);
       });
     },
@@ -22688,7 +22709,12 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_0__
     loadTranslations: function loadTranslations(_ref) {
       var commit = _ref.commit,
           state = _ref.state;
-      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('/api/translations?api_token=' + state.apiToken).then(function (response) {
+      var config = {
+        headers: {
+          Authorization: "Bearer ".concat(this.$store.state.apiToken)
+        }
+      };
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('/api/translations', config).then(function (response) {
         return commit('MUTATE_TRANS', response.data);
       });
     }

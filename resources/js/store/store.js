@@ -62,8 +62,12 @@ export default new Vuex.Store({
     },
     actions: {
         loadTranslations({commit, state }) {
+            const config = {
+                headers: { Authorization: `Bearer ${this.$store.state.apiToken}` }
+            };
+
                  return axios
-                    .get('/api/translations?api_token=' + state.apiToken)
+                    .get('/api/translations', config)
                     .then(response => (
                         commit('MUTATE_TRANS', response.data)
                     ));

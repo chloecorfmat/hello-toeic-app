@@ -179,8 +179,13 @@
                     });
                 }
 
+                const config = {
+                    headers: { Authorization: `Bearer ${this.$store.state.apiToken}` }
+                };
+
                 axios
-                    .get('/api/users/' + this.currentPage + '?api_token=' + this.$store.state.apiToken + '&' + get_url)
+                    //.get('/api/users/' + this.currentPage + '?api_token=' + this.$store.state.apiToken + '&' + get_url)
+                    .get('/api/users/' + this.currentPage + '?' + get_url, config)
                     .then(response => (
                         this.users = response.data.users,
                             this.usersNb = response.data.users_nb,

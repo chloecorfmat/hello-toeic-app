@@ -57,15 +57,23 @@
         },
         methods: {
             loadFeatures: function() {
+                const config = {
+                    headers: { Authorization: `Bearer ${this.$store.state.apiToken}` }
+                };
+
                 axios
-                    .get('/api/feature?api_token=' + this.$store.state.apiToken)
+                    .get('/api/feature', config)
                     .then(response => (
                         this.features = response.data
                     ));
             },
             loadConfigs: function() {
+                const config = {
+                    headers: { Authorization: `Bearer ${this.$store.state.apiToken}` }
+                };
+
                 axios
-                    .get('/api/config?api_token=' + this.$store.state.apiToken)
+                    .get('/api/config', config)
                     .then(response => (
                         this.configs = response.data
                     ));
