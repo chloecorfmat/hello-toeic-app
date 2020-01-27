@@ -22711,7 +22711,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_0__
           state = _ref.state;
       var config = {
         headers: {
-          Authorization: "Bearer ".concat(this.$store.state.apiToken)
+          Authorization: "Bearer ".concat(state.apiToken)
         }
       };
       return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('/api/translations', config).then(function (response) {

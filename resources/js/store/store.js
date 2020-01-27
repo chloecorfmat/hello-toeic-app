@@ -63,7 +63,7 @@ export default new Vuex.Store({
     actions: {
         loadTranslations({commit, state }) {
             const config = {
-                headers: { Authorization: `Bearer ${this.$store.state.apiToken}` }
+                headers: { Authorization: `Bearer ${state.apiToken}` }
             };
 
                  return axios
