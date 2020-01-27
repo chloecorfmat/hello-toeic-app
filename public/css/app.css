@@ -1017,6 +1017,50 @@ legend {
   margin: 0;
 }
 
+.toggle-states-fieldset {
+  display: -webkit-box;
+  display: flex;
+  border: none;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+          align-items: center;
+  min-width: 30%;
+}
+
+.toggle-states-fieldset legend {
+  font-weight: 700;
+}
+
+.toggle-states-fieldset .btn-input {
+  background: #fff;
+  padding: 0.2rem 1rem;
+  cursor: pointer;
+  border: 1px solid;
+}
+
+.toggle-states-fieldset .btn-input:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.toggle-states-fieldset .btn-input:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.toggle-states-fieldset .btn-input:not(:last-child) {
+  border-right: 0;
+}
+
+.toggle-states-fieldset .btn-input.checked {
+  color: #fff;
+}
+
+.toggle-states-fieldset .btn-input input {
+  display: none;
+}
+
 .table-container {
   border-radius: 5px;
   border: 1px solid #c5cbd3;
@@ -2274,6 +2318,25 @@ ul.default-style li {
   color: #d68400;
 }
 
+.theme-admin .toggle-states-fieldset .btn-input {
+  border-color: #d68400;
+  color: #d68400;
+}
+
+.theme-admin .toggle-states-fieldset .btn-input:hover {
+  border-color: #B86A00;
+  color: #B86A00;
+}
+
+.theme-admin .toggle-states-fieldset .btn-input.checked {
+  color: #fff;
+  background: #d68400;
+}
+
+.theme-admin .toggle-states-fieldset .btn-input.checked:hover {
+  background: #B86A00;
+}
+
 .theme-student {
   /** TABLE **/
   /** PAGINATION **/
@@ -2447,6 +2510,25 @@ ul.default-style li {
   color: #a42424;
 }
 
+.theme-student .toggle-states-fieldset .btn-input {
+  border-color: #a42424;
+  color: #a42424;
+}
+
+.theme-student .toggle-states-fieldset .btn-input:hover {
+  border-color: #8D1A24;
+  color: #8D1A24;
+}
+
+.theme-student .toggle-states-fieldset .btn-input.checked {
+  color: #fff;
+  background: #a42424;
+}
+
+.theme-student .toggle-states-fieldset .btn-input.checked:hover {
+  background: #8D1A24;
+}
+
 .theme-teacher {
   /** TABLE **/
   /** PAGINATION **/
@@ -2618,5 +2700,24 @@ ul.default-style li {
 
 .theme-teacher .wording-fieldset legend {
   color: #01608c;
+}
+
+.theme-teacher .toggle-states-fieldset .btn-input {
+  border-color: #01608c;
+  color: #01608c;
+}
+
+.theme-teacher .toggle-states-fieldset .btn-input:hover {
+  border-color: #004A78;
+  color: #004A78;
+}
+
+.theme-teacher .toggle-states-fieldset .btn-input.checked {
+  color: #fff;
+  background: #01608c;
+}
+
+.theme-teacher .toggle-states-fieldset .btn-input.checked:hover {
+  background: #004A78;
 }
 

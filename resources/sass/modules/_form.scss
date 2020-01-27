@@ -248,3 +248,45 @@ legend {
         margin: 0;
     }
 }
+
+.toggle-states-fieldset {
+    display: flex;
+    border: none;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 30%;
+
+    legend {
+        font-weight: 700;
+    }
+
+    .btn-input {
+        background: $white;
+        padding: .2rem 1rem;
+        cursor: pointer;
+        border: 1px solid;
+
+        &:first-child {
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+
+        &:last-child {
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+
+        &:not(:last-child) {
+            border-right: 0;
+        }
+
+        &.checked {
+            color: $white;
+        }
+
+        input {
+            display:none;
+        }
+    }
+
+}

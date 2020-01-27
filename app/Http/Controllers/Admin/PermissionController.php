@@ -17,7 +17,7 @@ class PermissionController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['permission:permissions-manage']);
+        $this->middleware(['role:admin']);
     }
 
     /**
@@ -27,8 +27,8 @@ class PermissionController extends Controller
      */
     public function index(Request $request)
     {
-        $roles = Role::orderBy('id', 'DESC')->paginate(15);
-        $perms = Permission::orderBy('id','DESC')->paginate(15);
+        $roles = Role::orderBy('id', 'DESC')->get();
+        $perms = Permission::orderBy('id','DESC')->get();
         $sync = [];
         foreach ($perms as $perm) {
             $sync[$perm['name']] = [];
@@ -65,14 +65,14 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
-        $roles = Role::orderBy('id', 'DESC')->paginate(15);
-        $permissions = Permission::orderBy('id','DESC')->paginate(15);
+        $roles = Role::orderBy('id', 'DESC')->get();
+        $permissions = Permission::orderBy('id','DESC')->get();
 
         foreach ($permissions as $permission) {
             $values = $request->get($permission->name);
 
             foreach ($roles as $role) {
-                if (is_array($values) && in_array($role->id, $values)) {
+                if (is_array($values) && in_array(intval($role->id)-1, $values)) {
                     $role->givePermissionTo($permission->name);
                 } else {
                     $role->revokePermissionTo($permission->name);

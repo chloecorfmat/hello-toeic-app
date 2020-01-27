@@ -201,4 +201,25 @@
       color: $main-color;
     }
   }
+
+  .toggle-states-fieldset {
+    .btn-input {
+      border-color: $main-color;
+      color: $main-color;
+
+      &:hover {
+        border-color: $main-color-dark;
+        color: $main-color-dark;
+      }
+
+      &.checked {
+        color: $white;
+        background: $main-color;
+
+        &:hover {
+          background: $main-color-dark;
+        }
+      }
+    }
+  }
 }
