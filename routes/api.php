@@ -33,6 +33,10 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     Route::get('users/{page?}', 'UserController@users');
     Route::get('translations', 'ApiController@translations');
+});
+
+Route::group(['middleware' => ['auth:api']], function () {
+    Route::setGroupNamespace('App\Http\Controllers\Api\Admin');
 
     Route::get('config', 'ConfigController@index');
     Route::get('feature', 'FeatureFlippingController@index');
