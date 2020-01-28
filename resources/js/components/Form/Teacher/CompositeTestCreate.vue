@@ -63,7 +63,7 @@
 </template>
 
 <script>
-    import store from '../../store/store';
+    import store from '../../../store/store';
     import Multiselect from 'vue-multiselect';
 
     export default {
@@ -94,13 +94,9 @@
         computed: {
             options: function () {
                 let obj = [];
-
                 JSON.parse(this.exercises).forEach(function (el){
                     obj.push({ id: el.id, name: el.name })
                 });
-
-                console.log(obj);
-
                 return obj;
             }
         },

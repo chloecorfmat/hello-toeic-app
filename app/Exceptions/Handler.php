@@ -34,6 +34,7 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
+        // @TODO : create message ? or do something to follow errors ?
         parent::report($exception);
     }
 

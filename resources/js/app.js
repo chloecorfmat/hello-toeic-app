@@ -31,7 +31,7 @@ Vue.component('wording-page', require('./components/Pages/Admin/WordingPage.vue'
 Vue.component('permission-page', require('./components/Pages/Admin/PermissionPage.vue').default);
 Vue.component('base-table', require('./components/Tables/BaseTable.vue').default);
 
-Vue.component('composite-test-create', require('./components/Form/CompositeTestCreate.vue').default);
+Vue.component('composite-test-create', require('./components/Form/Teacher/CompositeTestCreate.vue').default);
 
 Vue.directive('focus', {
     inserted: function (el) {
