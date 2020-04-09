@@ -82,9 +82,9 @@
                         @else
                                 </ul>
                             </li>
-                            <li class="part part-hide" id="part_{{ $question->parts[0]->id }}">
+                            <li class="part" id="part_{{ $question->parts[0]->id }}">
                                 <button class="js-part-close btn-close" type="button" title="{{ __('common.close') }}">
-                                    <i class="fas fa-chevron-down fa-2x"></i>
+                                    <i class="fas fa-times fa-2x"></i>
                                 </button>
                                 @endif
                                 @php($current_part = $question->parts[0]->id)
